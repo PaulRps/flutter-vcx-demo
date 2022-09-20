@@ -1,0 +1,1072 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 51;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1498D2341E8E89220040F4C2 /* GeneratedPluginRegistrant.m in Sources */ = {isa = PBXBuildFile; fileRef = 1498D2331E8E89220040F4C2 /* GeneratedPluginRegistrant.m */; };
+		3B3967161E833CAA004F5970 /* AppFrameworkInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3B3967151E833CAA004F5970 /* AppFrameworkInfo.plist */; };
+		4D5F204D5B4DD6284BBC774F /* CredentialRecordPort.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D5F265E40E43A1F2D7EDAA8 /* CredentialRecordPort.swift */; };
+		4D5F204DDBDB7C29601DB6F8 /* AcceptCredentialOfferResponseDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D5F2919AC2C941390C519CD /* AcceptCredentialOfferResponseDto.swift */; };
+		4D5F205CCF1643BD1C4B259E /* CredentialRecordAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D5F25BD8FC33DA1C04B2DE1 /* CredentialRecordAdapter.swift */; };
+		4D5F20C44756528079257F71 /* PresentProofRequestUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D5F22BD3D1C23B747326A96 /* PresentProofRequestUsecase.swift */; };
+		4D5F21557B72C782A3085BBA /* CredentialStateEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D5F2D0247EC33443917C078 /* CredentialStateEnum.swift */; };
+		4D5F21FAE81BD03D8DF5E475 /* CredentialPort.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D5F29DFB66B36E7EEF3DD1E /* CredentialPort.swift */; };
+		4D5F22007524E936C48CDDA6 /* FlutterRequestAriesCredentialChannelDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D5F2004958F461B9379B530 /* FlutterRequestAriesCredentialChannelDto.swift */; };
+		4D5F2300591CED179D6CAA01 /* AriesCredentialRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D5F20BBB18F21A8371917AD /* AriesCredentialRepository.swift */; };
+		4D5F2335696A658DE937A45B /* AriesCredentialMethodResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D5F23E3CA13015088A65B14 /* AriesCredentialMethodResolver.swift */; };
+		4D5F23EA916B6D2B596CAD61 /* GetCredentialsResponseDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D5F26F23918FC830A3B4E20 /* GetCredentialsResponseDto.swift */; };
+		4D5F25E101DB23E1031A77D4 /* FlutterRequestAriesProofChannelDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D5F2127FA4D2A5742A4750F /* FlutterRequestAriesProofChannelDto.swift */; };
+		4D5F26831028C1ACDA061828 /* AriesProofChannelListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D5F2B23CBF03B90223CFBD3 /* AriesProofChannelListener.swift */; };
+		4D5F268B78643286C20BB209 /* AriesProofAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D5F27835131D8177A2EC850 /* AriesProofAdapter.swift */; };
+		4D5F295BC537A73DC48A2E5E /* AcceptCredentialOfferUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D5F2CBACDBB2C61C8625893 /* AcceptCredentialOfferUsecase.swift */; };
+		4D5F29A856F9C63917025FF5 /* AriesProofRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D5F25325CCD631C21BC0673 /* AriesProofRepository.swift */; };
+		4D5F2A78A20CE3B8DE7B833E /* AriesCredentialChannelListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D5F2FFE2FED859A44953431 /* AriesCredentialChannelListener.swift */; };
+		4D5F2B51A36ED221E10068FA /* AriesProofMethodResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D5F2865ED6F0F8CC28B2241 /* AriesProofMethodResolver.swift */; };
+		4D5F2BB62659C55C86E98010 /* AriesCredentialUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D5F2283E7538D9926977280 /* AriesCredentialUtil.swift */; };
+		4D5F2C02174EB211DF29E714 /* GetIssuedCredentialsUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D5F249919890D63415FA539 /* GetIssuedCredentialsUsecase.swift */; };
+		4D5F2EBAC5595574034A2AD7 /* ProofStateEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D5F267EDC4524A5BE25864F /* ProofStateEnum.swift */; };
+		4D5F2ECCD6E88FC562417547 /* AriesCredentialAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D5F22620AA5BD218B6F6740 /* AriesCredentialAdapter.swift */; };
+		4D5F2F052577B2BF4208CF29 /* ProofPort.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D5F2F9A9AE2377D6B853742 /* ProofPort.swift */; };
+		74858FAF1ED2DC5600515810 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74858FAE1ED2DC5600515810 /* AppDelegate.swift */; };
+		97C146FC1CF9000F007C117D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FA1CF9000F007C117D /* Main.storyboard */; };
+		97C146FE1CF9000F007C117D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FD1CF9000F007C117D /* Assets.xcassets */; };
+		97C147011CF9000F007C117D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FF1CF9000F007C117D /* LaunchScreen.storyboard */; };
+		A2312CD39A81BE03F946E19A /* Pods_Runner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFF5AC473F31DA2178E083EC /* Pods_Runner.framework */; };
+		E504561928AECEDB00284E5D /* AgencyPort.swift in Sources */ = {isa = PBXBuildFile; fileRef = E504561828AECEDB00284E5D /* AgencyPort.swift */; };
+		E504561B28AECF7100284E5D /* AriesAgencyAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E504561A28AECF7100284E5D /* AriesAgencyAdapter.swift */; };
+		E504561D28AEDD3100284E5D /* PoolPort.swift in Sources */ = {isa = PBXBuildFile; fileRef = E504561C28AEDD3100284E5D /* PoolPort.swift */; };
+		E504561F28AEDD6100284E5D /* AriesMainPoolAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E504561E28AEDD6100284E5D /* AriesMainPoolAdapter.swift */; };
+		E504562128AFD0E400284E5D /* StartAriesSdkResponseDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = E504562028AFD0E400284E5D /* StartAriesSdkResponseDto.swift */; };
+		E504562428B3CA2600284E5D /* CheckVcxResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = E504562328B3CA2600284E5D /* CheckVcxResult.swift */; };
+		E504562628B3FCD100284E5D /* AriesSdkLogLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E504562528B3FCD100284E5D /* AriesSdkLogLevel.swift */; };
+		E51DA99A28A84E97004A43CC /* Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E51DA99928A84E97004A43CC /* Channel.swift */; };
+		E51DA99C28A85089004A43CC /* ChannelListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = E51DA99B28A85089004A43CC /* ChannelListener.swift */; };
+		E51DA9A228A85369004A43CC /* AriesSdkChannelListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = E51DA9A128A85369004A43CC /* AriesSdkChannelListener.swift */; };
+		E51DA9A428A8587C004A43CC /* ChannelManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E51DA9A328A8587C004A43CC /* ChannelManager.swift */; };
+		E51DA9A928A85BF5004A43CC /* CustomError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E51DA9A828A85BF5004A43CC /* CustomError.swift */; };
+		E51DA9AB28A85C51004A43CC /* ErrorMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E51DA9AA28A85C51004A43CC /* ErrorMessage.swift */; };
+		E51DA9AD28A85C83004A43CC /* ErrorMessageDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = E51DA9AC28A85C83004A43CC /* ErrorMessageDto.swift */; };
+		E546F21528A947AB00EB38AB /* NativeToFlutterResponseDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = E546F21428A947AB00EB38AB /* NativeToFlutterResponseDto.swift */; };
+		E546F21828A94A4500EB38AB /* ToJson.swift in Sources */ = {isa = PBXBuildFile; fileRef = E546F21728A94A4500EB38AB /* ToJson.swift */; };
+		E546F21A28A94C2C00EB38AB /* JsonUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = E546F21928A94C2C00EB38AB /* JsonUtil.swift */; };
+		E546F21C28A94E3100EB38AB /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = E546F21B28A94E3100EB38AB /* Logger.swift */; };
+		E546F22028AAC3FE00EB38AB /* FlutterRequestAriesSdkChannelDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = E546F21F28AAC3FE00EB38AB /* FlutterRequestAriesSdkChannelDto.swift */; };
+		E546F22428AAC47100EB38AB /* StartAriesSdkConfigDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = E546F22328AAC47100EB38AB /* StartAriesSdkConfigDto.swift */; };
+		E546F22628AAC4CE00EB38AB /* ProvisionAgencyConfigDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = E546F22528AAC4CE00EB38AB /* ProvisionAgencyConfigDto.swift */; };
+		E546F22828AAEA0600EB38AB /* InitThreadPoolConfigDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = E546F22728AAEA0600EB38AB /* InitThreadPoolConfigDto.swift */; };
+		E546F22A28AAEAAF00EB38AB /* OpenPoolConfigDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = E546F22928AAEAAF00EB38AB /* OpenPoolConfigDto.swift */; };
+		E546F22D28AAEFD300EB38AB /* AriesSdkMethodResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = E546F22C28AAEFD300EB38AB /* AriesSdkMethodResolver.swift */; };
+		E546F22F28AAF01100EB38AB /* MethodResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = E546F22E28AAF01100EB38AB /* MethodResolver.swift */; };
+		E546F23128ABE96100EB38AB /* AriesSdkRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = E546F23028ABE96100EB38AB /* AriesSdkRepository.swift */; };
+		E546F23628ABEB3800EB38AB /* SdkPort.swift in Sources */ = {isa = PBXBuildFile; fileRef = E546F23528ABEB3800EB38AB /* SdkPort.swift */; };
+		E546F23828ABEBF400EB38AB /* AriesSdkAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E546F23728ABEBF400EB38AB /* AriesSdkAdapter.swift */; };
+		E546F23A28ABEE7300EB38AB /* ProvisionConfigStoragePort.swift in Sources */ = {isa = PBXBuildFile; fileRef = E546F23928ABEE7300EB38AB /* ProvisionConfigStoragePort.swift */; };
+		E546F23C28ABEEA900EB38AB /* WalletManagerPort.swift in Sources */ = {isa = PBXBuildFile; fileRef = E546F23B28ABEEA900EB38AB /* WalletManagerPort.swift */; };
+		E546F23E28ABEF5C00EB38AB /* LocalWalletManagerAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E546F23D28ABEF5C00EB38AB /* LocalWalletManagerAdapter.swift */; };
+		E546F24028ABF0DB00EB38AB /* LocalWalletConfigDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = E546F23F28ABF0DB00EB38AB /* LocalWalletConfigDto.swift */; };
+		E546F24328ABF1A200EB38AB /* WalletKeyDerivationEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = E546F24228ABF1A200EB38AB /* WalletKeyDerivationEnum.swift */; };
+		E546F24528AC157600EB38AB /* ProvisionConfigStorageAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E546F24428AC157600EB38AB /* ProvisionConfigStorageAdapter.swift */; };
+		E5697AF228BE92010045908A /* StartAriesSdkUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5697AF128BE92000045908A /* StartAriesSdkUsecase.swift */; };
+		E5697AF428BE99E20045908A /* AriesWalletRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5697AF328BE99E20045908A /* AriesWalletRepository.swift */; };
+		E5697AF628BEA0410045908A /* AriesAgencyRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5697AF528BEA0410045908A /* AriesAgencyRepository.swift */; };
+		E5697AF828BEA2590045908A /* AriesPoolRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5697AF728BEA2590045908A /* AriesPoolRepository.swift */; };
+		E5697AFA28BFA3F10045908A /* ShutdownOrResetAriesSdkUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5697AF928BFA3F10045908A /* ShutdownOrResetAriesSdkUsecase.swift */; };
+		E5697AFC28BFF3970045908A /* DateUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5697AFB28BFF3970045908A /* DateUtil.swift */; };
+		E5697AFE28BFFAE10045908A /* AriesMessageChannelListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5697AFD28BFFAE00045908A /* AriesMessageChannelListener.swift */; };
+		E5697B0028BFFC200045908A /* AriesMessageMethodResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5697AFF28BFFC200045908A /* AriesMessageMethodResolver.swift */; };
+		E5697B0228BFFCFB0045908A /* FlutterRequestAriesMessageChannelDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5697B0128BFFCFB0045908A /* FlutterRequestAriesMessageChannelDto.swift */; };
+		E5697B0428BFFF300045908A /* AgencyMessageStatusEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5697B0328BFFF300045908A /* AgencyMessageStatusEnum.swift */; };
+		E5697B0628C000170045908A /* UpdateAgencyMessageStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5697B0528C000170045908A /* UpdateAgencyMessageStatus.swift */; };
+		E5697B0828C006E10045908A /* GetMessageByConnectionFromAriesAgencyUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5697B0728C006E10045908A /* GetMessageByConnectionFromAriesAgencyUsecase.swift */; };
+		E5697B0A28C0FF400045908A /* GetAgencyMessageResponseDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5697B0928C0FF3F0045908A /* GetAgencyMessageResponseDto.swift */; };
+		E5697B0C28C231470045908A /* CreateAriesConnectionResponseDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5697B0B28C231470045908A /* CreateAriesConnectionResponseDto.swift */; };
+		E5E15C9C28B9192D00B56745 /* AriesConnectionChannelListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5E15C9B28B9192D00B56745 /* AriesConnectionChannelListener.swift */; };
+		E5E15C9E28B9207900B56745 /* AriesConnectionMethodResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5E15C9D28B9207900B56745 /* AriesConnectionMethodResolver.swift */; };
+		E5E15CA028B920DD00B56745 /* FlutterRequestAriesConnectionChannelDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5E15C9F28B920DD00B56745 /* FlutterRequestAriesConnectionChannelDto.swift */; };
+		E5E15CA228B9213500B56745 /* AriesConnectionRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5E15CA128B9213500B56745 /* AriesConnectionRepository.swift */; };
+		E5E15CA428B9471700B56745 /* ConnectionPort.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5E15CA328B9471700B56745 /* ConnectionPort.swift */; };
+		E5E15CA628B94BC200B56745 /* ConnectionInvitationDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5E15CA528B94BC200B56745 /* ConnectionInvitationDto.swift */; };
+		E5E15CA828B94C2300B56745 /* AriesConnectionAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5E15CA728B94C2300B56745 /* AriesConnectionAdapter.swift */; };
+		E5E15CAA28B94F5000B56745 /* WalletRecordPort.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5E15CA928B94F5000B56745 /* WalletRecordPort.swift */; };
+		E5E15CAC28B94F8A00B56745 /* WalletRecordDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5E15CAB28B94F8A00B56745 /* WalletRecordDto.swift */; };
+		E5E15CAE28B94FBD00B56745 /* WalletRecordTypeEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5E15CAD28B94FBD00B56745 /* WalletRecordTypeEnum.swift */; };
+		E5E15CB028B9503A00B56745 /* SearchRecordDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5E15CAF28B9503A00B56745 /* SearchRecordDto.swift */; };
+		E5E15CB228B950C300B56745 /* WalletSearchPort.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5E15CB128B950C300B56745 /* WalletSearchPort.swift */; };
+		E5E15CB428B950EA00B56745 /* WalletQueryDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5E15CB328B950EA00B56745 /* WalletQueryDto.swift */; };
+		E5E15CB628B9510F00B56745 /* SearchWalletOptionsDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5E15CB528B9510F00B56745 /* SearchWalletOptionsDto.swift */; };
+		E5E15CB828B9515B00B56745 /* SearchWalletResponseDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5E15CB728B9515B00B56745 /* SearchWalletResponseDto.swift */; };
+		E5E15CBA28B951BF00B56745 /* WalletSearchAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5E15CB928B951BF00B56745 /* WalletSearchAdapter.swift */; };
+		E5E15CBC28B96C3C00B56745 /* WalletRecordAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5E15CBB28B96C3C00B56745 /* WalletRecordAdapter.swift */; };
+		E5E15CBE28B9735900B56745 /* ConnectionRecordPort.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5E15CBD28B9735900B56745 /* ConnectionRecordPort.swift */; };
+		E5E15CC028B973B500B56745 /* ConnectionStateEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5E15CBF28B973B500B56745 /* ConnectionStateEnum.swift */; };
+		E5E15CC228B9741D00B56745 /* ConnectionTagsDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5E15CC128B9741D00B56745 /* ConnectionTagsDto.swift */; };
+		E5E15CC428B9751700B56745 /* ConnectionRecordAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5E15CC328B9751700B56745 /* ConnectionRecordAdapter.swift */; };
+		E5E15CC628B975EB00B56745 /* WalletTagsBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5E15CC528B975EB00B56745 /* WalletTagsBuilder.swift */; };
+		E5E15CC828B9774F00B56745 /* AriesConnectionUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5E15CC728B9774F00B56745 /* AriesConnectionUtil.swift */; };
+		E5E15CCA28B987C900B56745 /* ConnectionOptionsDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5E15CC928B987C900B56745 /* ConnectionOptionsDto.swift */; };
+		E5E15CCC28B98E8B00B56745 /* AriesStateUpdateAttempter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5E15CCB28B98E8B00B56745 /* AriesStateUpdateAttempter.swift */; };
+		E5E15CCE28B9901600B56745 /* AriesFinishedState.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5E15CCD28B9901600B56745 /* AriesFinishedState.swift */; };
+		E5E15CD528BA7D1700B56745 /* ConnectOrReconnectAriesConnectionUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5E15CD428BA7D1700B56745 /* ConnectOrReconnectAriesConnectionUsecase.swift */; };
+		E5E15CD728BA7ED300B56745 /* CreateAriesConnectionUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5E15CD628BA7ED300B56745 /* CreateAriesConnectionUsecase.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		9705A1C41CF9048500538489 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		1498D2321E8E86230040F4C2 /* GeneratedPluginRegistrant.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GeneratedPluginRegistrant.h; sourceTree = "<group>"; };
+		1498D2331E8E89220040F4C2 /* GeneratedPluginRegistrant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeneratedPluginRegistrant.m; sourceTree = "<group>"; };
+		34F01E920343B0F4710E21A6 /* Pods-Runner.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.release.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.release.xcconfig"; sourceTree = "<group>"; };
+		3B3967151E833CAA004F5970 /* AppFrameworkInfo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = AppFrameworkInfo.plist; path = Flutter/AppFrameworkInfo.plist; sourceTree = "<group>"; };
+		4D5F2004958F461B9379B530 /* FlutterRequestAriesCredentialChannelDto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlutterRequestAriesCredentialChannelDto.swift; sourceTree = "<group>"; };
+		4D5F20BBB18F21A8371917AD /* AriesCredentialRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AriesCredentialRepository.swift; sourceTree = "<group>"; };
+		4D5F2127FA4D2A5742A4750F /* FlutterRequestAriesProofChannelDto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlutterRequestAriesProofChannelDto.swift; sourceTree = "<group>"; };
+		4D5F22620AA5BD218B6F6740 /* AriesCredentialAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AriesCredentialAdapter.swift; sourceTree = "<group>"; };
+		4D5F2283E7538D9926977280 /* AriesCredentialUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AriesCredentialUtil.swift; sourceTree = "<group>"; };
+		4D5F22BD3D1C23B747326A96 /* PresentProofRequestUsecase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresentProofRequestUsecase.swift; sourceTree = "<group>"; };
+		4D5F23E3CA13015088A65B14 /* AriesCredentialMethodResolver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AriesCredentialMethodResolver.swift; sourceTree = "<group>"; };
+		4D5F249919890D63415FA539 /* GetIssuedCredentialsUsecase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetIssuedCredentialsUsecase.swift; sourceTree = "<group>"; };
+		4D5F25325CCD631C21BC0673 /* AriesProofRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AriesProofRepository.swift; sourceTree = "<group>"; };
+		4D5F25BD8FC33DA1C04B2DE1 /* CredentialRecordAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CredentialRecordAdapter.swift; sourceTree = "<group>"; };
+		4D5F265E40E43A1F2D7EDAA8 /* CredentialRecordPort.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CredentialRecordPort.swift; sourceTree = "<group>"; };
+		4D5F267EDC4524A5BE25864F /* ProofStateEnum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProofStateEnum.swift; sourceTree = "<group>"; };
+		4D5F26F23918FC830A3B4E20 /* GetCredentialsResponseDto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetCredentialsResponseDto.swift; sourceTree = "<group>"; };
+		4D5F27835131D8177A2EC850 /* AriesProofAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AriesProofAdapter.swift; sourceTree = "<group>"; };
+		4D5F2865ED6F0F8CC28B2241 /* AriesProofMethodResolver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AriesProofMethodResolver.swift; sourceTree = "<group>"; };
+		4D5F2919AC2C941390C519CD /* AcceptCredentialOfferResponseDto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AcceptCredentialOfferResponseDto.swift; sourceTree = "<group>"; };
+		4D5F29DFB66B36E7EEF3DD1E /* CredentialPort.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CredentialPort.swift; sourceTree = "<group>"; };
+		4D5F2B23CBF03B90223CFBD3 /* AriesProofChannelListener.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AriesProofChannelListener.swift; sourceTree = "<group>"; };
+		4D5F2CBACDBB2C61C8625893 /* AcceptCredentialOfferUsecase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AcceptCredentialOfferUsecase.swift; sourceTree = "<group>"; };
+		4D5F2D0247EC33443917C078 /* CredentialStateEnum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CredentialStateEnum.swift; sourceTree = "<group>"; };
+		4D5F2F9A9AE2377D6B853742 /* ProofPort.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProofPort.swift; sourceTree = "<group>"; };
+		4D5F2FFE2FED859A44953431 /* AriesCredentialChannelListener.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AriesCredentialChannelListener.swift; sourceTree = "<group>"; };
+		4EAF21972FF86C3EEB9D5B1B /* Pods-Runner.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.debug.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.debug.xcconfig"; sourceTree = "<group>"; };
+		74858FAD1ED2DC5600515810 /* Runner-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Runner-Bridging-Header.h"; sourceTree = "<group>"; };
+		74858FAE1ED2DC5600515810 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		7AFA3C8E1D35360C0083082E /* Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = Release.xcconfig; path = Flutter/Release.xcconfig; sourceTree = "<group>"; };
+		85D7411A4A88DD2F87BDC53C /* Pods-Runner.profile.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.profile.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.profile.xcconfig"; sourceTree = "<group>"; };
+		9740EEB21CF90195004384FC /* Debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = Debug.xcconfig; path = Flutter/Debug.xcconfig; sourceTree = "<group>"; };
+		9740EEB31CF90195004384FC /* Generated.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = Generated.xcconfig; path = Flutter/Generated.xcconfig; sourceTree = "<group>"; };
+		97C146EE1CF9000F007C117D /* flutter_vcx_demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = flutter_vcx_demo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		97C146FB1CF9000F007C117D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		97C146FD1CF9000F007C117D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		97C147001CF9000F007C117D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		97C147021CF9000F007C117D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E504561828AECEDB00284E5D /* AgencyPort.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgencyPort.swift; sourceTree = "<group>"; };
+		E504561A28AECF7100284E5D /* AriesAgencyAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AriesAgencyAdapter.swift; sourceTree = "<group>"; };
+		E504561C28AEDD3100284E5D /* PoolPort.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoolPort.swift; sourceTree = "<group>"; };
+		E504561E28AEDD6100284E5D /* AriesMainPoolAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AriesMainPoolAdapter.swift; sourceTree = "<group>"; };
+		E504562028AFD0E400284E5D /* StartAriesSdkResponseDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartAriesSdkResponseDto.swift; sourceTree = "<group>"; };
+		E504562328B3CA2600284E5D /* CheckVcxResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckVcxResult.swift; sourceTree = "<group>"; };
+		E504562528B3FCD100284E5D /* AriesSdkLogLevel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AriesSdkLogLevel.swift; sourceTree = "<group>"; };
+		E51DA99928A84E97004A43CC /* Channel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Channel.swift; sourceTree = "<group>"; };
+		E51DA99B28A85089004A43CC /* ChannelListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelListener.swift; sourceTree = "<group>"; };
+		E51DA9A128A85369004A43CC /* AriesSdkChannelListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AriesSdkChannelListener.swift; sourceTree = "<group>"; };
+		E51DA9A328A8587C004A43CC /* ChannelManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelManager.swift; sourceTree = "<group>"; };
+		E51DA9A828A85BF5004A43CC /* CustomError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomError.swift; sourceTree = "<group>"; };
+		E51DA9AA28A85C51004A43CC /* ErrorMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorMessage.swift; sourceTree = "<group>"; };
+		E51DA9AC28A85C83004A43CC /* ErrorMessageDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorMessageDto.swift; sourceTree = "<group>"; };
+		E546F21428A947AB00EB38AB /* NativeToFlutterResponseDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeToFlutterResponseDto.swift; sourceTree = "<group>"; };
+		E546F21728A94A4500EB38AB /* ToJson.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToJson.swift; sourceTree = "<group>"; };
+		E546F21928A94C2C00EB38AB /* JsonUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonUtil.swift; sourceTree = "<group>"; };
+		E546F21B28A94E3100EB38AB /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
+		E546F21F28AAC3FE00EB38AB /* FlutterRequestAriesSdkChannelDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlutterRequestAriesSdkChannelDto.swift; sourceTree = "<group>"; };
+		E546F22328AAC47100EB38AB /* StartAriesSdkConfigDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartAriesSdkConfigDto.swift; sourceTree = "<group>"; };
+		E546F22528AAC4CE00EB38AB /* ProvisionAgencyConfigDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProvisionAgencyConfigDto.swift; sourceTree = "<group>"; };
+		E546F22728AAEA0600EB38AB /* InitThreadPoolConfigDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitThreadPoolConfigDto.swift; sourceTree = "<group>"; };
+		E546F22928AAEAAF00EB38AB /* OpenPoolConfigDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenPoolConfigDto.swift; sourceTree = "<group>"; };
+		E546F22C28AAEFD300EB38AB /* AriesSdkMethodResolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AriesSdkMethodResolver.swift; sourceTree = "<group>"; };
+		E546F22E28AAF01100EB38AB /* MethodResolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MethodResolver.swift; sourceTree = "<group>"; };
+		E546F23028ABE96100EB38AB /* AriesSdkRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AriesSdkRepository.swift; sourceTree = "<group>"; };
+		E546F23528ABEB3800EB38AB /* SdkPort.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SdkPort.swift; sourceTree = "<group>"; };
+		E546F23728ABEBF400EB38AB /* AriesSdkAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AriesSdkAdapter.swift; sourceTree = "<group>"; };
+		E546F23928ABEE7300EB38AB /* ProvisionConfigStoragePort.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProvisionConfigStoragePort.swift; sourceTree = "<group>"; };
+		E546F23B28ABEEA900EB38AB /* WalletManagerPort.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletManagerPort.swift; sourceTree = "<group>"; };
+		E546F23D28ABEF5C00EB38AB /* LocalWalletManagerAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalWalletManagerAdapter.swift; sourceTree = "<group>"; };
+		E546F23F28ABF0DB00EB38AB /* LocalWalletConfigDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalWalletConfigDto.swift; sourceTree = "<group>"; };
+		E546F24228ABF1A200EB38AB /* WalletKeyDerivationEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletKeyDerivationEnum.swift; sourceTree = "<group>"; };
+		E546F24428AC157600EB38AB /* ProvisionConfigStorageAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProvisionConfigStorageAdapter.swift; sourceTree = "<group>"; };
+		E5697AF128BE92000045908A /* StartAriesSdkUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartAriesSdkUsecase.swift; sourceTree = "<group>"; };
+		E5697AF328BE99E20045908A /* AriesWalletRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AriesWalletRepository.swift; sourceTree = "<group>"; };
+		E5697AF528BEA0410045908A /* AriesAgencyRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AriesAgencyRepository.swift; sourceTree = "<group>"; };
+		E5697AF728BEA2590045908A /* AriesPoolRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AriesPoolRepository.swift; sourceTree = "<group>"; };
+		E5697AF928BFA3F10045908A /* ShutdownOrResetAriesSdkUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShutdownOrResetAriesSdkUsecase.swift; sourceTree = "<group>"; };
+		E5697AFB28BFF3970045908A /* DateUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateUtil.swift; sourceTree = "<group>"; };
+		E5697AFD28BFFAE00045908A /* AriesMessageChannelListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AriesMessageChannelListener.swift; sourceTree = "<group>"; };
+		E5697AFF28BFFC200045908A /* AriesMessageMethodResolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AriesMessageMethodResolver.swift; sourceTree = "<group>"; };
+		E5697B0128BFFCFB0045908A /* FlutterRequestAriesMessageChannelDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlutterRequestAriesMessageChannelDto.swift; sourceTree = "<group>"; };
+		E5697B0328BFFF300045908A /* AgencyMessageStatusEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgencyMessageStatusEnum.swift; sourceTree = "<group>"; };
+		E5697B0528C000170045908A /* UpdateAgencyMessageStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateAgencyMessageStatus.swift; sourceTree = "<group>"; };
+		E5697B0728C006E10045908A /* GetMessageByConnectionFromAriesAgencyUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetMessageByConnectionFromAriesAgencyUsecase.swift; sourceTree = "<group>"; };
+		E5697B0928C0FF3F0045908A /* GetAgencyMessageResponseDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetAgencyMessageResponseDto.swift; sourceTree = "<group>"; };
+		E5697B0B28C231470045908A /* CreateAriesConnectionResponseDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAriesConnectionResponseDto.swift; sourceTree = "<group>"; };
+		E5E15C9B28B9192D00B56745 /* AriesConnectionChannelListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AriesConnectionChannelListener.swift; sourceTree = "<group>"; };
+		E5E15C9D28B9207900B56745 /* AriesConnectionMethodResolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AriesConnectionMethodResolver.swift; sourceTree = "<group>"; };
+		E5E15C9F28B920DD00B56745 /* FlutterRequestAriesConnectionChannelDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlutterRequestAriesConnectionChannelDto.swift; sourceTree = "<group>"; };
+		E5E15CA128B9213500B56745 /* AriesConnectionRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AriesConnectionRepository.swift; sourceTree = "<group>"; };
+		E5E15CA328B9471700B56745 /* ConnectionPort.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionPort.swift; sourceTree = "<group>"; };
+		E5E15CA528B94BC200B56745 /* ConnectionInvitationDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionInvitationDto.swift; sourceTree = "<group>"; };
+		E5E15CA728B94C2300B56745 /* AriesConnectionAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AriesConnectionAdapter.swift; sourceTree = "<group>"; };
+		E5E15CA928B94F5000B56745 /* WalletRecordPort.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletRecordPort.swift; sourceTree = "<group>"; };
+		E5E15CAB28B94F8A00B56745 /* WalletRecordDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletRecordDto.swift; sourceTree = "<group>"; };
+		E5E15CAD28B94FBD00B56745 /* WalletRecordTypeEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletRecordTypeEnum.swift; sourceTree = "<group>"; };
+		E5E15CAF28B9503A00B56745 /* SearchRecordDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRecordDto.swift; sourceTree = "<group>"; };
+		E5E15CB128B950C300B56745 /* WalletSearchPort.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletSearchPort.swift; sourceTree = "<group>"; };
+		E5E15CB328B950EA00B56745 /* WalletQueryDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletQueryDto.swift; sourceTree = "<group>"; };
+		E5E15CB528B9510F00B56745 /* SearchWalletOptionsDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchWalletOptionsDto.swift; sourceTree = "<group>"; };
+		E5E15CB728B9515B00B56745 /* SearchWalletResponseDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchWalletResponseDto.swift; sourceTree = "<group>"; };
+		E5E15CB928B951BF00B56745 /* WalletSearchAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletSearchAdapter.swift; sourceTree = "<group>"; };
+		E5E15CBB28B96C3C00B56745 /* WalletRecordAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletRecordAdapter.swift; sourceTree = "<group>"; };
+		E5E15CBD28B9735900B56745 /* ConnectionRecordPort.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionRecordPort.swift; sourceTree = "<group>"; };
+		E5E15CBF28B973B500B56745 /* ConnectionStateEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionStateEnum.swift; sourceTree = "<group>"; };
+		E5E15CC128B9741D00B56745 /* ConnectionTagsDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionTagsDto.swift; sourceTree = "<group>"; };
+		E5E15CC328B9751700B56745 /* ConnectionRecordAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionRecordAdapter.swift; sourceTree = "<group>"; };
+		E5E15CC528B975EB00B56745 /* WalletTagsBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletTagsBuilder.swift; sourceTree = "<group>"; };
+		E5E15CC728B9774F00B56745 /* AriesConnectionUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AriesConnectionUtil.swift; sourceTree = "<group>"; };
+		E5E15CC928B987C900B56745 /* ConnectionOptionsDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionOptionsDto.swift; sourceTree = "<group>"; };
+		E5E15CCB28B98E8B00B56745 /* AriesStateUpdateAttempter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AriesStateUpdateAttempter.swift; sourceTree = "<group>"; };
+		E5E15CCD28B9901600B56745 /* AriesFinishedState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AriesFinishedState.swift; sourceTree = "<group>"; };
+		E5E15CD428BA7D1700B56745 /* ConnectOrReconnectAriesConnectionUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectOrReconnectAriesConnectionUsecase.swift; sourceTree = "<group>"; };
+		E5E15CD628BA7ED300B56745 /* CreateAriesConnectionUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAriesConnectionUsecase.swift; sourceTree = "<group>"; };
+		EFF5AC473F31DA2178E083EC /* Pods_Runner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Runner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		97C146EB1CF9000F007C117D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A2312CD39A81BE03F946E19A /* Pods_Runner.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1A5FB5CE07883642FECE7B6F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				EFF5AC473F31DA2178E083EC /* Pods_Runner.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		6B39E9FC26B2F546F6BCC0FE /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				4EAF21972FF86C3EEB9D5B1B /* Pods-Runner.debug.xcconfig */,
+				34F01E920343B0F4710E21A6 /* Pods-Runner.release.xcconfig */,
+				85D7411A4A88DD2F87BDC53C /* Pods-Runner.profile.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		9740EEB11CF90186004384FC /* Flutter */ = {
+			isa = PBXGroup;
+			children = (
+				3B3967151E833CAA004F5970 /* AppFrameworkInfo.plist */,
+				9740EEB21CF90195004384FC /* Debug.xcconfig */,
+				7AFA3C8E1D35360C0083082E /* Release.xcconfig */,
+				9740EEB31CF90195004384FC /* Generated.xcconfig */,
+			);
+			name = Flutter;
+			sourceTree = "<group>";
+		};
+		97C146E51CF9000F007C117D = {
+			isa = PBXGroup;
+			children = (
+				9740EEB11CF90186004384FC /* Flutter */,
+				97C146F01CF9000F007C117D /* Runner */,
+				97C146EF1CF9000F007C117D /* Products */,
+				6B39E9FC26B2F546F6BCC0FE /* Pods */,
+				1A5FB5CE07883642FECE7B6F /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		97C146EF1CF9000F007C117D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				97C146EE1CF9000F007C117D /* flutter_vcx_demo.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		97C146F01CF9000F007C117D /* Runner */ = {
+			isa = PBXGroup;
+			children = (
+				E5E15CD328BA7CC200B56745 /* Usecases */,
+				E546F23228ABE96D00EB38AB /* Repositories */,
+				E546F22B28AAEFAA00EB38AB /* MethodResolvers */,
+				E546F21E28AAC2C200EB38AB /* Dtos */,
+				E546F21D28AAC2AF00EB38AB /* Aries */,
+				E51DA9A528A85B97004A43CC /* Commons */,
+				E51DA99828A84E1A004A43CC /* Channels */,
+				97C146FA1CF9000F007C117D /* Main.storyboard */,
+				97C146FD1CF9000F007C117D /* Assets.xcassets */,
+				97C146FF1CF9000F007C117D /* LaunchScreen.storyboard */,
+				97C147021CF9000F007C117D /* Info.plist */,
+				1498D2321E8E86230040F4C2 /* GeneratedPluginRegistrant.h */,
+				1498D2331E8E89220040F4C2 /* GeneratedPluginRegistrant.m */,
+				74858FAE1ED2DC5600515810 /* AppDelegate.swift */,
+				74858FAD1ED2DC5600515810 /* Runner-Bridging-Header.h */,
+			);
+			path = Runner;
+			sourceTree = "<group>";
+		};
+		E504562228B3CA0800284E5D /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				E504562328B3CA2600284E5D /* CheckVcxResult.swift */,
+				E5E15CC528B975EB00B56745 /* WalletTagsBuilder.swift */,
+				E5E15CC728B9774F00B56745 /* AriesConnectionUtil.swift */,
+				E5E15CCB28B98E8B00B56745 /* AriesStateUpdateAttempter.swift */,
+				E5E15CCD28B9901600B56745 /* AriesFinishedState.swift */,
+				4D5F2283E7538D9926977280 /* AriesCredentialUtil.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		E51DA99828A84E1A004A43CC /* Channels */ = {
+			isa = PBXGroup;
+			children = (
+				E51DA9A028A852E3004A43CC /* Listeners */,
+				E51DA99928A84E97004A43CC /* Channel.swift */,
+				E51DA99B28A85089004A43CC /* ChannelListener.swift */,
+				E51DA9A328A8587C004A43CC /* ChannelManager.swift */,
+			);
+			path = Channels;
+			sourceTree = "<group>";
+		};
+		E51DA9A028A852E3004A43CC /* Listeners */ = {
+			isa = PBXGroup;
+			children = (
+				E51DA9A128A85369004A43CC /* AriesSdkChannelListener.swift */,
+				E5E15C9B28B9192D00B56745 /* AriesConnectionChannelListener.swift */,
+				E5697AFD28BFFAE00045908A /* AriesMessageChannelListener.swift */,
+				4D5F2FFE2FED859A44953431 /* AriesCredentialChannelListener.swift */,
+				4D5F2B23CBF03B90223CFBD3 /* AriesProofChannelListener.swift */,
+			);
+			path = Listeners;
+			sourceTree = "<group>";
+		};
+		E51DA9A528A85B97004A43CC /* Commons */ = {
+			isa = PBXGroup;
+			children = (
+				E546F21628A94A3100EB38AB /* Utils */,
+				E51DA9A628A85BA4004A43CC /* Errors */,
+			);
+			path = Commons;
+			sourceTree = "<group>";
+		};
+		E51DA9A628A85BA4004A43CC /* Errors */ = {
+			isa = PBXGroup;
+			children = (
+				E51DA9A828A85BF5004A43CC /* CustomError.swift */,
+				E51DA9AA28A85C51004A43CC /* ErrorMessage.swift */,
+				E51DA9AC28A85C83004A43CC /* ErrorMessageDto.swift */,
+			);
+			path = Errors;
+			sourceTree = "<group>";
+		};
+		E546F21628A94A3100EB38AB /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				E546F21728A94A4500EB38AB /* ToJson.swift */,
+				E546F21928A94C2C00EB38AB /* JsonUtil.swift */,
+				E546F21B28A94E3100EB38AB /* Logger.swift */,
+				E5697AFB28BFF3970045908A /* DateUtil.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		E546F21D28AAC2AF00EB38AB /* Aries */ = {
+			isa = PBXGroup;
+			children = (
+				E504562228B3CA0800284E5D /* Utils */,
+				E546F24128ABF19700EB38AB /* Enums */,
+				E546F23428ABEAD000EB38AB /* Adapters */,
+				E546F23328ABEAC400EB38AB /* Ports */,
+				E546F22228AAC44600EB38AB /* Dtos */,
+			);
+			path = Aries;
+			sourceTree = "<group>";
+		};
+		E546F21E28AAC2C200EB38AB /* Dtos */ = {
+			isa = PBXGroup;
+			children = (
+				E546F21428A947AB00EB38AB /* NativeToFlutterResponseDto.swift */,
+				E546F21F28AAC3FE00EB38AB /* FlutterRequestAriesSdkChannelDto.swift */,
+				E504562028AFD0E400284E5D /* StartAriesSdkResponseDto.swift */,
+				E5E15C9F28B920DD00B56745 /* FlutterRequestAriesConnectionChannelDto.swift */,
+				E5697B0128BFFCFB0045908A /* FlutterRequestAriesMessageChannelDto.swift */,
+				E5697B0928C0FF3F0045908A /* GetAgencyMessageResponseDto.swift */,
+				E5697B0B28C231470045908A /* CreateAriesConnectionResponseDto.swift */,
+				4D5F2004958F461B9379B530 /* FlutterRequestAriesCredentialChannelDto.swift */,
+				4D5F2127FA4D2A5742A4750F /* FlutterRequestAriesProofChannelDto.swift */,
+				4D5F2919AC2C941390C519CD /* AcceptCredentialOfferResponseDto.swift */,
+				4D5F26F23918FC830A3B4E20 /* GetCredentialsResponseDto.swift */,
+			);
+			path = Dtos;
+			sourceTree = "<group>";
+		};
+		E546F22228AAC44600EB38AB /* Dtos */ = {
+			isa = PBXGroup;
+			children = (
+				E546F22328AAC47100EB38AB /* StartAriesSdkConfigDto.swift */,
+				E546F22528AAC4CE00EB38AB /* ProvisionAgencyConfigDto.swift */,
+				E546F22728AAEA0600EB38AB /* InitThreadPoolConfigDto.swift */,
+				E546F22928AAEAAF00EB38AB /* OpenPoolConfigDto.swift */,
+				E546F23F28ABF0DB00EB38AB /* LocalWalletConfigDto.swift */,
+				E5E15CA528B94BC200B56745 /* ConnectionInvitationDto.swift */,
+				E5E15CAB28B94F8A00B56745 /* WalletRecordDto.swift */,
+				E5E15CAF28B9503A00B56745 /* SearchRecordDto.swift */,
+				E5E15CB328B950EA00B56745 /* WalletQueryDto.swift */,
+				E5E15CB528B9510F00B56745 /* SearchWalletOptionsDto.swift */,
+				E5E15CB728B9515B00B56745 /* SearchWalletResponseDto.swift */,
+				E5E15CC128B9741D00B56745 /* ConnectionTagsDto.swift */,
+				E5E15CC928B987C900B56745 /* ConnectionOptionsDto.swift */,
+				E5697B0528C000170045908A /* UpdateAgencyMessageStatus.swift */,
+			);
+			path = Dtos;
+			sourceTree = "<group>";
+		};
+		E546F22B28AAEFAA00EB38AB /* MethodResolvers */ = {
+			isa = PBXGroup;
+			children = (
+				E546F22E28AAF01100EB38AB /* MethodResolver.swift */,
+				E546F22C28AAEFD300EB38AB /* AriesSdkMethodResolver.swift */,
+				E5E15C9D28B9207900B56745 /* AriesConnectionMethodResolver.swift */,
+				E5697AFF28BFFC200045908A /* AriesMessageMethodResolver.swift */,
+				4D5F23E3CA13015088A65B14 /* AriesCredentialMethodResolver.swift */,
+				4D5F2865ED6F0F8CC28B2241 /* AriesProofMethodResolver.swift */,
+			);
+			path = MethodResolvers;
+			sourceTree = "<group>";
+		};
+		E546F23228ABE96D00EB38AB /* Repositories */ = {
+			isa = PBXGroup;
+			children = (
+				E546F23028ABE96100EB38AB /* AriesSdkRepository.swift */,
+				E5E15CA128B9213500B56745 /* AriesConnectionRepository.swift */,
+				E5697AF328BE99E20045908A /* AriesWalletRepository.swift */,
+				E5697AF528BEA0410045908A /* AriesAgencyRepository.swift */,
+				E5697AF728BEA2590045908A /* AriesPoolRepository.swift */,
+				4D5F20BBB18F21A8371917AD /* AriesCredentialRepository.swift */,
+				4D5F25325CCD631C21BC0673 /* AriesProofRepository.swift */,
+			);
+			path = Repositories;
+			sourceTree = "<group>";
+		};
+		E546F23328ABEAC400EB38AB /* Ports */ = {
+			isa = PBXGroup;
+			children = (
+				E546F23528ABEB3800EB38AB /* SdkPort.swift */,
+				E546F23928ABEE7300EB38AB /* ProvisionConfigStoragePort.swift */,
+				E546F23B28ABEEA900EB38AB /* WalletManagerPort.swift */,
+				E504561828AECEDB00284E5D /* AgencyPort.swift */,
+				E504561C28AEDD3100284E5D /* PoolPort.swift */,
+				E5E15CA328B9471700B56745 /* ConnectionPort.swift */,
+				E5E15CA928B94F5000B56745 /* WalletRecordPort.swift */,
+				E5E15CB128B950C300B56745 /* WalletSearchPort.swift */,
+				E5E15CBD28B9735900B56745 /* ConnectionRecordPort.swift */,
+				4D5F265E40E43A1F2D7EDAA8 /* CredentialRecordPort.swift */,
+				4D5F29DFB66B36E7EEF3DD1E /* CredentialPort.swift */,
+				4D5F2F9A9AE2377D6B853742 /* ProofPort.swift */,
+			);
+			path = Ports;
+			sourceTree = "<group>";
+		};
+		E546F23428ABEAD000EB38AB /* Adapters */ = {
+			isa = PBXGroup;
+			children = (
+				E546F23728ABEBF400EB38AB /* AriesSdkAdapter.swift */,
+				E546F23D28ABEF5C00EB38AB /* LocalWalletManagerAdapter.swift */,
+				E546F24428AC157600EB38AB /* ProvisionConfigStorageAdapter.swift */,
+				E504561A28AECF7100284E5D /* AriesAgencyAdapter.swift */,
+				E504561E28AEDD6100284E5D /* AriesMainPoolAdapter.swift */,
+				E5E15CA728B94C2300B56745 /* AriesConnectionAdapter.swift */,
+				E5E15CB928B951BF00B56745 /* WalletSearchAdapter.swift */,
+				E5E15CBB28B96C3C00B56745 /* WalletRecordAdapter.swift */,
+				E5E15CC328B9751700B56745 /* ConnectionRecordAdapter.swift */,
+				4D5F25BD8FC33DA1C04B2DE1 /* CredentialRecordAdapter.swift */,
+				4D5F22620AA5BD218B6F6740 /* AriesCredentialAdapter.swift */,
+				4D5F27835131D8177A2EC850 /* AriesProofAdapter.swift */,
+			);
+			path = Adapters;
+			sourceTree = "<group>";
+		};
+		E546F24128ABF19700EB38AB /* Enums */ = {
+			isa = PBXGroup;
+			children = (
+				E546F24228ABF1A200EB38AB /* WalletKeyDerivationEnum.swift */,
+				E504562528B3FCD100284E5D /* AriesSdkLogLevel.swift */,
+				E5E15CAD28B94FBD00B56745 /* WalletRecordTypeEnum.swift */,
+				E5E15CBF28B973B500B56745 /* ConnectionStateEnum.swift */,
+				E5697B0328BFFF300045908A /* AgencyMessageStatusEnum.swift */,
+				4D5F2D0247EC33443917C078 /* CredentialStateEnum.swift */,
+				4D5F267EDC4524A5BE25864F /* ProofStateEnum.swift */,
+			);
+			path = Enums;
+			sourceTree = "<group>";
+		};
+		E5E15CD328BA7CC200B56745 /* Usecases */ = {
+			isa = PBXGroup;
+			children = (
+				E5E15CD428BA7D1700B56745 /* ConnectOrReconnectAriesConnectionUsecase.swift */,
+				E5E15CD628BA7ED300B56745 /* CreateAriesConnectionUsecase.swift */,
+				E5697AF128BE92000045908A /* StartAriesSdkUsecase.swift */,
+				E5697AF928BFA3F10045908A /* ShutdownOrResetAriesSdkUsecase.swift */,
+				E5697B0728C006E10045908A /* GetMessageByConnectionFromAriesAgencyUsecase.swift */,
+				4D5F2CBACDBB2C61C8625893 /* AcceptCredentialOfferUsecase.swift */,
+				4D5F22BD3D1C23B747326A96 /* PresentProofRequestUsecase.swift */,
+				4D5F249919890D63415FA539 /* GetIssuedCredentialsUsecase.swift */,
+			);
+			path = Usecases;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		97C146ED1CF9000F007C117D /* Runner */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 97C147051CF9000F007C117D /* Build configuration list for PBXNativeTarget "Runner" */;
+			buildPhases = (
+				17986172E692FAB1B0ED25E6 /* [CP] Check Pods Manifest.lock */,
+				9740EEB61CF901F6004384FC /* Run Script */,
+				97C146EA1CF9000F007C117D /* Sources */,
+				97C146EB1CF9000F007C117D /* Frameworks */,
+				97C146EC1CF9000F007C117D /* Resources */,
+				9705A1C41CF9048500538489 /* Embed Frameworks */,
+				3B06AD1E1E4923F5004D2608 /* Thin Binary */,
+				00AFEB21638E7CD0E61B1C87 /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Runner;
+			productName = Runner;
+			productReference = 97C146EE1CF9000F007C117D /* flutter_vcx_demo.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		97C146E61CF9000F007C117D /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 1300;
+				ORGANIZATIONNAME = "";
+				TargetAttributes = {
+					97C146ED1CF9000F007C117D = {
+						CreatedOnToolsVersion = 7.3.1;
+						LastSwiftMigration = 1100;
+					};
+				};
+			};
+			buildConfigurationList = 97C146E91CF9000F007C117D /* Build configuration list for PBXProject "Runner" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 97C146E51CF9000F007C117D;
+			productRefGroup = 97C146EF1CF9000F007C117D /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				97C146ED1CF9000F007C117D /* Runner */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		97C146EC1CF9000F007C117D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				97C147011CF9000F007C117D /* LaunchScreen.storyboard in Resources */,
+				3B3967161E833CAA004F5970 /* AppFrameworkInfo.plist in Resources */,
+				97C146FE1CF9000F007C117D /* Assets.xcassets in Resources */,
+				97C146FC1CF9000F007C117D /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		00AFEB21638E7CD0E61B1C87 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Runner/Pods-Runner-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Runner/Pods-Runner-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Runner/Pods-Runner-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		17986172E692FAB1B0ED25E6 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Runner-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		3B06AD1E1E4923F5004D2608 /* Thin Binary */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Thin Binary";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/bin/sh \"$FLUTTER_ROOT/packages/flutter_tools/bin/xcode_backend.sh\" embed_and_thin";
+		};
+		9740EEB61CF901F6004384FC /* Run Script */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Run Script";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/bin/sh \"$FLUTTER_ROOT/packages/flutter_tools/bin/xcode_backend.sh\" build";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		97C146EA1CF9000F007C117D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E5E15CBA28B951BF00B56745 /* WalletSearchAdapter.swift in Sources */,
+				E546F24528AC157600EB38AB /* ProvisionConfigStorageAdapter.swift in Sources */,
+				E5E15CCE28B9901600B56745 /* AriesFinishedState.swift in Sources */,
+				E546F23A28ABEE7300EB38AB /* ProvisionConfigStoragePort.swift in Sources */,
+				E504561F28AEDD6100284E5D /* AriesMainPoolAdapter.swift in Sources */,
+				E51DA9A928A85BF5004A43CC /* CustomError.swift in Sources */,
+				E5697AF828BEA2590045908A /* AriesPoolRepository.swift in Sources */,
+				E5E15CCC28B98E8B00B56745 /* AriesStateUpdateAttempter.swift in Sources */,
+				E5E15CA628B94BC200B56745 /* ConnectionInvitationDto.swift in Sources */,
+				E546F22028AAC3FE00EB38AB /* FlutterRequestAriesSdkChannelDto.swift in Sources */,
+				E504562428B3CA2600284E5D /* CheckVcxResult.swift in Sources */,
+				74858FAF1ED2DC5600515810 /* AppDelegate.swift in Sources */,
+				E546F22428AAC47100EB38AB /* StartAriesSdkConfigDto.swift in Sources */,
+				E5697B0228BFFCFB0045908A /* FlutterRequestAriesMessageChannelDto.swift in Sources */,
+				E51DA9A228A85369004A43CC /* AriesSdkChannelListener.swift in Sources */,
+				E5697B0C28C231470045908A /* CreateAriesConnectionResponseDto.swift in Sources */,
+				E546F21828A94A4500EB38AB /* ToJson.swift in Sources */,
+				E5E15CB828B9515B00B56745 /* SearchWalletResponseDto.swift in Sources */,
+				E5697B0628C000170045908A /* UpdateAgencyMessageStatus.swift in Sources */,
+				E5697AF428BE99E20045908A /* AriesWalletRepository.swift in Sources */,
+				E5E15CC028B973B500B56745 /* ConnectionStateEnum.swift in Sources */,
+				E5E15CC428B9751700B56745 /* ConnectionRecordAdapter.swift in Sources */,
+				E504561D28AEDD3100284E5D /* PoolPort.swift in Sources */,
+				E5697AFE28BFFAE10045908A /* AriesMessageChannelListener.swift in Sources */,
+				E546F22628AAC4CE00EB38AB /* ProvisionAgencyConfigDto.swift in Sources */,
+				E51DA99C28A85089004A43CC /* ChannelListener.swift in Sources */,
+				E5E15CD528BA7D1700B56745 /* ConnectOrReconnectAriesConnectionUsecase.swift in Sources */,
+				E5697B0A28C0FF400045908A /* GetAgencyMessageResponseDto.swift in Sources */,
+				E546F21A28A94C2C00EB38AB /* JsonUtil.swift in Sources */,
+				E51DA9AB28A85C51004A43CC /* ErrorMessage.swift in Sources */,
+				E5697B0028BFFC200045908A /* AriesMessageMethodResolver.swift in Sources */,
+				E546F23C28ABEEA900EB38AB /* WalletManagerPort.swift in Sources */,
+				E5697AFC28BFF3970045908A /* DateUtil.swift in Sources */,
+				E546F23828ABEBF400EB38AB /* AriesSdkAdapter.swift in Sources */,
+				E5E15CAA28B94F5000B56745 /* WalletRecordPort.swift in Sources */,
+				E5E15CB428B950EA00B56745 /* WalletQueryDto.swift in Sources */,
+				E5E15C9C28B9192D00B56745 /* AriesConnectionChannelListener.swift in Sources */,
+				E5697B0428BFFF300045908A /* AgencyMessageStatusEnum.swift in Sources */,
+				E5E15CAE28B94FBD00B56745 /* WalletRecordTypeEnum.swift in Sources */,
+				E5E15CB228B950C300B56745 /* WalletSearchPort.swift in Sources */,
+				E5E15CC628B975EB00B56745 /* WalletTagsBuilder.swift in Sources */,
+				E51DA99A28A84E97004A43CC /* Channel.swift in Sources */,
+				E5697AF628BEA0410045908A /* AriesAgencyRepository.swift in Sources */,
+				E504562128AFD0E400284E5D /* StartAriesSdkResponseDto.swift in Sources */,
+				E5E15CBE28B9735900B56745 /* ConnectionRecordPort.swift in Sources */,
+				E546F22A28AAEAAF00EB38AB /* OpenPoolConfigDto.swift in Sources */,
+				1498D2341E8E89220040F4C2 /* GeneratedPluginRegistrant.m in Sources */,
+				E5E15CAC28B94F8A00B56745 /* WalletRecordDto.swift in Sources */,
+				E5E15CA228B9213500B56745 /* AriesConnectionRepository.swift in Sources */,
+				E5E15CC828B9774F00B56745 /* AriesConnectionUtil.swift in Sources */,
+				E504561928AECEDB00284E5D /* AgencyPort.swift in Sources */,
+				E5697AFA28BFA3F10045908A /* ShutdownOrResetAriesSdkUsecase.swift in Sources */,
+				E546F24328ABF1A200EB38AB /* WalletKeyDerivationEnum.swift in Sources */,
+				E5E15CB628B9510F00B56745 /* SearchWalletOptionsDto.swift in Sources */,
+				E546F21C28A94E3100EB38AB /* Logger.swift in Sources */,
+				E546F24028ABF0DB00EB38AB /* LocalWalletConfigDto.swift in Sources */,
+				E5E15CA028B920DD00B56745 /* FlutterRequestAriesConnectionChannelDto.swift in Sources */,
+				E5697B0828C006E10045908A /* GetMessageByConnectionFromAriesAgencyUsecase.swift in Sources */,
+				E504561B28AECF7100284E5D /* AriesAgencyAdapter.swift in Sources */,
+				E51DA9AD28A85C83004A43CC /* ErrorMessageDto.swift in Sources */,
+				E5E15CCA28B987C900B56745 /* ConnectionOptionsDto.swift in Sources */,
+				E546F23E28ABEF5C00EB38AB /* LocalWalletManagerAdapter.swift in Sources */,
+				E546F23128ABE96100EB38AB /* AriesSdkRepository.swift in Sources */,
+				E5697AF228BE92010045908A /* StartAriesSdkUsecase.swift in Sources */,
+				E546F22D28AAEFD300EB38AB /* AriesSdkMethodResolver.swift in Sources */,
+				E5E15CD728BA7ED300B56745 /* CreateAriesConnectionUsecase.swift in Sources */,
+				E5E15CA428B9471700B56745 /* ConnectionPort.swift in Sources */,
+				E5E15CA828B94C2300B56745 /* AriesConnectionAdapter.swift in Sources */,
+				E5E15CB028B9503A00B56745 /* SearchRecordDto.swift in Sources */,
+				E546F21528A947AB00EB38AB /* NativeToFlutterResponseDto.swift in Sources */,
+				E5E15CC228B9741D00B56745 /* ConnectionTagsDto.swift in Sources */,
+				E5E15CBC28B96C3C00B56745 /* WalletRecordAdapter.swift in Sources */,
+				E546F23628ABEB3800EB38AB /* SdkPort.swift in Sources */,
+				E504562628B3FCD100284E5D /* AriesSdkLogLevel.swift in Sources */,
+				E51DA9A428A8587C004A43CC /* ChannelManager.swift in Sources */,
+				E5E15C9E28B9207900B56745 /* AriesConnectionMethodResolver.swift in Sources */,
+				E546F22F28AAF01100EB38AB /* MethodResolver.swift in Sources */,
+				E546F22828AAEA0600EB38AB /* InitThreadPoolConfigDto.swift in Sources */,
+				4D5F2A78A20CE3B8DE7B833E /* AriesCredentialChannelListener.swift in Sources */,
+				4D5F2335696A658DE937A45B /* AriesCredentialMethodResolver.swift in Sources */,
+				4D5F22007524E936C48CDDA6 /* FlutterRequestAriesCredentialChannelDto.swift in Sources */,
+				4D5F205CCF1643BD1C4B259E /* CredentialRecordAdapter.swift in Sources */,
+				4D5F204D5B4DD6284BBC774F /* CredentialRecordPort.swift in Sources */,
+				4D5F21FAE81BD03D8DF5E475 /* CredentialPort.swift in Sources */,
+				4D5F2ECCD6E88FC562417547 /* AriesCredentialAdapter.swift in Sources */,
+				4D5F2300591CED179D6CAA01 /* AriesCredentialRepository.swift in Sources */,
+				4D5F295BC537A73DC48A2E5E /* AcceptCredentialOfferUsecase.swift in Sources */,
+				4D5F21557B72C782A3085BBA /* CredentialStateEnum.swift in Sources */,
+				4D5F26831028C1ACDA061828 /* AriesProofChannelListener.swift in Sources */,
+				4D5F2B51A36ED221E10068FA /* AriesProofMethodResolver.swift in Sources */,
+				4D5F25E101DB23E1031A77D4 /* FlutterRequestAriesProofChannelDto.swift in Sources */,
+				4D5F20C44756528079257F71 /* PresentProofRequestUsecase.swift in Sources */,
+				4D5F2F052577B2BF4208CF29 /* ProofPort.swift in Sources */,
+				4D5F268B78643286C20BB209 /* AriesProofAdapter.swift in Sources */,
+				4D5F2EBAC5595574034A2AD7 /* ProofStateEnum.swift in Sources */,
+				4D5F29A856F9C63917025FF5 /* AriesProofRepository.swift in Sources */,
+				4D5F204DDBDB7C29601DB6F8 /* AcceptCredentialOfferResponseDto.swift in Sources */,
+				4D5F2BB62659C55C86E98010 /* AriesCredentialUtil.swift in Sources */,
+				4D5F2C02174EB211DF29E714 /* GetIssuedCredentialsUsecase.swift in Sources */,
+				4D5F23EA916B6D2B596CAD61 /* GetCredentialsResponseDto.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		97C146FA1CF9000F007C117D /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				97C146FB1CF9000F007C117D /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		97C146FF1CF9000F007C117D /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				97C147001CF9000F007C117D /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		249021D3217E4FDB00AE95B9 /* Profile */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Profile;
+		};
+		249021D4217E4FDB00AE95B9 /* Profile */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7AFA3C8E1D35360C0083082E /* Release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
+				DEVELOPMENT_TEAM = SY9CHW6UF7;
+				ENABLE_BITCODE = NO;
+				INFOPLIST_FILE = Runner/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.flutterVcxDemo;
+				PRODUCT_NAME = flutter_vcx_demo;
+				SUPPORTED_PLATFORMS = iphoneos;
+				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+				VERSIONING_SYSTEM = "apple-generic";
+			};
+			name = Profile;
+		};
+		97C147031CF9000F007C117D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		97C147041CF9000F007C117D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		97C147061CF9000F007C117D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9740EEB21CF90195004384FC /* Debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
+				DEVELOPMENT_TEAM = SY9CHW6UF7;
+				ENABLE_BITCODE = NO;
+				INFOPLIST_FILE = Runner/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.flutterVcxDemo;
+				PRODUCT_NAME = flutter_vcx_demo;
+				SUPPORTED_PLATFORMS = iphoneos;
+				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+				VERSIONING_SYSTEM = "apple-generic";
+			};
+			name = Debug;
+		};
+		97C147071CF9000F007C117D /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7AFA3C8E1D35360C0083082E /* Release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
+				DEVELOPMENT_TEAM = SY9CHW6UF7;
+				ENABLE_BITCODE = NO;
+				INFOPLIST_FILE = Runner/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.flutterVcxDemo;
+				PRODUCT_NAME = flutter_vcx_demo;
+				SUPPORTED_PLATFORMS = iphoneos;
+				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+				VERSIONING_SYSTEM = "apple-generic";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		97C146E91CF9000F007C117D /* Build configuration list for PBXProject "Runner" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				97C147031CF9000F007C117D /* Debug */,
+				97C147041CF9000F007C117D /* Release */,
+				249021D3217E4FDB00AE95B9 /* Profile */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		97C147051CF9000F007C117D /* Build configuration list for PBXNativeTarget "Runner" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				97C147061CF9000F007C117D /* Debug */,
+				97C147071CF9000F007C117D /* Release */,
+				249021D4217E4FDB00AE95B9 /* Profile */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 97C146E61CF9000F007C117D /* Project object */;
+}
