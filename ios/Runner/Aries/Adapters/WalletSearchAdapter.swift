@@ -15,15 +15,15 @@ class WalletSearchAdapter: WalletSearchPort, CheckVcxResult {
     private final let vcx: ConnectMeVcx
 
     init() {
-        self.vcx = ConnectMeVcx()
-        self.cancellables = Set()
+        vcx = ConnectMeVcx()
+        cancellables = Set()
     }
 
     func search(
             query: WalletQueryDto,
             count: NSInteger = 100
     ) -> Future<SearchWalletResponseDto, Error> {
-        return Future { promise in
+        Future { promise in
             var searchHandle = 0
             var queryResult = SearchWalletResponseDto()
 
@@ -58,7 +58,7 @@ class WalletSearchAdapter: WalletSearchPort, CheckVcxResult {
     }
 
     private func openSearch(query: WalletQueryDto) -> Future<NSInteger, Error> {
-        return Future { promise in
+        Future { promise in
             self.logger.info(message: "opening search in wallet")
             self.vcx.openSearchWallet(
                     query.type!,
@@ -78,7 +78,7 @@ class WalletSearchAdapter: WalletSearchPort, CheckVcxResult {
     }
 
     private func searchNextRecords(searchHandle: NSInteger, count: NSInteger) -> Future<SearchWalletResponseDto, Error> {
-        return Future { promise in
+        Future { promise in
             self.logger.info(message: "searching next \(count) records in wallet")
             self.vcx.searchNextRecordsWallet(
                     searchHandle,
@@ -99,7 +99,7 @@ class WalletSearchAdapter: WalletSearchPort, CheckVcxResult {
     }
 
     private func closeSearch(searchHandle: NSInteger) -> Future<Bool, Error> {
-        return Future { promise in
+        Future { promise in
             self.logger.info(message: "closing search in wallet")
             self.vcx.closeSearchWallet(searchHandle, completion: { error in
                 if self.isFail(error) {

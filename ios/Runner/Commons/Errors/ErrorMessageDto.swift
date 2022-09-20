@@ -20,11 +20,11 @@ class ErrorMessageDto: Equatable {
     }
     
     static func == (lhs: ErrorMessageDto, rhs: ErrorMessageDto) -> Bool {
-        return lhs.id == rhs.id
+        lhs.id == rhs.id
     }
     
     func toMap() -> [String: Any] {
-        return [
+        [
             "id": id,
             "message": message
         ]

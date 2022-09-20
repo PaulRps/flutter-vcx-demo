@@ -54,10 +54,10 @@ from Objective-C.
   #  profile URL.
   #
 
-  spec.author             = { "PaulRps" => "paulo.pereira@certisign.com.br" }
+  spec.author             = { "PaulRps" => "paulosilvajp0@gmail.com" }
   # Or just: spec.author    = "PaulRps"
-  # spec.authors            = { "PaulRps" => "paulo.pereira@certisign.com.br" }
-  # spec.social_media_url   = "https://twitter.com/PaulRps"
+  # spec.authors            = { "PaulRps" => "paulosilvajp0@gmail.com" }
+  # spec.social_media_url   = "https://twitter.com/PaullRps"
 
   # ――― Platform Specifics ――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   #

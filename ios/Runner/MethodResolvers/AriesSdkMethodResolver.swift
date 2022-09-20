@@ -28,13 +28,13 @@ class AriesSdkMethodResolver: MethodResolver {
         self.input = input
         self.startSdkUsecase = startSdkUsecase
         self.shutdownSdkUsecase = shutdownSdkUsecase
-        self.setRoutes()
+        setRoutes()
     }
     
     private func setRoutes() {
         
-        self.routes["start"] = self.startSdkUsecase.start(config: self.input.config)
-        self.routes["shutdown"] = self.shutdownSdkUsecase.shutdown(isToDeleteWallet: self.input.isToDeleteWallet)
+        routes["start"] = startSdkUsecase.start(config: input.config)
+        routes["shutdown"] = shutdownSdkUsecase.shutdown(isToDeleteWallet: input.isToDeleteWallet)
         
     }
 }

@@ -11,7 +11,9 @@ import os.log
 extension OSLog {
     private static var subsystem = Bundle.main.bundleIdentifier!
     
-    static func custom(ctx: String) -> OSLog {return OSLog(subsystem: subsystem, category: "\(subsystem).\(ctx)")}
+    static func custom(ctx: String) -> OSLog {
+        OSLog(subsystem: subsystem, category: "\(subsystem).\(ctx)")
+    }
 }
 
 class CustomLogger {
@@ -20,19 +22,19 @@ class CustomLogger {
     
     init(context: Any.Type) {
         self.context = String(describing: context.self)
-        self.osLog = OSLog.custom(ctx: self.context)
+        osLog = OSLog.custom(ctx: self.context)
     }
     
     func info(message: String) {
-        os_log("%@", log: self.osLog, type: .info, message)
+        os_log("%@", log: osLog, type: .info, message)
     }
     
     func debug(message: String) {
-        os_log("%@", log: self.osLog, type: .debug, message)
+        os_log("%@", log: osLog, type: .debug, message)
     }
     
     func error(message: String) {
-        os_log("%@", log: self.osLog, type: .error, message)
+        os_log("%@", log: osLog, type: .error, message)
     }
     
 }

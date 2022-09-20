@@ -17,15 +17,15 @@ class CredentialRecordAdapter: CredentialRecordPort {
     ) {
         self.walletRecordPort = walletRecordPort
         self.walletSearchPort = walletSearchPort
-        self.cancellables = Set()
+        cancellables = Set()
     }
 
     func search(_ keyValQuery: Array<String>) -> Future<SearchWalletResponseDto, Error> {
         let queryJson = WalletTagsBuilder.Builder().encrypted(keyValQuery).build()
 
-        self.logger.info(message: "searching aries credential record with query: \(queryJson)")
+        logger.info(message: "searching aries credential record with query: \(queryJson)")
 
-        return self.walletSearchPort.search(
+        return walletSearchPort.search(
                 query: WalletQueryDto(
                         type: WalletRecordTypeEnum.CREDENTIAL.value,
                         json: queryJson
@@ -35,7 +35,7 @@ class CredentialRecordAdapter: CredentialRecordPort {
     }
 
     func save(value: String, tag: WalletTagsBuilder.Builder, id: String? = nil) -> Future<WalletRecordDto?, Error> {
-        return Future { promise in
+        Future { promise in
             var record: WalletRecordDto? = nil
             self.search([
                         "name", tag.get("name"),
@@ -44,10 +44,10 @@ class CredentialRecordAdapter: CredentialRecordPort {
                     ]).map { walletResponse in
                         if (walletResponse.isNotEmpty()) {
                             self.logger.error(message: "credential has already been in wallet \(value) \(tag.build())")
-                            promise(.failure(CustomError(errorMessage: ErrorMessage.INTERNAL_ERROR)))
+                            promise(.failure(CustomError(errorMessage: .INTERNAL_ERROR)))
                         } else {
                             record = WalletRecordDto(
-                                    type: WalletRecordTypeEnum.CREDENTIAL,
+                                    type: .CREDENTIAL,
                                     uuid: id ?? UUID().uuidString,
                                     value: value,
                                     tag: tag.build()
@@ -72,7 +72,7 @@ class CredentialRecordAdapter: CredentialRecordPort {
     }
 
     func updateTags(uid: String, newTags: WalletTagsBuilder.Builder) -> Future<Int, Error> {
-        return Future { promise in
+        Future { promise in
         }
     }
 }

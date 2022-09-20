@@ -37,11 +37,11 @@ class ProvisionAgencyConfigDto: ToJson {
     }
     
     static func from(provisionConfig: [String:AnyObject]?) -> ProvisionAgencyConfigDto {
-        return ProvisionAgencyConfigDto(
-            agencyEndpoint: provisionConfig?["agencyEndpoint"] as? String,
-            agencyDid: provisionConfig?["agencyDid"] as? String,
-            agencyVerkey: provisionConfig?["agencyVerkey"] as? String,
-            institutionName: provisionConfig?["institutionName"] as? String
+        ProvisionAgencyConfigDto(
+                agencyEndpoint: provisionConfig?["agencyEndpoint"] as? String,
+                agencyDid: provisionConfig?["agencyDid"] as? String,
+                agencyVerkey: provisionConfig?["agencyVerkey"] as? String,
+                institutionName: provisionConfig?["institutionName"] as? String
         )
     }
 }

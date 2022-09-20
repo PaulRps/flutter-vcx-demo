@@ -15,8 +15,8 @@ class AriesSdkAdapter: SdkPort, CheckVcxResult {
     private final var cancellables: Set<AnyCancellable>
     
     init() {
-        self.vcx = ConnectMeVcx()
-        self.cancellables = Set()
+        vcx = ConnectMeVcx()
+        cancellables = Set()
     }
     
     func setSdkLogLevel(logLevel: AriesSdkLogLevelEnum?) {
@@ -26,8 +26,8 @@ class AriesSdkAdapter: SdkPort, CheckVcxResult {
     func shutdown(isToDeleteWallet: Bool?) -> Bool {
         let pointer = UnsafeMutablePointer<ObjCBool>.allocate(capacity: 1)
         pointer[0] = ObjCBool(isToDeleteWallet ?? false)
-        let shutdownResult = self.vcx.vcxShutdown(pointer)
-        return self.isSuccessCode(Int(shutdownResult))
+        let shutdownResult = vcx.vcxShutdown(pointer)
+        return isSuccessCode(Int(shutdownResult))
     }
     
 }

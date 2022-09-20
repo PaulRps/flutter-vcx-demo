@@ -36,6 +36,6 @@ class NativeToFlutterResponseDto {
 
 extension NativeToFlutterResponseDto {
     static func error(error: ErrorMessage) -> NativeToFlutterResponseDto {
-        return NativeToFlutterResponseDto(success: false, errorMessage: error.data)
+        NativeToFlutterResponseDto(success: false, errorMessage: error.data)
     }
 }

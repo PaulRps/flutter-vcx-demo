@@ -31,10 +31,10 @@ class OpenPoolConfigDto: ToJson {
     }
     
     static func from(openMainPoolConfig: [String:AnyObject]?) -> OpenPoolConfigDto {
-        return OpenPoolConfigDto(
-            genesisPath: openMainPoolConfig?["genesisPath"] as? String,
-            poolName: openMainPoolConfig?["poolName"] as? String,
-            poolConfig: openMainPoolConfig?["poolConfig"] as? String
+        OpenPoolConfigDto(
+                genesisPath: openMainPoolConfig?["genesisPath"] as? String,
+                poolName: openMainPoolConfig?["poolName"] as? String,
+                poolConfig: openMainPoolConfig?["poolConfig"] as? String
         )
     }
 }

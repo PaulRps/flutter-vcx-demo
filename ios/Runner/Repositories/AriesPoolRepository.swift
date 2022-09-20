@@ -18,10 +18,10 @@ class AriesPoolRepository {
     }
     
     func initPool(config: InitThreadPoolConfigDto) -> Future<Bool, Error>{
-        return self.ariesPool.initPool(config: config)
+        ariesPool.initPool(config: config)
     }
     
     func openMainPool(config: OpenPoolConfigDto) -> Future<String, Error>{
-        return self.ariesPool.openMainPool(config: config)
+        ariesPool.openMainPool(config: config)
     }
 }

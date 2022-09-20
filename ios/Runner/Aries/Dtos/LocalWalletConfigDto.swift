@@ -32,12 +32,12 @@ class LocalWalletConfigDto: ToJson {
     }
     
     static func from(localWalletConfig: [String:AnyObject]?) -> LocalWalletConfigDto {
-        return LocalWalletConfigDto(
-            walletName: localWalletConfig?["walletName"] as? String,
-            walletKey: localWalletConfig?["walletKey"] as? String,
-            walletKeyDerivation: WalletKeyDerivationEnum.from(
-                name: localWalletConfig?["walletKeyDerivation"] as? String ?? ""
-            )
+        LocalWalletConfigDto(
+                walletName: localWalletConfig?["walletName"] as? String,
+                walletKey: localWalletConfig?["walletKey"] as? String,
+                walletKeyDerivation: WalletKeyDerivationEnum.from(
+                        name: localWalletConfig?["walletKeyDerivation"] as? String ?? ""
+                )
         )
     }
     

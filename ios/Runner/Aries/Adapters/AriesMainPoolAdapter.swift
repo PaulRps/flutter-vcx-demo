@@ -14,29 +14,29 @@ class AriesMainPoolAdapter: PoolPort {
     private final let vcx: ConnectMeVcx
     
     init() {
-        self.vcx = ConnectMeVcx()
+        vcx = ConnectMeVcx()
     }
     
     func initPool(config: InitThreadPoolConfigDto) -> Future<Bool, Error> {
-        return Future { promise in
+        Future { promise in
             self.logger.info(message: "initializing thread pool with config: \(config.toJson())")
-            
+
             let response = self.vcx.vcxInitThreadpool(config.toJson())
             let isSuccess = self.isSuccessCode(Int(response))
-            
+
             self.logger.info(message: "finished initialization of thread pool success(\(isSuccess))")
-            
+
             if isSuccess {
                 promise(.success(true))
             } else {
                 self.logger.error(message: "error on initializing thread pool")
                 promise(.failure(CustomError(errorMessage: .ARIES_SDK_INIT_ERROR)))
-            }   
+            }
         }
     }
     
     func openMainPool(config: OpenPoolConfigDto) -> Future<String, Error> {
-        return Future { promise in
+        Future { promise in
             self.logger.info(message: "openning main pool")
             self.logger.debug(message: "main pool config: \(config.toJson())")
             self.vcx.vcxOpenMainPool(config.toJson(), completion: { error in
@@ -45,7 +45,7 @@ class AriesMainPoolAdapter: PoolPort {
                     promise(.failure(error!))
                     return
                 }
-                
+
                 self.logger.info(message: "opened main pool successfully")
                 promise(.success(config.toJson()))
             })

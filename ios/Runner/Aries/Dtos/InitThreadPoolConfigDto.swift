@@ -20,8 +20,8 @@ class InitThreadPoolConfigDto: ToJson {
     }
     
     static func from(initThreadPoolConfig: [String:AnyObject]?) -> InitThreadPoolConfigDto {
-        return InitThreadPoolConfigDto(
-            numThreads: initThreadPoolConfig?["numThreads"] as? Int
+        InitThreadPoolConfigDto(
+                numThreads: initThreadPoolConfig?["numThreads"] as? Int
         )
     }
 }

@@ -20,7 +20,7 @@ class ChannelManager {
     
     func registerAll(_ controller : FlutterViewController){
         for channel in channels {
-            self.logger.info(message: "registering listener on channel \(channel.name)")
+            logger.info(message: "registering listener on channel \(channel.name)")
             channel.listener.register(controller: controller)
         }
     }

@@ -15,11 +15,11 @@ class LocalWalletManagerAdapter: WalletManagerPort {
     private final let vcx: ConnectMeVcx
     
     init() {
-        self.vcx = ConnectMeVcx()
+        vcx = ConnectMeVcx()
     }
     
     func createWallet(config: LocalWalletConfigDto) -> Future<Int, Error> {
-        return Future { promise in
+        Future { promise in
             self.logger.info(message: "creating and opening wallet with config: \(config.toJson())")
             self.vcx.createWallet(config.toJson(), completion: { error in
                 if self.isFail(error) {
@@ -27,16 +27,16 @@ class LocalWalletManagerAdapter: WalletManagerPort {
                     promise(.failure(error!))
                     return
                 }
-                
+
                 self.logger.info(message: "created wallet successfully")
-                
+
                 promise(.success(0))
             })
         }
     }
     
     func openWallet(config: LocalWalletConfigDto) -> Future<Int, Error> {
-        return Future { promise in
+        Future { promise in
             self.logger.info(message: "opening wallet")
             self.logger.debug(message: "wallet config: \(config.toJson())")
 
@@ -46,7 +46,7 @@ class LocalWalletManagerAdapter: WalletManagerPort {
                     promise(.failure(error!))
                     return
                 }
-                
+
                 self.logger.info(message: "opened wallet successfully")
                 self.logger.debug(message: "wallet handle: \(handle)")
                 promise(.success(handle))
@@ -55,18 +55,18 @@ class LocalWalletManagerAdapter: WalletManagerPort {
     }
     
     func closeWallet() -> Future<Bool, Error> {
-        return Future { promise in
+        Future { promise in
             self.logger.info(message: "closing wallet")
-            
+
             self.vcx.closeMainWallet({ error in
                 if self.isFail(error) {
                     self.logger.error(message: "error on closing wallet: \(error!.localizedDescription)")
                     promise(.failure(error!))
                     return
                 }
-                
+
                 self.logger.info(message: "closed wallet successfully")
-                
+
                 promise(.success(true))
             })
         }

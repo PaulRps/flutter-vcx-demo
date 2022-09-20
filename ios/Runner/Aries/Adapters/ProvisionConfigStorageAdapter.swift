@@ -17,7 +17,7 @@ class ProvisionConfigStorageAdapter: ProvisionConfigStoragePort {
     
     func getProvisionData() -> String {
         
-        self.logger.info(message: "getting stored provision config")
+        logger.info(message: "getting stored provision config")
         
         var query = keyChainQuery()
         
@@ -32,13 +32,13 @@ class ProvisionConfigStorageAdapter: ProvisionConfigStoragePort {
         
         guard status != errSecItemNotFound else {
             //throw KeychainError.itemNotFound
-            self.logger.info(message: "stored provision config not found")
+            logger.info(message: "stored provision config not found")
             return ""
         }
         
         guard status == errSecSuccess else {
             //throw KeychainError.unexpectedStatus(status)
-            self.logger.error(message: "error on getting stored provision config")
+            logger.error(message: "error on getting stored provision config")
             return ""
         }
         
@@ -48,17 +48,17 @@ class ProvisionConfigStorageAdapter: ProvisionConfigStoragePort {
         }
         
         if (isFirstRun() && !provision.isEmpty) {
-            _ = self.delete()
+            _ = delete()
             provision = ""
         }
         
-        self.logger.info(message: "finished get stored provision config success=\(!provision.isEmpty)")
+        logger.info(message: "finished get stored provision config success=\(!provision.isEmpty)")
         
         return provision
     }
     
     func save(provisionConfig: String?) -> Bool {
-        self.logger.info(message: "saving stored provision config")
+        logger.info(message: "saving stored provision config")
         
         guard provisionConfig?.isEmpty == false else {
             return false
@@ -74,18 +74,18 @@ class ProvisionConfigStorageAdapter: ProvisionConfigStoragePort {
         )
         
         if status == errSecDuplicateItem {
-            self.logger.error(message: "error on saving stored provision config")
+            logger.error(message: "error on saving stored provision config")
 //            throw KeychainError.duplicateItem
             return false
         }
         
         guard status == errSecSuccess else {
-            self.logger.error(message: "error on saving stored provision config")
+            logger.error(message: "error on saving stored provision config")
 //            throw KeychainError.unexpectedStatus(status)
             return false
         }
         
-        self.logger.info(message: "saved stored provision config successfully")
+        logger.info(message: "saved stored provision config successfully")
         
         setFirstRun()
         
@@ -94,19 +94,19 @@ class ProvisionConfigStorageAdapter: ProvisionConfigStoragePort {
     
     func delete() -> Bool {
         
-        self.logger.info(message: "deleting stored provision config")
+        logger.info(message: "deleting stored provision config")
         
         let query = keyChainQuery()
         
         let status = SecItemDelete(query as CFDictionary)
         
         guard status == errSecSuccess else {
-            self.logger.error(message: "error on deleting stored provision config")
+            logger.error(message: "error on deleting stored provision config")
 //            throw KeychainError.unexpectedStatus(status)
             return false
         }
         
-        self.logger.info(message: "deleted stored provision config successfully")
+        logger.info(message: "deleted stored provision config successfully")
         return true
     }
     
@@ -125,7 +125,7 @@ class ProvisionConfigStorageAdapter: ProvisionConfigStoragePort {
     }
     
     private func isFirstRun() -> Bool {
-        return UserDefaults.standard.string(forKey: ProvisionConfigStorageAdapter.FIRST_RUN) == nil
+        UserDefaults.standard.string(forKey: ProvisionConfigStorageAdapter.FIRST_RUN) == nil
     }
     
     private func setFirstRun() {

@@ -17,15 +17,15 @@ class AriesSdkRepository {
         ariesSdk: SdkPort=AriesSdkAdapter()
     ) {
         self.ariesSdk = ariesSdk
-        self.cancellables = Set()
+        cancellables = Set()
     }
     
     func shutdownAriesSdk(isToDeleteWallet: Bool?) -> Bool {
-       return self.ariesSdk.shutdown(isToDeleteWallet: isToDeleteWallet)
+        ariesSdk.shutdown(isToDeleteWallet: isToDeleteWallet)
     }
     
     func setSdkLogLevel(logLevel: AriesSdkLogLevelEnum?) {
-        self.ariesSdk.setSdkLogLevel(logLevel: logLevel)
+        ariesSdk.setSdkLogLevel(logLevel: logLevel)
     }
 
 }

@@ -11,7 +11,7 @@ import Combine
 class AriesConnectionMethodResolver: MethodResolver {
     typealias I = FlutterRequestAriesConnectionChannelDto
     final let input: FlutterRequestAriesConnectionChannelDto
-    final var routes: [String: AnyPublisher<NativeToFlutterResponseDto, Error>]
+    final var routes: [String: AnyPublisher<NativeToFlutterResponseDto, Error>] = [:]
     
     var logger = CustomLogger(context: AriesConnectionMethodResolver.self)
     private final var cancellables:Set<AnyCancellable>
@@ -23,17 +23,16 @@ class AriesConnectionMethodResolver: MethodResolver {
         createOrRecreateConnectionUsecase: ConnectOrReconnectAriesConnectionUsecase=ConnectOrReconnectAriesConnectionUsecase()
     ) {
         self.input = input
-        self.cancellables = Set()
-        self.routes = [:]
+        cancellables = Set()
         self.createOrRecreateConnectionUsecase = createOrRecreateConnectionUsecase
-        self.setRoutes()
+        setRoutes()
     }
     
     func setRoutes() {
         
-        self.routes["create"] =  self.createOrRecreateConnectionUsecase.connect(
-            invitation: self.input.invitation!,
-            inviteId: self.input.inviteId!
+        routes["create"] =  createOrRecreateConnectionUsecase.connect(
+            invitation: input.invitation!,
+            inviteId: input.inviteId!
         )
         
     }

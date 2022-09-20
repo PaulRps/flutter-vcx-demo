@@ -22,14 +22,14 @@ class AriesMessageMethodResolver: MethodResolver {
     ) {
         self.input = input
         self.getMessageUsecase = getMessageUsecase
-        self.setRoutes()
+        setRoutes()
     }
     
     private func setRoutes() {
-        self.routes["getOneByPwDid"] = self.getMessageUsecase.getMessage(
-            messageStatus: self.input.msgStatus,
-            messageUid: self.input.msgUuid,
-            pairwiseDid: self.input.pairwiseDid
+        routes["getOneByPwDid"] = getMessageUsecase.getMessage(
+            messageStatus: input.msgStatus,
+            messageUid: input.msgUuid,
+            pairwiseDid: input.pairwiseDid
         )
     }
 }

@@ -68,15 +68,15 @@ class ConnectionTagsDto: ToJson{
     }
     
     static func from(invitation: ConnectionInvitationDto) -> ConnectionTagsDto {
-        return ConnectionTagsDto(
-            state : ConnectionStateEnum.INITIALIZED.value,
-            requestId : invitation.id,
-            theirLabel : invitation.label,
-            theirVerkey : invitation.routingKeys?[0] ?? "",
-            invitationKey : invitation.recipientKeys![0],
-            imageUrl : invitation.imageUrl,
-            image_url : invitation.image_url,
-            serviceEndpoint : invitation.serviceEndpoint
+        ConnectionTagsDto(
+                state: ConnectionStateEnum.INITIALIZED.value,
+                requestId: invitation.id,
+                theirLabel: invitation.label,
+                theirVerkey: invitation.routingKeys?[0] ?? "",
+                invitationKey: invitation.recipientKeys![0],
+                imageUrl: invitation.imageUrl,
+                image_url: invitation.image_url,
+                serviceEndpoint: invitation.serviceEndpoint
         )
     }
    

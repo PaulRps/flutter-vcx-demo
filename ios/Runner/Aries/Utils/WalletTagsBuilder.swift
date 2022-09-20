@@ -13,20 +13,20 @@ class WalletTagsBuilder {
         private var tagJson: [String: Any]
         
         init () {
-            self.tagJson =  [String: Any]()
+            tagJson =  [String: Any]()
         }
         
         init (_ json : String){
-            self.tagJson =  try! JSONSerialization.jsonObject(with: Data(json.utf8), options: JSONSerialization.ReadingOptions.allowFragments) as! [String: Any]
+            tagJson =  try! JSONSerialization.jsonObject(with: Data(json.utf8), options: JSONSerialization.ReadingOptions.allowFragments) as! [String: Any]
         }
         
         func encrypted(_ name: String, _ value: String) -> Builder {
-            self.tagJson[name] = value
+            tagJson[name] = value
             return self
         }
         
         func unencrypted(_ name: String, _ value: String) -> Builder {
-            self.tagJson["~\(name)"] = value
+            tagJson["~\(name)"] = value
             return self
         }
         
@@ -55,11 +55,11 @@ class WalletTagsBuilder {
         }
         
         func get(_ field: String)-> String {
-            return tagJson[field] as? String ?? ""
+            tagJson[field] as? String ?? ""
         }
         
         func build() ->  String {
-            return JsonUtil.toJson(tagJson)
+            JsonUtil.toJson(tagJson)
         }
     }
 }

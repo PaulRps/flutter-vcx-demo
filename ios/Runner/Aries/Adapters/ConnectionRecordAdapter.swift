@@ -21,15 +21,15 @@ class ConnectionRecordAdpater : ConnectionRecordPort  {
     ){
         self.walletRecordPort =  walletRecordPort
         self.walletSearchPort =  walletSearchPort
-        self.cancellables = Set()
+        cancellables = Set()
     }
     
     func search(keyValQuery: Array<String>) -> Future<SearchWalletResponseDto,Error>{
         let queryJson = WalletTagsBuilder.Builder().encrypted(keyValQuery).build()
         
-        self.logger.info(message: "searching aries connnection record with query: \(queryJson)")
+        logger.info(message: "searching aries connnection record with query: \(queryJson)")
         
-        return self.walletSearchPort.search(
+        return walletSearchPort.search(
             query: WalletQueryDto(
                 type : WalletRecordTypeEnum.CONNECTION.value,
                 json : queryJson
@@ -39,63 +39,69 @@ class ConnectionRecordAdpater : ConnectionRecordPort  {
     }
     
     func save(value: String, tag: ConnectionTagsDto)->Future<WalletRecordDto?,Error> {
-        return Future { promise in
+        Future { promise in
             self.logger.info(message: "saving connection record in wallet")
-            
-            var record:WalletRecordDto? = nil
-            let query = ["their_label", tag.theirLabel!,"serviceEndpoint", tag.serviceEndpoint!]
-            
+
+            var record: WalletRecordDto? = nil
+            let query = ["their_label", tag.theirLabel!, "serviceEndpoint", tag.serviceEndpoint!]
+
             self.search(keyValQuery: query)
-                .map { walletResponse in
-                    if walletResponse.isNotEmpty() &&
-                        AriesConnectionUtil.isConnectionFinished(connection: walletResponse.records?[0]) {
-                        
-                        self.logger.error(message: "connection record already exists in wallet")
-                        
-                        promise(.failure(CustomError(errorMessage: ErrorMessage.INTERNAL_ERROR)))
-                        return
+                    .map { walletResponse in
+                        if walletResponse.isNotEmpty() &&
+                                   AriesConnectionUtil.isConnectionFinished(connection: walletResponse.records?[0]) {
+
+                            self.logger.error(message: "connection record already exists in wallet")
+
+                            promise(.failure(CustomError(errorMessage: ErrorMessage.INTERNAL_ERROR)))
+                            return
+                        }
+
+                        record = WalletRecordDto(
+                                type: WalletRecordTypeEnum.CONNECTION,
+                                uuid: UUID().uuidString,
+                                value: value,
+                                tag: tag.toJson()
+                        )
+
                     }
-                    
-                    record = WalletRecordDto(
-                        type : WalletRecordTypeEnum.CONNECTION,
-                        uuid : UUID().uuidString,
-                        value : value,
-                        tag : tag.toJson()
-                    )
-                    
-                }.flatMap({_ in
-                    self.walletRecordPort.add(record: record!)
-                }).sink(receiveCompletion: { completion in
-                    switch completion {
-                    case .finished: break
-                    case .failure(let error): promise(.failure(error))
-                    }
-                }, receiveValue: { _ in
-                    promise(.success(record))
-                }).store(in: &self.cancellables)
+                    .flatMap({ _ in
+                        self.walletRecordPort.add(record: record!)
+                    })
+                    .sink(receiveCompletion: { completion in
+                        switch completion {
+                        case .finished: break
+                        case .failure(let error): promise(.failure(error))
+                        }
+                    }, receiveValue: { _ in
+                        promise(.success(record))
+                    })
+                    .store(in: &self.cancellables)
         }
     }
     
     func update(record: WalletRecordDto, keyValTag: Array<String>?) -> Future<Int,Error>  {
-        return Future {  promise in
+        Future { promise in
             self.logger.info(message: "updating connection record \(record.toJson()) with tag \(String(describing: keyValTag))")
-            
+
             self.walletRecordPort.update(record: record)
-                .map{ _ in
-                    
-                }.flatMap({
-                    self.updateTags(recordId: record.uuid, baseJsonTag: record.tag!, keyValTag: keyValTag)
-                }).sink(receiveCompletion: { completion in
-                    switch completion {
-                    case .finished: break
-                    case .failure(let error):
-                        self.logger.error(message: "error on updating connection record: \(error.localizedDescription)")
-                        promise(.failure(error))
+                    .map { _ in
+
                     }
-                }, receiveValue: { _ in
-                    self.logger.info(message: "updated connection record sucessfully")
-                    promise(.success(0))
-                }).store(in: &self.cancellables)
+                    .flatMap({
+                        self.updateTags(recordId: record.uuid, baseJsonTag: record.tag!, keyValTag: keyValTag)
+                    })
+                    .sink(receiveCompletion: { completion in
+                        switch completion {
+                        case .finished: break
+                        case .failure(let error):
+                            self.logger.error(message: "error on updating connection record: \(error.localizedDescription)")
+                            promise(.failure(error))
+                        }
+                    }, receiveValue: { _ in
+                        self.logger.info(message: "updated connection record sucessfully")
+                        promise(.success(0))
+                    })
+                    .store(in: &self.cancellables)
         }
     }
     
@@ -104,32 +110,35 @@ class ConnectionRecordAdpater : ConnectionRecordPort  {
         record: WalletRecordDto,
         keyValTag: Array<String>?
     )-> Future<Int,Error> {
-        return Future { promise in
-            var connectionRecord:SearchRecordDto? = nil
+        Future { promise in
+            var connectionRecord: SearchRecordDto? = nil
             let query = ["state", queryState.value, "request_id", record.uuid]
-            
+
             self.search(keyValQuery: query)
-                .map{ searchResponse in
-                    
-                    if searchResponse.isEmpty() {
-                        promise(.failure(CustomError(errorMessage: ErrorMessage.INTERNAL_ERROR)))
-                        return
+                    .map { searchResponse in
+
+                        if searchResponse.isEmpty() {
+                            promise(.failure(CustomError(errorMessage: ErrorMessage.INTERNAL_ERROR)))
+                            return
+                        }
+
+                        connectionRecord = searchResponse.records![0]
                     }
-                    
-                    connectionRecord = searchResponse.records![0]
-                }.flatMap({
-                    self.update(record: WalletRecordDto.from(connectionRecord!), keyValTag: keyValTag)
-                }).sink(receiveCompletion: { completion in
-                    switch completion {
-                    case .finished: break
-                    case .failure(let error):
-                        self.logger.error(message: "error on updating connection record: \(error.localizedDescription)")
-                        promise(.failure(error))
-                    }
-                }, receiveValue: { _ in
-                    self.logger.info(message: "updated connection record successfully")
-                    promise(.success(0))
-                }).store(in: &self.cancellables)
+                    .flatMap({
+                        self.update(record: WalletRecordDto.from(connectionRecord!), keyValTag: keyValTag)
+                    })
+                    .sink(receiveCompletion: { completion in
+                        switch completion {
+                        case .finished: break
+                        case .failure(let error):
+                            self.logger.error(message: "error on updating connection record: \(error.localizedDescription)")
+                            promise(.failure(error))
+                        }
+                    }, receiveValue: { _ in
+                        self.logger.info(message: "updated connection record successfully")
+                        promise(.success(0))
+                    })
+                    .store(in: &self.cancellables)
         }
     }
     
@@ -138,60 +147,63 @@ class ConnectionRecordAdpater : ConnectionRecordPort  {
         baseJsonTag: String,
         keyValTag: Array<String>?
     ) -> Future<Int,Error> {
-        return Future { promise in
+        Future { promise in
             if keyValTag?.isEmpty == true || keyValTag!.count % 2 != 0 {
                 promise(.failure(CustomError(errorMessage: ErrorMessage.INTERNAL_ERROR)))
                 return
             }
-            
+
             let newTags = WalletTagsBuilder.Builder(baseJsonTag).encrypted(keyValTag!).build()
-            
+
             self.logger.info(message: "updating connection record tags with \(newTags)")
-            
+
             self.walletRecordPort.updateTags(
-                record: WalletRecordDto(
-                    type: WalletRecordTypeEnum.CONNECTION,
-                    uuid: recordId,
-                    tag: newTags
-                )
-            ).sink(receiveCompletion: { completion in
-                switch completion {
-                case .finished: break
-                case .failure(let error):
-                    self.logger.error(message: "error on updating connection record: \(error.localizedDescription)")
-                    promise(.failure(error))
-                }
-            }, receiveValue: { _ in
-                self.logger.info(message: "updated connection record successfully")
-                promise(.success(0))
-            }).store(in: &self.cancellables)
+                            record: WalletRecordDto(
+                                    type: WalletRecordTypeEnum.CONNECTION,
+                                    uuid: recordId,
+                                    tag: newTags
+                            )
+                    ).sink(receiveCompletion: { completion in
+                        switch completion {
+                        case .finished: break
+                        case .failure(let error):
+                            self.logger.error(message: "error on updating connection record: \(error.localizedDescription)")
+                            promise(.failure(error))
+                        }
+                    }, receiveValue: { _ in
+                        self.logger.info(message: "updated connection record successfully")
+                        promise(.success(0))
+                    })
+                    .store(in: &self.cancellables)
         }
     }
     
     func findConnectionByDid(did: String) -> Future<SearchRecordDto?, Error> {
-        return Future { promise in
+        Future { promise in
             self.logger.info(message: "finding connection record by did=\(did)")
             let query = ["my_did", did]
             self.search(keyValQuery: query)
-                .map{searchResponse in
-                    return searchResponse.records![0]
-                }.sink(receiveCompletion: { completion in
-                    switch completion {
-                    case .finished: break
-                    case .failure(let error):
-                        self.logger.error(message: "error on finding connection record by did: \(error.localizedDescription)")
-                        promise(.failure(error))
+                    .map { searchResponse in
+                        searchResponse.records![0]
                     }
-                }, receiveValue: { connectionRecord in
-                    self.logger.info(message: "found connection record by did successfully")
-                    promise(.success(connectionRecord))
-                }).store(in: &self.cancellables)
+                    .sink(receiveCompletion: { completion in
+                        switch completion {
+                        case .finished: break
+                        case .failure(let error):
+                            self.logger.error(message: "error on finding connection record by did: \(error.localizedDescription)")
+                            promise(.failure(error))
+                        }
+                    }, receiveValue: { connectionRecord in
+                        self.logger.info(message: "found connection record by did successfully")
+                        promise(.success(connectionRecord))
+                    })
+                    .store(in: &self.cancellables)
         }
     }
     
     func delete(recordId: String)-> Future<Int,Error>{
-        self.logger.info(message: "deleting wallet record by id: \(recordId)")
-        return self.walletRecordPort.deleteRecord(
+        logger.info(message: "deleting wallet record by id: \(recordId)")
+        return walletRecordPort.deleteRecord(
             type: WalletRecordTypeEnum.CONNECTION,
             uuid: recordId
         )

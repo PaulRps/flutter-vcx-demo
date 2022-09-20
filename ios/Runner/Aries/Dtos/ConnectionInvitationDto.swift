@@ -51,15 +51,15 @@ class ConnectionInvitationDto: ToJson{
     }
     
     static func from(map: [String:Any]?) -> ConnectionInvitationDto {
-        return ConnectionInvitationDto(
-            id: map?["@id"] as? String,
-            type: map?["@type"] as? String,
-            label: map?["label"] as? String,
-            imageUrl: map?["imageUrl"] as? String,
-            image_url: map?["image_url"] as? String,
-            serviceEndpoint: map?["serviceEndpoint"] as? String,
-            routingKeys: map?["routingKeys"] as? Array<String>,
-            recipientKeys: map?["recipientKeys"] as? Array<String>
+        ConnectionInvitationDto(
+                id: map?["@id"] as? String,
+                type: map?["@type"] as? String,
+                label: map?["label"] as? String,
+                imageUrl: map?["imageUrl"] as? String,
+                image_url: map?["image_url"] as? String,
+                serviceEndpoint: map?["serviceEndpoint"] as? String,
+                routingKeys: map?["routingKeys"] as? Array<String>,
+                recipientKeys: map?["recipientKeys"] as? Array<String>
         )
     }
     

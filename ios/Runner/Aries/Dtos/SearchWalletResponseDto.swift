@@ -13,10 +13,10 @@ class SearchWalletResponseDto : ToJson {
     
     
     func isEmpty() ->  Bool {
-        return (totalCount == nil || totalCount == 0)
+        (totalCount == nil || totalCount == 0)
     }
     
     func isNotEmpty() -> Bool {
-        return !isEmpty()
+        !isEmpty()
     }
 }
