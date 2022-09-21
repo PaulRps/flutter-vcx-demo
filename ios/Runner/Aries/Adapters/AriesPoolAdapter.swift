@@ -9,8 +9,8 @@ import Foundation
 import Combine
 import vcx
 
-class AriesMainPoolAdapter: PoolPort {
-    private final let logger = CustomLogger(context: AriesMainPoolAdapter.self)
+class AriesPoolAdapter: PoolPort {
+    private final let logger = CustomLogger(context: AriesPoolAdapter.self)
     private final let vcx: ConnectMeVcx
     
     init() {

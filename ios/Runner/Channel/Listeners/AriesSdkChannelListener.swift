@@ -1,18 +1,19 @@
 //
-//  AriesMessageChannelListener.swift
+//  AriesSdkChannelListener.swift
 //  Runner
 //
-//  Created by Paulo Silva on 31/08/22.
+//  Created by Paulo Silva on 13/08/22.
 //
 
 import Foundation
-import Flutter
 import Combine
+import Flutter
 
-class AriesMessageChannelListener: ChannelListener {
-    var channel: ChannelName = .ARIES_MESSAGE
+class AriesSdkChannelListener: ChannelListener {
+    var channel: ChannelName = .ARIES_SDK
+
     private var cancellables: Set<AnyCancellable>
-    private final let logger = CustomLogger(context: AriesMessageChannelListener.self)
+    private let logger = CustomLogger(context: AriesSdkChannelListener.self)
 
     init() {
         cancellables = Set()
@@ -22,15 +23,13 @@ class AriesMessageChannelListener: ChannelListener {
             _ call: FlutterMethodCall,
             _ result: @escaping FlutterResult
     ) throws {
-        let input = FlutterRequestAriesMessageChannelDto.from(call)
-
-        let resolver = AriesMessageMethodResolver(
-                input: input,
-                getMessageUsecase: GetMessageByConnectionFromAriesAgencyUsecase()
-        )
+        let input = FlutterRequestAriesSdkChannelDto.from(methodCall: call)
 
         let method = String(call.method)
-        try resolver.call(method: method)?.sink(receiveCompletion: { completion in
+
+        try AriesSdkRouter(
+                input: input
+        ).call(method: method)?.sink(receiveCompletion: { completion in
                     switch completion {
                     case .finished: break
                     case .failure(let error):
@@ -46,7 +45,7 @@ class AriesMessageChannelListener: ChannelListener {
                 }, receiveValue: { response in
                     let res = response.toMap()
                     self.logger.info(
-                            message: "finished call on method \(method) on aries message channel with result: \(res)"
+                            message: "finished call on method \(method) on aries sdk channel with result: \(res)"
                     )
                     result(res)
                 })

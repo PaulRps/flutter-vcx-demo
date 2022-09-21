@@ -10,18 +10,18 @@ import Combine
 
 class AriesPoolRepository {
     private final let ariesPool: PoolPort
-    
+
     init(
-        ariesPool: PoolPort=AriesMainPoolAdapter()
-    ){
+            ariesPool: PoolPort = AriesPoolAdapter()
+    ) {
         self.ariesPool = ariesPool
     }
-    
-    func initPool(config: InitThreadPoolConfigDto) -> Future<Bool, Error>{
+
+    func initPool(config: InitThreadPoolConfigDto) -> Future<Bool, Error> {
         ariesPool.initPool(config: config)
     }
-    
-    func openMainPool(config: OpenPoolConfigDto) -> Future<String, Error>{
+
+    func openMainPool(config: OpenPoolConfigDto) -> Future<String, Error> {
         ariesPool.openMainPool(config: config)
     }
 }

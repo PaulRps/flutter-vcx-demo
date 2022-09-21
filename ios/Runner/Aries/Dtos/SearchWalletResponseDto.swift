@@ -7,15 +7,15 @@
 
 import Foundation
 
-class SearchWalletResponseDto : ToJson {
+class SearchWalletResponseDto: ToJson {
     var totalCount: Int?
     var records: Array<SearchRecordDto>?
-    
-    
-    func isEmpty() ->  Bool {
+
+
+    func isEmpty() -> Bool {
         (totalCount == nil || totalCount == 0)
     }
-    
+
     func isNotEmpty() -> Bool {
         !isEmpty()
     }

@@ -12,13 +12,13 @@ class SearchRecordDto: ToJson {
     var type: String?
     var id: String?
     var value: String?
-    var tags: [String:String]?
-    
+    var tags: [String: String]?
+
     enum CodingKeys: String, CodingKey {
         case type, id, value, tags
     }
-    
-    init(id:String?, type: String?, value: String?, tags: [String:String]?) {
+
+    init(id: String?, type: String?, value: String?, tags: [String: String]?) {
         self.id = id
         self.type = type
         self.value = value

@@ -8,37 +8,37 @@
 import Foundation
 import Combine
 
-class ConnectionRecordAdpater : ConnectionRecordPort  {
+class ConnectionRecordAdpater: ConnectionRecordPort {
     private final let logger = CustomLogger(context: ConnectionRecordAdpater.self)
-    
-    private final let walletRecordPort:  WalletRecordAdapter
-    private final let walletSearchPort:  WalletSearchAdapter
+
+    private final let walletRecordPort: WalletRecordPort
+    private final let walletSearchPort: WalletSearchPort
     private final var cancellables: Set<AnyCancellable>
-    
+
     init(
-        walletRecordPort:  WalletRecordAdapter=WalletRecordAdapter(),
-        walletSearchPort:  WalletSearchAdapter=WalletSearchAdapter()
-    ){
-        self.walletRecordPort =  walletRecordPort
-        self.walletSearchPort =  walletSearchPort
+            walletRecordPort: WalletRecordPort = WalletRecordAdapter(),
+            walletSearchPort: WalletSearchPort = WalletSearchAdapter()
+    ) {
+        self.walletRecordPort = walletRecordPort
+        self.walletSearchPort = walletSearchPort
         cancellables = Set()
     }
-    
-    func search(keyValQuery: Array<String>) -> Future<SearchWalletResponseDto,Error>{
+
+    func search(keyValQuery: Array<String>) -> Future<SearchWalletResponseDto, Error> {
         let queryJson = WalletTagsBuilder.Builder().encrypted(keyValQuery).build()
-        
+
         logger.info(message: "searching aries connnection record with query: \(queryJson)")
-        
+
         return walletSearchPort.search(
-            query: WalletQueryDto(
-                type : WalletRecordTypeEnum.CONNECTION.value,
-                json : queryJson
-            ),
-            count: 100
+                query: WalletQueryDto(
+                        type: WalletRecordTypeEnum.CONNECTION.value,
+                        json: queryJson
+                ),
+                count: 100
         )
     }
-    
-    func save(value: String, tag: ConnectionTagsDto)->Future<WalletRecordDto?,Error> {
+
+    func save(value: String, tag: ConnectionTagsDto) -> Future<WalletRecordDto?, Error> {
         Future { promise in
             self.logger.info(message: "saving connection record in wallet")
 
@@ -78,8 +78,8 @@ class ConnectionRecordAdpater : ConnectionRecordPort  {
                     .store(in: &self.cancellables)
         }
     }
-    
-    func update(record: WalletRecordDto, keyValTag: Array<String>?) -> Future<Int,Error>  {
+
+    func update(record: WalletRecordDto, keyValTag: Array<String>?) -> Future<Int, Error> {
         Future { promise in
             self.logger.info(message: "updating connection record \(record.toJson()) with tag \(String(describing: keyValTag))")
 
@@ -104,12 +104,12 @@ class ConnectionRecordAdpater : ConnectionRecordPort  {
                     .store(in: &self.cancellables)
         }
     }
-    
+
     func update(
-        queryState: ConnectionStateEnum,
-        record: WalletRecordDto,
-        keyValTag: Array<String>?
-    )-> Future<Int,Error> {
+            queryState: ConnectionStateEnum,
+            record: WalletRecordDto,
+            keyValTag: Array<String>?
+    ) -> Future<Int, Error> {
         Future { promise in
             var connectionRecord: SearchRecordDto? = nil
             let query = ["state", queryState.value, "request_id", record.uuid]
@@ -141,12 +141,12 @@ class ConnectionRecordAdpater : ConnectionRecordPort  {
                     .store(in: &self.cancellables)
         }
     }
-    
+
     func updateTags(
-        recordId: String,
-        baseJsonTag: String,
-        keyValTag: Array<String>?
-    ) -> Future<Int,Error> {
+            recordId: String,
+            baseJsonTag: String,
+            keyValTag: Array<String>?
+    ) -> Future<Int, Error> {
         Future { promise in
             if keyValTag?.isEmpty == true || keyValTag!.count % 2 != 0 {
                 promise(.failure(CustomError(errorMessage: ErrorMessage.INTERNAL_ERROR)))
@@ -177,7 +177,7 @@ class ConnectionRecordAdpater : ConnectionRecordPort  {
                     .store(in: &self.cancellables)
         }
     }
-    
+
     func findConnectionByDid(did: String) -> Future<SearchRecordDto?, Error> {
         Future { promise in
             self.logger.info(message: "finding connection record by did=\(did)")
@@ -200,12 +200,12 @@ class ConnectionRecordAdpater : ConnectionRecordPort  {
                     .store(in: &self.cancellables)
         }
     }
-    
-    func delete(recordId: String)-> Future<Int,Error>{
+
+    func delete(recordId: String) -> Future<Int, Error> {
         logger.info(message: "deleting wallet record by id: \(recordId)")
         return walletRecordPort.deleteRecord(
-            type: WalletRecordTypeEnum.CONNECTION,
-            uuid: recordId
+                type: WalletRecordTypeEnum.CONNECTION,
+                uuid: recordId
         )
     }
 }

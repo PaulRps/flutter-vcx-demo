@@ -1,14 +1,19 @@
 //
-// Created by Paulo Silva on 05/09/22.
+//  AriesConnectionChannelListener.swift
+//  Runner
+//
+//  Created by Paulo Silva on 26/08/22.
 //
 
 import Foundation
 import Combine
+import Flutter
 
-class AriesCredentialChannelListener: ChannelListener {
-    var channel: ChannelName = .ARIES_CREDENTIAL
+class AriesConnectionChannelListener: ChannelListener {
+    var channel: ChannelName = .ARIES_CONNECTION
+
     private var cancellables: Set<AnyCancellable>
-    private final let logger = CustomLogger(context: AriesCredentialChannelListener.self)
+    private let logger = CustomLogger(context: AriesConnectionChannelListener.self)
 
     init() {
         cancellables = Set()
@@ -18,16 +23,13 @@ class AriesCredentialChannelListener: ChannelListener {
             _ call: FlutterMethodCall,
             _ result: @escaping FlutterResult
     ) throws {
-        let input = FlutterRequestAriesCredentialChannelDto.from(call)
-
-        let resolver = AriesCredentialMethodResolver(
-                input: input,
-                acceptCredentialOffer: AcceptCredentialOfferUsecase(),
-                getIssuedCredentials: GetIssuedCredentialsUsecase()
-        )
+        let input = FlutterRequestAriesConnectionChannelDto.from(call: call)
 
         let method = String(call.method)
-        try resolver.call(method: method)?.sink(receiveCompletion: { completion in
+
+        try AriesConnectionRouter(
+                input: input
+        ).call(method: method)?.sink(receiveCompletion: { completion in
                     switch completion {
                     case .finished: break
                     case .failure(let error):
@@ -42,9 +44,10 @@ class AriesCredentialChannelListener: ChannelListener {
                     }
                 }, receiveValue: { response in
                     let res = response.toMap()
-                    self.logger.info(message: "finished call on method \(method) on aries credential channel with result: \(res)")
+                    self.logger.info(message: "finished call on method \(method) on aries connection channel with result: \(res)")
                     result(res)
                 })
                 .store(in: &cancellables)
     }
+
 }

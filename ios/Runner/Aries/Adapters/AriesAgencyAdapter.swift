@@ -9,7 +9,7 @@ import Foundation
 import Combine
 import vcx
 
-class AriesAgencyAdapter: AgencyPort {
+class AriesAgencyAdapter: AgencyPort, CheckVcxResult {
 
     private final let logger = CustomLogger(context: AriesAgencyAdapter.self)
     private final let vcx: ConnectMeVcx
@@ -58,11 +58,11 @@ class AriesAgencyAdapter: AgencyPort {
     func getMessage(
             connectionHandle: NSNumber?,
             messageStatus: AgencyMessageStatusEnum,
-            messageUid: String?=""
+            messageUid: String? = ""
     ) -> Future<String, Error> {
         Future { promise in
             if connectionHandle == nil {
-                promise(.failure(CustomError(errorMessage: ErrorMessage.INTERNAL_ERROR)))
+                promise(.failure(CustomError(errorMessage: .INTERNAL_ERROR)))
                 return
             }
 

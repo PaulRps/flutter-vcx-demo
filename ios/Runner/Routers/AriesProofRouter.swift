@@ -5,12 +5,12 @@
 import Foundation
 import Combine
 
-class AriesProofMethodResolver: MethodResolver {
+class AriesProofRouter: Router {
     final let input: FlutterRequestAriesProofChannelDto
 
     final var routes: [String: AnyPublisher<NativeToFlutterResponseDto, Error>] = [:]
 
-    final let logger = CustomLogger(context: AriesProofMethodResolver.self)
+    final let logger = CustomLogger(context: AriesProofRouter.self)
 
     typealias I = FlutterRequestAriesProofChannelDto
 

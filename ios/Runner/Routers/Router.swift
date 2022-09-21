@@ -8,24 +8,24 @@
 import Foundation
 import Combine
 
-protocol MethodResolver {
+protocol Router {
     associatedtype I
-    
-    var input: I {get}
-    var routes: [String: AnyPublisher<NativeToFlutterResponseDto, Error>] {get}
-    var logger:CustomLogger {get}
+
+    var input: I { get }
+    var routes: [String: AnyPublisher<NativeToFlutterResponseDto, Error>] { get }
+    var logger: CustomLogger { get }
 }
 
-extension MethodResolver {
+extension Router {
     func call(method: String) throws -> AnyPublisher<NativeToFlutterResponseDto, Error>? {
         logger.info(message: "resolving method call: \(method)")
-        
-        let methodCall  = routes[method]
+
+        let methodCall = routes[method]
         if methodCall == nil {
             logger.error(message: "method call: \(method) does not exist")
             throw CustomError(errorMessage: .INTERNAL_ERROR)
         }
-        
+
         return methodCall
     }
 }

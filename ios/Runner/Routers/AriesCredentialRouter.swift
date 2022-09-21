@@ -5,22 +5,22 @@
 import Foundation
 import Combine
 
-class AriesCredentialMethodResolver: MethodResolver {
+class AriesCredentialRouter: Router {
     typealias I = FlutterRequestAriesCredentialChannelDto
 
     var input: FlutterRequestAriesCredentialChannelDto
 
     var routes: [String: AnyPublisher<NativeToFlutterResponseDto, Error>] = [:]
 
-    var logger = CustomLogger(context: AriesCredentialMethodResolver.self)
+    var logger = CustomLogger(context: AriesCredentialRouter.self)
 
     private final let acceptCredentialOffer: AcceptCredentialOfferUsecase
     private final let getIssuedCredentials: GetIssuedCredentialsUsecase
 
     init(
             input: FlutterRequestAriesCredentialChannelDto,
-            acceptCredentialOffer: AcceptCredentialOfferUsecase,
-            getIssuedCredentials: GetIssuedCredentialsUsecase
+            acceptCredentialOffer: AcceptCredentialOfferUsecase = AcceptCredentialOfferUsecase(),
+            getIssuedCredentials: GetIssuedCredentialsUsecase = GetIssuedCredentialsUsecase()
     ) {
         self.input = input
         self.acceptCredentialOffer = acceptCredentialOffer

@@ -1,14 +1,18 @@
 //
-// Created by Paulo Silva on 09/09/22.
+//  AriesMessageChannelListener.swift
+//  Runner
+//
+//  Created by Paulo Silva on 31/08/22.
 //
 
 import Foundation
+import Flutter
 import Combine
 
-class AriesProofChannelListener: ChannelListener {
-    var channel: ChannelName = .ARIES_PROOF
+class AriesMessageChannelListener: ChannelListener {
+    var channel: ChannelName = .ARIES_MESSAGE
     private var cancellables: Set<AnyCancellable>
-    private final let logger = CustomLogger(context: AriesProofChannelListener.self)
+    private final let logger = CustomLogger(context: AriesMessageChannelListener.self)
 
     init() {
         cancellables = Set()
@@ -18,10 +22,12 @@ class AriesProofChannelListener: ChannelListener {
             _ call: FlutterMethodCall,
             _ result: @escaping FlutterResult
     ) throws {
-        let input = FlutterRequestAriesProofChannelDto.from(call)
+        let input = FlutterRequestAriesMessageChannelDto.from(call)
 
         let method = String(call.method)
-        try AriesProofMethodResolver(input: input).call(method: method)?.sink(receiveCompletion: { completion in
+        try AriesMessageRouter(
+                input: input
+        ).call(method: method)?.sink(receiveCompletion: { completion in
                     switch completion {
                     case .finished: break
                     case .failure(let error):
@@ -37,7 +43,7 @@ class AriesProofChannelListener: ChannelListener {
                 }, receiveValue: { response in
                     let res = response.toMap()
                     self.logger.info(
-                            message: "finished call on method \(method) on aries proof channel with result: \(res)"
+                            message: "finished call on method \(method) on aries message channel with result: \(res)"
                     )
                     result(res)
                 })

@@ -8,28 +8,28 @@
 import Foundation
 import Combine
 
-class AriesMessageMethodResolver: MethodResolver {
-    let logger = CustomLogger(context: AriesMessageMethodResolver.self)
+class AriesMessageRouter: Router {
+    let logger = CustomLogger(context: AriesMessageRouter.self)
     typealias I = FlutterRequestAriesMessageChannelDto
     let input: FlutterRequestAriesMessageChannelDto
-    var routes: [String : AnyPublisher<NativeToFlutterResponseDto, Error>]=[:]
-    
+    var routes: [String: AnyPublisher<NativeToFlutterResponseDto, Error>] = [:]
+
     private final let getMessageUsecase: GetMessageByConnectionFromAriesAgencyUsecase
-    
+
     init(
-        input: FlutterRequestAriesMessageChannelDto,
-        getMessageUsecase: GetMessageByConnectionFromAriesAgencyUsecase
+            input: FlutterRequestAriesMessageChannelDto,
+            getMessageUsecase: GetMessageByConnectionFromAriesAgencyUsecase = GetMessageByConnectionFromAriesAgencyUsecase()
     ) {
         self.input = input
         self.getMessageUsecase = getMessageUsecase
         setRoutes()
     }
-    
+
     private func setRoutes() {
         routes["getOneByPwDid"] = getMessageUsecase.getMessage(
-            messageStatus: input.msgStatus,
-            messageUid: input.msgUuid,
-            pairwiseDid: input.pairwiseDid
+                messageStatus: input.msgStatus,
+                messageUid: input.msgUuid,
+                pairwiseDid: input.pairwiseDid
         )
     }
 }
