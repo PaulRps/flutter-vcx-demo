@@ -29,11 +29,6 @@ class AcceptCredentialOfferUsecase {
     ) -> AnyPublisher<NativeToFlutterResponseDto, Error> {
         Deferred {
             Future { promise in
-                if !self.isParamsOk(pairwiseDid: pairwiseDid, sourceId: sourceId) {
-                    promise(.failure(CustomError(errorMessage: .INTERNAL_ERROR)))
-                    return
-                }
-
                 var connectionHandle: NSNumber = 0
                 var credentialHandle: NSNumber = 0
                 var serializedCredential: String = ""
@@ -125,11 +120,6 @@ class AcceptCredentialOfferUsecase {
                 credentialName: cred,
                 success: success
         )
-    }
-
-    private func isParamsOk(pairwiseDid: String?, sourceId: String?) -> Bool {
-        pairwiseDid != nil && pairwiseDid?.isEmpty == false &&
-                sourceId != nil && sourceId?.isEmpty == false
     }
 
     private func releaseHandles(credentialHandle: NSNumber?, connectionHandle: NSNumber?) {
