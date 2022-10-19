@@ -58,12 +58,12 @@ class AriesAgencyRepository {
             pairwiseDid: String,
             msgUids: [String]
     ) -> Future<Bool, Error> {
-        agency.updateMessageStatus(
+        agency.updateMessagesStatus(
                 newStaus: newStaus,
-                msg: UpdateAgencyMessageStatus(
+                msgs: [UpdateAgencyMessageStatus(
                         pairwiseDID: pairwiseDid,
                         uids: msgUids
-                )
+                )]
         )
     }
 }

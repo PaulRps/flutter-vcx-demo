@@ -5,6 +5,9 @@ import 'package:flutter_vcx_demo/src/data/dtos/native_to_flutter_response.dto.da
 abstract class IAriesProofRepository {
   Future<NativeToFlutterResponseDto> presentProof(
       FlutterRequestAriesProofChannelDto dto);
+
+  Future<NativeToFlutterResponseDto> rejectProof(
+      FlutterRequestAriesProofChannelDto dto);
 }
 
 class AriesProofRepository implements IAriesProofRepository {
@@ -18,6 +21,15 @@ class AriesProofRepository implements IAriesProofRepository {
       FlutterRequestAriesProofChannelDto dto) {
     return _ariesProofDatasource
         .presentProof(dto)
+        .then((value) => NativeToFlutterResponseDto(true))
+        .catchError((error) => NativeToFlutterResponseDto(false));
+  }
+
+  @override
+  Future<NativeToFlutterResponseDto> rejectProof(
+      FlutterRequestAriesProofChannelDto dto) {
+    return _ariesProofDatasource
+        .rejectProof(dto)
         .then((value) => NativeToFlutterResponseDto(true))
         .catchError((error) => NativeToFlutterResponseDto(false));
   }

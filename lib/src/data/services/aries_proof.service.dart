@@ -4,6 +4,8 @@ import 'package:flutter_vcx_demo/src/data/native_channels/native_channel.dart';
 
 abstract class IAriesProofService {
   Future<dynamic> presentProof(FlutterRequestAriesProofChannelDto dto);
+
+  Future rejectProof(FlutterRequestAriesProofChannelDto dto);
 }
 
 class AriesProofService implements IAriesProofService {
@@ -15,5 +17,10 @@ class AriesProofService implements IAriesProofService {
   @override
   Future presentProof(FlutterRequestAriesProofChannelDto dto) {
     return _channel.callMethod("presentProof", argument: dto.toJson());
+  }
+
+  @override
+  Future rejectProof(FlutterRequestAriesProofChannelDto dto) {
+    return _channel.callMethod("rejectProof", argument: dto.toJson());
   }
 }

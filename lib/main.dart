@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_vcx_demo/src/presentation/accept_credential_offer_form/accept_credential_offer_form.widget.dart';
 import 'package:flutter_vcx_demo/src/presentation/create_aries_connection_form/create_aries_connection_form.widget.dart';
-import 'package:flutter_vcx_demo/src/presentation/present_proof_request_form/present_proof_request_form.widget.dart';
+import 'package:flutter_vcx_demo/src/presentation/proof_request_form/proof_request_form.widget.dart';
 import 'package:flutter_vcx_demo/src/presentation/start_aries_sdk_form/start_aries_sdk_form.widget.dart';
 
 void main() {
@@ -57,8 +57,8 @@ class _MyHomePageState extends State<MyHomePage> {
       const CreateAriesConnectionFormWidget();
   final AcceptCredentialOfferFormWidget _acceptCredentialOfferFormWidget =
       AcceptCredentialOfferFormWidget();
-  final PresentProofRequestFormWidget _presentProofRequestFormWidget =
-      PresentProofRequestFormWidget();
+  final ProofRequestFormWidget _presentProofRequestFormWidget =
+      ProofRequestFormWidget();
 
   @override
   Widget build(BuildContext context) {

@@ -39,10 +39,6 @@ class AcceptCredentialOfferUsecase {
                 var serializedCredential: String = ""
                 self.connectionRepository.getConnectionHandleByPwDid(pairwiseDid: pairwiseDid!)
                         .map { connHandle in
-                            if connHandle.isEqual(nil) {
-                                promise(.failure(CustomError(errorMessage: .INTERNAL_ERROR)))
-                                return
-                            }
                             connectionHandle = connHandle
                         }
                         .flatMap({ _ in
@@ -56,12 +52,14 @@ class AcceptCredentialOfferUsecase {
                         })
                         .map { credHandle in
                             credentialHandle = credHandle
-//                            self.agencyRepository.updateMessageStatus(
-//                                    newStaus: AgencyMessageStatusEnum.REVIEWED,
-//                                    pairwiseDid: pairwiseDid!,
-//                                    msgUids: []
-//                            )
                         }
+                        .flatMap({
+                            self.agencyRepository.updateMessageStatus(
+                                    newStaus: AgencyMessageStatusEnum.REVIEWED,
+                                    pairwiseDid: pairwiseDid!,
+                                    msgUids: []
+                            )
+                        })
                         .flatMap({ _ in
                             self.credentialRepository.sendRequest(
                                     credentialHandle: credentialHandle,

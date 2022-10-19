@@ -1,4 +1,3 @@
-import 'package:flutter_vcx_demo/src/data/dtos/aries_credential.dto.dart';
 import 'package:flutter_vcx_demo/src/domain/entities/credential_data.dart';
 
 import '../../data/repositories/aries_credential.repository.dart';

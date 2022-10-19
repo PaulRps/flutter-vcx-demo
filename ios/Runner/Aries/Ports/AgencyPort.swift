@@ -19,8 +19,8 @@ protocol AgencyPort {
             messageUid: String?
     ) -> Future<String, Error>
 
-    func updateMessageStatus(
+    func updateMessagesStatus(
             newStaus: AgencyMessageStatusEnum,
-            msg: UpdateAgencyMessageStatus
+            msgs: [UpdateAgencyMessageStatus]
     ) -> Future<Bool, Error>
 }

@@ -72,4 +72,22 @@ class AriesProofRepository {
     func releaseHandle(handle: NSNumber?) -> NSNumber {
         ariesProof.releaseHandle(proofHandle: handle)
     }
+
+    func rejectProofRequest(proofHandle: NSNumber, connectionHandle: NSNumber) -> Future<Bool, Error> {
+        ariesProof.rejectProofRequest(proofHandle: proofHandle, connectionHandle: connectionHandle)
+    }
+
+    func declineProofRequest(
+            proofHandle: NSNumber,
+            connectionHandle: NSNumber,
+            reason: String?,
+            proposal: String? = nil
+    ) -> Future<Bool, Error> {
+        ariesProof.declineProofRequest(
+                proofHandle: proofHandle,
+                connectionHandle: connectionHandle,
+                reason: reason,
+                proposal: proposal
+        )
+    }
 }

@@ -31,4 +31,13 @@ protocol ProofPort {
     ) -> Future<AriesFinishedState, Error>
 
     func getSerializedProof(proofHandle: NSNumber) -> Future<String, Error>
+
+    func rejectProofRequest(proofHandle: NSNumber, connectionHandle: NSNumber) -> Future<Bool, Error>
+
+    func declineProofRequest(
+            proofHandle: NSNumber,
+            connectionHandle: NSNumber,
+            reason: String?,
+            proposal: String?
+    ) -> Future<Bool, Error>
 }

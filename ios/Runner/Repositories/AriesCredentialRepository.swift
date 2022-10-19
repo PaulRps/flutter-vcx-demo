@@ -10,14 +10,14 @@ class AriesCredentialRepository {
     private final var cancellables: Set<AnyCancellable>
 
     private final let credentialPort: CredentialPort
-    private final let credentialRecordPort: CredentialRecordPort
+    private final let credentialRecordRepository: AriesCredentialRecordRepository
 
     init(
             credentialPort: CredentialPort = AriesCredentialAdapter(),
-            credentialRecordPort: CredentialRecordPort = CredentialRecordAdapter()
+            credentialRecordRepository: AriesCredentialRecordRepository = AriesCredentialRecordRepository()
     ) {
         self.credentialPort = credentialPort
-        self.credentialRecordPort = credentialRecordPort
+        self.credentialRecordRepository = credentialRecordRepository
         cancellables = Set()
     }
 
@@ -103,7 +103,7 @@ class AriesCredentialRepository {
                     //                .encrypted("credentialPreview", credentialPreview.toJson())
                     .encrypted("state", CredentialStateEnum.FINISHED.value)
 
-            self.credentialRecordPort.save(
+            self.credentialRecordRepository.save(
                             value: serializedCredential,
                             tag: tag,
                             id: credentialId
@@ -127,7 +127,7 @@ class AriesCredentialRepository {
     func getSerializedCredentials() -> Future<[SearchRecordDto], Error> {
         Future { promise in
             self.logger.info(message: "getting all issued credentials in wallet")
-            self.credentialRecordPort.search(["state", CredentialStateEnum.FINISHED.value])
+            self.credentialRecordRepository.search(["state", CredentialStateEnum.FINISHED.value])
                     .map { searchWalletResponseDto -> [SearchRecordDto] in
                         searchWalletResponseDto.records ?? []
                     }

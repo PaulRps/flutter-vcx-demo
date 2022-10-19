@@ -11,6 +11,6 @@ protocol ToJson: Codable {}
 
 extension ToJson {
     func toJson() -> String {
-        JsonUtil.toJson(self)
+        JsonUtil.toJson(codable: self)
     }
 }

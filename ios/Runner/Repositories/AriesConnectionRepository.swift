@@ -11,15 +11,15 @@ import Combine
 class AriesConnectionRepository {
     private final let logger = CustomLogger(context: AriesConnectionRepository.self)
     private final var cancellables: Set<AnyCancellable>
-    private final let connectionRecordPort: ConnectionRecordPort
+    private final let connectionRecordRepository: AriesConnectionRecordRepository
     private final let connectionPort: ConnectionPort
 
     init(
             connectionPort: ConnectionPort = AriesConnectionAdapter(),
-            connectionRecordPort: ConnectionRecordPort = ConnectionRecordAdpater()
+            connectionRecordRepository: AriesConnectionRecordRepository = AriesConnectionRecordRepository()
     ) {
         cancellables = Set()
-        self.connectionRecordPort = connectionRecordPort
+        self.connectionRecordRepository = connectionRecordRepository
         self.connectionPort = connectionPort
     }
 
@@ -50,7 +50,7 @@ class AriesConnectionRepository {
 
     func getConnectionHandleByPwDid(pairwiseDid: String) -> Future<NSNumber, Error> {
         Future { promise in
-            self.connectionRecordPort.findConnectionByDid(did: pairwiseDid)
+            self.connectionRecordRepository.findConnectionByDid(did: pairwiseDid)
                     .map { record in
                         record?.value
                     }
@@ -68,6 +68,10 @@ class AriesConnectionRepository {
                     .store(in: &self.cancellables)
         }
     }
+    
+    func getConnectionHandle(serializedConnection: String) -> Future<NSNumber, Error> {
+        connectionPort.getConnectionHandle(serializedConnection: serializedConnection)
+    }
 
     func releaseHandle(connectionHandle: NSNumber?) -> Future<NSNumber, Error> {
         Future { promise in
@@ -80,9 +84,13 @@ class AriesConnectionRepository {
     }
 
     func searchConnection(invitation: ConnectionInvitationDto) -> Future<SearchRecordDto?, Error> {
+        let query = ["their_label", invitation.label!, "serviceEndpoint", invitation.serviceEndpoint!]
+        return searchConnection(query: query)
+    }
+    
+    func searchConnection(query: [String]) -> Future<SearchRecordDto?, Error> {
         Future { promise in
-            let query = ["their_label", invitation.label!, "serviceEndpoint", invitation.serviceEndpoint!]
-            self.connectionRecordPort.search(keyValQuery: query)
+            self.connectionRecordRepository.search(keyValQuery: query)
                     .map { searchResponse in
                         searchResponse.records?[0]
                     }
@@ -99,7 +107,7 @@ class AriesConnectionRepository {
     }
 
     func deleteConnection(id: String) -> Future<Int, Error> {
-        connectionRecordPort.delete(recordId: id)
+        connectionRecordRepository.delete(recordId: id)
     }
 
 
@@ -113,7 +121,7 @@ class AriesConnectionRepository {
         tags.theirDid = myTheirDid["their_did"]
         tags.createdAt = DateUtil.currentDateTime()
         tags.state = ConnectionStateEnum.ACCEPTED.value
-        return connectionRecordPort.save(value: serializedConnection, tag: tags)
+        return connectionRecordRepository.save(value: serializedConnection, tag: tags)
     }
 
     private func getMyTheirDidFrom(_ serializedConnection: String) -> [String: String] {

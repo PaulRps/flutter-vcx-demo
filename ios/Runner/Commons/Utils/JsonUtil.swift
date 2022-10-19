@@ -10,10 +10,10 @@ import Foundation
 class JsonUtil {
     private static let logger = CustomLogger(context: JsonUtil.self)
 
-    static func toJson<T: Encodable>(_ obj: T) -> String {
+    static func toJson<T: Codable>(codable: T) -> String {
         var json = ""
         do {
-            let jsonData = try JSONEncoder().encode(obj)
+            let jsonData = try JSONEncoder().encode(codable)
             json = String(data: jsonData, encoding: .utf8)!
         } catch let e {
             JsonUtil.logger.error(message: "error on encoding object to JSON: \(e.localizedDescription)")

@@ -15,13 +15,16 @@ class AriesProofRouter: Router {
     typealias I = FlutterRequestAriesProofChannelDto
 
     private final let presentProofUsecase: PresentProofRequestUsecase
+    private final let rejectProofUsecase: RejectProofRequestUsecase
 
     init(
             input: FlutterRequestAriesProofChannelDto,
-            presentProofUsecase: PresentProofRequestUsecase = PresentProofRequestUsecase()
+            presentProofUsecase: PresentProofRequestUsecase = PresentProofRequestUsecase(),
+            rejectProofUsecase: RejectProofRequestUsecase = RejectProofRequestUsecase()
     ) {
         self.input = input
         self.presentProofUsecase = presentProofUsecase
+        self.rejectProofUsecase = rejectProofUsecase
         setRoutes()
     }
 
@@ -30,5 +33,6 @@ class AriesProofRouter: Router {
                 pairwiseDid: input.pairwiseDid,
                 sourceId: input.sourceId
         )
+        routes["rejectProof"] = rejectProofUsecase.reject(proofMsg: input.proofMessage, sourceId: input.sourceId)
     }
 }

@@ -84,14 +84,14 @@ class AriesAgencyAdapter: AgencyPort, CheckVcxResult {
         }
     }
 
-    func updateMessageStatus(
+    func updateMessagesStatus(
             newStaus: AgencyMessageStatusEnum,
-            msg: UpdateAgencyMessageStatus
+            msgs: [UpdateAgencyMessageStatus]
     ) -> Future<Bool, Error> {
         Future { promise in
             self.vcx.updateMessages(
                     newStaus.value,
-                    pwdidsJson: msg.toJson()) { error in
+                    pwdidsJson: JsonUtil.toJson(codable: msgs)) { error in
                 if self.isFail(error) {
                     self.logger.error(message: "error on updating agency message status: \(error!.localizedDescription)")
                     promise(.failure(error!))

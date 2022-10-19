@@ -4,6 +4,8 @@ import '../services/aries_proof.service.dart';
 
 abstract class IAriesProofDatasource {
   Future presentProof(FlutterRequestAriesProofChannelDto dto);
+
+  Future rejectProof(FlutterRequestAriesProofChannelDto dto);
 }
 
 class AriesProofDatasource implements IAriesProofDatasource {
@@ -15,5 +17,10 @@ class AriesProofDatasource implements IAriesProofDatasource {
   @override
   Future presentProof(FlutterRequestAriesProofChannelDto dto) {
     return _ariesProofService.presentProof(dto);
+  }
+
+  @override
+  Future rejectProof(FlutterRequestAriesProofChannelDto dto) {
+    return _ariesProofService.rejectProof(dto);
   }
 }

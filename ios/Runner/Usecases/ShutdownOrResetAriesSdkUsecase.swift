@@ -50,6 +50,7 @@ class ShutdownOrResetAriesSdkUsecase {
                             var wasLocalProvisionDeleted = true
                             if isToDeleteWallet == true {
                                 wasLocalProvisionDeleted = self.agencyRepository.deleteProvisionConfig()
+                                self.ariesSdkRepository.clearSdkStorage()
                             }
 
                             let success = wasWalletClosed && wasWalletShutdown && wasLocalProvisionDeleted

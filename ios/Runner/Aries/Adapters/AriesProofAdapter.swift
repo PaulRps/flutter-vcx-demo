@@ -7,6 +7,7 @@ import Combine
 import vcx
 
 class AriesProofAdapter: ProofPort, CheckVcxResult {
+
     private final let logger = CustomLogger(context: AriesProofAdapter.self)
     private final let vcx: ConnectMeVcx
 
@@ -165,4 +166,47 @@ class AriesProofAdapter: ProofPort, CheckVcxResult {
         }
     }
 
+    func rejectProofRequest(proofHandle: NSNumber, connectionHandle: NSNumber) -> Future<Bool, Error> {
+        Future { promise in
+            self.logger.info(message: "rejecting aries proof request")
+            self.vcx.proofReject(
+                    vcx_proof_handle_t(truncating: proofHandle),
+                    withConnectionHandle: vcx_connection_handle_t(truncating: connectionHandle)
+            ) { error in
+                if self.isFail(error) {
+                    self.logger.error(message: "error on rejecting aries proof request:\(error!.localizedDescription)")
+                    promise(.failure(error!))
+                    return
+                }
+                self.logger.info(message: "rejected proof request successfully")
+                promise(.success(true))
+            }
+        }
+    }
+
+    func declineProofRequest(
+            proofHandle: NSNumber,
+            connectionHandle: NSNumber,
+            reason: String?,
+            proposal: String?
+    ) -> Future<Bool, Error> {
+        Future { promise in
+            self.logger.info(message: "declining aries proof request")
+            self.logger.info(message: "reason: \(reason) proposal: \(proposal)")
+//            self.vcx.proofDeclinePresentationRequest(
+//                    vcx_proof_handle_t(truncating: proofHandle),
+//                    connectionHandle: vcx_connection_handle_t(truncating: connectionHandle),
+//                    reason: reason,
+//                    proposal: proposal
+//            ) { error in
+//                if self.isFail(error) {
+//                    self.logger.error(message: "error on declining aries proof request:\(error!.localizedDescription)")
+//                    promise(.failure(error!))
+//                    return
+//                }
+//                self.logger.info(message: "declined proof request successfully")
+//                promise(.success(true))
+//            }
+        }
+    }
 }
