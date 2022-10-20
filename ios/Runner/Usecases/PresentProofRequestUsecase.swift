@@ -27,11 +27,6 @@ class PresentProofRequestUsecase {
     func presentProof(pairwiseDid: String?, sourceId: String?) -> AnyPublisher<NativeToFlutterResponseDto, Error> {
         Deferred {
             Future { promise in
-                if !self.isParamsOk(pairwiseDid: pairwiseDid, sourceId: sourceId) {
-                    promise(.failure(CustomError(errorMessage: .INTERNAL_ERROR)))
-                    return
-                }
-
                 self.logger.info(message: "presenting aries proof request")
 
                 var connectionHandle: NSNumber = -1
@@ -128,11 +123,6 @@ class PresentProofRequestUsecase {
     private func releaseHandles(proofHandle: NSNumber, connectionHandle: NSNumber) {
         _ = proofRepository.releaseHandle(handle: proofHandle)
         _ = connectionRepository.releaseHandle(handle: connectionHandle)
-    }
-
-    private func isParamsOk(pairwiseDid: String?, sourceId: String?) -> Bool {
-        pairwiseDid != nil && pairwiseDid?.isEmpty == false &&
-                sourceId != nil && sourceId?.isEmpty == false
     }
 
     private func getProofRequest(fromProofRequests: String) -> String {

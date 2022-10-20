@@ -23,42 +23,33 @@ class RejectProofRequestUsecase {
         self.agencyRepository = agencyRepository
     }
 
-    func reject(proofMsg: String?, sourceId: String?) -> AnyPublisher<NativeToFlutterResponseDto, Error> {
+    func reject(
+            pairwiseDid: String?,
+            sourceId: String?
+    ) -> AnyPublisher<NativeToFlutterResponseDto, Error> {
         Deferred {
             Future { promise in
-                var loginMap = JsonUtil.toDictionary(proofMsg!)
-                let verifier = loginMap?["~service"] as? [String: Any]
-                loginMap?.removeValue(forKey: "~service")
-                let serviceEndpoint = verifier?["serviceEndpoint"] as? String
-                let proofRequest = JsonUtil.toJson(loginMap)
 
                 var connectionHandle: NSNumber = 0
                 var proofHandle: NSNumber = 0
-                self.connectionRepository.searchConnection(query: ["serviceEndpoint", serviceEndpoint!])
-                        .map { searchResponse in
-                            searchResponse?.value
-                        }
-                        .flatMap({ connectionJson in
-                            self.connectionRepository.getConnectionHandle(serializedConnection: connectionJson!)
-                        })
+                self.connectionRepository.getConnectionHandleByPwDid(pairwiseDid: pairwiseDid!)
                         .map({ handle in
                             connectionHandle = handle
                         })
                         .flatMap({ _ in
+                            self.proofRepository.getProofRequests(connectionHandle: connectionHandle)
+                        })
+                        .map { proofRequests in
+                            self.getProofRequest(fromProofRequests: proofRequests)
+                        }
+                        .flatMap({ proofRequest in
                             self.proofRepository.createProof(withRequest: proofRequest, sourceId: sourceId!)
                         })
                         .map { handle in
                             proofHandle = handle
                         }
-//                        .flatMap({ _ in
-//                            self.proofRepository.rejectProofRequest(proofHandle: proofHandle, connectionHandle: connectionHandle)
-//                        })
                         .flatMap({ _ in
-                            self.proofRepository.declineProofRequest(
-                                    proofHandle: proofHandle,
-                                    connectionHandle: connectionHandle,
-                                    reason: "i can not agree with the requested fields"
-                            )
+                            self.proofRepository.rejectProofRequest(proofHandle: proofHandle, connectionHandle: connectionHandle)
                         })
                         .sink(receiveCompletion: { completion in
                             self.releaseHandles(proofHandle: proofHandle, connectionHandle: connectionHandle)
@@ -77,6 +68,11 @@ class RejectProofRequestUsecase {
             }
         }
                 .eraseToAnyPublisher()
+    }
+
+    private func getProofRequest(fromProofRequests: String) -> String {
+        let proofs = JsonUtil.toType(fromProofRequests, Array<[String: AnyObject]>.self)
+        return JsonUtil.toJson(proofs?[0])
     }
 
     private func releaseHandles(proofHandle: NSNumber, connectionHandle: NSNumber) {

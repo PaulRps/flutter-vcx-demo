@@ -33,6 +33,9 @@ class AriesProofRouter: Router {
                 pairwiseDid: input.pairwiseDid,
                 sourceId: input.sourceId
         )
-        routes["rejectProof"] = rejectProofUsecase.reject(proofMsg: input.proofMessage, sourceId: input.sourceId)
+        routes["rejectProof"] = rejectProofUsecase.reject(
+                pairwiseDid: input.pairwiseDid,
+                sourceId: input.sourceId
+        )
     }
 }

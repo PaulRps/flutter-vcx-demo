@@ -42,7 +42,7 @@ class _PresentProofRequestFormWidget extends State<ProofRequestFormWidget> {
   }
 
   void _presentProof(BuildContext context) {
-    widget._presentProofRequestUsecase.present().then((value) {
+    widget._presentProofRequestUsecase.presentProof().then((value) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text('Finished present proof (success=$value)')),
       );
