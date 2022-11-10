@@ -9,17 +9,17 @@ import Foundation
 import Combine
 import vcx
 
-class WalletRecordAdapter : WalletRecordPort, CheckVcxResult {
+class WalletRecordAdapter: WalletRecordPort, CheckVcxResult {
     private final let logger = CustomLogger(context: WalletRecordAdapter.self)
     private final var cancellables: Set<AnyCancellable>
-    private let vcx: ConnectMeVcx
-    
-    init(){
-        vcx = ConnectMeVcx()
+    private let vcx: VcxAPI
+
+    init() {
+        vcx = VcxAPI()
         cancellables = Set()
     }
-    
-    func add(record: WalletRecordDto)->Future<Int,Error> {
+
+    func add(record: WalletRecordDto) -> Future<Int, Error> {
         Future { promise in
             self.logger.info(message: "adding record in wallet")
             self.vcx.addRecordWallet(
@@ -38,8 +38,8 @@ class WalletRecordAdapter : WalletRecordPort, CheckVcxResult {
             }
         }
     }
-    
-    func update(record: WalletRecordDto) -> Future<Int,Error>{
+
+    func update(record: WalletRecordDto) -> Future<Int, Error> {
         Future { promise in
             self.logger.info(message: "updating record in wallet")
             self.vcx.updateRecordWallet(
@@ -57,8 +57,8 @@ class WalletRecordAdapter : WalletRecordPort, CheckVcxResult {
             }
         }
     }
-    
-    func updateTags(record: WalletRecordDto) -> Future<Int,Error> {
+
+    func updateTags(record: WalletRecordDto) -> Future<Int, Error> {
         Future { promise in
             self.logger.info(message: "updating tags in wallet")
             self.vcx.updateRecordTagsWallet(
@@ -76,8 +76,8 @@ class WalletRecordAdapter : WalletRecordPort, CheckVcxResult {
             }
         }
     }
-    
-    func deleteRecord(type: WalletRecordTypeEnum, uuid: String)-> Future<Int,Error> {
+
+    func deleteRecord(type: WalletRecordTypeEnum, uuid: String) -> Future<Int, Error> {
         Future { promise in
             self.logger.info(message: "deleting record in wallet")
             self.vcx.deleteRecordWallet(

@@ -219,7 +219,7 @@ class AriesConnectionRecordRepository {
         tags.myDid = pairwiseDid
         tags.theirDid = myTheirDid["their_did"]
         tags.createdAt = DateUtil.currentDateTime()
-        tags.state = ConnectionStateEnum.ACCEPTED.value
+        tags.state = ConnectionStateEnum.FINISHED.value
         return save(value: serializedConnection, tag: tags)
     }
 

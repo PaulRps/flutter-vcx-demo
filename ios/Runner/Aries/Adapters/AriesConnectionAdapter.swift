@@ -10,19 +10,21 @@ import Combine
 import vcx
 
 class AriesConnectionAdapter: ConnectionPort, CheckVcxResult {
-
     private final let logger = CustomLogger(context: AriesConnectionAdapter.self)
-    private final let vcx: ConnectMeVcx
+
+    private final let vcx: VcxAPI
+
 
     init() {
-        vcx = ConnectMeVcx()
+        vcx = VcxAPI()
     }
 
     func updateState(connectionHandle: NSNumber) -> Future<AriesFinishedState, Error> {
         Future { promise in
             self.logger.info(message: "updating connection state")
             self.vcx.connectionUpdateState(
-                    Int(truncating: connectionHandle)) { error, state in
+                    connectionHandle.intValue
+            ) { error, state in
                 if self.isFail(error) {
                     self.logger.error(message: "error on updating connection state: \(error!.localizedDescription)")
                     promise(.failure(error!))
@@ -104,6 +106,20 @@ class AriesConnectionAdapter: ConnectionPort, CheckVcxResult {
         }
     }
 
+    func create(sourceId: String) -> Future<NSNumber, Error> {
+        Future { promise in
+            self.vcx.connectionCreate(sourceId) { error, connectionHandle in
+                if self.isFail(error) {
+                    self.logger.error(message: "error on creating connection with sourceId=\(sourceId): \(error!.localizedDescription)")
+                    promise(.failure(error!))
+                    return
+                }
+                self.logger.info(message: "created connection with sourceId=\(sourceId) successfully")
+                promise(.success(connectionHandle as NSNumber))
+            }
+        }
+    }
+
     func connectionConnect(
             connectionHandle: NSNumber,
             connectionOptions: ConnectionOptionsDto
@@ -111,7 +127,7 @@ class AriesConnectionAdapter: ConnectionPort, CheckVcxResult {
         Future { promise in
             self.logger.info(message: "starting aries connection connect \(connectionHandle)")
             self.vcx.connectionConnect(
-                    VcxHandle(truncating: connectionHandle),
+                    connectionHandle.intValue,
                     connectionType: connectionOptions.toJson()) { error, result in
                 if self.isFail(error) {
                     self.logger.error(message: "error on connection connect: \(error!.localizedDescription)")
@@ -120,6 +136,21 @@ class AriesConnectionAdapter: ConnectionPort, CheckVcxResult {
                 }
                 self.logger.info(message: "finished connection connect successfully")
                 promise(.success(result!))
+            }
+        }
+    }
+
+    func inviteDetails(connectionHandle: NSNumber) -> Future<String, Error> {
+        Future { promise in
+            self.vcx.connectionInviteDetails(connectionHandle.intValue) { error, inviteDetails in
+
+                if self.isFail(error) {
+                    self.logger.error(message: "error on getting connection invitation details: \(error!.localizedDescription)")
+                    promise(.failure(error!))
+                    return
+                }
+                self.logger.info(message: "finished get connection invitation details successfully")
+                promise(.success(inviteDetails!))
             }
         }
     }

@@ -11,23 +11,24 @@ import vcx
 
 class AriesSdkAdapter: SdkPort, CheckVcxResult {
     private final let logger = CustomLogger(context: AriesSdkAdapter.self)
-    private final let vcx: ConnectMeVcx
+    private final let vcx: VcxAPI
     private final var cancellables: Set<AnyCancellable>
-    
+
     init() {
-        vcx = ConnectMeVcx()
+        vcx = VcxAPI()
         cancellables = Set()
     }
-    
+
     func setSdkLogLevel(logLevel: AriesSdkLogLevelEnum?) {
-        VcxLogger.setDefault(logLevel?.rawValue)
+        logger.info(message: "setting aries sdk log level to \(logLevel?.rawValue)")
+
+//        VcxLogger.setDefault(/*logLevel?.rawValue.lowercased()*/)
     }
-    
+
     func shutdown(isToDeleteWallet: Bool?) -> Bool {
-        let pointer = UnsafeMutablePointer<ObjCBool>.allocate(capacity: 1)
-        pointer[0] = ObjCBool(isToDeleteWallet ?? false)
-        let shutdownResult = vcx.vcxShutdown(pointer)
+        logger.info(message: "shutting down aries sdk (isToDeleteWallet=\(isToDeleteWallet))")
+        let shutdownResult = vcx.vcxShutdown(isToDeleteWallet ?? false)
         return isSuccessCode(Int(shutdownResult))
     }
-    
+
 }

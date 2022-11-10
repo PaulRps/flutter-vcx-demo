@@ -8,17 +8,17 @@ import vcx
 
 class AriesCredentialAdapter: CredentialPort, CheckVcxResult {
     private final let logger = CustomLogger(context: AriesCredentialAdapter.self)
-    private final let vcx: ConnectMeVcx
+    private final let vcx: VcxAPI
 
     init() {
-        vcx = ConnectMeVcx()
+        vcx = VcxAPI()
     }
 
     func getOffers(connectionHandle: NSNumber) -> Future<String, Error> {
         Future { promise in
             self.logger.info(message: "getting credential offers")
             self.vcx.credentialGetOffers(
-                    VcxHandle(truncating: connectionHandle)
+                    connectionHandle.intValue
             ) { error, offers in
                 if self.isFail(error) {
                     self.logger.error(message: "error on getting aries credential offer: \(error!.localizedDescription)")
@@ -57,8 +57,8 @@ class AriesCredentialAdapter: CredentialPort, CheckVcxResult {
             self.logger.info(message: "sending credential request")
             self.vcx.credentialSendRequest(
                     credentialHandle.intValue,
-                    connectionHandle: VcxHandle(truncating: connectionHandle),
-                    paymentHandle: paymentHandle.uint32Value
+                    connectionHandle: connectionHandle.intValue,
+                    paymentHandle: paymentHandle.intValue
             ) { error in
                 if self.isFail(error) {
                     self.logger.error(message: "error on sending credential request: \(error!.localizedDescription)")
@@ -105,7 +105,7 @@ class AriesCredentialAdapter: CredentialPort, CheckVcxResult {
         Future { promise in
             self.vcx.credentialUpdateStateV2(
                     credentialHandle.intValue,
-                    connectionHandle: VcxHandle(truncating: connectionHandle)
+                    connectionHandle: connectionHandle.intValue
             ) { error, state in
                 if self.isFail(error) {
                     self.logger.error(message: "error on updating credential state: \(error!.localizedDescription)")
@@ -113,10 +113,10 @@ class AriesCredentialAdapter: CredentialPort, CheckVcxResult {
                     return
                 }
 
-                let connectionState = CredentialStateEnum.getOne(id: state)
+                let connectionState = CredentialHolderStateEnum.getOne(id: state)
                 self.logger.info(message: "finished updated credential [current state=\(connectionState)]")
 
-                promise(.success(AriesCredentialFinishedState(state: connectionState)))
+                promise(.success(AriesCredentialHolderFinishedState(state: connectionState)))
             }
         }
     }

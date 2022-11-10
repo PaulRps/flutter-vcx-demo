@@ -19,31 +19,54 @@ class AriesConnectionFinishedState: AriesFinishedState {
     }
 
     func isFinished() -> Bool {
-        ConnectionStateEnum.ACCEPTED == state
+        ConnectionStateEnum.FINISHED == state
     }
 }
 
-class AriesCredentialFinishedState: AriesFinishedState {
-    private final let state: CredentialStateEnum
+class AriesCredentialHolderFinishedState: AriesFinishedState {
+    private final let state: CredentialHolderStateEnum
 
-    init(state: CredentialStateEnum) {
+    init(state: CredentialHolderStateEnum) {
         self.state = state
     }
 
     func isFinished() -> Bool {
-        CredentialStateEnum.FINISHED == state
+        CredentialHolderStateEnum.FINISHED == state
     }
 }
 
-class AriesProofFinishedState: AriesFinishedState {
-    private final let state: ProofStateEnum
+class AriesCredentialIssuerFinishedState: AriesFinishedState {
+    private final let state: CredentialIssuerStateEnum
 
-    init(state: ProofStateEnum) {
+    init(state: CredentialIssuerStateEnum) {
+        self.state = state
+    }
+
+    func isFinished() -> Bool {
+        CredentialIssuerStateEnum.FINISHED == state
+    }
+}
+
+class AriesProofProverFinishedState: AriesFinishedState {
+    private final let state: ProofProverStateEnum
+
+    init(state: ProofProverStateEnum) {
         self.state = state
     }
 
     func isFinished() -> Bool {
         state == .FINISHED
     }
+}
 
+class AriesProofVerifierFinishedState: AriesFinishedState {
+    private final let state: ProofVerifierStateEnum
+
+    init(state: ProofVerifierStateEnum) {
+        self.state = state
+    }
+
+    func isFinished() -> Bool {
+        state == .FAILED
+    }
 }

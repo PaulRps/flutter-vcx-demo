@@ -101,7 +101,7 @@ class AriesCredentialRepository {
                     .encrypted("version", credNameVersion["version"]!)
                     .encrypted("issuer", pairwiseDid)
                     //                .encrypted("credentialPreview", credentialPreview.toJson())
-                    .encrypted("state", CredentialStateEnum.FINISHED.value)
+                    .encrypted("state", CredentialHolderStateEnum.FINISHED.value)
 
             self.credentialRecordRepository.save(
                             value: serializedCredential,
@@ -127,7 +127,7 @@ class AriesCredentialRepository {
     func getSerializedCredentials() -> Future<[SearchRecordDto], Error> {
         Future { promise in
             self.logger.info(message: "getting all issued credentials in wallet")
-            self.credentialRecordRepository.search(["state", CredentialStateEnum.FINISHED.value])
+            self.credentialRecordRepository.search(["state", CredentialHolderStateEnum.FINISHED.value])
                     .map { searchWalletResponseDto -> [SearchRecordDto] in
                         searchWalletResponseDto.records ?? []
                     }

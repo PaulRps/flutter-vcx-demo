@@ -39,7 +39,7 @@ class StartAriesSdkUsecase {
                     return
                 }
 
-                self.logger.info(message: "starting aries sdk with config \(config) \(DateUtil.currentDateTime())")
+                self.logger.info(message: "starting aries sdk with config \(config)")
 
                 self.ariesSdkRepository.setSdkLogLevel(logLevel: config.logLevel)
 

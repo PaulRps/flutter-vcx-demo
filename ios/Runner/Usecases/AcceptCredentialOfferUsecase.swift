@@ -63,7 +63,7 @@ class AcceptCredentialOfferUsecase {
                             )
                         })
                         .flatMap({ _ in
-                            AriesStateUpdateAttempter().tryUpdateState(
+                            AriesStateUpdatePoller().tryUpdateState(
                                     method: {
                                         self.credentialRepository.updateCredentialState(
                                                 credentialHandle: credentialHandle,

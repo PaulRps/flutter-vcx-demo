@@ -40,4 +40,18 @@ protocol ProofPort {
             reason: String?,
             proposal: String?
     ) -> Future<Bool, Error>
+
+    func verifierCreateProof(
+            sourceId: String,
+            requestedAttributes: String,
+            requestedPredicate: String,
+            revocationInterval: String,
+            proofName: String
+    ) -> Future<NSNumber, Error>
+
+    func verifierSendProofRequest(proofHandle: NSNumber, connectionHandle: NSNumber) -> Future<Bool, Error>
+
+    func verifierUpdateStateV2(proofHandle: NSNumber, connectionHandle: NSNumber) -> Future<AriesFinishedState, Error>
+
+    func verifierGetPresentedProofMessage(proofHandle: NSNumber) -> Future<(state: AriesFinishedState, msg: String), Error>
 }

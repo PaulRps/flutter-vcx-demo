@@ -38,7 +38,7 @@ class CreateAriesConnectionUsecase {
                         )
                     })
                     .flatMap({ _ in
-                        AriesStateUpdateAttempter().tryUpdateState(
+                        AriesStateUpdatePoller().tryUpdateState(
                                 method: {
                                     self.connectionRepository.updateConnectionState(connectionHandle: connectionHandle)
                                 },

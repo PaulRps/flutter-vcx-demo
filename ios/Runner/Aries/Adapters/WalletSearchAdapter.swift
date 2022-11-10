@@ -12,10 +12,10 @@ import vcx
 class WalletSearchAdapter: WalletSearchPort, CheckVcxResult {
     private final let logger = CustomLogger(context: WalletSearchAdapter.self)
     private var cancellables: Set<AnyCancellable>
-    private final let vcx: ConnectMeVcx
+    private final let vcx: VcxAPI
 
     init() {
-        vcx = ConnectMeVcx()
+        vcx = VcxAPI()
         cancellables = Set()
     }
 

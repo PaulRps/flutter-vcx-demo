@@ -72,7 +72,7 @@ class PresentProofRequestUsecase {
                             )
                         })
                         .flatMap({ _ in
-                            AriesStateUpdateAttempter().tryUpdateState(
+                            AriesStateUpdatePoller().tryUpdateState(
                                     method: {
                                         self.proofRepository.updateProofState(
                                                 proofHandle: proofHandle, connectionHandle: connectionHandle

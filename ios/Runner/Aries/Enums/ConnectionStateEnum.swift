@@ -9,41 +9,43 @@ import Foundation
 
 enum ConnectionStateEnum {
     case INITIALIZED
-    case REQUEST_SENT
-    case OFFER_RECEIVED
-    case ACCEPTED
+    case INVITED
+    case REQUESTED
+    case RESPONDED
+    case FINISHED
     case UNKNOWN
-    
-    
-    var value : String {
-        switch self
-        {
+
+
+    var value: String {
+        switch self {
         case .INITIALIZED: return "initialized"
-        case .REQUEST_SENT: return "request_sent"
-        case .OFFER_RECEIVED: return "offer_received"
-        case .ACCEPTED: return "accepted"
+        case .INVITED: return "invited"
+        case .REQUESTED: return "requested"
+        case .RESPONDED: return "responded"
+        case .FINISHED: return "finished"
         case .UNKNOWN: return "unknown"
         }
     }
-    
+
     static func getOne(value: String) -> ConnectionStateEnum {
         switch value {
         case "initialized": return .INITIALIZED
-        case "request_sent": return .REQUEST_SENT
-        case "offer_received": return .OFFER_RECEIVED
-        case "accepted": return .ACCEPTED
+        case "invited": return .INVITED
+        case "requested": return .REQUESTED
+        case "responded": return .RESPONDED
+        case "finished": return .FINISHED
         default: return .UNKNOWN
         }
     }
-    
+
     static func getOne(id: Int) -> ConnectionStateEnum {
-        var value : ConnectionStateEnum {
-            switch id
-            {
-            case 1: return .INITIALIZED
-            case 2: return .REQUEST_SENT
-            case 3: return .OFFER_RECEIVED
-            case 4: return .ACCEPTED
+        var value: ConnectionStateEnum {
+            switch id {
+            case 0: return .INITIALIZED
+            case 1: return .INVITED
+            case 2: return .REQUESTED
+            case 3: return .RESPONDED
+            case 4: return .FINISHED
             default: return .UNKNOWN
             }
         }

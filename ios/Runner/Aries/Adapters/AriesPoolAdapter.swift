@@ -11,17 +11,17 @@ import vcx
 
 class AriesPoolAdapter: PoolPort {
     private final let logger = CustomLogger(context: AriesPoolAdapter.self)
-    private final let vcx: ConnectMeVcx
-    
+    private final let vcx: VcxAPI
+
     init() {
-        vcx = ConnectMeVcx()
+        vcx = VcxAPI()
     }
-    
+
     func initPool(config: InitThreadPoolConfigDto) -> Future<Bool, Error> {
         Future { promise in
             self.logger.info(message: "initializing thread pool with config: \(config.toJson())")
 
-            let response = self.vcx.vcxInitThreadpool(config.toJson())
+            let response = self.vcx.vcxInitThreadPool(config.toJson())
             let isSuccess = self.isSuccessCode(Int(response))
 
             self.logger.info(message: "finished initialization of thread pool success(\(isSuccess))")
@@ -34,7 +34,7 @@ class AriesPoolAdapter: PoolPort {
             }
         }
     }
-    
+
     func openMainPool(config: OpenPoolConfigDto) -> Future<String, Error> {
         Future { promise in
             self.logger.info(message: "openning main pool")
@@ -51,5 +51,5 @@ class AriesPoolAdapter: PoolPort {
             })
         }
     }
-    
+
 }

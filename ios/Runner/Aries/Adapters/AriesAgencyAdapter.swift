@@ -12,10 +12,10 @@ import vcx
 class AriesAgencyAdapter: AgencyPort, CheckVcxResult {
 
     private final let logger = CustomLogger(context: AriesAgencyAdapter.self)
-    private final let vcx: ConnectMeVcx
+    private final let vcx: VcxAPI
 
     init() {
-        vcx = ConnectMeVcx()
+        vcx = VcxAPI()
     }
 
     func provisionCloudAgency(config: ProvisionAgencyConfigDto) -> Future<String, Error> {

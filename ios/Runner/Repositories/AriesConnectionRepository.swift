@@ -30,6 +30,10 @@ class AriesConnectionRepository {
         connectionPort.connectionCreateWithInvite(inviteId: inviteId, invitation: invitation)
     }
 
+    func createConnection(withSourceId: String) -> Future<NSNumber, Error> {
+        connectionPort.create(sourceId: withSourceId)
+    }
+
     func connectionConnect(
             connectionHandle: NSNumber,
             connectionOptions: ConnectionOptionsDto
@@ -38,6 +42,10 @@ class AriesConnectionRepository {
                 connectionHandle: connectionHandle,
                 connectionOptions: connectionOptions
         )
+    }
+
+    func getConnectionInvitationDetails(connectionHandle: NSNumber) -> Future<String, Error> {
+        connectionPort.inviteDetails(connectionHandle: connectionHandle)
     }
 
     func updateConnectionState(connectionHandle: NSNumber) -> Future<AriesFinishedState, Error> {
@@ -68,7 +76,7 @@ class AriesConnectionRepository {
                     .store(in: &self.cancellables)
         }
     }
-    
+
     func getConnectionHandle(serializedConnection: String) -> Future<NSNumber, Error> {
         connectionPort.getConnectionHandle(serializedConnection: serializedConnection)
     }
@@ -87,7 +95,7 @@ class AriesConnectionRepository {
         let query = ["their_label", invitation.label!, "serviceEndpoint", invitation.serviceEndpoint!]
         return searchConnection(query: query)
     }
-    
+
     func searchConnection(query: [String]) -> Future<SearchRecordDto?, Error> {
         Future { promise in
             self.connectionRecordRepository.search(keyValQuery: query)
@@ -120,7 +128,7 @@ class AriesConnectionRepository {
         tags.myDid = pairwiseDid
         tags.theirDid = myTheirDid["their_did"]
         tags.createdAt = DateUtil.currentDateTime()
-        tags.state = ConnectionStateEnum.ACCEPTED.value
+        tags.state = ConnectionStateEnum.FINISHED.value
         return connectionRecordRepository.save(value: serializedConnection, tag: tags)
     }
 

@@ -8,7 +8,7 @@
 import Foundation
 import Combine
 
-class AriesStateUpdateAttempter {
+class AriesStateUpdatePoller {
     private final let tryLimit: Int
     private final let timer: Timer.TimerPublisher
     private final var cancellables: Set<AnyCancellable>
@@ -45,7 +45,7 @@ class AriesStateUpdateAttempter {
                                 self.cancellableTimer!.cancel()
                                 promise(.success(true))
                             } else if tryingCount >= self.tryLimit {
-                                logger.error(message: "try limit exceded")
+                                logger.error(message: "try limit exceeded")
                                 self.cancellableTimer!.cancel()
                                 promise(.failure(CustomError(errorMessage: ErrorMessage.INTERNAL_ERROR)))
                             }

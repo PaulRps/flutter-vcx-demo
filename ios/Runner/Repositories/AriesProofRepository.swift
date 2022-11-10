@@ -90,4 +90,32 @@ class AriesProofRepository {
                 proposal: proposal
         )
     }
+
+    func verifierCreateProofRequest(proofRequestData: ProofRequestDto) -> Future<NSNumber, Error> {
+        ariesProof.verifierCreateProof(
+                sourceId: proofRequestData.sourceId,
+                requestedAttributes: JsonUtil.toJson(codable: proofRequestData.attributes),
+                requestedPredicate: JsonUtil.toJson(codable: proofRequestData.predicates),
+                revocationInterval: proofRequestData.revocationInterval.toJson(),
+                proofName: proofRequestData.name
+        )
+    }
+
+    func verifierSendProofRequest(proofHandle: NSNumber, connectionHandle: NSNumber) -> Future<Bool, Error> {
+        ariesProof.verifierSendProofRequest(
+                proofHandle: proofHandle,
+                connectionHandle: connectionHandle
+        )
+    }
+
+    func verifierUpdateProofState(proofHandle: NSNumber, connectionHandle: NSNumber) -> Future<AriesFinishedState, Error> {
+        ariesProof.verifierUpdateStateV2(
+                proofHandle: proofHandle,
+                connectionHandle: connectionHandle
+        )
+    }
+
+    func verifierGetPresentedProofMessage(proofHandle: NSNumber) -> Future<(state: AriesFinishedState, msg: String), Error> {
+        ariesProof.verifierGetPresentedProofMessage(proofHandle: proofHandle)
+    }
 }

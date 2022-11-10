@@ -10,14 +10,14 @@ import Combine
 import vcx
 
 class LocalWalletManagerAdapter: WalletManagerPort {
-    
+
     private final let logger = CustomLogger(context: LocalWalletManagerAdapter.self)
-    private final let vcx: ConnectMeVcx
-    
+    private final let vcx: VcxAPI
+
     init() {
-        vcx = ConnectMeVcx()
+        vcx = VcxAPI()
     }
-    
+
     func createWallet(config: LocalWalletConfigDto) -> Future<Int, Error> {
         Future { promise in
             self.logger.info(message: "creating and opening wallet with config: \(config.toJson())")
@@ -34,7 +34,7 @@ class LocalWalletManagerAdapter: WalletManagerPort {
             })
         }
     }
-    
+
     func openWallet(config: LocalWalletConfigDto) -> Future<Int, Error> {
         Future { promise in
             self.logger.info(message: "opening wallet")
@@ -53,7 +53,7 @@ class LocalWalletManagerAdapter: WalletManagerPort {
             })
         }
     }
-    
+
     func closeWallet() -> Future<Bool, Error> {
         Future { promise in
             self.logger.info(message: "closing wallet")
@@ -71,5 +71,5 @@ class LocalWalletManagerAdapter: WalletManagerPort {
             })
         }
     }
-    
+
 }

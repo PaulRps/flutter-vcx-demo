@@ -14,12 +14,12 @@ class AriesConnectionUtil {
         }
         let state = connection!.tags!["state"]!
         let connectionState = ConnectionStateEnum.getOne(value: state)
-        return connectionState == ConnectionStateEnum.ACCEPTED
+        return connectionState == ConnectionStateEnum.FINISHED
     }
 
     static func isConnectionFinished(connection: SearchRecordDto?) -> Bool {
         connectionStateIs(
-                state: ConnectionStateEnum.ACCEPTED,
+                state: ConnectionStateEnum.FINISHED,
                 connection: connection
         )
     }

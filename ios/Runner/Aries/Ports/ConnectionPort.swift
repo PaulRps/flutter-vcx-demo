@@ -23,8 +23,12 @@ protocol ConnectionPort {
             invitation: ConnectionInvitationDto
     ) -> Future<NSNumber, Error>
 
+    func create(sourceId: String) -> Future<NSNumber, Error>
+
     func connectionConnect(
             connectionHandle: NSNumber,
             connectionOptions: ConnectionOptionsDto
     ) -> Future<String, Error>
+
+    func inviteDetails(connectionHandle: NSNumber) -> Future<String, Error>
 }
