@@ -48,54 +48,53 @@ class CreateConnectionInvitationUsecase {
                         .map { invite in
                             invitation = invite
                         }
-                        .flatMap({ _ in
-                            AriesStateUpdatePoller(tryLimit: 100, interval: 5).tryUpdateState(
-                                    method: {
-                                        self.connectionRepository.updateConnectionState(connectionHandle: connectionHandle)
-                                    },
-                                    logger: self.logger
-                            )
-                        })
-                        .flatMap({ _ in
-                            self.proofRepository.verifierCreateProofRequest(
-                                    proofRequestData: self.buildProofRequest()
-                            )
-                        })
-                        .map { proHandle in
-                            proofHandle = proHandle
-                        }
-                        .flatMap({ _ in
-                            self.proofRepository.verifierSendProofRequest(
-                                    proofHandle: proofHandle,
-                                    connectionHandle: connectionHandle
-                            )
-                        })
-                        .flatMap({ _ in
-                            AriesStateUpdatePoller(tryLimit: 100, interval: 5).tryUpdateState(
-                                    method: {
-                                        self.proofRepository.verifierUpdateProofState(
-                                                proofHandle: proofHandle,
-                                                connectionHandle: connectionHandle
-                                        )
-                                    },
-                                    logger: self.logger
-                            )
-                        })
-                        .flatMap({ _ in
-                            self.proofRepository.verifierGetPresentedProofMessage(proofHandle: proofHandle)
-                        })
-                        .map { proofMsg in
-                            presentedProofMsg = proofMsg.msg
-                        }
+                        //                        .flatMap({ _ in
+                        //                            AriesStateUpdatePoller(tryLimit: 100, interval: 5).tryUpdateState(
+                        //                                    method: {
+                        //                                        self.connectionRepository.updateConnectionState(connectionHandle: connectionHandle)
+                        //                                    },
+                        //                                    logger: self.logger
+                        //                            )
+                        //                        })
+                        //                        .flatMap({ _ in
+                        //                            self.proofRepository.verifierCreateProofRequest(
+                        //                                    proofRequestData: self.buildProofRequest()
+                        //                            )
+                        //                        })
+                        //                        .map { proHandle in
+                        //                            proofHandle = proHandle
+                        //                        }
+                        //                        .flatMap({ _ in
+                        //                            self.proofRepository.verifierSendProofRequest(
+                        //                                    proofHandle: proofHandle,
+                        //                                    connectionHandle: connectionHandle
+                        //                            )
+                        //                        })
+                        //                        .flatMap({ _ in
+                        //                            AriesStateUpdatePoller(tryLimit: 100, interval: 5).tryUpdateState(
+                        //                                    method: {
+                        //                                        self.proofRepository.verifierUpdateProofState(
+                        //                                                proofHandle: proofHandle,
+                        //                                                connectionHandle: connectionHandle
+                        //                                        )
+                        //                                    },
+                        //                                    logger: self.logger
+                        //                            )
+                        //                        })
+                        //                        .flatMap({ _ in
+                        //                            self.proofRepository.verifierGetPresentedProofMessage(proofHandle: proofHandle)
+                        //                        })
+                        //                        .map { proofMsg in
+                        //                            presentedProofMsg = proofMsg.msg
+                        //                        }
                         .sink(receiveCompletion: { completion in
-                            _ = self.connectionRepository.releaseHandle(connectionHandle: connectionHandle)
                             switch completion {
                             case .finished: break
                             case .failure(let error):
                                 promise(.failure(error))
                             }
                         }, receiveValue: { _ in
-                            promise(.success(CreateConnectionInvitationResponseDto(invitation: invitation)))
+                            promise(.success(CreateConnectionInvitationResponseDto(invitation: invitation, connectionHandle: connectionHandle)))
                         })
                         .store(in: &self.cancellables)
             })

@@ -34,6 +34,9 @@ class AriesConnectionRouter: Router {
                 invitation: input.invitation!,
                 inviteId: input.inviteId!
         )
-
+        routes["invitation"] = CreateConnectionInvitationUsecase().createInvitation()
+        routes["checkInvitation"] = CheckConnectionInvitationAcceptedUsecase().checkAndSaveConnection(
+                connectionHandle: input.connectionHandle
+        )
     }
 }

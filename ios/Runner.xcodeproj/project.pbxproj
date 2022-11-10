@@ -30,6 +30,7 @@
 		4D5F29A856F9C63917025FF5 /* AriesProofRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D5F25325CCD631C21BC0673 /* AriesProofRepository.swift */; };
 		4D5F2A1E414C021E511C4EE7 /* ProofRequestRevocationIntervalDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D5F2EDE5B630461D055C137 /* ProofRequestRevocationIntervalDto.swift */; };
 		4D5F2A78A20CE3B8DE7B833E /* AriesCredentialChannelListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D5F2FFE2FED859A44953431 /* AriesCredentialChannelListener.swift */; };
+		4D5F2AFF8178EE2F55001C74 /* CheckConnectionInvitationAcceptedUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D5F245B12810CBF68AEDCF9 /* CheckConnectionInvitationAcceptedUsecase.swift */; };
 		4D5F2B309270AF77E0A70577 /* RejectProofRequestUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D5F2C57109A7F7B545A1FD4 /* RejectProofRequestUsecase.swift */; };
 		4D5F2B51A36ED221E10068FA /* AriesProofRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D5F2865ED6F0F8CC28B2241 /* AriesProofRouter.swift */; };
 		4D5F2BB62659C55C86E98010 /* AriesCredentialUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D5F2283E7538D9926977280 /* AriesCredentialUtil.swift */; };
@@ -150,6 +151,7 @@
 		4D5F230F641234FD2DDEE775 /* AgencyPort.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AgencyPort.swift; sourceTree = "<group>"; };
 		4D5F23E3CA13015088A65B14 /* AriesCredentialRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AriesCredentialRouter.swift; sourceTree = "<group>"; };
 		4D5F23E90EA90DB93D0DF14D /* ProofAttributeRestrictionEnum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProofAttributeRestrictionEnum.swift; sourceTree = "<group>"; };
+		4D5F245B12810CBF68AEDCF9 /* CheckConnectionInvitationAcceptedUsecase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckConnectionInvitationAcceptedUsecase.swift; sourceTree = "<group>"; };
 		4D5F24637C8F71F8EB8ACF4E /* AriesConnectionRecordRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AriesConnectionRecordRepository.swift; sourceTree = "<group>"; };
 		4D5F249919890D63415FA539 /* GetIssuedCredentialsUsecase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetIssuedCredentialsUsecase.swift; sourceTree = "<group>"; };
 		4D5F25325CCD631C21BC0673 /* AriesProofRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AriesProofRepository.swift; sourceTree = "<group>"; };
@@ -558,6 +560,7 @@
 				4D5F249919890D63415FA539 /* GetIssuedCredentialsUsecase.swift */,
 				4D5F2C57109A7F7B545A1FD4 /* RejectProofRequestUsecase.swift */,
 				4D5F2663E770304275B773FC /* CreateConnectionInvitationUsecase.swift */,
+				4D5F245B12810CBF68AEDCF9 /* CheckConnectionInvitationAcceptedUsecase.swift */,
 			);
 			path = Usecases;
 			sourceTree = "<group>";
@@ -817,6 +820,7 @@
 				4D5F2FDA81015F5B2DC74DBC /* ProofAttributeRestrictionEnum.swift in Sources */,
 				4D5F2CB48C8C7A7563824183 /* ProofAttributeRestrictionDto.swift in Sources */,
 				4D5F2A1E414C021E511C4EE7 /* ProofRequestRevocationIntervalDto.swift in Sources */,
+				4D5F2AFF8178EE2F55001C74 /* CheckConnectionInvitationAcceptedUsecase.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

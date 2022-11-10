@@ -7,9 +7,11 @@ import Foundation
 class CreateConnectionInvitationResponseDto: NativeToFlutterResponseDto {
 
     let invitation: String
+    let connectionHandle: NSNumber
 
-    init(invitation: String, errorMessage: ErrorMessageDto? = nil) {
+    init(invitation: String, connectionHandle: NSNumber, errorMessage: ErrorMessageDto? = nil) {
         self.invitation = invitation
+        self.connectionHandle = connectionHandle
         super.init(success: !invitation.isEmpty, errorMessage: errorMessage)
     }
 
@@ -18,6 +20,10 @@ class CreateConnectionInvitationResponseDto: NativeToFlutterResponseDto {
 
         if invitation.isEmpty == false {
             map["invitation"] = invitation
+        }
+
+        if connectionHandle.intValue > 0 {
+            map["connectionHandle"] = connectionHandle.intValue
         }
 
         return map
