@@ -6,6 +6,8 @@ abstract class IAriesProofService {
   Future<dynamic> presentProof(FlutterRequestAriesProofChannelDto dto);
 
   Future rejectProof(FlutterRequestAriesProofChannelDto dto);
+
+  Future sendProofRequest(FlutterRequestAriesProofChannelDto dto);
 }
 
 class AriesProofService implements IAriesProofService {
@@ -22,5 +24,10 @@ class AriesProofService implements IAriesProofService {
   @override
   Future rejectProof(FlutterRequestAriesProofChannelDto dto) {
     return _channel.callMethod("rejectProof", argument: dto.toJson());
+  }
+
+  @override
+  Future sendProofRequest(FlutterRequestAriesProofChannelDto dto) {
+    return _channel.callMethod("sendRequest", argument: dto.toJson());
   }
 }

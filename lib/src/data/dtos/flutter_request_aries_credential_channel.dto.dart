@@ -7,7 +7,7 @@ class FlutterRequestAriesCredentialChannelDto {
   String? pairwiseDid;
   String? sourceId;
 
-  FlutterRequestAriesCredentialChannelDto(this.pairwiseDid, this.sourceId);
+  FlutterRequestAriesCredentialChannelDto({this.pairwiseDid, this.sourceId});
 
   factory FlutterRequestAriesCredentialChannelDto.fromJson(Map<String, dynamic> json) =>
       _$FlutterRequestAriesCredentialChannelDtoFromJson(json);

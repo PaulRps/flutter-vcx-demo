@@ -10,8 +10,13 @@ FlutterRequestAriesConnectionChannelDto
     _$FlutterRequestAriesConnectionChannelDtoFromJson(
             Map<String, dynamic> json) =>
         FlutterRequestAriesConnectionChannelDto(
-          inviteId: json['inviteId'],
-          invitation: json['invitation'],
+          inviteId: json['inviteId'] as String?,
+          invitation: json['invitation'] == null
+              ? null
+              : AriesConnectionInvitationDto.fromJson(
+                  json['invitation'] as Map<String, dynamic>),
+          connectionHandle: json['connectionHandle'] as String?,
+          isToDeleteHandle: json['isToDeleteHandle'] as bool?,
         );
 
 Map<String, dynamic> _$FlutterRequestAriesConnectionChannelDtoToJson(
@@ -19,4 +24,6 @@ Map<String, dynamic> _$FlutterRequestAriesConnectionChannelDtoToJson(
     <String, dynamic>{
       'inviteId': instance.inviteId,
       'invitation': instance.invitation?.toJson(),
+      'connectionHandle': instance.connectionHandle,
+      'isToDeleteHandle': instance.isToDeleteHandle,
     };

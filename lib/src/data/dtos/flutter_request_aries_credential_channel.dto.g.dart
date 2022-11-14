@@ -10,8 +10,8 @@ FlutterRequestAriesCredentialChannelDto
     _$FlutterRequestAriesCredentialChannelDtoFromJson(
             Map<String, dynamic> json) =>
         FlutterRequestAriesCredentialChannelDto(
-          json['pairwiseDid'] as String?,
-          json['sourceId'] as String?,
+          pairwiseDid: json['pairwiseDid'] as String?,
+          sourceId: json['sourceId'] as String?,
         );
 
 Map<String, dynamic> _$FlutterRequestAriesCredentialChannelDtoToJson(

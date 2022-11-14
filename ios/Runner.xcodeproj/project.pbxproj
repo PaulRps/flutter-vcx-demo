@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1498D2341E8E89220040F4C2 /* GeneratedPluginRegistrant.m in Sources */ = {isa = PBXBuildFile; fileRef = 1498D2331E8E89220040F4C2 /* GeneratedPluginRegistrant.m */; };
+		266E049A15C859E2C6F259C4 /* Pods_Runner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6793B7A6AF82D4BCDDBEF05A /* Pods_Runner.framework */; };
 		3B3967161E833CAA004F5970 /* AppFrameworkInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3B3967151E833CAA004F5970 /* AppFrameworkInfo.plist */; };
 		4D5F204DDBDB7C29601DB6F8 /* AcceptCredentialOfferResponseDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D5F2919AC2C941390C519CD /* AcceptCredentialOfferResponseDto.swift */; };
 		4D5F20C44756528079257F71 /* PresentProofRequestUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D5F22BD3D1C23B747326A96 /* PresentProofRequestUsecase.swift */; };
@@ -18,7 +19,7 @@
 		4D5F2300591CED179D6CAA01 /* AriesCredentialRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D5F20BBB18F21A8371917AD /* AriesCredentialRepository.swift */; };
 		4D5F2335696A658DE937A45B /* AriesCredentialRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D5F23E3CA13015088A65B14 /* AriesCredentialRouter.swift */; };
 		4D5F23EA916B6D2B596CAD61 /* GetCredentialsResponseDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D5F26F23918FC830A3B4E20 /* GetCredentialsResponseDto.swift */; };
-		4D5F2490E021DBA7B54914AE /* CreateConnectionInvitationUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D5F2663E770304275B773FC /* CreateConnectionInvitationUsecase.swift */; };
+		4D5F2490E021DBA7B54914AE /* CreateConnectionInvitation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D5F2663E770304275B773FC /* CreateConnectionInvitation.swift */; };
 		4D5F25E101DB23E1031A77D4 /* FlutterRequestAriesProofChannelDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D5F2127FA4D2A5742A4750F /* FlutterRequestAriesProofChannelDto.swift */; };
 		4D5F26831028C1ACDA061828 /* AriesProofChannelListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D5F2B23CBF03B90223CFBD3 /* AriesProofChannelListener.swift */; };
 		4D5F268B78643286C20BB209 /* AriesProofAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D5F27835131D8177A2EC850 /* AriesProofAdapter.swift */; };
@@ -30,7 +31,7 @@
 		4D5F29A856F9C63917025FF5 /* AriesProofRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D5F25325CCD631C21BC0673 /* AriesProofRepository.swift */; };
 		4D5F2A1E414C021E511C4EE7 /* ProofRequestRevocationIntervalDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D5F2EDE5B630461D055C137 /* ProofRequestRevocationIntervalDto.swift */; };
 		4D5F2A78A20CE3B8DE7B833E /* AriesCredentialChannelListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D5F2FFE2FED859A44953431 /* AriesCredentialChannelListener.swift */; };
-		4D5F2AFF8178EE2F55001C74 /* CheckConnectionInvitationAcceptedUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D5F245B12810CBF68AEDCF9 /* CheckConnectionInvitationAcceptedUsecase.swift */; };
+		4D5F2AFF8178EE2F55001C74 /* CheckConnectionInvitationAccepted.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D5F245B12810CBF68AEDCF9 /* CheckConnectionInvitationAccepted.swift */; };
 		4D5F2B309270AF77E0A70577 /* RejectProofRequestUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D5F2C57109A7F7B545A1FD4 /* RejectProofRequestUsecase.swift */; };
 		4D5F2B51A36ED221E10068FA /* AriesProofRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D5F2865ED6F0F8CC28B2241 /* AriesProofRouter.swift */; };
 		4D5F2BB62659C55C86E98010 /* AriesCredentialUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D5F2283E7538D9926977280 /* AriesCredentialUtil.swift */; };
@@ -47,7 +48,7 @@
 		97C146FC1CF9000F007C117D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FA1CF9000F007C117D /* Main.storyboard */; };
 		97C146FE1CF9000F007C117D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FD1CF9000F007C117D /* Assets.xcassets */; };
 		97C147011CF9000F007C117D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FF1CF9000F007C117D /* LaunchScreen.storyboard */; };
-		B1B18045B69039B12BEC3953 /* Pods_Runner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFA81F704C4926CC5A2A0C06 /* Pods_Runner.framework */; };
+		DCFB6823A2500F177A60A194 /* SendProofRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCFB61AAAD08CDB306DB26E8 /* SendProofRequest.swift */; };
 		E504561B28AECF7100284E5D /* AriesAgencyAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E504561A28AECF7100284E5D /* AriesAgencyAdapter.swift */; };
 		E504561D28AEDD3100284E5D /* PoolPort.swift in Sources */ = {isa = PBXBuildFile; fileRef = E504561C28AEDD3100284E5D /* PoolPort.swift */; };
 		E504561F28AEDD6100284E5D /* AriesPoolAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E504561E28AEDD6100284E5D /* AriesPoolAdapter.swift */; };
@@ -137,9 +138,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		06AB229F7DC55856057C4A6B /* Pods-Runner.profile.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.profile.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.profile.xcconfig"; sourceTree = "<group>"; };
 		1498D2321E8E86230040F4C2 /* GeneratedPluginRegistrant.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GeneratedPluginRegistrant.h; sourceTree = "<group>"; };
 		1498D2331E8E89220040F4C2 /* GeneratedPluginRegistrant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeneratedPluginRegistrant.m; sourceTree = "<group>"; };
-		2B8E630184E5A195359B8600 /* Pods-Runner.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.debug.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.debug.xcconfig"; sourceTree = "<group>"; };
 		3B3967151E833CAA004F5970 /* AppFrameworkInfo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = AppFrameworkInfo.plist; path = Flutter/AppFrameworkInfo.plist; sourceTree = "<group>"; };
 		4D5F2004958F461B9379B530 /* FlutterRequestAriesCredentialChannelDto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlutterRequestAriesCredentialChannelDto.swift; sourceTree = "<group>"; };
 		4D5F20AE93307CA5171113B0 /* AriesCredentialRecordRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AriesCredentialRecordRepository.swift; sourceTree = "<group>"; };
@@ -151,13 +152,13 @@
 		4D5F230F641234FD2DDEE775 /* AgencyPort.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AgencyPort.swift; sourceTree = "<group>"; };
 		4D5F23E3CA13015088A65B14 /* AriesCredentialRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AriesCredentialRouter.swift; sourceTree = "<group>"; };
 		4D5F23E90EA90DB93D0DF14D /* ProofAttributeRestrictionEnum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProofAttributeRestrictionEnum.swift; sourceTree = "<group>"; };
-		4D5F245B12810CBF68AEDCF9 /* CheckConnectionInvitationAcceptedUsecase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckConnectionInvitationAcceptedUsecase.swift; sourceTree = "<group>"; };
+		4D5F245B12810CBF68AEDCF9 /* CheckConnectionInvitationAccepted.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckConnectionInvitationAccepted.swift; sourceTree = "<group>"; };
 		4D5F24637C8F71F8EB8ACF4E /* AriesConnectionRecordRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AriesConnectionRecordRepository.swift; sourceTree = "<group>"; };
 		4D5F249919890D63415FA539 /* GetIssuedCredentialsUsecase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetIssuedCredentialsUsecase.swift; sourceTree = "<group>"; };
 		4D5F25325CCD631C21BC0673 /* AriesProofRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AriesProofRepository.swift; sourceTree = "<group>"; };
 		4D5F253C223D9DFD383CAF9A /* ProofPredicateDto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProofPredicateDto.swift; sourceTree = "<group>"; };
 		4D5F25D17050E16265BA926C /* ProofRequestedAttributeDto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProofRequestedAttributeDto.swift; sourceTree = "<group>"; };
-		4D5F2663E770304275B773FC /* CreateConnectionInvitationUsecase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateConnectionInvitationUsecase.swift; sourceTree = "<group>"; };
+		4D5F2663E770304275B773FC /* CreateConnectionInvitation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateConnectionInvitation.swift; sourceTree = "<group>"; };
 		4D5F267EDC4524A5BE25864F /* ProofStateEnum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProofStateEnum.swift; sourceTree = "<group>"; };
 		4D5F26BFA709DEBE4F6E5EFB /* ProofPredicateTypeEnum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProofPredicateTypeEnum.swift; sourceTree = "<group>"; };
 		4D5F26F23918FC830A3B4E20 /* GetCredentialsResponseDto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetCredentialsResponseDto.swift; sourceTree = "<group>"; };
@@ -175,7 +176,7 @@
 		4D5F2EDE5B630461D055C137 /* ProofRequestRevocationIntervalDto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProofRequestRevocationIntervalDto.swift; sourceTree = "<group>"; };
 		4D5F2F9A9AE2377D6B853742 /* ProofPort.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProofPort.swift; sourceTree = "<group>"; };
 		4D5F2FFE2FED859A44953431 /* AriesCredentialChannelListener.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AriesCredentialChannelListener.swift; sourceTree = "<group>"; };
-		728FAEB63E3F18AAEC156D01 /* Pods-Runner.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.release.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.release.xcconfig"; sourceTree = "<group>"; };
+		6793B7A6AF82D4BCDDBEF05A /* Pods_Runner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Runner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		74858FAD1ED2DC5600515810 /* Runner-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Runner-Bridging-Header.h"; sourceTree = "<group>"; };
 		74858FAE1ED2DC5600515810 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7AFA3C8E1D35360C0083082E /* Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = Release.xcconfig; path = Flutter/Release.xcconfig; sourceTree = "<group>"; };
@@ -186,8 +187,9 @@
 		97C146FD1CF9000F007C117D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		97C147001CF9000F007C117D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		97C147021CF9000F007C117D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		CBA80CD6D18F024D8835598C /* Pods-Runner.profile.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.profile.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.profile.xcconfig"; sourceTree = "<group>"; };
-		CFA81F704C4926CC5A2A0C06 /* Pods_Runner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Runner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9FA27D2297E8B7DF040E7CFC /* Pods-Runner.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.release.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.release.xcconfig"; sourceTree = "<group>"; };
+		D4EC083D56029D707191ACC4 /* Pods-Runner.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.debug.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.debug.xcconfig"; sourceTree = "<group>"; };
+		DCFB61AAAD08CDB306DB26E8 /* SendProofRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SendProofRequest.swift; sourceTree = "<group>"; };
 		E504561A28AECF7100284E5D /* AriesAgencyAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AriesAgencyAdapter.swift; sourceTree = "<group>"; };
 		E504561C28AEDD3100284E5D /* PoolPort.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoolPort.swift; sourceTree = "<group>"; };
 		E504561E28AEDD6100284E5D /* AriesPoolAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AriesPoolAdapter.swift; sourceTree = "<group>"; };
@@ -268,17 +270,17 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B1B18045B69039B12BEC3953 /* Pods_Runner.framework in Frameworks */,
+				266E049A15C859E2C6F259C4 /* Pods_Runner.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		47954861DF148B06E9E0F1D8 /* Frameworks */ = {
+		33FA57A8CFDC9C5262D4ED47 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				CFA81F704C4926CC5A2A0C06 /* Pods_Runner.framework */,
+				6793B7A6AF82D4BCDDBEF05A /* Pods_Runner.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -286,9 +288,9 @@
 		6B39E9FC26B2F546F6BCC0FE /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				2B8E630184E5A195359B8600 /* Pods-Runner.debug.xcconfig */,
-				728FAEB63E3F18AAEC156D01 /* Pods-Runner.release.xcconfig */,
-				CBA80CD6D18F024D8835598C /* Pods-Runner.profile.xcconfig */,
+				D4EC083D56029D707191ACC4 /* Pods-Runner.debug.xcconfig */,
+				9FA27D2297E8B7DF040E7CFC /* Pods-Runner.release.xcconfig */,
+				06AB229F7DC55856057C4A6B /* Pods-Runner.profile.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -311,7 +313,7 @@
 				97C146F01CF9000F007C117D /* Runner */,
 				97C146EF1CF9000F007C117D /* Products */,
 				6B39E9FC26B2F546F6BCC0FE /* Pods */,
-				47954861DF148B06E9E0F1D8 /* Frameworks */,
+				33FA57A8CFDC9C5262D4ED47 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -559,8 +561,9 @@
 				4D5F22BD3D1C23B747326A96 /* PresentProofRequestUsecase.swift */,
 				4D5F249919890D63415FA539 /* GetIssuedCredentialsUsecase.swift */,
 				4D5F2C57109A7F7B545A1FD4 /* RejectProofRequestUsecase.swift */,
-				4D5F2663E770304275B773FC /* CreateConnectionInvitationUsecase.swift */,
-				4D5F245B12810CBF68AEDCF9 /* CheckConnectionInvitationAcceptedUsecase.swift */,
+				4D5F2663E770304275B773FC /* CreateConnectionInvitation.swift */,
+				4D5F245B12810CBF68AEDCF9 /* CheckConnectionInvitationAccepted.swift */,
+				DCFB61AAAD08CDB306DB26E8 /* SendProofRequest.swift */,
 			);
 			path = Usecases;
 			sourceTree = "<group>";
@@ -572,14 +575,14 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 97C147051CF9000F007C117D /* Build configuration list for PBXNativeTarget "Runner" */;
 			buildPhases = (
-				729762EEA55B333B5071DB71 /* [CP] Check Pods Manifest.lock */,
+				6E8A3ED091A095650F551D09 /* [CP] Check Pods Manifest.lock */,
 				9740EEB61CF901F6004384FC /* Run Script */,
 				97C146EA1CF9000F007C117D /* Sources */,
 				97C146EB1CF9000F007C117D /* Frameworks */,
 				97C146EC1CF9000F007C117D /* Resources */,
 				9705A1C41CF9048500538489 /* Embed Frameworks */,
 				3B06AD1E1E4923F5004D2608 /* Thin Binary */,
-				0F5D4C09DD1D108229F7190A /* [CP] Embed Pods Frameworks */,
+				53307FD119AA676EA0CB4EFF /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -638,7 +641,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		0F5D4C09DD1D108229F7190A /* [CP] Embed Pods Frameworks */ = {
+		3B06AD1E1E4923F5004D2608 /* Thin Binary */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Thin Binary";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/bin/sh \"$FLUTTER_ROOT/packages/flutter_tools/bin/xcode_backend.sh\" embed_and_thin";
+		};
+		53307FD119AA676EA0CB4EFF /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -655,21 +672,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Runner/Pods-Runner-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		3B06AD1E1E4923F5004D2608 /* Thin Binary */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Thin Binary";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "/bin/sh \"$FLUTTER_ROOT/packages/flutter_tools/bin/xcode_backend.sh\" embed_and_thin";
-		};
-		729762EEA55B333B5071DB71 /* [CP] Check Pods Manifest.lock */ = {
+		6E8A3ED091A095650F551D09 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -811,7 +814,7 @@
 				4D5F281894F0C5B47940C1F6 /* AriesConnectionRecordRepository.swift in Sources */,
 				4D5F216B95843A2155007233 /* AriesCredentialRecordRepository.swift in Sources */,
 				4D5F2B309270AF77E0A70577 /* RejectProofRequestUsecase.swift in Sources */,
-				4D5F2490E021DBA7B54914AE /* CreateConnectionInvitationUsecase.swift in Sources */,
+				4D5F2490E021DBA7B54914AE /* CreateConnectionInvitation.swift in Sources */,
 				4D5F27CD4246CA489B102049 /* CreateConnectionInvitationResponseDto.swift in Sources */,
 				4D5F2F4DA5F31734D09AB16C /* ProofPredicateDto.swift in Sources */,
 				4D5F2CCDB35B50D2C54FA2E6 /* ProofPredicateTypeEnum.swift in Sources */,
@@ -820,7 +823,8 @@
 				4D5F2FDA81015F5B2DC74DBC /* ProofAttributeRestrictionEnum.swift in Sources */,
 				4D5F2CB48C8C7A7563824183 /* ProofAttributeRestrictionDto.swift in Sources */,
 				4D5F2A1E414C021E511C4EE7 /* ProofRequestRevocationIntervalDto.swift in Sources */,
-				4D5F2AFF8178EE2F55001C74 /* CheckConnectionInvitationAcceptedUsecase.swift in Sources */,
+				4D5F2AFF8178EE2F55001C74 /* CheckConnectionInvitationAccepted.swift in Sources */,
+				DCFB6823A2500F177A60A194 /* SendProofRequest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

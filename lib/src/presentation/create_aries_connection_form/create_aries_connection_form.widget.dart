@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_vcx_demo/src/domain/entities/connection_data.dart';
 import 'package:flutter_vcx_demo/src/domain/use_cases/create_aries_connection.usecase.dart';
+import 'package:flutter_vcx_demo/src/presentation/connection_invitation_screen/connection_invitation_screen.widget.dart';
 
 import '../../domain/use_cases/retrieve_connection_data.usecase.dart';
 
@@ -15,7 +16,7 @@ class CreateAriesConnectionFormWidget extends StatefulWidget {
 class _CreateAriesConnectionFormWidget
     extends State<CreateAriesConnectionFormWidget> {
   final TextEditingController _connectionUrlController =
-      TextEditingController();
+  TextEditingController();
   final List<Widget> _connections = [];
 
   late final CreateAriesConnectionUsecse _createAriesConnectionUsecse;
@@ -24,7 +25,7 @@ class _CreateAriesConnectionFormWidget
   _CreateAriesConnectionFormWidget(
       {createAriesConnectionUsecse, connectionDataUsecase})
       : _createAriesConnectionUsecse =
-            createAriesConnectionUsecse ?? CreateAriesConnectionUsecse(),
+      createAriesConnectionUsecse ?? CreateAriesConnectionUsecse(),
         _connectionDataUsecase =
             connectionDataUsecase ?? RetrieveConnectionDataUsecase();
 
@@ -40,52 +41,63 @@ class _CreateAriesConnectionFormWidget
   Widget build(BuildContext context) {
     return Form(
         child: Wrap(
-      children: [
-        Row(
           children: [
-            Expanded(
-                child: TextFormField(
-              controller: _connectionUrlController,
-              decoration:
-                  const InputDecoration(labelText: "Agent's connection URL"),
-              keyboardType: TextInputType.text,
-              onChanged: (value) {
-                // _walletName = value;
-              },
-            )),
-            GestureDetector(
-              child: IconButton(
-                icon: const Icon(Icons.content_paste_go_rounded),
-                onPressed: () {
-                  _pasteConnectionUrl();
-                },
-              ),
+            Row(
+              children: [
+                Expanded(
+                    child: TextFormField(
+                      controller: _connectionUrlController,
+                      decoration:
+                      const InputDecoration(
+                          labelText: "Agent's connection URL"),
+                      keyboardType: TextInputType.text,
+                      onChanged: (value) {
+                        // _walletName = value;
+                      },
+                    )),
+                GestureDetector(
+                  child: IconButton(
+                    icon: const Icon(Icons.content_paste_go_rounded),
+                    onPressed: () {
+                      _pasteConnectionUrl();
+                    },
+                  ),
+                )
+              ],
+            ),
+            Row(
+              children: [
+                Expanded(
+                    child: ElevatedButton(
+                        onPressed: () {
+                          _createConnection(context);
+                        },
+                        child: const Text('Connect'))),
+                Container(width: 10.0),
+                Expanded(
+                    child: ElevatedButton(
+                        onPressed: () {
+                          Navigator.push(context, MaterialPageRoute(
+                              builder: (context) =>
+                                  ConnectionInvitationScreenWidget()));
+                        },
+                        child: const Text('Create Invitation')))
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: const [
+                Expanded(
+                    child: Text(
+                        "Active Connections:", textAlign: TextAlign.start)),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: _connections,
             )
           ],
-        ),
-        Row(
-          children: [
-            Expanded(
-                child: ElevatedButton(
-                    onPressed: () {
-                      _createConnection(context);
-                    },
-                    child: const Text('Connect')))
-          ],
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: const [
-            Expanded(
-                child: Text("Active Connections:", textAlign: TextAlign.start)),
-          ],
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: _connections,
-        )
-      ],
-    ));
+        ));
   }
 
   void _pasteConnectionUrl() {

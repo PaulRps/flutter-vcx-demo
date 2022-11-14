@@ -2,6 +2,6 @@ import 'package:flutter_vcx_demo/src/data/dtos/flutter_request_aries_credential_
 
 class FlutterRequestAriesProofChannelDto
     extends FlutterRequestAriesCredentialChannelDto {
-  FlutterRequestAriesProofChannelDto(String? pairwiseDid, String? sourceId)
-      : super(pairwiseDid, sourceId);
+  FlutterRequestAriesProofChannelDto({pairwiseDid, sourceId})
+      : super(pairwiseDid: pairwiseDid, sourceId: sourceId);
 }

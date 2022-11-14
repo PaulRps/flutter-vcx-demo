@@ -15,7 +15,7 @@ class RejectProofRequestUsecase {
   Future<bool> reject() {
     return _ariesConnectionRepository.getConnectionData().then((connection) {
       var dto = FlutterRequestAriesProofChannelDto(
-          connection.pairwiseDid, "flutterVcxDemo");
+          pairwiseDid: connection.pairwiseDid, sourceId: "flutterVcxDemo");
 
       return _ariesProofRepository
           .rejectProof(dto)

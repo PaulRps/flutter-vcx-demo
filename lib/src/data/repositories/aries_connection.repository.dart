@@ -1,12 +1,19 @@
 import 'package:flutter_vcx_demo/src/data/datasources/aries_connection.datasource.dart';
 import 'package:flutter_vcx_demo/src/data/datasources/connection_data_storage.datasource.dart';
+import 'package:flutter_vcx_demo/src/data/dtos/aries_connection_invitation_response.dto.dart';
 import 'package:flutter_vcx_demo/src/domain/entities/connection_data.dart';
 
+import '../dtos/aries_create_connection_response.dto.dart';
 import '../dtos/connection_data.dto.dart';
 
 abstract class IAriesConnectionRepository {
   Future<ConnectionData> createConnection(
       String connectionUrl, String inviteId);
+
+  Future<AriesConnectionInvitationResponseDto> createConnectionInvitation();
+
+  Future<AriesCreateConnectionResponseDto> checkConnectionInvitation(
+      String connectionHandle, bool isToDeleteHandle);
 
   Future<void> saveConnectionData(ConnectionData data);
 
@@ -50,5 +57,17 @@ class AriesConnectionRepository implements IAriesConnectionRepository {
   @override
   Future<bool> deleteConnectionData() {
     return _connectionDataStorageDatasource.delete();
+  }
+
+  @override
+  Future<AriesCreateConnectionResponseDto> checkConnectionInvitation(
+      String connectionHandle, bool isToDeleteHandle) {
+    return _ariesConnectionDatasource.checkConnectionInvitation(
+        connectionHandle, isToDeleteHandle);
+  }
+
+  @override
+  Future<AriesConnectionInvitationResponseDto> createConnectionInvitation() {
+    return _ariesConnectionDatasource.createConnectionInvitation();
   }
 }

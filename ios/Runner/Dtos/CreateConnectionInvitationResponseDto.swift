@@ -7,9 +7,9 @@ import Foundation
 class CreateConnectionInvitationResponseDto: NativeToFlutterResponseDto {
 
     let invitation: String
-    let connectionHandle: NSNumber
+    let connectionHandle: String
 
-    init(invitation: String, connectionHandle: NSNumber, errorMessage: ErrorMessageDto? = nil) {
+    init(invitation: String, connectionHandle: String, errorMessage: ErrorMessageDto? = nil) {
         self.invitation = invitation
         self.connectionHandle = connectionHandle
         super.init(success: !invitation.isEmpty, errorMessage: errorMessage)
@@ -18,12 +18,12 @@ class CreateConnectionInvitationResponseDto: NativeToFlutterResponseDto {
     override func toMap() -> [String: Any] {
         var map = super.toMap()
 
-        if invitation.isEmpty == false {
+        if !invitation.isEmpty {
             map["invitation"] = invitation
         }
 
-        if connectionHandle.intValue > 0 {
-            map["connectionHandle"] = connectionHandle.intValue
+        if !connectionHandle.isEmpty {
+            map["connectionHandle"] = connectionHandle
         }
 
         return map

@@ -8,6 +8,9 @@ abstract class IAriesProofRepository {
 
   Future<NativeToFlutterResponseDto> rejectProof(
       FlutterRequestAriesProofChannelDto dto);
+
+  Future<NativeToFlutterResponseDto> sendProofRequest(
+      FlutterRequestAriesProofChannelDto dto);
 }
 
 class AriesProofRepository implements IAriesProofRepository {
@@ -32,5 +35,13 @@ class AriesProofRepository implements IAriesProofRepository {
         .rejectProof(dto)
         .then((value) => NativeToFlutterResponseDto(true))
         .catchError((error) => NativeToFlutterResponseDto(false));
+  }
+
+  @override
+  Future<NativeToFlutterResponseDto> sendProofRequest(
+      FlutterRequestAriesProofChannelDto dto) {
+    return _ariesProofDatasource
+        .sendProofRequest(dto)
+        .then((value) => NativeToFlutterResponseDto.fromJson(value));
   }
 }

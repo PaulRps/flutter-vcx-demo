@@ -17,7 +17,7 @@ class AcceptCredentialOfferUsecase {
   Future<CredentialData> acceptOffer() {
     return _ariesConnectionRepository.getConnectionData().then((connection) {
       var dto = FlutterRequestAriesCredentialChannelDto(
-          connection.pairwiseDid, "flutterVcxDemo");
+          pairwiseDid: connection.pairwiseDid, sourceId: "flutterVcxDemo");
       return _ariesCredentialRepository
           .acceptCredentialOffer(dto)
           .then((credential) {

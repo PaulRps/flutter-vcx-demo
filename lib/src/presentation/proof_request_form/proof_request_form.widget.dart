@@ -1,18 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_vcx_demo/src/domain/use_cases/present_proof_request.usecase.dart';
 import 'package:flutter_vcx_demo/src/domain/use_cases/reject_proof_request.usecase.dart';
+import 'package:flutter_vcx_demo/src/domain/use_cases/send_proof_request.usecase.dart';
 
 class ProofRequestFormWidget extends StatefulWidget {
   ProofRequestFormWidget(
-      {Key? key, presentProofRequestUsecase, rejectProofRequestUsecase})
+      {Key? key,
+      presentProofRequestUsecase,
+      rejectProofRequestUsecase,
+      sendProofRequest})
       : _presentProofRequestUsecase =
             presentProofRequestUsecase ?? PresentProofRequestUsecase(),
         _rejectProofRequestUsecase =
             rejectProofRequestUsecase ?? RejectProofRequestUsecase(),
+        _sendProofRequest = sendProofRequest ?? SendProofRequest(),
         super(key: key);
 
   late final PresentProofRequestUsecase _presentProofRequestUsecase;
   late final RejectProofRequestUsecase _rejectProofRequestUsecase;
+  late final SendProofRequest _sendProofRequest;
 
   @override
   State<StatefulWidget> createState() => _PresentProofRequestFormWidget();
@@ -22,23 +28,38 @@ class _PresentProofRequestFormWidget extends State<ProofRequestFormWidget> {
   @override
   Widget build(BuildContext context) {
     return Form(
-        child: Row(children: [
-      Expanded(
-        child: ElevatedButton(
-            onPressed: () {
-              _presentProof(context);
-            },
-            child: const Text('Present Proof')),
-      ),
-      Container(width: 10.0),
-      Expanded(
-        child: ElevatedButton(
-            onPressed: () {
-              _rejectProof(context);
-            },
-            child: const Text('Reject Proof')),
-      )
-    ]));
+        child: Column(
+      children: [
+        Row(children: [
+          Expanded(
+            child: ElevatedButton(
+                onPressed: () {
+                  _presentProof(context);
+                },
+                child: const Text('Present Proof')),
+          ),
+          Container(width: 10.0),
+          Expanded(
+            child: ElevatedButton(
+                onPressed: () {
+                  _rejectProof(context);
+                },
+                child: const Text('Reject Proof')),
+          )
+        ]),
+        Row(
+          children: [
+            Expanded(
+              child: ElevatedButton(
+                  onPressed: () {
+                    _sendRequest(context);
+                  },
+                  child: const Text('Send Proof Request')),
+            )
+          ],
+        )
+      ],
+    ));
   }
 
   void _presentProof(BuildContext context) {
@@ -62,6 +83,24 @@ class _PresentProofRequestFormWidget extends State<ProofRequestFormWidget> {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text('$error')),
       );
+    });
+  }
+
+  void _sendRequest(BuildContext context) {
+    widget._sendProofRequest.sendRequest().then((value) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Finished send proof request (success=$value)')),
+      );
+    }).catchError((error, stack) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('$error')),
+      );
+      FlutterError.reportError(FlutterErrorDetails(
+        exception: error,
+        library: 'Flutter Vcx Demo',
+        context: ErrorSummary('while running async send proof request'),
+        stack: stack
+      ));
     });
   }
 }

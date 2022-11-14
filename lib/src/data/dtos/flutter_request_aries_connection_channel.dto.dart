@@ -7,13 +7,16 @@ part 'flutter_request_aries_connection_channel.dto.g.dart';
 class FlutterRequestAriesConnectionChannelDto {
   String? inviteId;
   AriesConnectionInvitationDto? invitation;
+  String? connectionHandle;
+  bool? isToDeleteHandle;
 
-  FlutterRequestAriesConnectionChannelDto({inviteId, invitation})
-      : inviteId = inviteId,
-        invitation = invitation;
+  FlutterRequestAriesConnectionChannelDto(
+      {this.inviteId, this.invitation, this.connectionHandle, this.isToDeleteHandle});
 
-  factory FlutterRequestAriesConnectionChannelDto.fromJson(Map<String, dynamic> json) =>
+  factory FlutterRequestAriesConnectionChannelDto.fromJson(
+          Map<String, dynamic> json) =>
       _$FlutterRequestAriesConnectionChannelDtoFromJson(json);
 
-  Map<String, dynamic> toJson() => _$FlutterRequestAriesConnectionChannelDtoToJson(this);
+  Map<String, dynamic> toJson() =>
+      _$FlutterRequestAriesConnectionChannelDtoToJson(this);
 }

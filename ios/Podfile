@@ -34,7 +34,7 @@ target 'Runner' do
 
   flutter_install_all_ios_pods File.dirname(File.realpath(__FILE__))
 
-  pod 'vcx', :path => 'libs/vcx_042/'
+  pod 'vcx', :path => 'libs/vcx_built/'
   pod 'SwiftyJSON', '~> 5.0'
 end
 

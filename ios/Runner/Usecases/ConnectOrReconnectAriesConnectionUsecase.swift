@@ -22,26 +22,26 @@ class ConnectOrReconnectAriesConnectionUsecase {
         createariesConnectionUsecase = CreateAriesConnectionUsecase(connectionRepository: connectionRepository)
     }
 
-    func connect(invitation: ConnectionInvitationDto, inviteId: String) -> AnyPublisher<NativeToFlutterResponseDto, Error> {
+    func connect(invitation: ConnectionInvitationDto?, inviteId: String?) -> AnyPublisher<NativeToFlutterResponseDto, Error> {
         Deferred {
             Future { promise in
-                self.logger.info(message: "checking if aries connection with \(invitation.label) exists")
-                self.connectionRepository.searchConnection(invitation: invitation)
+                self.logger.info(message: "checking if aries connection with \(invitation?.label) exists")
+                self.connectionRepository.searchConnection(invitation: invitation!)
                         .map { isReconnection in
                             isReconnection
                         }
                         .flatMap({ (record: SearchRecordDto?) -> Future<String, Error> in
                             self.isReconnection(record) ?
-                                    self.reconnect(invitation, inviteId, record!.id!) :
+                                    self.reconnect(invitation!, inviteId!, record!.id!) :
                                     self.createariesConnectionUsecase.connect(
-                                            invitation: invitation,
-                                            inviteId: inviteId
+                                            invitation: invitation!,
+                                            inviteId: inviteId!
                                     )
                         })
                         .flatMap({ connectionJson in
                             self.connectionRepository.saveSerializedConnection(
                                     connectionJson,
-                                    ConnectionTagsDto.from(invitation: invitation)
+                                    ConnectionTagsDto.from(invitation: invitation!, serializedConnection: connectionJson)
                             )
                         })
                         .sink(receiveCompletion: { completion in

@@ -42,7 +42,10 @@ class ConnectionTagsDto: ToJson{
         invitationKey : String?,
         imageUrl : String?,
         image_url :String?,
-        serviceEndpoint : String?
+        serviceEndpoint : String?=nil,
+        theirDid: String? = nil,
+        myDid: String?=nil,
+        createdAt: String? = nil
     ){
         self.state = state
         self.requestId = requestId
@@ -52,6 +55,9 @@ class ConnectionTagsDto: ToJson{
         self.imageUrl = imageUrl
         self.image_url = image_url
         self.serviceEndpoint = serviceEndpoint
+        self.theirDid = theirDid
+        self.myDid = myDid
+        self.createdAt = createdAt
     }
     
     static func from(tags: [String : String], invitation: ConnectionInvitationDto) -> ConnectionTagsDto {
@@ -67,17 +73,52 @@ class ConnectionTagsDto: ToJson{
         return connectionTag
     }
     
-    static func from(invitation: ConnectionInvitationDto) -> ConnectionTagsDto {
-        ConnectionTagsDto(
-                state: ConnectionStateEnum.INITIALIZED.value,
-                requestId: invitation.id,
-                theirLabel: invitation.label,
-                theirVerkey: invitation.routingKeys?[0] ?? "",
-                invitationKey: invitation.recipientKeys![0],
-                imageUrl: invitation.imageUrl,
-                image_url: invitation.image_url,
-                serviceEndpoint: invitation.serviceEndpoint
+    static func from(invitation: ConnectionInvitationDto, serializedConnection: String) -> ConnectionTagsDto {
+        let tags = from(serializedConnection: serializedConnection)
+        return ConnectionTagsDto(
+            state: ConnectionStateEnum.INITIALIZED.value,
+            requestId: invitation.id,
+            theirLabel: invitation.label,
+            theirVerkey: invitation.routingKeys?[0] ?? "",
+            invitationKey: invitation.recipientKeys![0],
+            imageUrl: invitation.imageUrl,
+            image_url: invitation.image_url,
+            serviceEndpoint: invitation.serviceEndpoint,
+            theirDid: tags.theirDid,
+            myDid: tags.myDid
         )
     }
-   
+    
+    static func from(serializedConnection: String) -> ConnectionTagsDto {
+        
+        let connectionDict = JsonUtil.toDictionary(serializedConnection)
+        let conData = connectionDict!["data"] as! [String: Any]
+        let myDid = conData["pw_did"] as! String
+        
+        let conState = connectionDict!["state"] as! [String: Any]
+        let conInvitee = conState["Invitee"] as! [String: Any]
+        let conInviteeCompleted = conInvitee["Completed"] as! [String: Any]
+        let didDoc = conInviteeCompleted["did_doc"] as! [String: Any]
+        let id = didDoc["id"] as! String
+        let theirDid = id.split(separator: ":").map {
+            String($0)
+        }
+        let service = didDoc["service"] as? [String:Any]
+        let recipientKey = service?["recipientKeys"] as? [String]
+        
+        return ConnectionTagsDto(
+            state: ConnectionStateEnum.FINISHED.value,
+            requestId: nil,
+            theirLabel: nil,//TODO: find way to get label
+            theirVerkey: nil,
+            invitationKey: recipientKey?[0] as? String,
+            imageUrl: nil,
+            image_url: nil,
+            serviceEndpoint: service?["serviceEndpoint"] as? String,
+            theirDid: theirDid[2],
+            myDid: myDid,
+            createdAt: nil
+        )
+    }
+    
 }

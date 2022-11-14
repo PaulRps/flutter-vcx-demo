@@ -6,6 +6,8 @@ abstract class IAriesProofDatasource {
   Future presentProof(FlutterRequestAriesProofChannelDto dto);
 
   Future rejectProof(FlutterRequestAriesProofChannelDto dto);
+
+  Future sendProofRequest(FlutterRequestAriesProofChannelDto dto);
 }
 
 class AriesProofDatasource implements IAriesProofDatasource {
@@ -22,5 +24,10 @@ class AriesProofDatasource implements IAriesProofDatasource {
   @override
   Future rejectProof(FlutterRequestAriesProofChannelDto dto) {
     return _ariesProofService.rejectProof(dto);
+  }
+
+  @override
+  Future sendProofRequest(FlutterRequestAriesProofChannelDto dto) {
+    return _ariesProofService.sendProofRequest(dto);
   }
 }

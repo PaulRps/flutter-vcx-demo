@@ -17,10 +17,10 @@ class FlutterRequestAriesProofChannelDto {
     }
 
     static func from(_ call: FlutterMethodCall) -> FlutterRequestAriesProofChannelDto {
-        let data = call.arguments as? [String: String]
+        let data = call.arguments as? [String: Any]
         return FlutterRequestAriesProofChannelDto(
-                pairwiseDid: data?["pairwiseDid"],
-                sourceId: data?["sourceId"]
+                pairwiseDid: data?["pairwiseDid"] as? String,
+                sourceId: data?["sourceId"] as? String
         )
     }
 }

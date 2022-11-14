@@ -123,29 +123,9 @@ class AriesConnectionRepository {
             _ serializedConnection: String,
             _ tags: ConnectionTagsDto
     ) -> Future<WalletRecordDto?, Error> {
-        let myTheirDid = getMyTheirDidFrom(serializedConnection)
-        let pairwiseDid = myTheirDid["my_did"]
-        tags.myDid = pairwiseDid
-        tags.theirDid = myTheirDid["their_did"]
         tags.createdAt = DateUtil.currentDateTime()
         tags.state = ConnectionStateEnum.FINISHED.value
         return connectionRecordRepository.save(value: serializedConnection, tag: tags)
     }
-
-    private func getMyTheirDidFrom(_ serializedConnection: String) -> [String: String] {
-        let connectionDict = JsonUtil.toDictionary(serializedConnection)
-        let conData = connectionDict!["data"] as! [String: AnyObject]
-        let myDid = conData["pw_did"] as! String
-
-        let conState = connectionDict!["state"] as! [String: AnyObject]
-        let conInvitee = conState["Invitee"] as! [String: AnyObject]
-        let conInviteeCompleted = conInvitee["Completed"] as! [String: AnyObject]
-        let didDoc = conInviteeCompleted["did_doc"] as! [String: AnyObject]
-        let id = didDoc["id"] as! String
-        let theirDid = id.split(separator: ":").map {
-            String($0)
-        }
-
-        return ["my_did": myDid, "their_did": theirDid[2]]
-    }
+    
 }

@@ -7,13 +7,15 @@ class PresentProofRequestUsecase {
   late final AriesConnectionRepository _ariesConnectionRepository;
 
   PresentProofRequestUsecase({ariesProofRepository, ariesConnectionRepository})
-      : _ariesProofRepository = ariesConnectionRepository ?? AriesProofRepository(),
-        _ariesConnectionRepository = ariesConnectionRepository ?? AriesConnectionRepository();
+      : _ariesProofRepository =
+            ariesConnectionRepository ?? AriesProofRepository(),
+        _ariesConnectionRepository =
+            ariesConnectionRepository ?? AriesConnectionRepository();
 
   Future presentProof() {
     return _ariesConnectionRepository.getConnectionData().then((connection) {
       var dto = FlutterRequestAriesProofChannelDto(
-          connection.pairwiseDid, "flutterVcxDemo");
+          pairwiseDid: connection.pairwiseDid, sourceId: "flutterVcxDemo");
       return _ariesProofRepository
           .presentProof(dto)
           .then((value) => value.success);

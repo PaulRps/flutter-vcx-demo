@@ -16,15 +16,18 @@ class AriesProofRouter: Router {
 
     private final let presentProofUsecase: PresentProofRequestUsecase
     private final let rejectProofUsecase: RejectProofRequestUsecase
+    private final let sendProofRequest: SendProofRequest
 
     init(
             input: FlutterRequestAriesProofChannelDto,
             presentProofUsecase: PresentProofRequestUsecase = PresentProofRequestUsecase(),
-            rejectProofUsecase: RejectProofRequestUsecase = RejectProofRequestUsecase()
+            rejectProofUsecase: RejectProofRequestUsecase = RejectProofRequestUsecase(),
+            sendProofRequest: SendProofRequest = SendProofRequest()
     ) {
         self.input = input
         self.presentProofUsecase = presentProofUsecase
         self.rejectProofUsecase = rejectProofUsecase
+        self.sendProofRequest = sendProofRequest
         setRoutes()
     }
 
@@ -37,5 +40,6 @@ class AriesProofRouter: Router {
                 pairwiseDid: input.pairwiseDid,
                 sourceId: input.sourceId
         )
+        routes["sendRequest"] = sendProofRequest.sendRequest(pairwiseDid: input.pairwiseDid)
     }
 }
