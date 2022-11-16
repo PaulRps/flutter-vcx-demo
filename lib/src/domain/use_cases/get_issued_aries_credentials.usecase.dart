@@ -2,10 +2,10 @@ import 'package:flutter_vcx_demo/src/domain/entities/credential_data.dart';
 
 import '../../data/repositories/aries_credential.repository.dart';
 
-class GetIssuedAriesCredentialsUsecase {
+class GetIssuedAriesCredentialsUseCase {
   late final AriesCredentialRepository _ariesCredentialRepository;
 
-  GetIssuedAriesCredentialsUsecase({ariesCredentialRepository})
+  GetIssuedAriesCredentialsUseCase({ariesCredentialRepository})
       : _ariesCredentialRepository =
             ariesCredentialRepository ?? AriesCredentialRepository();
 

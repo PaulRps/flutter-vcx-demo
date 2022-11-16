@@ -8,10 +8,10 @@
 import Foundation
 import Combine
 
-class ConnectOrReconnectAriesConnectionUsecase {
-    private final let logger = CustomLogger(context: ConnectOrReconnectAriesConnectionUsecase.self)
+class ConnectOrReconnectAriesConnectionUseCase {
+    private final let logger = CustomLogger(context: ConnectOrReconnectAriesConnectionUseCase.self)
     private final let connectionRepository: AriesConnectionRepository
-    private final let createariesConnectionUsecase: CreateAriesConnectionUsecase
+    private final let createariesConnectionUsecase: CreateAriesConnectionUseCase
     private final var cancellables: Set<AnyCancellable>
 
     init(
@@ -19,7 +19,7 @@ class ConnectOrReconnectAriesConnectionUsecase {
     ) {
         cancellables = Set()
         self.connectionRepository = connectionRepository
-        createariesConnectionUsecase = CreateAriesConnectionUsecase(connectionRepository: connectionRepository)
+        createariesConnectionUsecase = CreateAriesConnectionUseCase(connectionRepository: connectionRepository)
     }
 
     func connect(invitation: ConnectionInvitationDto?, inviteId: String?) -> AnyPublisher<NativeToFlutterResponseDto, Error> {

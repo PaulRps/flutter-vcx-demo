@@ -1,5 +1,5 @@
 //
-//  CreateAriesConnectionUsecase.swift
+//  CreateAriesConnectionUseCase.swift
 //  Runner
 //
 //  Created by Paulo Silva on 27/08/22.
@@ -8,9 +8,9 @@
 import Foundation
 import Combine
 
-class CreateAriesConnectionUsecase {
+class CreateAriesConnectionUseCase {
     private final let connectionRepository: AriesConnectionRepository
-    private final let logger = CustomLogger(context: CreateAriesConnectionUsecase.self)
+    private final let logger = CustomLogger(context: CreateAriesConnectionUseCase.self)
     private final var cancellables: Set<AnyCancellable>
 
     init(

@@ -5,8 +5,8 @@
 import Foundation
 import Combine
 
-class RejectProofRequestUsecase {
-    private final let logger = CustomLogger(context: RejectProofRequestUsecase.self)
+class RejectProofRequestUseCase {
+    private final let logger = CustomLogger(context: RejectProofRequestUseCase.self)
     private final var cancellables: Set<AnyCancellable>
     private final let proofRepository: AriesProofRepository
     private final let connectionRepository: AriesConnectionRepository

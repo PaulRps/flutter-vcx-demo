@@ -14,11 +14,11 @@ class AriesMessageRouter: Router {
     let input: FlutterRequestAriesMessageChannelDto
     var routes: [String: AnyPublisher<NativeToFlutterResponseDto, Error>] = [:]
 
-    private final let getMessageUsecase: GetMessageByConnectionFromAriesAgencyUsecase
+    private final let getMessageUsecase: GetMessageByConnectionFromAriesAgencyUseCase
 
     init(
             input: FlutterRequestAriesMessageChannelDto,
-            getMessageUsecase: GetMessageByConnectionFromAriesAgencyUsecase = GetMessageByConnectionFromAriesAgencyUsecase()
+            getMessageUsecase: GetMessageByConnectionFromAriesAgencyUseCase = GetMessageByConnectionFromAriesAgencyUseCase()
     ) {
         self.input = input
         self.getMessageUsecase = getMessageUsecase

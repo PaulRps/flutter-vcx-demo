@@ -5,8 +5,8 @@
 import Foundation
 import Combine
 
-class AcceptCredentialOfferUsecase {
-    private final let logger = CustomLogger(context: AcceptCredentialOfferUsecase.self)
+class AcceptCredentialOfferUseCase {
+    private final let logger = CustomLogger(context: AcceptCredentialOfferUseCase.self)
     private final var cancellables: Set<AnyCancellable>
     private final let credentialRepository: AriesCredentialRepository
     private final let connectionRepository: AriesConnectionRepository

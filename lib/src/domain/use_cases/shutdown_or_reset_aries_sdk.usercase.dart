@@ -8,14 +8,14 @@ import '../../data/repositories/aries_genesis.repository.dart';
 import '../../data/repositories/wallet_data.repository.dart';
 import '../../data/services/wallet_data_encrypted_local_storage.dart';
 
-class ShutdownOrResetAriesSdkUsecase {
+class ShutdownOrResetAriesSdkUseCase {
   late final AriesSdkRepository _ariesSdkRepository;
   late final IAriesGenesisRepository _ariesGenesisRepository;
   late final IWalletDataRepository _walletDataRepository;
   late final IAriesConnectionRepository _ariesConnectionRepository;
   late final IAriesCredentialRepository _ariesCredentialRepository;
 
-  ShutdownOrResetAriesSdkUsecase(
+  ShutdownOrResetAriesSdkUseCase(
       {ariesSdkRepository,
       ariesGenesisRepository,
       walletDataRepository,

@@ -8,9 +8,9 @@
 import Foundation
 import Combine
 
-class GetMessageByConnectionFromAriesAgencyUsecase {
+class GetMessageByConnectionFromAriesAgencyUseCase {
     private final var cancellables: Set<AnyCancellable>
-    private final let logger = CustomLogger(context: GetMessageByConnectionFromAriesAgencyUsecase.self)
+    private final let logger = CustomLogger(context: GetMessageByConnectionFromAriesAgencyUseCase.self)
     private final let agencyRepository: AriesAgencyRepository
     private final let connectionRepository: AriesConnectionRepository
 

@@ -2,11 +2,11 @@ import '../../data/dtos/flutter_request_aries_proof_channel.dto.dart';
 import '../../data/repositories/aries_connection.repository.dart';
 import '../../data/repositories/aries_proof.repository.dart';
 
-class RejectProofRequestUsecase {
+class RejectProofRequestUseCase {
   late final AriesProofRepository _ariesProofRepository;
   late final AriesConnectionRepository _ariesConnectionRepository;
 
-  RejectProofRequestUsecase({ariesProofRepository, ariesConnectionRepository})
+  RejectProofRequestUseCase({ariesProofRepository, ariesConnectionRepository})
       : _ariesProofRepository =
             ariesConnectionRepository ?? AriesProofRepository(),
         _ariesConnectionRepository =

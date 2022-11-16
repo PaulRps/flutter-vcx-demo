@@ -14,13 +14,13 @@ class AriesCredentialRouter: Router {
 
     var logger = CustomLogger(context: AriesCredentialRouter.self)
 
-    private final let acceptCredentialOffer: AcceptCredentialOfferUsecase
-    private final let getIssuedCredentials: GetIssuedCredentialsUsecase
+    private final let acceptCredentialOffer: AcceptCredentialOfferUseCase
+    private final let getIssuedCredentials: GetIssuedCredentialsUseCase
 
     init(
             input: FlutterRequestAriesCredentialChannelDto,
-            acceptCredentialOffer: AcceptCredentialOfferUsecase = AcceptCredentialOfferUsecase(),
-            getIssuedCredentials: GetIssuedCredentialsUsecase = GetIssuedCredentialsUsecase()
+            acceptCredentialOffer: AcceptCredentialOfferUseCase = AcceptCredentialOfferUseCase(),
+            getIssuedCredentials: GetIssuedCredentialsUseCase = GetIssuedCredentialsUseCase()
     ) {
         self.input = input
         self.acceptCredentialOffer = acceptCredentialOffer

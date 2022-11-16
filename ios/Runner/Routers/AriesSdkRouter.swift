@@ -17,13 +17,13 @@ class AriesSdkRouter: Router {
 
     final var logger = CustomLogger(context: AriesSdkRouter.self)
 
-    private final let startSdkUsecase: StartAriesSdkUsecase
-    private final let shutdownSdkUsecase: ShutdownOrResetAriesSdkUsecase
+    private final let startSdkUsecase: StartAriesSdkUseCase
+    private final let shutdownSdkUsecase: ShutdownOrResetAriesSdkUseCase
 
     init(
             input: FlutterRequestAriesSdkChannelDto,
-            startSdkUsecase: StartAriesSdkUsecase = StartAriesSdkUsecase(),
-            shutdownSdkUsecase: ShutdownOrResetAriesSdkUsecase = ShutdownOrResetAriesSdkUsecase()
+            startSdkUsecase: StartAriesSdkUseCase = StartAriesSdkUseCase(),
+            shutdownSdkUsecase: ShutdownOrResetAriesSdkUseCase = ShutdownOrResetAriesSdkUseCase()
     ) {
         self.input = input
         self.startSdkUsecase = startSdkUsecase

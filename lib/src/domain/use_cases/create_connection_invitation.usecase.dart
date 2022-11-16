@@ -5,10 +5,10 @@ import 'package:flutter_vcx_demo/src/domain/entities/connection_invitation_data.
 import '../../data/dtos/aries_connection_invitation_response.dto.dart';
 import '../../data/repositories/aries_connection.repository.dart';
 
-class CreateConnectionInvitation {
+class CreateConnectionInvitationUseCase {
   late final IAriesConnectionRepository _ariesConnectionRepository;
 
-  CreateConnectionInvitation({ariesConnectionRepository})
+  CreateConnectionInvitationUseCase({ariesConnectionRepository})
       : _ariesConnectionRepository =
             ariesConnectionRepository ?? AriesConnectionRepository();
 

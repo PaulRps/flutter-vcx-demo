@@ -10,15 +10,15 @@ class ProofRequestFormWidget extends StatefulWidget {
       rejectProofRequestUsecase,
       sendProofRequest})
       : _presentProofRequestUsecase =
-            presentProofRequestUsecase ?? PresentProofRequestUsecase(),
+            presentProofRequestUsecase ?? PresentProofRequestUseCase(),
         _rejectProofRequestUsecase =
-            rejectProofRequestUsecase ?? RejectProofRequestUsecase(),
-        _sendProofRequest = sendProofRequest ?? SendProofRequest(),
+            rejectProofRequestUsecase ?? RejectProofRequestUseCase(),
+        _sendProofRequest = sendProofRequest ?? SendProofRequestUseCase(),
         super(key: key);
 
-  late final PresentProofRequestUsecase _presentProofRequestUsecase;
-  late final RejectProofRequestUsecase _rejectProofRequestUsecase;
-  late final SendProofRequest _sendProofRequest;
+  late final PresentProofRequestUseCase _presentProofRequestUsecase;
+  late final RejectProofRequestUseCase _rejectProofRequestUsecase;
+  late final SendProofRequestUseCase _sendProofRequest;
 
   @override
   State<StatefulWidget> createState() => _PresentProofRequestFormWidget();

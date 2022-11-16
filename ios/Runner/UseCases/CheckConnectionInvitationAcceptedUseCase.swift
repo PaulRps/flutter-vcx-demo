@@ -5,9 +5,9 @@
 import Foundation
 import Combine
 
-class CheckConnectionInvitationAccepted {
+class CheckConnectionInvitationAcceptedUseCase {
 
-    private final let logger = CustomLogger(context: CheckConnectionInvitationAccepted.self)
+    private final let logger = CustomLogger(context: CheckConnectionInvitationAcceptedUseCase.self)
     private final var cancellables: Set<AnyCancellable>
     private final let connectionRepository: AriesConnectionRepository
 

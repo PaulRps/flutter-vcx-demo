@@ -2,10 +2,10 @@ import 'package:flutter_vcx_demo/src/domain/entities/connection_data.dart';
 
 import '../../data/repositories/aries_connection.repository.dart';
 
-class RetrieveConnectionDataUsecase {
+class RetrieveConnectionDataUseCase {
   late final IAriesConnectionRepository _ariesConnectionRepository;
 
-  RetrieveConnectionDataUsecase({ariesConnectionRepository})
+  RetrieveConnectionDataUseCase({ariesConnectionRepository})
       : _ariesConnectionRepository =
       ariesConnectionRepository ?? AriesConnectionRepository();
 

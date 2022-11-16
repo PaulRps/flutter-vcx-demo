@@ -19,15 +19,15 @@ class _CreateAriesConnectionFormWidget
   TextEditingController();
   final List<Widget> _connections = [];
 
-  late final CreateAriesConnectionUsecse _createAriesConnectionUsecse;
-  late final RetrieveConnectionDataUsecase _connectionDataUsecase;
+  late final CreateAriesConnectionUseCase _createAriesConnectionUsecse;
+  late final RetrieveConnectionDataUseCase _connectionDataUsecase;
 
   _CreateAriesConnectionFormWidget(
       {createAriesConnectionUsecse, connectionDataUsecase})
       : _createAriesConnectionUsecse =
-      createAriesConnectionUsecse ?? CreateAriesConnectionUsecse(),
+      createAriesConnectionUsecse ?? CreateAriesConnectionUseCase(),
         _connectionDataUsecase =
-            connectionDataUsecase ?? RetrieveConnectionDataUsecase();
+            connectionDataUsecase ?? RetrieveConnectionDataUseCase();
 
   @override
   void initState() {

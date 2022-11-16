@@ -5,8 +5,8 @@
 import Foundation
 import Combine
 
-class SendProofRequest {
-    private final let logger = CustomLogger(context: SendProofRequest.self)
+class SendProofRequestUseCase {
+    private final let logger = CustomLogger(context: SendProofRequestUseCase.self)
     private final var cancellables: Set<AnyCancellable>
     private final let connectionRepository: AriesConnectionRepository
     private final let proofRepository: AriesProofRepository

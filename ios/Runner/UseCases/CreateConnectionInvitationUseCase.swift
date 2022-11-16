@@ -5,8 +5,8 @@
 import Foundation
 import Combine
 
-class CreateConnectionInvitation {
-    private final let logger = CustomLogger(context: CreateConnectionInvitation.self)
+class CreateConnectionInvitationUseCase {
+    private final let logger = CustomLogger(context: CreateConnectionInvitationUseCase.self)
     private final var cancellables: Set<AnyCancellable>
     private final let connectionRepository: AriesConnectionRepository
     private final let proofRepository: AriesProofRepository

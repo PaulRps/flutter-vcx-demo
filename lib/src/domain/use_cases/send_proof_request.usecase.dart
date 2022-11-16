@@ -2,11 +2,11 @@ import 'package:flutter_vcx_demo/src/data/dtos/flutter_request_aries_proof_chann
 import 'package:flutter_vcx_demo/src/data/repositories/aries_connection.repository.dart';
 import 'package:flutter_vcx_demo/src/data/repositories/aries_proof.repository.dart';
 
-class SendProofRequest {
+class SendProofRequestUseCase {
   late final IAriesConnectionRepository _connectionRepository;
   late final IAriesProofRepository _proofRepository;
 
-  SendProofRequest({connectionRepository, proofRepository})
+  SendProofRequestUseCase({connectionRepository, proofRepository})
       : _connectionRepository =
             connectionRepository ?? AriesConnectionRepository(),
         _proofRepository = proofRepository ?? AriesProofRepository();

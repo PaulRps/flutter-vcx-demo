@@ -15,8 +15,8 @@ class StartAriesSdkFormWidget extends StatelessWidget {
       StartAriesSdkAndSaveWalletDataUseCase();
   final RetrieveWalletDataUseCase _retrieveWalletDataUseCase =
       RetrieveWalletDataUseCase();
-  final ShutdownOrResetAriesSdkUsecase _shutdownOrResetAriesSdkUsecase =
-      ShutdownOrResetAriesSdkUsecase();
+  final ShutdownOrResetAriesSdkUseCase _shutdownOrResetAriesSdkUsecase =
+      ShutdownOrResetAriesSdkUseCase();
 
   final TextEditingController _walletNameController = TextEditingController();
   final TextEditingController _walletKeyController = TextEditingController();

@@ -2,10 +2,10 @@ import 'package:flutter_vcx_demo/src/domain/entities/connection_data.dart';
 
 import '../../data/repositories/aries_connection.repository.dart';
 
-class CheckConnectionInvitationAccepted {
+class CheckConnectionInvitationAcceptedUseCase {
   late final IAriesConnectionRepository _ariesConnectionRepository;
 
-  CheckConnectionInvitationAccepted({ariesConnectionRepository})
+  CheckConnectionInvitationAcceptedUseCase({ariesConnectionRepository})
       : _ariesConnectionRepository =
             ariesConnectionRepository ?? AriesConnectionRepository();
 

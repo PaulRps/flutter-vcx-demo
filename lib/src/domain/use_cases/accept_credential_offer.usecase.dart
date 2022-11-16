@@ -3,11 +3,11 @@ import 'package:flutter_vcx_demo/src/data/repositories/aries_connection.reposito
 import 'package:flutter_vcx_demo/src/data/repositories/aries_credential.repository.dart';
 import 'package:flutter_vcx_demo/src/domain/entities/credential_data.dart';
 
-class AcceptCredentialOfferUsecase {
+class AcceptCredentialOfferUseCase {
   late final AriesCredentialRepository _ariesCredentialRepository;
   late final AriesConnectionRepository _ariesConnectionRepository;
 
-  AcceptCredentialOfferUsecase(
+  AcceptCredentialOfferUseCase(
       {ariesCredentialRepository, ariesConnectionRepository})
       : _ariesCredentialRepository =
             ariesCredentialRepository ?? AriesCredentialRepository(),

@@ -2,10 +2,10 @@ import 'package:flutter_vcx_demo/src/data/repositories/aries_connection.reposito
 
 import '../entities/connection_data.dart';
 
-class CreateAriesConnectionUsecse {
+class CreateAriesConnectionUseCase {
   late final IAriesConnectionRepository _ariesConnectionRepository;
 
-  CreateAriesConnectionUsecse({ariesConnectionRepository})
+  CreateAriesConnectionUseCase({ariesConnectionRepository})
       : _ariesConnectionRepository =
             ariesConnectionRepository ?? AriesConnectionRepository();
 

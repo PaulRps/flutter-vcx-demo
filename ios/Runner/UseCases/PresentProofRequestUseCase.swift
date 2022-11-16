@@ -6,8 +6,8 @@ import Foundation
 import Combine
 import SwiftyJSON
 
-class PresentProofRequestUsecase {
-    private final let logger = CustomLogger(context: PresentProofRequestUsecase.self)
+class PresentProofRequestUseCase {
+    private final let logger = CustomLogger(context: PresentProofRequestUseCase.self)
     private final var cancellables: Set<AnyCancellable>
     private final let proofRepository: AriesProofRepository
     private final let connectionRepository: AriesConnectionRepository

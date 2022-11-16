@@ -8,8 +8,8 @@
 import Foundation
 import Combine
 
-class ShutdownOrResetAriesSdkUsecase {
-    private final let logger = CustomLogger(context: ShutdownOrResetAriesSdkUsecase.self)
+class ShutdownOrResetAriesSdkUseCase {
+    private final let logger = CustomLogger(context: ShutdownOrResetAriesSdkUseCase.self)
     private final var cancellables: Set<AnyCancellable>
     private final let walletRepository: AriesWalletRepository
     private final let agencyRepository: AriesAgencyRepository

@@ -4,17 +4,17 @@ import 'package:flutter_vcx_demo/src/domain/use_cases/accept_credential_offer.us
 import 'package:flutter_vcx_demo/src/domain/use_cases/get_issued_aries_credentials.usecase.dart';
 
 class AcceptCredentialOfferFormWidget extends StatefulWidget {
-  late final AcceptCredentialOfferUsecase _acceptCredentialOfferUsecase;
-  late final GetIssuedAriesCredentialsUsecase _getIssuedAriesCredentialsUsecase;
+  late final AcceptCredentialOfferUseCase _acceptCredentialOfferUsecase;
+  late final GetIssuedAriesCredentialsUseCase _getIssuedAriesCredentialsUsecase;
 
   AcceptCredentialOfferFormWidget(
       {Key? key,
       acceptCredentialOfferUsecase,
       getIssuedAriesCredentialsUsecase})
       : _acceptCredentialOfferUsecase =
-            acceptCredentialOfferUsecase ?? AcceptCredentialOfferUsecase(),
+            acceptCredentialOfferUsecase ?? AcceptCredentialOfferUseCase(),
         _getIssuedAriesCredentialsUsecase = getIssuedAriesCredentialsUsecase ??
-            GetIssuedAriesCredentialsUsecase(),
+            GetIssuedAriesCredentialsUseCase(),
         super(key: key);
 
   @override

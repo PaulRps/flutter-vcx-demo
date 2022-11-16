@@ -9,16 +9,16 @@ import 'package:qr_flutter/qr_flutter.dart';
 import '../../domain/use_cases/check_connection_invitation_accepted.usecase.dart';
 
 class ConnectionInvitationScreenWidget extends StatefulWidget {
-  late final CreateConnectionInvitation _connectionInvitation;
-  late final CheckConnectionInvitationAccepted
+  late final CreateConnectionInvitationUseCase _connectionInvitation;
+  late final CheckConnectionInvitationAcceptedUseCase
       _checkConnectionInvitationAccepted;
 
   ConnectionInvitationScreenWidget(
       {Key? key, createInvitationUsedase, inviteAcceptedUsecase})
       : _connectionInvitation =
-            createInvitationUsedase ?? CreateConnectionInvitation(),
+            createInvitationUsedase ?? CreateConnectionInvitationUseCase(),
         _checkConnectionInvitationAccepted =
-            inviteAcceptedUsecase ?? CheckConnectionInvitationAccepted(),
+            inviteAcceptedUsecase ?? CheckConnectionInvitationAcceptedUseCase(),
         super(key: key);
 
   @override

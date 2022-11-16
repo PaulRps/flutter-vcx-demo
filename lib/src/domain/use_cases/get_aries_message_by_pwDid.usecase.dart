@@ -2,10 +2,10 @@ import 'package:flutter_vcx_demo/src/data/dtos/flutter_request_aries_message_cha
 import 'package:flutter_vcx_demo/src/data/enums/aries_agency_message_status.enum.dart';
 import 'package:flutter_vcx_demo/src/data/repositories/aries_message.repository.dart';
 
-class GetAriesMessageByPwDidUsecase {
+class GetAriesMessageByPwDidUseCase {
   final IAriesMessageRepository _ariesMessageRepository;
 
-  GetAriesMessageByPwDidUsecase({ariesMessageRepository})
+  GetAriesMessageByPwDidUseCase({ariesMessageRepository})
       : _ariesMessageRepository =
             ariesMessageRepository ?? AriesMessageRepository();
 

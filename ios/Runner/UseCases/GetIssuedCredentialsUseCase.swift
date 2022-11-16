@@ -5,9 +5,9 @@
 import Foundation
 import Combine
 
-class GetIssuedCredentialsUsecase {
+class GetIssuedCredentialsUseCase {
 
-    private final let logger = CustomLogger(context: GetIssuedCredentialsUsecase.self)
+    private final let logger = CustomLogger(context: GetIssuedCredentialsUseCase.self)
     private final let credentialRepository: AriesCredentialRepository
     private final var cancellables: Set<AnyCancellable>
 

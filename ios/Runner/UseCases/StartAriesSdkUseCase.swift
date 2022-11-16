@@ -1,5 +1,5 @@
 //
-//  StartAriesSdkUsecase.swift
+//  StartAriesSdkUseCase.swift
 //  Runner
 //
 //  Created by Paulo Silva on 30/08/22.
@@ -8,8 +8,8 @@
 import Foundation
 import Combine
 
-class StartAriesSdkUsecase {
-    private final let logger = CustomLogger(context: StartAriesSdkUsecase.self)
+class StartAriesSdkUseCase {
+    private final let logger = CustomLogger(context: StartAriesSdkUseCase.self)
     private final var cancellables: Set<AnyCancellable>
     private final let walletRepository: AriesWalletRepository
     private final let agencyRepository: AriesAgencyRepository
