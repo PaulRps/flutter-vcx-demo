@@ -16,15 +16,15 @@ class AriesConnectionRouter: Router {
     var logger = CustomLogger(context: AriesConnectionRouter.self)
     private final var cancellables: Set<AnyCancellable>
 
-    private final let createOrRecreateConnection: ConnectOrReconnectAriesConnectionUseCase
-    private final let createConnectionInvitation: CreateConnectionInvitationUseCase
-    private final let checkConnectionInvitationAccepted: CheckConnectionInvitationAcceptedUseCase
+    private final let createOrRecreateConnection: InviteeConnectOrReconnectWithInvitationUseCase
+    private final let createConnectionInvitation: InviterCreateConnectionInvitationUseCase
+    private final let checkConnectionInvitationAccepted: InviterCheckConnectionInvitationWasAcceptedUseCase
 
     init(
             input: FlutterRequestAriesConnectionChannelDto,
-            createOrRecreateConnection: ConnectOrReconnectAriesConnectionUseCase = ConnectOrReconnectAriesConnectionUseCase(),
-            createConnectionInvitation: CreateConnectionInvitationUseCase = CreateConnectionInvitationUseCase(),
-            checkConnectionInvitationAccepted: CheckConnectionInvitationAcceptedUseCase = CheckConnectionInvitationAcceptedUseCase()
+            createOrRecreateConnection: InviteeConnectOrReconnectWithInvitationUseCase = InviteeConnectOrReconnectWithInvitationUseCase(),
+            createConnectionInvitation: InviterCreateConnectionInvitationUseCase = InviterCreateConnectionInvitationUseCase(),
+            checkConnectionInvitationAccepted: InviterCheckConnectionInvitationWasAcceptedUseCase = InviterCheckConnectionInvitationWasAcceptedUseCase()
     ) {
         self.input = input
         cancellables = Set()

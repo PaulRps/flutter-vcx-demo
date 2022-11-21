@@ -114,6 +114,10 @@ class AriesConnectionRepository {
         }
     }
 
+    func getConnectionInfo(connectionHandle: NSNumber) -> Future<String, Error> {
+        connectionPort.getConnectionInfo(connectionHandle: connectionHandle)
+    }
+
     func deleteConnection(id: String) -> Future<Int, Error> {
         connectionRecordRepository.delete(recordId: id)
     }

@@ -1,24 +1,23 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_vcx_demo/src/domain/entities/connection_invitation_data.dart';
-import 'package:flutter_vcx_demo/src/domain/use_cases/create_connection_invitation.usecase.dart';
+import 'package:flutter_vcx_demo/src/domain/use_cases/inviter_create_connection_invitation.usecase.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
-import '../../domain/use_cases/check_connection_invitation_accepted.usecase.dart';
+import '../../domain/use_cases/inviter_check_connection_invitation_accepted.usecase.dart';
 
 class ConnectionInvitationScreenWidget extends StatefulWidget {
-  late final CreateConnectionInvitationUseCase _connectionInvitation;
-  late final CheckConnectionInvitationAcceptedUseCase
+  late final InviterCreateConnectionInvitationUseCase _connectionInvitation;
+  late final InviterCheckConnectionInvitationAcceptedUseCase
       _checkConnectionInvitationAccepted;
 
   ConnectionInvitationScreenWidget(
       {Key? key, createInvitationUsedase, inviteAcceptedUsecase})
-      : _connectionInvitation =
-            createInvitationUsedase ?? CreateConnectionInvitationUseCase(),
-        _checkConnectionInvitationAccepted =
-            inviteAcceptedUsecase ?? CheckConnectionInvitationAcceptedUseCase(),
+      : _connectionInvitation = createInvitationUsedase ??
+            InviterCreateConnectionInvitationUseCase(),
+        _checkConnectionInvitationAccepted = inviteAcceptedUsecase ??
+            InviterCheckConnectionInvitationAcceptedUseCase(),
         super(key: key);
 
   @override
@@ -53,7 +52,9 @@ class _CreateConnectionInvitation
         onWillPop: () {
           _waitInvite?.close();
           return Future.value(widget._checkConnectionInvitationAccepted
-              .isInvitationAccepted(_invitationData!.connectionHandle, true)
+              .isInvitationAccepted(
+                  connectionHandle: _invitationData!.connectionHandle,
+                  isToDeleteHandle: true)
               .then((value) => true));
         },
         child: Scaffold(
@@ -78,9 +79,11 @@ class _CreateConnectionInvitation
             ],
           )),
     );
-    Timer.periodic(const Duration(seconds: 10), (timer) {
+    Timer.periodic(const Duration(seconds: 15), (timer) {
       widget._checkConnectionInvitationAccepted
-          .isInvitationAccepted(_invitationData!.connectionHandle, false)
+          .isInvitationAccepted(
+              connectionHandle: _invitationData!.connectionHandle,
+              isToDeleteHandle: false)
           .then((connectionData) {
         var wasAccepted = connectionData.pairwiseDid?.isNotEmpty == true;
 

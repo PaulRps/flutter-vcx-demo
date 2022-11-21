@@ -1,6 +1,5 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_vcx_demo/src/domain/use_cases/retrieve_wallet_data.usecase.dart';
+import 'package:flutter_vcx_demo/src/domain/use_cases/retrieve_aries_wallet_data.usecase.dart';
 import 'package:flutter_vcx_demo/src/domain/use_cases/shutdown_or_reset_aries_sdk.usercase.dart';
 
 import '../../domain/entities/wallet_data.dart';
@@ -13,8 +12,8 @@ class StartAriesSdkFormWidget extends StatelessWidget {
 
   final StartAriesSdkAndSaveWalletDataUseCase _startAriesSdkUseCase =
       StartAriesSdkAndSaveWalletDataUseCase();
-  final RetrieveWalletDataUseCase _retrieveWalletDataUseCase =
-      RetrieveWalletDataUseCase();
+  final RetrieveAriesWalletDataUseCase _retrieveWalletDataUseCase =
+      RetrieveAriesWalletDataUseCase();
   final ShutdownOrResetAriesSdkUseCase _shutdownOrResetAriesSdkUsecase =
       ShutdownOrResetAriesSdkUseCase();
 

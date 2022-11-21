@@ -38,7 +38,15 @@ class AriesConnectionRecordRepository {
         Future { promise in
             self.logger.info(message: "saving connection record in wallet")
 
-            let query = ["their_label", tag.theirLabel!, "serviceEndpoint", tag.serviceEndpoint!]
+            var query = ["serviceEndpoint", tag.serviceEndpoint!]
+
+            if tag.theirLabel?.isEmpty == false {
+                query.append(contentsOf: ["their_label", tag.theirLabel!])
+            }
+
+            if tag.recipientKey?.isEmpty == false {
+                query.append(contentsOf: ["recipient_key", tag.recipientKey!])
+            }
 
             self.search(keyValQuery: query)
                     .sink(receiveCompletion: { completion in

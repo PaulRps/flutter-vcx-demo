@@ -114,7 +114,7 @@ class AriesCredentialAdapter: CredentialPort, CheckVcxResult {
                 }
 
                 let connectionState = CredentialHolderStateEnum.getOne(id: state)
-                self.logger.info(message: "finished updated credential [current state=\(connectionState)]")
+                self.logger.info(message: "finished updated credential [current state=\(connectionState)(id: \(state))]")
 
                 promise(.success(AriesCredentialHolderFinishedState(state: connectionState)))
             }

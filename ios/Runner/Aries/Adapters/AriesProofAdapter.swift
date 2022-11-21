@@ -269,7 +269,7 @@ class AriesProofAdapter: ProofPort, CheckVcxResult {
 
                 let proofState = ProofVerifierStateEnum.getOne(id: state)
 
-                self.logger.info(message: "finished verifier updated proof state [current state=\(proofState)]")
+                self.logger.info(message: "finished verifier updated proof state [current state=\(proofState)(id: \(state))]")
 
                 promise(.success(AriesProofVerifierFinishedState(state: proofState)))
             }

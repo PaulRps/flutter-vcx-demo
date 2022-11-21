@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_vcx_demo/src/domain/use_cases/present_proof_request.usecase.dart';
-import 'package:flutter_vcx_demo/src/domain/use_cases/reject_proof_request.usecase.dart';
-import 'package:flutter_vcx_demo/src/domain/use_cases/send_proof_request.usecase.dart';
+import 'package:flutter_vcx_demo/src/domain/use_cases/prover_present_proof_request.usecase.dart';
+import 'package:flutter_vcx_demo/src/domain/use_cases/prover_reject_proof_request.usecase.dart';
+import 'package:flutter_vcx_demo/src/domain/use_cases/verifier_send_proof_request.usecase.dart';
+
+import '../../data/dtos/aries_send_proof_response.dto.dart';
 
 class ProofRequestFormWidget extends StatefulWidget {
   ProofRequestFormWidget(
@@ -10,15 +12,15 @@ class ProofRequestFormWidget extends StatefulWidget {
       rejectProofRequestUsecase,
       sendProofRequest})
       : _presentProofRequestUsecase =
-            presentProofRequestUsecase ?? PresentProofRequestUseCase(),
+            presentProofRequestUsecase ?? ProverPresentProofRequestUseCase(),
         _rejectProofRequestUsecase =
-            rejectProofRequestUsecase ?? RejectProofRequestUseCase(),
-        _sendProofRequest = sendProofRequest ?? SendProofRequestUseCase(),
+            rejectProofRequestUsecase ?? ProverRejectProofRequestUseCase(),
+        _sendProofRequest = sendProofRequest ?? VerifierSendProofRequestUseCase(),
         super(key: key);
 
-  late final PresentProofRequestUseCase _presentProofRequestUsecase;
-  late final RejectProofRequestUseCase _rejectProofRequestUsecase;
-  late final SendProofRequestUseCase _sendProofRequest;
+  late final ProverPresentProofRequestUseCase _presentProofRequestUsecase;
+  late final ProverRejectProofRequestUseCase _rejectProofRequestUsecase;
+  late final VerifierSendProofRequestUseCase _sendProofRequest;
 
   @override
   State<StatefulWidget> createState() => _PresentProofRequestFormWidget();
@@ -86,21 +88,72 @@ class _PresentProofRequestFormWidget extends State<ProofRequestFormWidget> {
     });
   }
 
-  void _sendRequest(BuildContext context) {
+  Future<void> _sendRequest(BuildContext context) async {
+    var showSnackBar = ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+          duration: const Duration(hours: 1),
+          content: Row(
+            children: const <Widget>[
+              CircularProgressIndicator(),
+              Text("  Waiting the proof request to be presented...")
+            ],
+          )),
+    );
+
     widget._sendProofRequest.sendRequest().then((value) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Finished send proof request (success=$value)')),
-      );
+      showSnackBar.close();
+      _showProofDataDialog(value);
     }).catchError((error, stack) {
+      showSnackBar.close();
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text('$error')),
       );
       FlutterError.reportError(FlutterErrorDetails(
-        exception: error,
-        library: 'Flutter Vcx Demo',
-        context: ErrorSummary('while running async send proof request'),
-        stack: stack
-      ));
+          exception: error,
+          library: 'Flutter Vcx Demo',
+          context: ErrorSummary('while running async send proof request'),
+          stack: stack));
     });
+  }
+
+  Future<void> _showProofDataDialog(AriesSendProofResponseDto data) {
+    List<Widget> proofData = [];
+
+    if (data.revealedAttributes?.isNotEmpty == true) {
+      proofData.add(const Text("Revealed Attributes"));
+      proofData.add(const Text(""));
+      data.revealedAttributes?.entries
+          .forEach((e) => proofData.add(Text("${e.key}: ${e.value}")));
+      proofData.add(const Text(""));
+    }
+
+    if (data.selfAttestAttributes?.isNotEmpty == true) {
+      proofData.add(const Text("Self Attested Attributes"));
+      proofData.add(const Text(""));
+      data.selfAttestAttributes?.entries
+          .forEach((e) => proofData.add(Text("${e.key}: ${e.value}")));
+      proofData.add(const Text(""));
+    }
+
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Presented Proof Data'),
+          content: SingleChildScrollView(
+            child: ListBody(children: proofData),
+          ),
+          actions: <Widget>[
+            TextButton(
+              child: const Text('Close'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
   }
 }

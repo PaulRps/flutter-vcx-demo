@@ -16,6 +16,8 @@ protocol ConnectionPort {
 
     func getConnectionHandle(serializedConnection: String?) -> Future<NSNumber, Error>
 
+    func getConnectionInfo(connectionHandle: NSNumber) -> Future<String, Error>
+
     func releaseHandle(handle: NSNumber?) -> NSNumber
 
     func connectionCreateWithInvite(

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_vcx_demo/src/domain/entities/connection_data.dart';
-import 'package:flutter_vcx_demo/src/domain/use_cases/create_aries_connection.usecase.dart';
+import 'package:flutter_vcx_demo/src/domain/use_cases/invitee_accept_connection_invitation.usecase.dart';
 import 'package:flutter_vcx_demo/src/presentation/connection_invitation_screen/connection_invitation_screen.widget.dart';
 
-import '../../domain/use_cases/retrieve_connection_data.usecase.dart';
+import '../../domain/use_cases/retrieve_aries_connection_data.usecase.dart';
 
 class CreateAriesConnectionFormWidget extends StatefulWidget {
   const CreateAriesConnectionFormWidget({Key? key}) : super(key: key);
@@ -19,15 +19,15 @@ class _CreateAriesConnectionFormWidget
   TextEditingController();
   final List<Widget> _connections = [];
 
-  late final CreateAriesConnectionUseCase _createAriesConnectionUsecse;
-  late final RetrieveConnectionDataUseCase _connectionDataUsecase;
+  late final InviteeAcceptConnectionInvitationUseCase _createAriesConnectionUsecse;
+  late final RetrieveAriesConnectionDataUseCase _connectionDataUsecase;
 
   _CreateAriesConnectionFormWidget(
       {createAriesConnectionUsecse, connectionDataUsecase})
       : _createAriesConnectionUsecse =
-      createAriesConnectionUsecse ?? CreateAriesConnectionUseCase(),
+      createAriesConnectionUsecse ?? InviteeAcceptConnectionInvitationUseCase(),
         _connectionDataUsecase =
-            connectionDataUsecase ?? RetrieveConnectionDataUseCase();
+            connectionDataUsecase ?? RetrieveAriesConnectionDataUseCase();
 
   @override
   void initState() {

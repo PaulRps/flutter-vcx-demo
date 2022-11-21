@@ -67,6 +67,6 @@ class AriesProofVerifierFinishedState: AriesFinishedState {
     }
 
     func isFinished() -> Bool {
-        state == .FAILED
+        state == .FINISHED
     }
 }

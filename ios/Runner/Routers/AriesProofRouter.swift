@@ -14,15 +14,15 @@ class AriesProofRouter: Router {
 
     typealias I = FlutterRequestAriesProofChannelDto
 
-    private final let presentProofUsecase: PresentProofRequestUseCase
-    private final let rejectProofUsecase: RejectProofRequestUseCase
-    private final let sendProofRequest: SendProofRequestUseCase
+    private final let presentProofUsecase: ProverPresentProofUseCase
+    private final let rejectProofUsecase: ProverRejectPresentProofRequestUseCase
+    private final let sendProofRequest: VerifierRequestPresentProofUseCase
 
     init(
             input: FlutterRequestAriesProofChannelDto,
-            presentProofUsecase: PresentProofRequestUseCase = PresentProofRequestUseCase(),
-            rejectProofUsecase: RejectProofRequestUseCase = RejectProofRequestUseCase(),
-            sendProofRequest: SendProofRequestUseCase = SendProofRequestUseCase()
+            presentProofUsecase: ProverPresentProofUseCase = ProverPresentProofUseCase(),
+            rejectProofUsecase: ProverRejectPresentProofRequestUseCase = ProverRejectPresentProofRequestUseCase(),
+            sendProofRequest: VerifierRequestPresentProofUseCase = VerifierRequestPresentProofUseCase()
     ) {
         self.input = input
         self.presentProofUsecase = presentProofUsecase

@@ -16,4 +16,16 @@ class ProofPredicateDto: ToJson {
         case value = "p_value"
         case restrictions = "restrictions"
     }
+
+    init(
+            name: String,
+            type: ProofPredicateTypeEnum,
+            value: NSInteger,
+            restrictions: [ProofAttributeRestrictionDto]
+    ) {
+        self.name = name
+        self.type = type
+        self.value = value
+        self.restrictions = restrictions
+    }
 }

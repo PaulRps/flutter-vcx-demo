@@ -5,7 +5,8 @@
 import Foundation
 
 enum ProofPredicateTypeEnum: String, Codable {
-
-    case EQUAL = "=="
-    case HIGHER_OR_EQUAL = ">="
+    case LESS = "<"
+    case LESS_OR_EQUAL = "<="
+    case GREATER = ">"
+    case GREATER_OR_EQUAL = ">="
 }

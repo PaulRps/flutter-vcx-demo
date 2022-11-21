@@ -32,7 +32,7 @@ class AriesConnectionAdapter: ConnectionPort, CheckVcxResult {
                 }
 
                 let connectionState = ConnectionStateEnum.getOne(id: state)
-                self.logger.info(message: "finished updated connection [current state=\(connectionState)]")
+                self.logger.info(message: "finished updated connection [current state=\(connectionState)(id: \(state))]")
 
                 promise(.success(AriesConnectionFinishedState(state: connectionState)))
             }
@@ -155,4 +155,17 @@ class AriesConnectionAdapter: ConnectionPort, CheckVcxResult {
         }
     }
 
+    func getConnectionInfo(connectionHandle: NSNumber) -> Future<String, Error> {
+        Future { promise in
+            self.vcx.connectionInfo(connectionHandle.intValue) { error, info in
+                if self.isFail(error) {
+                    self.logger.error(message: "error on getting connection info: \(error!.localizedDescription)")
+                    promise(.failure(error!))
+                    return
+                }
+                self.logger.info(message: "finished get connection info successfully")
+                promise(.success(info!))
+            }
+        }
+    }
 }
