@@ -30,7 +30,7 @@ class StartAriesSdkAndSaveWalletDataUseCase {
     return _ariesGenesisRepository
         .getGenesisFilePath()
         .then((genesisPath) => FlutterRequestAriesSdkChannelDto.from(
-            agencyEndpoint: "https://mobile.dev.izipass.com.br/mediator",
+            agencyEndpoint: const String.fromEnvironment("mediator_url"),
             genesisPath: genesisPath,
             walletName: data.name.trim(),
             walletKey: data.key.trim()))

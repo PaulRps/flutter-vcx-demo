@@ -13,9 +13,9 @@ class AriesProvisionAgencyConfigDto {
       this.agencyVerkey, this.institutionName);
 
   AriesProvisionAgencyConfigDto.from(this.agencyEndpoint)
-      : agencyDid = "YOUR-MEDIATOR-DID",
-        agencyVerkey = "YOUR-MEDIATOR-KEY",
-        institutionName = "YOUR-COMAPANY";
+      : agencyDid = const String.fromEnvironment("mediator_did"),
+        agencyVerkey = const String.fromEnvironment("mediator_verkey"),
+        institutionName = const String.fromEnvironment("institution_name");
 
   factory AriesProvisionAgencyConfigDto.fromJson(Map<String, dynamic> json) =>
       _$AriesProvisionAgencyConfigDtoFromJson(json);
