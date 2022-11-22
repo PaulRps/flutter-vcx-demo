@@ -14,8 +14,9 @@ class InviterCheckConnectionInvitationAcceptedUseCase {
     return _ariesConnectionRepository
         .checkConnectionInvitation(connectionHandle, isToDeleteHandle)
         .then((value) async {
-      var connectionData =
-          ConnectionData(value.pairwiseDid ?? "", value.connectionName ?? "");
+      var connectionData = ConnectionData(
+          pairwiseDid: value.pairwiseDid ?? "",
+          connectionName: value.connectionName ?? "");
 
       if (value.pairwiseDid?.isNotEmpty == true) {
         await _ariesConnectionRepository.saveConnectionData(connectionData);

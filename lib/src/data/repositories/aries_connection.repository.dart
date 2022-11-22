@@ -38,14 +38,17 @@ class AriesConnectionRepository implements IAriesConnectionRepository {
       String connectionUrl, String inviteId) {
     return _ariesConnectionDatasource
         .createConnection(connectionUrl, inviteId)
-        .then(
-            (value) => ConnectionData(value.pairwiseDid, value.connectionName));
+        .then((value) => ConnectionData(
+            pairwiseDid: value.pairwiseDid,
+            connectionName: value.connectionName));
   }
 
   @override
   Future<ConnectionData> getConnectionData() {
-    return _connectionDataStorageDatasource.get().then(
-        (value) => ConnectionData(value?.pairwiseDto, value?.connectionName));
+    return _connectionDataStorageDatasource.get().then((value) =>
+        ConnectionData(
+            pairwiseDid: value?.pairwiseDto,
+            connectionName: value?.connectionName));
   }
 
   @override

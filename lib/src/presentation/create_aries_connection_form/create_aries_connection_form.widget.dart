@@ -7,7 +7,17 @@ import 'package:flutter_vcx_demo/src/presentation/connection_invitation_screen/c
 import '../../domain/use_cases/retrieve_aries_connection_data.usecase.dart';
 
 class CreateAriesConnectionFormWidget extends StatefulWidget {
-  const CreateAriesConnectionFormWidget({Key? key}) : super(key: key);
+  CreateAriesConnectionFormWidget(
+      {Key? key, createAriesConnectionUsecse, connectionDataUsecase})
+      : _createAriesConnectionUsecse = createAriesConnectionUsecse ??
+            InviteeAcceptConnectionInvitationUseCase(),
+        _connectionDataUsecase =
+            connectionDataUsecase ?? RetrieveAriesConnectionDataUseCase(),
+        super(key: key);
+
+  late final InviteeAcceptConnectionInvitationUseCase
+      _createAriesConnectionUsecse;
+  late final RetrieveAriesConnectionDataUseCase _connectionDataUsecase;
 
   @override
   State<StatefulWidget> createState() => _CreateAriesConnectionFormWidget();
@@ -16,23 +26,15 @@ class CreateAriesConnectionFormWidget extends StatefulWidget {
 class _CreateAriesConnectionFormWidget
     extends State<CreateAriesConnectionFormWidget> {
   final TextEditingController _connectionUrlController =
-  TextEditingController();
+      TextEditingController();
   final List<Widget> _connections = [];
 
-  late final InviteeAcceptConnectionInvitationUseCase _createAriesConnectionUsecse;
-  late final RetrieveAriesConnectionDataUseCase _connectionDataUsecase;
-
-  _CreateAriesConnectionFormWidget(
-      {createAriesConnectionUsecse, connectionDataUsecase})
-      : _createAriesConnectionUsecse =
-      createAriesConnectionUsecse ?? InviteeAcceptConnectionInvitationUseCase(),
-        _connectionDataUsecase =
-            connectionDataUsecase ?? RetrieveAriesConnectionDataUseCase();
+  _CreateAriesConnectionFormWidget();
 
   @override
   void initState() {
     super.initState();
-    _connectionDataUsecase
+    widget._connectionDataUsecase
         .getConnectionData()
         .then((value) => _addConnnectionChipWidget(value));
   }
@@ -41,63 +43,60 @@ class _CreateAriesConnectionFormWidget
   Widget build(BuildContext context) {
     return Form(
         child: Wrap(
+      children: [
+        Row(
           children: [
-            Row(
-              children: [
-                Expanded(
-                    child: TextFormField(
-                      controller: _connectionUrlController,
-                      decoration:
-                      const InputDecoration(
-                          labelText: "Agent's connection URL"),
-                      keyboardType: TextInputType.text,
-                      onChanged: (value) {
-                        // _walletName = value;
-                      },
-                    )),
-                GestureDetector(
-                  child: IconButton(
-                    icon: const Icon(Icons.content_paste_go_rounded),
-                    onPressed: () {
-                      _pasteConnectionUrl();
-                    },
-                  ),
-                )
-              ],
-            ),
-            Row(
-              children: [
-                Expanded(
-                    child: ElevatedButton(
-                        onPressed: () {
-                          _createConnection(context);
-                        },
-                        child: const Text('Connect'))),
-                Container(width: 10.0),
-                Expanded(
-                    child: ElevatedButton(
-                        onPressed: () {
-                          Navigator.push(context, MaterialPageRoute(
-                              builder: (context) =>
-                                  ConnectionInvitationScreenWidget()));
-                        },
-                        child: const Text('Create Invitation')))
-              ],
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: const [
-                Expanded(
-                    child: Text(
-                        "Active Connections:", textAlign: TextAlign.start)),
-              ],
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: _connections,
+            Expanded(
+                child: TextFormField(
+              controller: _connectionUrlController,
+              decoration:
+                  const InputDecoration(labelText: "Agent's connection URL"),
+              keyboardType: TextInputType.text,
+            )),
+            GestureDetector(
+              child: IconButton(
+                icon: const Icon(Icons.content_paste_go_rounded),
+                onPressed: () {
+                  _pasteConnectionUrl();
+                },
+              ),
             )
           ],
-        ));
+        ),
+        Row(
+          children: [
+            Expanded(
+                child: ElevatedButton(
+                    onPressed: () {
+                      _createConnection(context);
+                    },
+                    child: const Text('Connect'))),
+            Container(width: 10.0),
+            Expanded(
+                child: ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) =>
+                                  ConnectionInvitationScreenWidget()));
+                    },
+                    child: const Text('Create Invitation')))
+          ],
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: const [
+            Expanded(
+                child: Text("Active Connections:", textAlign: TextAlign.start)),
+          ],
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: _connections,
+        )
+      ],
+    ));
   }
 
   void _pasteConnectionUrl() {
@@ -106,7 +105,7 @@ class _CreateAriesConnectionFormWidget
   }
 
   void _createConnection(BuildContext context) {
-    _createAriesConnectionUsecse
+    widget._createAriesConnectionUsecse
         .createConnection(connectionUrl: _connectionUrlController.text)
         .then((connectionData) {
       var success = connectionData.pairwiseDid != null &&

@@ -23,7 +23,12 @@ class VerifierRequestPresentProofUseCase {
         cancellables = Set()
     }
 
-    func sendRequest(pairwiseDid: String?) -> AnyPublisher<NativeToFlutterResponseDto, Error> {
+    func sendRequest(
+            sourceId: String?,
+            pairwiseDid: String?,
+            proofName: String?,
+            requestedAttributes: [RequestedProofAttribute]?
+    ) -> AnyPublisher<NativeToFlutterResponseDto, Error> {
         Deferred {
             Future { promise in
                 var connectionHandle: NSNumber = -1
@@ -36,7 +41,11 @@ class VerifierRequestPresentProofUseCase {
                         }
                         .flatMap({ _ in
                             self.proofRepository.verifierCreateProofRequest(
-                                    proofRequestData: self.buildProofRequest()
+                                    proofRequestData: self.buildProofRequest(
+                                            sourceId: sourceId!,
+                                            proofName: proofName!,
+                                            requestedAttributes: requestedAttributes!
+                                    )
                             )
                         })
                         .map { proHandle in
@@ -49,7 +58,7 @@ class VerifierRequestPresentProofUseCase {
                             )
                         })
                         .flatMap({ _ in
-                            AriesPoller(tryLimit: 100, interval: 5).tryUpdateState(
+                            AriesPoller(tryLimit: 100, interval: 10).tryUpdateState(
                                     method: {
                                         self.proofRepository.verifierUpdateProofState(
                                                 proofHandle: proofHandle,
@@ -89,38 +98,31 @@ class VerifierRequestPresentProofUseCase {
         )
     }
 
-    private func buildProofRequest() -> ProofRequestDto {
+    private func buildProofRequest(
+            sourceId: String,
+            proofName: String,
+            requestedAttributes: [RequestedProofAttribute]
+    ) -> ProofRequestDto {
         ProofRequestDto(
-                sourceId: "test",
-                attributes: [
+                sourceId: sourceId,
+                attributes: requestedAttributes.map { e -> ProofRequestedAttributeDto in
                     ProofRequestedAttributeDto(
                             restrictions: [
                                 ProofAttributeRestrictionDto(
-//                                        schemaId: "SVQyyeuVQHidY9SmNSS3Dc:2:cnh-schema:1.0"
-                                        schemaName: "cnh-schema",
-                                        schemaVersion: "1.0"
+                                        schemaName: e.schemaName,
+                                        schemaVersion: e.schemaVersion
                                 )
                             ],
-                            name: "cpf"
-                    ),
-                    ProofRequestedAttributeDto(
-                            restrictions: [
-                                ProofAttributeRestrictionDto(
-//                                        schemaId: "SVQyyeuVQHidY9SmNSS3Dc:2:rg-schema:1.0"
-                                        schemaName: "rg-schema",
-                                        schemaVersion: "1.0"
-                                )
-                            ],
-                            name: "naturalidade"
+                            name: e.name
                     )
-                ],
+                },
                 predicates: [/*ProofPredicateDto(
                         name: "registro_geral",
                         type: .GREATER,
                         value: 0,
                         restrictions: [ProofAttributeRestrictionDto(schemaId: "SVQyyeuVQHidY9SmNSS3Dc:2:rg-schema:1.0")]
                 )*/],
-                name: "cnh-proof",
+                name: proofName,
                 revocationInterval: ProofRequestRevocationIntervalDto(
                         to: (Date().timeIntervalSince1970 * 1000.0).rounded()
                 )

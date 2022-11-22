@@ -49,6 +49,7 @@
 		97C146FE1CF9000F007C117D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FD1CF9000F007C117D /* Assets.xcassets */; };
 		97C147011CF9000F007C117D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FF1CF9000F007C117D /* LaunchScreen.storyboard */; };
 		DCFB621DCB7A04538121BBD9 /* PresentedProofResponseDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCFB6AA415D72967645883F9 /* PresentedProofResponseDto.swift */; };
+		DCFB62E3EBAD61B0DCECEF71 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCFB62436088FAFAED10E7F7 /* String.swift */; };
 		DCFB6512B5B73AEBE028B86B /* HolderSelectCredentialsForProofUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCFB6E1A1D2A829F8832AB9A /* HolderSelectCredentialsForProofUseCase.swift */; };
 		DCFB6823A2500F177A60A194 /* VerifierRequestPresentProofUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCFB61AAAD08CDB306DB26E8 /* VerifierRequestPresentProofUseCase.swift */; };
 		DCFB6BFAAF899DE7EC138A3D /* ExtractProverPresentedProofDataUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCFB6653E3DE9D2F6BD58D7D /* ExtractProverPresentedProofDataUseCase.swift */; };
@@ -193,6 +194,7 @@
 		A8316A0C39F649B1EF323C69 /* Pods_Runner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Runner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		ABE75AD4BED9CC369ADF9455 /* Pods-Runner.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.debug.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.debug.xcconfig"; sourceTree = "<group>"; };
 		DCFB61AAAD08CDB306DB26E8 /* VerifierRequestPresentProofUseCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerifierRequestPresentProofUseCase.swift; sourceTree = "<group>"; };
+		DCFB62436088FAFAED10E7F7 /* String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		DCFB6653E3DE9D2F6BD58D7D /* ExtractProverPresentedProofDataUseCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtractProverPresentedProofDataUseCase.swift; sourceTree = "<group>"; };
 		DCFB6AA415D72967645883F9 /* PresentedProofResponseDto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresentedProofResponseDto.swift; sourceTree = "<group>"; };
 		DCFB6E1A1D2A829F8832AB9A /* HolderSelectCredentialsForProofUseCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HolderSelectCredentialsForProofUseCase.swift; sourceTree = "<group>"; };
@@ -353,6 +355,14 @@
 			path = Runner;
 			sourceTree = "<group>";
 		};
+		DCFB6A8B65B70A42DD18041C /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				DCFB62436088FAFAED10E7F7 /* String.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		E504562228B3CA0800284E5D /* Utils */ = {
 			isa = PBXGroup;
 			children = (
@@ -394,6 +404,7 @@
 			children = (
 				E546F21628A94A3100EB38AB /* Utils */,
 				E51DA9A628A85BA4004A43CC /* Errors */,
+				DCFB6A8B65B70A42DD18041C /* Extensions */,
 			);
 			path = Commons;
 			sourceTree = "<group>";
@@ -837,6 +848,7 @@
 				DCFB621DCB7A04538121BBD9 /* PresentedProofResponseDto.swift in Sources */,
 				DCFB6BFAAF899DE7EC138A3D /* ExtractProverPresentedProofDataUseCase.swift in Sources */,
 				DCFB6512B5B73AEBE028B86B /* HolderSelectCredentialsForProofUseCase.swift in Sources */,
+				DCFB62E3EBAD61B0DCECEF71 /* String.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

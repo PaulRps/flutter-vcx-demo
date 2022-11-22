@@ -5,32 +5,51 @@ import 'package:flutter_vcx_demo/src/domain/use_cases/shutdown_or_reset_aries_sd
 import '../../domain/entities/wallet_data.dart';
 import '../../domain/use_cases/start_aries_sdk_and_save_wallet_data.usecase.dart';
 
-class StartAriesSdkFormWidget extends StatelessWidget {
-  String? _walletKey;
-  String? _walletName;
-  bool _isSdkStarted = false;
+class StartAriesSdkFormWidget extends StatefulWidget {
+  StartAriesSdkFormWidget(
+      {Key? key,
+      startAriesSdkUseCase,
+      retrieveWalletDataUseCase,
+      shutdownOrResetAriesSdkUseCase})
+      : _startAriesSdkUseCase =
+            startAriesSdkUseCase ?? StartAriesSdkAndSaveWalletDataUseCase(),
+        _retrieveWalletDataUseCase =
+            retrieveWalletDataUseCase ?? RetrieveAriesWalletDataUseCase(),
+        _shutdownOrResetAriesSdkUseCase =
+            shutdownOrResetAriesSdkUseCase ?? ShutdownOrResetAriesSdkUseCase(),
+        super(key: key);
 
-  final StartAriesSdkAndSaveWalletDataUseCase _startAriesSdkUseCase =
-      StartAriesSdkAndSaveWalletDataUseCase();
-  final RetrieveAriesWalletDataUseCase _retrieveWalletDataUseCase =
-      RetrieveAriesWalletDataUseCase();
-  final ShutdownOrResetAriesSdkUseCase _shutdownOrResetAriesSdkUsecase =
-      ShutdownOrResetAriesSdkUseCase();
+  late final StartAriesSdkAndSaveWalletDataUseCase _startAriesSdkUseCase;
+
+  late final RetrieveAriesWalletDataUseCase _retrieveWalletDataUseCase;
+
+  late final ShutdownOrResetAriesSdkUseCase _shutdownOrResetAriesSdkUseCase;
 
   final TextEditingController _walletNameController = TextEditingController();
+
   final TextEditingController _walletKeyController = TextEditingController();
 
-  StartAriesSdkFormWidget({Key? key}) : super(key: key);
+  @override
+  State<StartAriesSdkFormWidget> createState() =>
+      _StartAriesSdkFormWidgetState();
+}
+
+class _StartAriesSdkFormWidgetState extends State<StartAriesSdkFormWidget> {
+  String? _walletKey;
+
+  String? _walletName;
+
+  bool _isSdkStarted = false;
 
   @override
   Widget build(BuildContext context) {
-    _retrieveWalletDataUseCase.retrieveWalletData().then((value) {
+    widget._retrieveWalletDataUseCase.retrieveWalletData().then((value) {
       if (value.key.isNotEmpty) {
-        _walletKeyController.text = _walletKey = value.key;
+        widget._walletKeyController.text = _walletKey = value.key;
       }
 
       if (value.name.isNotEmpty) {
-        _walletNameController.text = _walletName = value.name;
+        widget._walletNameController.text = _walletName = value.name;
       }
     });
     return Form(
@@ -47,7 +66,7 @@ class StartAriesSdkFormWidget extends StatelessWidget {
                     child: TextFormField(
                   decoration: const InputDecoration(labelText: 'Wallet name'),
                   maxLength: 25,
-                  controller: _walletNameController,
+                  controller: widget._walletNameController,
                   keyboardType: TextInputType.text,
                   onChanged: (value) {
                     _walletName = value;
@@ -59,7 +78,7 @@ class StartAriesSdkFormWidget extends StatelessWidget {
                   decoration: const InputDecoration(labelText: 'Wallet key'),
                   keyboardType: TextInputType.number,
                   maxLength: 8,
-                  controller: _walletKeyController,
+                  controller: widget._walletKeyController,
                   onChanged: (value) {
                     _walletKey = value;
                   },
@@ -108,7 +127,7 @@ class StartAriesSdkFormWidget extends StatelessWidget {
       return;
     }
 
-    _startAriesSdkUseCase
+    widget._startAriesSdkUseCase
         .startSdkAndSaveWalletData(WalletData(
             name: _walletName ?? "flutter_vcx_demo_wallet",
             key: _walletKey ?? ""))
@@ -117,7 +136,8 @@ class StartAriesSdkFormWidget extends StatelessWidget {
         SnackBar(content: Text('Finished Aries SDK start (success=$value)')),
       );
       _isSdkStarted = value;
-      _walletNameController.text = _walletName ?? "flutter_vcx_demo_wallet";
+      widget._walletNameController.text =
+          _walletName ?? "flutter_vcx_demo_wallet";
     }).catchError((error) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text('$error')),
@@ -133,7 +153,7 @@ class StartAriesSdkFormWidget extends StatelessWidget {
       return;
     }
 
-    _shutdownOrResetAriesSdkUsecase.shutdownSdk().then((value) {
+    widget._shutdownOrResetAriesSdkUseCase.shutdownSdk().then((value) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text('Finished Aries SDK shutdown (success=$value)')),
       );
@@ -153,7 +173,7 @@ class StartAriesSdkFormWidget extends StatelessWidget {
       return;
     }
 
-    _shutdownOrResetAriesSdkUsecase.resetSdk().then((wasReseted) {
+    widget._shutdownOrResetAriesSdkUseCase.resetSdk().then((wasReseted) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
             content: Text('Finished Aries SDK start (success=$wasReseted)')),
@@ -161,7 +181,8 @@ class StartAriesSdkFormWidget extends StatelessWidget {
       if (wasReseted) {
         _isSdkStarted = false;
         _walletName = _walletKey = null;
-        _walletKeyController.text = _walletNameController.text = "";
+        widget._walletKeyController.text =
+            widget._walletNameController.text = "";
       }
     }).catchError((error) {
       ScaffoldMessenger.of(context).showSnackBar(

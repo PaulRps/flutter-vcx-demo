@@ -40,6 +40,11 @@ class AriesProofRouter: Router {
                 pairwiseDid: input.pairwiseDid,
                 sourceId: input.sourceId
         )
-        routes["sendRequest"] = sendProofRequest.sendRequest(pairwiseDid: input.pairwiseDid)
+        routes["sendRequest"] = sendProofRequest.sendRequest(
+                sourceId: input.sourceId,
+                pairwiseDid: input.pairwiseDid,
+                proofName: input.proofName,
+                requestedAttributes: input.requestedAttributes
+        )
     }
 }
