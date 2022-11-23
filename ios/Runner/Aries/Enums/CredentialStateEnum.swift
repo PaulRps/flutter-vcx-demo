@@ -37,7 +37,7 @@ enum CredentialHolderStateEnum {
         }
     }
 
-    static func getOne(id: Int) -> CredentialHolderStateEnum {
+    static func getOne(id: UInt) -> CredentialHolderStateEnum {
         var value: CredentialHolderStateEnum {
             switch id {
             case 0: return .INITIAL

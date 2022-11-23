@@ -25,9 +25,9 @@ class AriesConnectionRepository {
 
     func connectionCreateWithInvite(
             invitation: ConnectionInvitationDto,
-            inviteId: String
+            sourceId: String
     ) -> Future<NSNumber, Error> {
-        connectionPort.connectionCreateWithInvite(inviteId: inviteId, invitation: invitation)
+        connectionPort.connectionCreateWithInvite(sourceId: sourceId, invitation: invitation)
     }
 
     func createConnection(withSourceId: String) -> Future<NSNumber, Error> {
@@ -131,5 +131,9 @@ class AriesConnectionRepository {
         tags.state = ConnectionStateEnum.FINISHED.value
         return connectionRecordRepository.save(value: serializedConnection, tag: tags)
     }
-    
+
+    func deleteAndReleaseConnection(connectionHandle: NSNumber) -> Future<Bool, Error> {
+        connectionPort.deleteAndReleaseConnectionFromAgency(connectionHandle: connectionHandle)
+    }
+
 }

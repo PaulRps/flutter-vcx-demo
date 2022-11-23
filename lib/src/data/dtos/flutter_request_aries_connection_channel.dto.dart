@@ -5,13 +5,13 @@ part 'flutter_request_aries_connection_channel.dto.g.dart';
 
 @JsonSerializable(explicitToJson: true)
 class FlutterRequestAriesConnectionChannelDto {
-  String? inviteId;
+  String? sourceId;
   AriesConnectionInvitationDto? invitation;
   String? connectionHandle;
   bool? isToDeleteHandle;
 
   FlutterRequestAriesConnectionChannelDto(
-      {this.inviteId, this.invitation, this.connectionHandle, this.isToDeleteHandle});
+      {this.sourceId, this.invitation, this.connectionHandle, this.isToDeleteHandle});
 
   factory FlutterRequestAriesConnectionChannelDto.fromJson(
           Map<String, dynamic> json) =>

@@ -10,9 +10,9 @@ import Combine
 
 protocol WalletManagerPort: CheckVcxResult {
     
-    func createWallet(config: LocalWalletConfigDto) -> Future<Int, Error>
+    func createWallet(config: LocalWalletConfigDto) -> Future<UInt, Error>
     
-    func openWallet(config: LocalWalletConfigDto) -> Future<Int, Error>
+    func openWallet(config: LocalWalletConfigDto) -> Future<UInt, Error>
     
     func closeWallet() -> Future<Bool, Error>
 }

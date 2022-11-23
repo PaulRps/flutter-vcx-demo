@@ -38,7 +38,7 @@ enum ConnectionStateEnum {
         }
     }
 
-    static func getOne(id: Int) -> ConnectionStateEnum {
+    static func getOne(id: UInt) -> ConnectionStateEnum {
         var value: ConnectionStateEnum {
             switch id {
             case 0: return .INITIALIZED

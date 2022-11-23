@@ -18,7 +18,7 @@ class AriesCredentialAdapter: CredentialPort, CheckVcxResult {
         Future { promise in
             self.logger.info(message: "getting credential offers")
             self.vcx.credentialGetOffers(
-                    connectionHandle.intValue
+                    connectionHandle.uintValue
             ) { error, offers in
                 if self.isFail(error) {
                     self.logger.error(message: "error on getting aries credential offer: \(error!.localizedDescription)")
@@ -56,9 +56,9 @@ class AriesCredentialAdapter: CredentialPort, CheckVcxResult {
         Future { promise in
             self.logger.info(message: "sending credential request")
             self.vcx.credentialSendRequest(
-                    credentialHandle.intValue,
-                    connectionHandle: connectionHandle.intValue,
-                    paymentHandle: paymentHandle.intValue
+                    credentialHandle.uintValue,
+                    connectionHandle: connectionHandle.uintValue,
+                    paymentHandle: paymentHandle.uintValue
             ) { error in
                 if self.isFail(error) {
                     self.logger.error(message: "error on sending credential request: \(error!.localizedDescription)")
@@ -75,7 +75,7 @@ class AriesCredentialAdapter: CredentialPort, CheckVcxResult {
 
     func getSerializedCredential(credentialHandle: NSNumber) -> Future<String, Error> {
         Future { promise in
-            self.vcx.credentialSerialize(credentialHandle.intValue) { error, credentialJson in
+            self.vcx.credentialSerialize(credentialHandle.uintValue) { error, credentialJson in
                 if self.isFail(error) {
                     self.logger.error(message: "error on getting serialized credential: \(error!.localizedDescription)")
                     promise(.failure(error!))
@@ -95,7 +95,7 @@ class AriesCredentialAdapter: CredentialPort, CheckVcxResult {
         }
 
         logger.info(message: "releasing credential handle")
-        return vcx.credentialRelease(handle!.intValue) as NSNumber
+        return vcx.credentialRelease(handle!.uintValue) as NSNumber
     }
 
     func updateState(
@@ -104,8 +104,8 @@ class AriesCredentialAdapter: CredentialPort, CheckVcxResult {
     ) -> Future<AriesFinishedState, Error> {
         Future { promise in
             self.vcx.credentialUpdateStateV2(
-                    credentialHandle.intValue,
-                    connectionHandle: connectionHandle.intValue
+                    credentialHandle.uintValue,
+                    connectionHandle: connectionHandle.uintValue
             ) { error, state in
                 if self.isFail(error) {
                     self.logger.error(message: "error on updating credential state: \(error!.localizedDescription)")

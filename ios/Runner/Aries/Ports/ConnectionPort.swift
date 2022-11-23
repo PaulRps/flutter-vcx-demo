@@ -21,7 +21,7 @@ protocol ConnectionPort {
     func releaseHandle(handle: NSNumber?) -> NSNumber
 
     func connectionCreateWithInvite(
-            inviteId: String,
+            sourceId: String,
             invitation: ConnectionInvitationDto
     ) -> Future<NSNumber, Error>
 
@@ -33,4 +33,6 @@ protocol ConnectionPort {
     ) -> Future<String, Error>
 
     func inviteDetails(connectionHandle: NSNumber) -> Future<String, Error>
+
+    func deleteAndReleaseConnectionFromAgency(connectionHandle: NSNumber) -> Future<Bool, Error>
 }

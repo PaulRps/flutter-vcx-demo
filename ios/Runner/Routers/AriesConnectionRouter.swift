@@ -38,7 +38,7 @@ class AriesConnectionRouter: Router {
 
         routes["create"] = createOrRecreateConnection.connect(
                 invitation: input.invitation,
-                inviteId: input.inviteId
+                sourceId: input.sourceId
         )
         routes["invitation"] = createConnectionInvitation.createInvitation()
         routes["checkInvitation"] = checkConnectionInvitationAccepted.checkAndSaveConnection(

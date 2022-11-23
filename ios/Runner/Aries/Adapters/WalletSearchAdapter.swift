@@ -24,7 +24,7 @@ class WalletSearchAdapter: WalletSearchPort, CheckVcxResult {
             count: NSInteger = 100
     ) -> Future<SearchWalletResponseDto, Error> {
         Future { promise in
-            var searchHandle = 0
+            var searchHandle: NSNumber = 0
             var queryResult = SearchWalletResponseDto()
 
             self.logger.info(message: "searching record in wallet with query \(query.toJson())")
@@ -57,8 +57,8 @@ class WalletSearchAdapter: WalletSearchPort, CheckVcxResult {
         }
     }
 
-    private func openSearch(query: WalletQueryDto) -> Future<NSInteger, Error> {
-        Future { promise in
+    private func openSearch(query: WalletQueryDto) -> Future<NSNumber, Error> {
+        Future({ promise in
             self.logger.info(message: "opening search in wallet")
             self.vcx.openSearchWallet(
                     query.type!,
@@ -72,16 +72,16 @@ class WalletSearchAdapter: WalletSearchPort, CheckVcxResult {
                         }
 
                         self.logger.info(message: "opened search in wallet successfully")
-                        promise(.success(handle))
+                        promise(.success(NSNumber(value: handle)))
                     })
-        }
+        })
     }
 
-    private func searchNextRecords(searchHandle: NSInteger, count: NSInteger) -> Future<SearchWalletResponseDto, Error> {
+    private func searchNextRecords(searchHandle: NSNumber, count: NSInteger) -> Future<SearchWalletResponseDto, Error> {
         Future { promise in
             self.logger.info(message: "searching next \(count) records in wallet")
             self.vcx.searchNextRecordsWallet(
-                    searchHandle,
+                    searchHandle.uintValue,
                     count: Int32(count),
                     completion: { error, recordsJson in
                         if self.isFail(error) {
@@ -98,10 +98,10 @@ class WalletSearchAdapter: WalletSearchPort, CheckVcxResult {
         }
     }
 
-    private func closeSearch(searchHandle: NSInteger) -> Future<Bool, Error> {
+    private func closeSearch(searchHandle: NSNumber) -> Future<Bool, Error> {
         Future { promise in
             self.logger.info(message: "closing search in wallet")
-            self.vcx.closeSearchWallet(searchHandle, completion: { error in
+            self.vcx.closeSearchWallet(searchHandle.uintValue, completion: { error in
                 if self.isFail(error) {
                     self.logger.error(message: "error on closing search in wallet: \(error!.localizedDescription)")
                     promise(.failure(error!))

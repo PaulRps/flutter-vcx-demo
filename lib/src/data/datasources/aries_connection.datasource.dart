@@ -7,7 +7,7 @@ import '../services/aries_connection_url_parser.service.dart';
 
 abstract class IAriesConnectionDatasource {
   Future<AriesCreateConnectionResponseDto> createConnection(
-      String connectionUrl, String inviteId);
+      String connectionUrl, String sourceId);
 
   Future<AriesConnectionInvitationResponseDto> createConnectionInvitation();
 
@@ -28,8 +28,8 @@ class AriesConnectionDatasource implements IAriesConnectionDatasource {
 
   @override
   Future<AriesCreateConnectionResponseDto> createConnection(
-      String connectionUrl, String inviteId) {
-    if (inviteId.isEmpty) return Future.error("connection id is required");
+      String connectionUrl, String sourceId) {
+    if (sourceId.isEmpty) return Future.error("connection id is required");
 
     if (connectionUrl.isEmpty)
       return Future.error("connection url is required");
@@ -38,7 +38,7 @@ class AriesConnectionDatasource implements IAriesConnectionDatasource {
     if (invitation == null) return Future.error("connection url is invalid");
 
     var dto = FlutterRequestAriesConnectionChannelDto(
-        invitation: invitation, inviteId: inviteId);
+        invitation: invitation, sourceId: sourceId);
 
     return _ariesConnectionService
         .createConnection(dto)

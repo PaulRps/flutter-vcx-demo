@@ -11,7 +11,7 @@ import Combine
 class InviteeConnectOrReconnectWithInvitationUseCase {
     private final let logger = CustomLogger(context: InviteeConnectOrReconnectWithInvitationUseCase.self)
     private final let connectionRepository: AriesConnectionRepository
-    private final let createariesConnectionUsecase: HolderCreateConnectionWithInviteUseCase
+    private final let createAriesConnectionUsecase: InviteeCreateConnectionWithInviteUseCase
     private final var cancellables: Set<AnyCancellable>
 
     init(
@@ -19,10 +19,10 @@ class InviteeConnectOrReconnectWithInvitationUseCase {
     ) {
         cancellables = Set()
         self.connectionRepository = connectionRepository
-        createariesConnectionUsecase = HolderCreateConnectionWithInviteUseCase(connectionRepository: connectionRepository)
+        createAriesConnectionUsecase = InviteeCreateConnectionWithInviteUseCase(connectionRepository: connectionRepository)
     }
 
-    func connect(invitation: ConnectionInvitationDto?, inviteId: String?) -> AnyPublisher<NativeToFlutterResponseDto, Error> {
+    func connect(invitation: ConnectionInvitationDto?, sourceId: String?) -> AnyPublisher<NativeToFlutterResponseDto, Error> {
         Deferred {
             Future { promise in
                 self.logger.info(message: "checking if aries connection with \(invitation?.label) exists")
@@ -32,10 +32,10 @@ class InviteeConnectOrReconnectWithInvitationUseCase {
                         }
                         .flatMap({ (record: SearchRecordDto?) -> Future<String, Error> in
                             self.isReconnection(record) ?
-                                    self.reconnect(invitation!, inviteId!, record!.id!) :
-                                    self.createariesConnectionUsecase.connect(
+                                    self.reconnect(invitation!, sourceId!, record!) :
+                                    self.createAriesConnectionUsecase.connect(
                                             invitation: invitation!,
-                                            inviteId: inviteId!
+                                            sourceId: sourceId!
                                     )
                         })
                         .flatMap({ connectionJson in
@@ -73,15 +73,24 @@ class InviteeConnectOrReconnectWithInvitationUseCase {
 
     private func reconnect(
             _ invitation: ConnectionInvitationDto,
-            _ inviteId: String,
-            _ connectionId: String
+            _ sourceId: String,
+            _ record: SearchRecordDto
     ) -> Future<String, Error> {
         Future { promise in
-            self.connectionRepository.deleteConnection(id: connectionId).map { _ in
-                        self.logger.info(message: "deleted previous aries connection")
-                    }
+            var connectionHandle: NSNumber = -1
+            self.connectionRepository.getConnectionHandle(serializedConnection: record.value!)
+                    .map { connHandle in
+                        connectionHandle = connHandle
+                    }.flatMap({ _ in
+                        self.connectionRepository.deleteAndReleaseConnection(connectionHandle: connectionHandle)
+                    })
+                    .flatMap({ _ in
+                        self.connectionRepository.deleteConnection(id: record.id!).map { _ in
+                            self.logger.info(message: "deleted previous aries connection")
+                        }
+                    })
                     .flatMap({
-                        self.createariesConnectionUsecase.connect(invitation: invitation, inviteId: inviteId)
+                        self.createAriesConnectionUsecase.connect(invitation: invitation, sourceId: sourceId)
                     })
                     .sink(receiveCompletion: { completion in
                         switch completion {

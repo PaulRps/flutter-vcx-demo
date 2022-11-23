@@ -8,7 +8,7 @@ import '../dtos/connection_data.dto.dart';
 
 abstract class IAriesConnectionRepository {
   Future<ConnectionData> createConnection(
-      String connectionUrl, String inviteId);
+      String connectionUrl, String sourceId);
 
   Future<AriesConnectionInvitationResponseDto> createConnectionInvitation();
 
@@ -35,9 +35,9 @@ class AriesConnectionRepository implements IAriesConnectionRepository {
 
   @override
   Future<ConnectionData> createConnection(
-      String connectionUrl, String inviteId) {
+      String connectionUrl, String sourceId) {
     return _ariesConnectionDatasource
-        .createConnection(connectionUrl, inviteId)
+        .createConnection(connectionUrl, sourceId)
         .then((value) => ConnectionData(
             pairwiseDid: value.pairwiseDid,
             connectionName: value.connectionName));

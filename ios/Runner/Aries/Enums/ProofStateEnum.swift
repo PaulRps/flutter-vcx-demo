@@ -40,7 +40,7 @@ enum ProofProverStateEnum {
         }
     }
 
-    static func getOne(id: Int) -> ProofProverStateEnum {
+    static func getOne(id: UInt) -> ProofProverStateEnum {
         var value: ProofProverStateEnum {
             switch id {
             case 0: return .INITIAL
@@ -78,7 +78,7 @@ enum ProofVerifierStateEnum {
         }
     }
 
-    static func getOne(id: Int) -> ProofVerifierStateEnum {
+    static func getOne(id: UInt) -> ProofVerifierStateEnum {
         var value: ProofVerifierStateEnum {
             switch id {
             case 0: return .INITIALIZED

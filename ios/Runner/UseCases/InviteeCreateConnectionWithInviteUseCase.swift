@@ -8,9 +8,9 @@
 import Foundation
 import Combine
 
-class HolderCreateConnectionWithInviteUseCase {
+class InviteeCreateConnectionWithInviteUseCase {
     private final let connectionRepository: AriesConnectionRepository
-    private final let logger = CustomLogger(context: HolderCreateConnectionWithInviteUseCase.self)
+    private final let logger = CustomLogger(context: InviteeCreateConnectionWithInviteUseCase.self)
     private final var cancellables: Set<AnyCancellable>
 
     init(
@@ -20,14 +20,14 @@ class HolderCreateConnectionWithInviteUseCase {
         cancellables = Set()
     }
 
-    func connect(invitation: ConnectionInvitationDto, inviteId: String) -> Future<String, Error> {
+    func connect(invitation: ConnectionInvitationDto, sourceId: String) -> Future<String, Error> {
         Future { promise in
             self.logger.info(message: "creating aries connection")
             var connectionHandle: NSNumber = 0
             var serializedConnection = ""
             self.connectionRepository.connectionCreateWithInvite(
                             invitation: invitation,
-                            inviteId: inviteId
+                            sourceId: sourceId
                     ).map { handle in
                         connectionHandle = handle
                     }
