@@ -1,14 +1,22 @@
 import 'package:flutter/material.dart';
 
 class ProofAttributeFormFieldWidget extends StatefulWidget {
-  ProofAttributeFormFieldWidget({Key? key}) : super(key: key);
+  ProofAttributeFormFieldWidget({Key? key})
+      : _state = _ProofAttributeFormFieldWidgetState(),
+        super(key: key);
 
-  String? currentSchema;
-  String? currentAttribute;
+  final _ProofAttributeFormFieldWidgetState _state;
 
   @override
-  State<ProofAttributeFormFieldWidget> createState() =>
-      _ProofAttributeFormFieldWidgetState();
+  State<ProofAttributeFormFieldWidget> createState() => _state;
+
+  String? get currentSchema {
+    return _state._currentSchema;
+  }
+
+  String? get currentAttribute {
+    return _state._currentAttribute;
+  }
 }
 
 const List<String?> schemas = [null, "cnh-schema:1.0", "rg-schema:1.0"];
@@ -52,9 +60,11 @@ const Map<String, List<String>> schemaAttributesMap = {
 class _ProofAttributeFormFieldWidgetState
     extends State<ProofAttributeFormFieldWidget> {
   List<DropdownMenuItem<String>> _attributesMenuItem = [];
+  String? _currentSchema;
+  String? _currentAttribute;
 
   @override
-  void initState() => widget.currentSchema = schemas.first;
+  void initState() => _currentSchema = schemas.first;
 
   @override
   Widget build(BuildContext context) {
@@ -62,20 +72,20 @@ class _ProofAttributeFormFieldWidgetState
       children: [
         Expanded(
             child: DropdownButtonFormField<String?>(
-                value: widget.currentSchema,
+                value: _currentSchema,
                 onChanged: (String? newValue) {
                   setState(() {
-                    widget.currentSchema = newValue;
-                    if (widget.currentSchema != null) {
+                    _currentSchema = newValue;
+                    if (_currentSchema != null) {
                       _attributesMenuItem =
-                          schemaAttributesMap[widget.currentSchema!]!
+                          schemaAttributesMap[_currentSchema!]!
                               .map<DropdownMenuItem<String>>((String value) {
                         return DropdownMenuItem<String>(
                           value: value,
                           child: Text(value),
                         );
                       }).toList();
-                      widget.currentAttribute = _attributesMenuItem.first.value;
+                      _currentAttribute = _attributesMenuItem.first.value;
                     }
                   });
                 },
@@ -83,10 +93,10 @@ class _ProofAttributeFormFieldWidgetState
         Container(width: 10.0),
         Expanded(
             child: DropdownButtonFormField<String?>(
-                value: widget.currentAttribute,
+                value: _currentAttribute,
                 onChanged: (String? newValue) {
                   setState(() {
-                    widget.currentAttribute = newValue;
+                    _currentAttribute = newValue;
                   });
                 },
                 items: _attributesMenuItem))

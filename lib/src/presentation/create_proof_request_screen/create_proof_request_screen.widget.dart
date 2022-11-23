@@ -119,7 +119,7 @@ class _CreateProofRequestScreen extends State<CreateProofRequestScreenWidget> {
               )),
         ),
         onWillPop: () {
-          _waitProof?.close();
+          _stopProgressIndicator();
           return Future.value(true);
         });
   }
@@ -132,7 +132,7 @@ class _CreateProofRequestScreen extends State<CreateProofRequestScreenWidget> {
     var requestedAttributes = _mapRequestedAttributes();
     var connectionData = _filterConnection();
 
-    _setProgressIndicator();
+    _startProgressIndicator();
 
     widget._sendProofRequest
         .sendRequest(
@@ -140,10 +140,10 @@ class _CreateProofRequestScreen extends State<CreateProofRequestScreenWidget> {
             pairwiseDid: connectionData.pairwiseDid,
             requestedAttributes: requestedAttributes)
         .then((value) {
-      _waitProof?.close();
-      _showProofDataDialog(value);
+      _stopProgressIndicator();
+      _showProofDataDialog(context, value);
     }).catchError((error, stack) {
-      _waitProof?.close();
+      _stopProgressIndicator();
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text('$error')),
       );
@@ -160,8 +160,8 @@ class _CreateProofRequestScreen extends State<CreateProofRequestScreenWidget> {
         .where((e) =>
             e.currentAttribute == null ||
             e.currentAttribute?.isEmpty == true ||
-                e.currentSchema == null ||
-                e.currentSchema?.isEmpty == true)
+            e.currentSchema == null ||
+            e.currentSchema?.isEmpty == true)
         .toList();
 
     if (invalidAttributes.isNotEmpty || _attributeFormFields.isEmpty) {
@@ -181,7 +181,7 @@ class _CreateProofRequestScreen extends State<CreateProofRequestScreenWidget> {
     return true;
   }
 
-  void _setProgressIndicator() {
+  void _startProgressIndicator() {
     _waitProof = ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
           duration: const Duration(hours: 1),
@@ -192,6 +192,12 @@ class _CreateProofRequestScreen extends State<CreateProofRequestScreenWidget> {
             ],
           )),
     );
+  }
+
+  void _stopProgressIndicator() {
+    try {
+      _waitProof?.close();
+    } catch (e) {}
   }
 
   ConnectionData _filterConnection() {
@@ -215,7 +221,8 @@ class _CreateProofRequestScreen extends State<CreateProofRequestScreenWidget> {
     }).toList();
   }
 
-  Future<void> _showProofDataDialog(AriesSendProofResponseDto data) {
+  Future<void> _showProofDataDialog(
+      BuildContext context, AriesSendProofResponseDto data) {
     List<Widget> proofData = [];
 
     if (data.revealedAttributes?.isNotEmpty == true) {
