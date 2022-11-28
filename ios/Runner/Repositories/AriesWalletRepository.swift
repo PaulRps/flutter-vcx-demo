@@ -18,11 +18,11 @@ class AriesWalletRepository {
         self.walletManager = walletManager
     }
     
-    func createWallet(config: LocalWalletConfigDto) -> Future<UInt, Error> {
+    func createWallet(config: LocalWalletConfigDto) -> Future<Int, Error> {
         walletManager.createWallet(config: config)
     }
     
-    func openWallet(config: LocalWalletConfigDto) -> Future<UInt, Error> {
+    func openWallet(config: LocalWalletConfigDto) -> Future<Int, Error> {
         walletManager.openWallet(config: config)
     }
     

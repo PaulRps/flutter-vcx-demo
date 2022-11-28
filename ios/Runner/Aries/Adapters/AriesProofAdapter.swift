@@ -19,7 +19,7 @@ class AriesProofAdapter: ProofPort, CheckVcxResult {
         Future { promise in
             self.logger.info(message: "getting aries proof requests")
             self.vcx.proofGetRequests(
-                    connectionHandle.uintValue
+                    connectionHandle
             ) { error, requestsJson in
                 if self.isFail(error) {
                     self.logger.error(message: "error on getting proof requests: \(error!.localizedDescription)")
@@ -50,7 +50,7 @@ class AriesProofAdapter: ProofPort, CheckVcxResult {
                 self.logger.info(message: "created proof with request successfully")
                 self.logger.debug(message: "proof handle: \(proofHandle)")
 
-                promise(.success(proofHandle as NSNumber))
+                promise(.success(proofHandle!))
             }
         }
     }
@@ -59,7 +59,7 @@ class AriesProofAdapter: ProofPort, CheckVcxResult {
         Future { promise in
             self.logger.info(message: "getting aries credentials for proof")
             self.vcx.proofRetrieveCredentials(
-                    proofHandle.uintValue
+                    proofHandle
             ) { error, matchingCredentials in
                 if self.isFail(error) {
                     self.logger.error(
@@ -83,7 +83,7 @@ class AriesProofAdapter: ProofPort, CheckVcxResult {
         Future { promise in
             self.logger.info(message: "generating aries proof")
             self.vcx.proofGenerate(
-                    proofHandle.uintValue,
+                    proofHandle,
                     withSelectedCredentials: selectedCredentials,
                     withSelfAttestedAttrs: selfAttestedAtt
             ) { error in
@@ -103,8 +103,8 @@ class AriesProofAdapter: ProofPort, CheckVcxResult {
         Future { promise in
             self.logger.info(message: "sending aries proof")
             self.vcx.proofSend(
-                    proofHandle.uintValue,
-                    withConnectionHandle: connectionHandle.uintValue
+                    proofHandle,
+                    withConnectionHandle: connectionHandle
             ) { error in
                 if self.isFail(error) {
                     self.logger.error(message: "error sending aries proof: \(error!.localizedDescription)")
@@ -124,15 +124,15 @@ class AriesProofAdapter: ProofPort, CheckVcxResult {
             return -1
         }
 
-        return vcx.proofRelease(proofHandle!.uintValue) as NSNumber
+        return NSNumber(value: vcx.proofRelease(proofHandle!))
     }
 
     func updateState(proofHandle: NSNumber, connectionHandle: NSNumber) -> Future<AriesFinishedState, Error> {
         Future { promise in
             self.logger.info(message: "updating aries proof state")
             self.vcx.proofUpdateStateV2(
-                    proofHandle.uintValue,
-                    connectionHandle: connectionHandle.uintValue
+                    proofHandle,
+                    connectionHandle: connectionHandle
             ) { error, state in
                 if self.isFail(error) {
                     self.logger.error(message: "error on updating aries proof state: \(error!.localizedDescription)")
@@ -140,7 +140,7 @@ class AriesProofAdapter: ProofPort, CheckVcxResult {
                     return
                 }
 
-                let proofState = ProofProverStateEnum.getOne(id: state)
+                let proofState = ProofProverStateEnum.getOne(id: state!.uintValue)
                 self.logger.info(message: "finished updated credential [current state=\(proofState)]")
 
                 promise(.success(AriesProofProverFinishedState(state: proofState)))
@@ -152,7 +152,7 @@ class AriesProofAdapter: ProofPort, CheckVcxResult {
         Future { promise in
             self.logger.info(message: "getting aries serialized proof")
             self.vcx.proofSerialize(
-                    proofHandle.uintValue
+                    proofHandle
             ) { error, proofJson in
                 if self.isFail(error) {
                     self.logger.error(message: "error on getting aries serialized proof:\(error!.localizedDescription)")
@@ -170,8 +170,8 @@ class AriesProofAdapter: ProofPort, CheckVcxResult {
         Future { promise in
             self.logger.info(message: "rejecting aries proof request")
             self.vcx.proofReject(
-                    proofHandle.uintValue,
-                    withConnectionHandle: connectionHandle.uintValue
+                    proofHandle,
+                    withConnectionHandle: connectionHandle
             ) { error in
                 if self.isFail(error) {
                     self.logger.error(message: "error on rejecting aries proof request:\(error!.localizedDescription)")
@@ -194,8 +194,8 @@ class AriesProofAdapter: ProofPort, CheckVcxResult {
             self.logger.info(message: "declining aries proof request")
             self.logger.info(message: "reason: \(reason) proposal: \(proposal)")
             self.vcx.proofDeclinePresentationRequest(
-                    proofHandle.uintValue,
-                    connectionHandle: connectionHandle.uintValue,
+                    proofHandle,
+                    connectionHandle: connectionHandle,
                     reason: reason,
                     proposal: proposal
             ) { error in
@@ -232,7 +232,7 @@ class AriesProofAdapter: ProofPort, CheckVcxResult {
                     return
                 }
                 self.logger.info(message: "created proof request successfully")
-                promise(.success(proofHandle as NSNumber))
+                promise(.success(proofHandle!))
             }
         }
 
@@ -241,8 +241,9 @@ class AriesProofAdapter: ProofPort, CheckVcxResult {
     func verifierSendProofRequest(proofHandle: NSNumber, connectionHandle: NSNumber) -> Future<Bool, Error> {
         Future { promise in
             self.vcx.verifierProofSendRequest(
-                    proofHandle.uintValue,
-                    connectionHandle: connectionHandle.uintValue) { error in
+                    proofHandle,
+                    connectionHandle: connectionHandle
+            ) { error in
                 if self.isFail(error) {
                     self.logger.error(message: "error on sending aries proof request:\(error!.localizedDescription)")
                     promise(.failure(error!))
@@ -258,8 +259,8 @@ class AriesProofAdapter: ProofPort, CheckVcxResult {
         Future { promise in
             self.logger.info(message: "verifier updating proof state")
             self.vcx.verifierProofUpdateStateV2(
-                    proofHandle.uintValue,
-                    connectionHandle: connectionHandle.uintValue
+                    proofHandle,
+                    connectionHandle: connectionHandle
             ) { error, state in
                 if self.isFail(error) {
                     self.logger.error(message: "error on updating aries proof request:\(error!.localizedDescription)")
@@ -267,7 +268,7 @@ class AriesProofAdapter: ProofPort, CheckVcxResult {
                     return
                 }
 
-                let proofState = ProofVerifierStateEnum.getOne(id: state)
+                let proofState = ProofVerifierStateEnum.getOne(id: state!.uintValue)
 
                 self.logger.info(message: "finished verifier updated proof state [current state=\(proofState)(id: \(state))]")
 
@@ -278,7 +279,7 @@ class AriesProofAdapter: ProofPort, CheckVcxResult {
 
     func verifierGetPresentedProofMessage(proofHandle: NSNumber) -> Future<(state: AriesFinishedState, msg: String), Error> {
         Future { promise in
-            self.vcx.verifierGetProofMessage(proofHandle.uintValue) { error, state, responseData in
+            self.vcx.verifierGetProofMessage(proofHandle) { error, state, responseData in
                 if self.isFail(error) {
                     self.logger.error(message: "error on getting aries proof message:\(error!.localizedDescription)")
                     promise(.failure(error!))
@@ -286,7 +287,7 @@ class AriesProofAdapter: ProofPort, CheckVcxResult {
                 }
 
                 let proofState = AriesProofVerifierFinishedState(
-                        state: ProofVerifierStateEnum.getOne(id: state)
+                        state: ProofVerifierStateEnum.getOne(id: state!.uintValue)
                 )
 
                 self.logger.info(message: "got proof message successfully")

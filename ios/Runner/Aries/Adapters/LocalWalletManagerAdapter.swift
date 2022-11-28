@@ -18,7 +18,7 @@ class LocalWalletManagerAdapter: WalletManagerPort {
         vcx = VcxAPI()
     }
 
-    func createWallet(config: LocalWalletConfigDto) -> Future<UInt, Error> {
+    func createWallet(config: LocalWalletConfigDto) -> Future<Int, Error> {
         Future { promise in
             self.logger.info(message: "creating and opening wallet with config: \(config.toJson())")
             self.vcx.createWallet(config.toJson(), completion: { error in
@@ -35,7 +35,7 @@ class LocalWalletManagerAdapter: WalletManagerPort {
         }
     }
 
-    func openWallet(config: LocalWalletConfigDto) -> Future<UInt, Error> {
+    func openWallet(config: LocalWalletConfigDto) -> Future<Int, Error> {
         Future { promise in
             self.logger.info(message: "opening wallet")
             self.logger.debug(message: "wallet config: \(config.toJson())")
@@ -49,7 +49,7 @@ class LocalWalletManagerAdapter: WalletManagerPort {
 
                 self.logger.info(message: "opened wallet successfully")
                 self.logger.debug(message: "wallet handle: \(handle)")
-                promise(.success(handle))
+                promise(.success(handle!.intValue))
             })
         }
     }

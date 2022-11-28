@@ -28,6 +28,7 @@ class _CreateConnectionInvitation
     extends State<ConnectionInvitationScreenWidget> {
   ConnectionInvitationData? _invitationData;
   ScaffoldFeatureController<SnackBar, SnackBarClosedReason>? _waitInvite;
+  Timer? _checkInviteTimer;
 
   @override
   void initState() {
@@ -51,6 +52,7 @@ class _CreateConnectionInvitation
     return WillPopScope(
         onWillPop: () {
           _waitInvite?.close();
+          _checkInviteTimer?.cancel();
           return Future.value(widget._checkConnectionInvitationAccepted
               .isInvitationAccepted(
                   connectionHandle: _invitationData!.connectionHandle,
@@ -79,7 +81,7 @@ class _CreateConnectionInvitation
             ],
           )),
     );
-    Timer.periodic(const Duration(seconds: 15), (timer) {
+    _checkInviteTimer = Timer.periodic(const Duration(seconds: 15), (timer) {
       widget._checkConnectionInvitationAccepted
           .isInvitationAccepted(
               connectionHandle: _invitationData!.connectionHandle,

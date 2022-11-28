@@ -72,7 +72,7 @@ class WalletSearchAdapter: WalletSearchPort, CheckVcxResult {
                         }
 
                         self.logger.info(message: "opened search in wallet successfully")
-                        promise(.success(NSNumber(value: handle)))
+                        promise(.success(handle!))
                     })
         })
     }
@@ -81,7 +81,7 @@ class WalletSearchAdapter: WalletSearchPort, CheckVcxResult {
         Future { promise in
             self.logger.info(message: "searching next \(count) records in wallet")
             self.vcx.searchNextRecordsWallet(
-                    searchHandle.uintValue,
+                    searchHandle,
                     count: Int32(count),
                     completion: { error, recordsJson in
                         if self.isFail(error) {
@@ -101,7 +101,7 @@ class WalletSearchAdapter: WalletSearchPort, CheckVcxResult {
     private func closeSearch(searchHandle: NSNumber) -> Future<Bool, Error> {
         Future { promise in
             self.logger.info(message: "closing search in wallet")
-            self.vcx.closeSearchWallet(searchHandle.uintValue, completion: { error in
+            self.vcx.closeSearchWallet(searchHandle, completion: { error in
                 if self.isFail(error) {
                     self.logger.error(message: "error on closing search in wallet: \(error!.localizedDescription)")
                     promise(.failure(error!))

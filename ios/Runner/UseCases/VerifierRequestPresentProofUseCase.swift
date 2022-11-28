@@ -33,7 +33,6 @@ class VerifierRequestPresentProofUseCase {
             Future { promise in
                 var connectionHandle: NSNumber = -1
                 var proofHandle: NSNumber = -1
-                var presentedProofMsg = ""
 
                 self.connectionRepository.getConnectionHandleByPwDid(pairwiseDid: pairwiseDid!)
                         .map { handle in

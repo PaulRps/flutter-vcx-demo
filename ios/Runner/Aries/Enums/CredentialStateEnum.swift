@@ -73,8 +73,8 @@ enum CredentialIssuerStateEnum {
             case 3: return .OFFER_SENT
             case 4: return .REQUEST_RECEIVED
             case 5: return .CREDENTIAL_SENT
-            case 5: return .FINISHED
-            case 5: return .FAILED
+            case 6: return .FINISHED
+            case 7: return .FAILED
             default: return .UNKNOWN
             }
         }

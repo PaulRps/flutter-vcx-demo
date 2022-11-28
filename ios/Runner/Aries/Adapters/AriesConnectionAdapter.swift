@@ -23,7 +23,7 @@ class AriesConnectionAdapter: ConnectionPort, CheckVcxResult {
         Future { promise in
             self.logger.info(message: "updating connection state")
             self.vcx.connectionUpdateState(
-                    connectionHandle.uintValue
+                    connectionHandle
             ) { error, state in
                 if self.isFail(error) {
                     self.logger.error(message: "error on updating connection state: \(error!.localizedDescription)")
@@ -31,7 +31,7 @@ class AriesConnectionAdapter: ConnectionPort, CheckVcxResult {
                     return
                 }
 
-                let connectionState = ConnectionStateEnum.getOne(id: state)
+                let connectionState = ConnectionStateEnum.getOne(id: state!.uintValue)
                 self.logger.info(message: "finished updated connection [current state=\(connectionState)(id: \(state))]")
 
                 promise(.success(AriesConnectionFinishedState(state: connectionState)))
@@ -42,7 +42,7 @@ class AriesConnectionAdapter: ConnectionPort, CheckVcxResult {
     func getSerializedConnection(connectionHandle: NSNumber) -> Future<String, Error> {
         Future { promise in
             self.logger.info(message: "getting serialized connection")
-            self.vcx.connectionSerialize(connectionHandle.uintValue) { error, connectionJson in
+            self.vcx.connectionSerialize(connectionHandle) { error, connectionJson in
                 if self.isFail(error) || connectionJson?.isEmpty == true {
                     self.logger.error(message: "error on getting serialized connection: \(error!.localizedDescription)")
                     promise(.failure(error!))
@@ -69,7 +69,7 @@ class AriesConnectionAdapter: ConnectionPort, CheckVcxResult {
                     return
                 }
                 self.logger.info(message: "got connection handle successfully")
-                promise(.success(handle as NSNumber))
+                promise(.success(handle!))
             }
         }
     }
@@ -80,7 +80,7 @@ class AriesConnectionAdapter: ConnectionPort, CheckVcxResult {
         }
 
         logger.info(message: "releasing connection handle")
-        return vcx.connectionRelease(handle!.uintValue) as NSNumber
+        return NSNumber(value: vcx.connectionRelease(handle!))
     }
 
     func connectionCreateWithInvite(
@@ -101,7 +101,7 @@ class AriesConnectionAdapter: ConnectionPort, CheckVcxResult {
                         }
                         self.logger.info(message: "finished create connection with invite successfully")
                         self.logger.debug(message: "created connection handle: \(handle)")
-                        promise(.success(handle as NSNumber))
+                        promise(.success(handle!))
                     })
         }
     }
@@ -115,7 +115,7 @@ class AriesConnectionAdapter: ConnectionPort, CheckVcxResult {
                     return
                 }
                 self.logger.info(message: "created connection with sourceId=\(sourceId) successfully")
-                promise(.success(connectionHandle as NSNumber))
+                promise(.success(connectionHandle!))
             }
         }
     }
@@ -127,7 +127,7 @@ class AriesConnectionAdapter: ConnectionPort, CheckVcxResult {
         Future { promise in
             self.logger.info(message: "starting aries connection connect \(connectionHandle)")
             self.vcx.connectionConnect(
-                    connectionHandle.uintValue,
+                    connectionHandle,
                     connectionType: connectionOptions.toJson()) { error, result in
                 if self.isFail(error) {
                     self.logger.error(message: "error on connection connect: \(error!.localizedDescription)")
@@ -142,7 +142,7 @@ class AriesConnectionAdapter: ConnectionPort, CheckVcxResult {
 
     func inviteDetails(connectionHandle: NSNumber) -> Future<String, Error> {
         Future { promise in
-            self.vcx.connectionInviteDetails(connectionHandle.uintValue) { error, inviteDetails in
+            self.vcx.connectionInviteDetails(connectionHandle) { error, inviteDetails in
                 if self.isFail(error) {
                     self.logger.error(message: "error on getting connection invitation details: \(error!.localizedDescription)")
                     promise(.failure(error!))
@@ -156,7 +156,7 @@ class AriesConnectionAdapter: ConnectionPort, CheckVcxResult {
 
     func getConnectionInfo(connectionHandle: NSNumber) -> Future<String, Error> {
         Future { promise in
-            self.vcx.connectionInfo(connectionHandle.uintValue) { error, info in
+            self.vcx.connectionInfo(connectionHandle) { error, info in
                 if self.isFail(error) {
                     self.logger.error(message: "error on getting connection info: \(error!.localizedDescription)")
                     promise(.failure(error!))
@@ -171,7 +171,7 @@ class AriesConnectionAdapter: ConnectionPort, CheckVcxResult {
     func deleteAndReleaseConnectionFromAgency(connectionHandle: NSNumber) -> Future<Bool, Error> {
         Future { promise in
             self.logger.info(message: "deleting connection from agency and release it")
-            self.vcx.deleteConnection(connectionHandle.uintValue) { error in
+            self.vcx.deleteConnection(connectionHandle) { error in
                 if self.isFail(error) {
                     self.logger.error(message: "error on deleting and release connection from agency: \(error!.localizedDescription)")
                     promise(.failure(error!))

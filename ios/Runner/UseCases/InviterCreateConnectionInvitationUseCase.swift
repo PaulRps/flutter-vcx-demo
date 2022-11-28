@@ -24,7 +24,6 @@ class InviterCreateConnectionInvitationUseCase {
         Deferred {
             Future({ promise in
                 var connectionHandle: NSNumber = -1
-                var proofHandle: NSNumber = -1
                 var invitation = ""
 
                 self.connectionRepository.createConnection(withSourceId: "test")
