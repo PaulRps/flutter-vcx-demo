@@ -64,7 +64,10 @@ class _ProofAttributeFormFieldWidgetState
   String? _currentAttribute;
 
   @override
-  void initState() => _currentSchema = schemas.first;
+  void initState() {
+    super.initState();
+    _currentSchema = schemas.first;
+  }
 
   @override
   Widget build(BuildContext context) {

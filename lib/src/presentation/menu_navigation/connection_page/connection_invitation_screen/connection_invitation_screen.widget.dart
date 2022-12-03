@@ -5,7 +5,7 @@ import 'package:flutter_vcx_demo/src/domain/entities/connection_invitation_data.
 import 'package:flutter_vcx_demo/src/domain/use_cases/inviter_create_connection_invitation.usecase.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
-import '../../domain/use_cases/inviter_check_connection_invitation_accepted.usecase.dart';
+import '../../../../domain/use_cases/inviter_check_connection_invitation_accepted.usecase.dart';
 
 class ConnectionInvitationScreenWidget extends StatefulWidget {
   late final InviterCreateConnectionInvitationUseCase _connectionInvitation;
@@ -27,17 +27,25 @@ class ConnectionInvitationScreenWidget extends StatefulWidget {
 class _CreateConnectionInvitation
     extends State<ConnectionInvitationScreenWidget> {
   ConnectionInvitationData? _invitationData;
-  ScaffoldFeatureController<SnackBar, SnackBarClosedReason>? _waitInvite;
+  ScaffoldFeatureController<SnackBar, SnackBarClosedReason>? _waitInviteSnackBar;
   Timer? _checkInviteTimer;
 
   @override
   void initState() {
+    super.initState();
     widget._connectionInvitation.createInvite().then((value) {
       setState(() {
         _invitationData = value;
       });
       if (value.connectionHandle.isNotEmpty) _startCheckInvitationAccepted();
     });
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _waitInviteSnackBar?.close();
+    _checkInviteTimer?.cancel();
   }
 
   @override
@@ -51,8 +59,6 @@ class _CreateConnectionInvitation
         : const CircularProgressIndicator();
     return WillPopScope(
         onWillPop: () {
-          _waitInvite?.close();
-          _checkInviteTimer?.cancel();
           return Future.value(widget._checkConnectionInvitationAccepted
               .isInvitationAccepted(
                   connectionHandle: _invitationData!.connectionHandle,
@@ -71,7 +77,7 @@ class _CreateConnectionInvitation
   }
 
   void _startCheckInvitationAccepted() {
-    _waitInvite = ScaffoldMessenger.of(context).showSnackBar(
+    _waitInviteSnackBar = ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
           duration: const Duration(hours: 1),
           content: Row(
@@ -90,7 +96,7 @@ class _CreateConnectionInvitation
         var wasAccepted = connectionData.pairwiseDid?.isNotEmpty == true;
 
         if (wasAccepted) {
-          _waitInvite?.close();
+          _waitInviteSnackBar?.close();
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(content: Text('Connection Created')),
           );

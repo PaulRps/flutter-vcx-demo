@@ -4,16 +4,16 @@ import 'package:flutter_vcx_demo/src/data/services/local_storage.service.dart';
 import '../dtos/connection_data.dto.dart';
 
 abstract class IConnectionDataStorageDatasource {
-  Future<void> save(ConnectionDataDto data);
+  Future<void> save(List<ConnectionDataDto> data);
 
-  Future<ConnectionDataDto?> get();
+  Future<List<ConnectionDataDto>> get();
 
   Future<bool> delete();
 }
 
 class ConnectionDataStorageDatasource
     implements IConnectionDataStorageDatasource {
-  final ILocalStorage<ConnectionDataDto> _localStorage;
+  final ILocalStorage<List<ConnectionDataDto>> _localStorage;
 
   ConnectionDataStorageDatasource({localStorage})
       : _localStorage = localStorage ?? ConnectionDataEncryptedLocalStorage();
@@ -24,12 +24,12 @@ class ConnectionDataStorageDatasource
   }
 
   @override
-  Future<ConnectionDataDto?> get() {
-    return _localStorage.get();
+  Future<List<ConnectionDataDto>> get() {
+    return _localStorage.get().then((value) => value ?? []);
   }
 
   @override
-  Future<void> save(ConnectionDataDto data) {
+  Future<void> save(List<ConnectionDataDto> data) {
     return _localStorage.save(data);
   }
 }

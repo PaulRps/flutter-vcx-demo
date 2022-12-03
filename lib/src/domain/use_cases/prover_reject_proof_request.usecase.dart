@@ -6,14 +6,17 @@ class ProverRejectProofRequestUseCase {
   late final AriesProofRepository _ariesProofRepository;
   late final AriesConnectionRepository _ariesConnectionRepository;
 
-  ProverRejectProofRequestUseCase({ariesProofRepository, ariesConnectionRepository})
+  ProverRejectProofRequestUseCase(
+      {ariesProofRepository, ariesConnectionRepository})
       : _ariesProofRepository =
             ariesConnectionRepository ?? AriesProofRepository(),
         _ariesConnectionRepository =
             ariesConnectionRepository ?? AriesConnectionRepository();
 
   Future<bool> reject() {
-    return _ariesConnectionRepository.getConnectionData().then((connection) {
+    return _ariesConnectionRepository.getConnectionsData().then((connections) {
+      var connection =
+          connections.firstWhere((e) => e.connectionName?.isNotEmpty == true);
       var dto = FlutterRequestAriesProofChannelDto(
           pairwiseDid: connection.pairwiseDid, sourceId: "flutterVcxDemo");
 

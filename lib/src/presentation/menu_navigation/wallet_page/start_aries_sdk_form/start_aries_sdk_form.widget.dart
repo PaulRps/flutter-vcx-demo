@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_vcx_demo/src/domain/use_cases/retrieve_aries_wallet_data.usecase.dart';
 import 'package:flutter_vcx_demo/src/domain/use_cases/shutdown_or_reset_aries_sdk.usercase.dart';
 
-import '../../domain/entities/wallet_data.dart';
-import '../../domain/use_cases/start_aries_sdk_and_save_wallet_data.usecase.dart';
+import '../../../../domain/entities/wallet_data.dart';
+import '../../../../domain/use_cases/start_aries_sdk_and_save_wallet_data.usecase.dart';
 
 class StartAriesSdkFormWidget extends StatefulWidget {
   StartAriesSdkFormWidget(

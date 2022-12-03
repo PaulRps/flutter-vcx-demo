@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_vcx_demo/src/domain/use_cases/prover_present_proof_request.usecase.dart';
 import 'package:flutter_vcx_demo/src/domain/use_cases/prover_reject_proof_request.usecase.dart';
-import 'package:flutter_vcx_demo/src/presentation/create_proof_request_screen/create_proof_request_screen.widget.dart';
 
 class ProofRequestFormWidget extends StatefulWidget {
   ProofRequestFormWidget(
@@ -41,22 +40,7 @@ class _PresentProofRequestFormWidget extends State<ProofRequestFormWidget> {
                 },
                 child: const Text('Reject Proof')),
           )
-        ]),
-        Row(
-          children: [
-            Expanded(
-              child: ElevatedButton(
-                  onPressed: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) =>
-                                CreateProofRequestScreenWidget()));
-                  },
-                  child: const Text('Create Proof Request')),
-            )
-          ],
-        )
+        ])
       ],
     ));
   }

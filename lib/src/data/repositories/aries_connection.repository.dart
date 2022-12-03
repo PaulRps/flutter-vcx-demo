@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter_vcx_demo/src/data/datasources/aries_connection.datasource.dart';
 import 'package:flutter_vcx_demo/src/data/datasources/connection_data_storage.datasource.dart';
 import 'package:flutter_vcx_demo/src/data/dtos/aries_connection_invitation_response.dto.dart';
@@ -17,7 +19,7 @@ abstract class IAriesConnectionRepository {
 
   Future<void> saveConnectionData(ConnectionData data);
 
-  Future<ConnectionData> getConnectionData();
+  Future<List<ConnectionData>> getConnectionsData();
 
   Future<bool> deleteConnectionData();
 }
@@ -44,17 +46,22 @@ class AriesConnectionRepository implements IAriesConnectionRepository {
   }
 
   @override
-  Future<ConnectionData> getConnectionData() {
-    return _connectionDataStorageDatasource.get().then((value) =>
-        ConnectionData(
-            pairwiseDid: value?.pairwiseDto,
-            connectionName: value?.connectionName));
+  Future<List<ConnectionData>> getConnectionsData() {
+    return _connectionDataStorageDatasource.get().then((value) => value
+        .map((e) => ConnectionData(
+            pairwiseDid: e.pairwiseDto, connectionName: e.connectionName))
+        .toList());
   }
 
   @override
   Future<void> saveConnectionData(ConnectionData data) {
-    return _connectionDataStorageDatasource
-        .save(ConnectionDataDto(data.pairwiseDid, data.connectionName));
+    return getConnectionsData().then((connections) {
+      connections.add(data);
+      var newConnections = connections
+          .map((e) => ConnectionDataDto(e.pairwiseDid, e.connectionName))
+          .toList();
+      _connectionDataStorageDatasource.save(newConnections);
+    });
   }
 
   @override

@@ -15,7 +15,9 @@ class HolderAcceptCredentialOfferUseCase {
             ariesConnectionRepository ?? AriesConnectionRepository();
 
   Future<CredentialData> acceptOffer() {
-    return _ariesConnectionRepository.getConnectionData().then((connection) {
+    return _ariesConnectionRepository.getConnectionsData().then((connections) {
+      var connection =
+          connections.firstWhere((e) => e.connectionName?.isNotEmpty == true);
       var dto = FlutterRequestAriesCredentialChannelDto(
           pairwiseDid: connection.pairwiseDid, sourceId: "flutterVcxDemo");
       return _ariesCredentialRepository

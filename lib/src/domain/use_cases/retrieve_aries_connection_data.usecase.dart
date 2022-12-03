@@ -9,7 +9,7 @@ class RetrieveAriesConnectionDataUseCase {
       : _ariesConnectionRepository =
       ariesConnectionRepository ?? AriesConnectionRepository();
 
-  Future<ConnectionData> getConnectionData() {
-    return _ariesConnectionRepository.getConnectionData();
+  Future<List<ConnectionData>> getConnectionsData() {
+    return _ariesConnectionRepository.getConnectionsData();
   }
 }
