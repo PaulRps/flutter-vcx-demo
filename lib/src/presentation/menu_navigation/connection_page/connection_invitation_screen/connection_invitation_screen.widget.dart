@@ -27,19 +27,9 @@ class ConnectionInvitationScreenWidget extends StatefulWidget {
 class _CreateConnectionInvitation
     extends State<ConnectionInvitationScreenWidget> {
   ConnectionInvitationData? _invitationData;
-  ScaffoldFeatureController<SnackBar, SnackBarClosedReason>? _waitInviteSnackBar;
+  ScaffoldFeatureController<SnackBar, SnackBarClosedReason>?
+      _waitInviteSnackBar;
   Timer? _checkInviteTimer;
-
-  @override
-  void initState() {
-    super.initState();
-    widget._connectionInvitation.createInvite().then((value) {
-      setState(() {
-        _invitationData = value;
-      });
-      if (value.connectionHandle.isNotEmpty) _startCheckInvitationAccepted();
-    });
-  }
 
   @override
   void dispose() {
@@ -50,13 +40,6 @@ class _CreateConnectionInvitation
 
   @override
   Widget build(BuildContext context) {
-    var widgt = _invitationData != null
-        ? QrImage(
-            data: _invitationData!.inviteUrl,
-            version: QrVersions.auto,
-            size: 300.0,
-          )
-        : const CircularProgressIndicator();
     return WillPopScope(
         onWillPop: () {
           return Future.value(widget._checkConnectionInvitationAccepted
@@ -71,39 +54,68 @@ class _CreateConnectionInvitation
           ),
           body: Column(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: [Center(child: widgt)],
+            children: [
+              FutureBuilder(
+                  builder: (ctx, snapshot) {
+                    Widget wdget = const CircularProgressIndicator();
+                    if (snapshot.hasError) {
+                      wdget = Text(
+                        'error ${snapshot.error} occurred on creating connection invitation',
+                        style: const TextStyle(fontSize: 18),
+                      );
+                    } else if (snapshot.hasData) {
+                      wdget = QrImage(
+                        data: (snapshot.data as ConnectionInvitationData)
+                            .inviteUrl,
+                        version: QrVersions.auto,
+                        size: 300.0,
+                      );
+                    }
+
+                    return Center(child: wdget);
+                  },
+                  future:
+                      widget._connectionInvitation.createInvite().then((value) {
+                    _startCheckInvitationAccepted(value);
+                    return value;
+                  }))
+            ],
           ),
         ));
   }
 
-  void _startCheckInvitationAccepted() {
-    _waitInviteSnackBar = ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-          duration: const Duration(hours: 1),
-          content: Row(
-            children: const <Widget>[
-              CircularProgressIndicator(),
-              Text("  Waiting the invite to be accepted...")
-            ],
-          )),
-    );
-    _checkInviteTimer = Timer.periodic(const Duration(seconds: 15), (timer) {
-      widget._checkConnectionInvitationAccepted
-          .isInvitationAccepted(
-              connectionHandle: _invitationData!.connectionHandle,
-              isToDeleteHandle: false)
-          .then((connectionData) {
-        var wasAccepted = connectionData.pairwiseDid?.isNotEmpty == true;
+  void _startCheckInvitationAccepted(ConnectionInvitationData data) {
+    _invitationData = data;
+    if (_invitationData!.connectionHandle.isNotEmpty) {
+      _waitInviteSnackBar = ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+            duration: const Duration(hours: 1),
+            content: Row(
+              children: const <Widget>[
+                CircularProgressIndicator(),
+                Text("  Waiting the invite to be accepted...")
+              ],
+            )),
+      );
 
-        if (wasAccepted) {
-          _waitInviteSnackBar?.close();
-          ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text('Connection Created')),
-          );
-          timer.cancel();
-          Navigator.pop(context);
-        }
+      _checkInviteTimer = Timer.periodic(const Duration(seconds: 15), (timer) {
+        widget._checkConnectionInvitationAccepted
+            .isInvitationAccepted(
+                connectionHandle: _invitationData!.connectionHandle,
+                isToDeleteHandle: false)
+            .then((connectionData) {
+          var wasAccepted = connectionData.pairwiseDid?.isNotEmpty == true;
+
+          if (wasAccepted) {
+            _waitInviteSnackBar?.close();
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(content: Text('Connection Created')),
+            );
+            timer.cancel();
+            Navigator.pop(context);
+          }
+        });
       });
-    });
+    }
   }
 }
