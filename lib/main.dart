@@ -1,5 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_vcx_demo/src/presentation/connections/connection_page.widget.dart';
+import 'package:flutter_vcx_demo/src/presentation/credentials/credential_page.widget.dart';
 import 'package:flutter_vcx_demo/src/presentation/menu_navigation/bottom_menu_navigation.widget.dart';
+import 'package:flutter_vcx_demo/src/presentation/menu_navigation/cubit/menu_navigation.cubit.dart';
+import 'package:flutter_vcx_demo/src/presentation/menu_navigation/cubit/menu_navigation.state.dart';
+import 'package:flutter_vcx_demo/src/presentation/proofs/proof_page.widget.dart';
+import 'package:flutter_vcx_demo/src/presentation/wallet/wallet_page.widget.dart';
 
 void main() {
   runApp(const MyApp());
@@ -15,7 +22,9 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(title: 'Flutter VCX Demo'),
+      home: BlocProvider(
+          create: (ctx) => MenuNavigationCubit(),
+          child: const MyHomePage(title: 'Flutter VCX Demo')),
     );
   }
 }
@@ -30,33 +39,36 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  Widget? _currentMenu;
-
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-        onTap: () {
-          FocusScopeNode currentFocus = FocusScope.of(context);
+      onTap: () {
+        FocusScopeNode currentFocus = FocusScope.of(context);
 
-          if (!currentFocus.hasPrimaryFocus) {
-            currentFocus.unfocus();
-          }
-        },
-        child: Scaffold(
-          appBar: AppBar(
-            title: Text(widget.title),
-          ),
-          body: SingleChildScrollView(
-            child: _currentMenu ?? Container(),
-          ),
-          bottomNavigationBar:
-              BottomMenuNavigationWidget(chosenMenuCb: _setCurrentMenu),
-        ));
-  }
+        if (!currentFocus.hasPrimaryFocus) {
+          currentFocus.unfocus();
+        }
+      },
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text(widget.title),
+        ),
+        body: SingleChildScrollView(
+          child: BlocBuilder<MenuNavigationCubit, MenuNavigationState>(
+              builder: (context, state) {
+            if (state is ConnectionMenuState) {
+              return ConnectionPageWidget();
+            } else if (state is CredentialMenuState) {
+              return CredentialPageWidget();
+            } else if (state is ProofMenuState) {
+              return const ProofPageWidget();
+            }
 
-  void _setCurrentMenu(Widget? menu) {
-    setState(() {
-      _currentMenu = menu;
-    });
+            return const WalletPageWidget();
+          }),
+        ),
+        bottomNavigationBar: const BottomMenuNavigationWidget(),
+      ),
+    );
   }
 }

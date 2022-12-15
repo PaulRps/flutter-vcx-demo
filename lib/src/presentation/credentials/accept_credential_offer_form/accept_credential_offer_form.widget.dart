@@ -6,9 +6,9 @@ class AcceptCredentialOfferFormWidget extends StatefulWidget {
 
   AcceptCredentialOfferFormWidget(
       {Key? key,
-      acceptCredentialOfferUsecase,
+      acceptCredentialOfferUseCase,
       getIssuedAriesCredentialsUseCase})
-      : _acceptCredentialOfferUseCase = acceptCredentialOfferUsecase ??
+      : _acceptCredentialOfferUseCase = acceptCredentialOfferUseCase ??
             HolderAcceptCredentialOfferUseCase(),
         super(key: key);
 

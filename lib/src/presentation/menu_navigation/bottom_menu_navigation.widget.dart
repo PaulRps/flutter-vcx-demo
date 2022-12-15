@@ -1,38 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_vcx_demo/src/presentation/menu_navigation/proof_page/proof_page.widget.dart';
-import 'package:flutter_vcx_demo/src/presentation/menu_navigation/wallet_page/wallet_page.widget.dart';
+import 'package:flutter_vcx_demo/src/commons/extensions/build_context.extension.dart';
 
-import 'connection_page/connection_page.widget.dart';
-import 'credential_page/credential_page.widget.dart';
+import 'cubit/menu_navigation.cubit.dart';
 
 class BottomMenuNavigationWidget extends StatefulWidget {
-  const BottomMenuNavigationWidget({Key? key, chosenMenuCb})
-      : _chosenMenuCb = chosenMenuCb,
-        super(key: key);
-
-  final Function(Widget?) _chosenMenuCb;
+  const BottomMenuNavigationWidget({Key? key}) : super(key: key);
 
   @override
   State<BottomMenuNavigationWidget> createState() =>
       _BottomMenuNavigationWidgetState();
 }
 
-Map<int, Widget> menuMap = {
-  0: const WalletPageWidget(),
-  1: ConnectionPageWidget(),
-  2: CredentialPageWidget(),
-  3: const ProofPageWidget()
-};
-
 class _BottomMenuNavigationWidgetState
     extends State<BottomMenuNavigationWidget> {
   int _selectedIndex = 0;
-
-  @override
-  void initState() {
-    super.initState();
-    Future.delayed(Duration.zero, () => _navigateToMenu(_selectedIndex));
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -40,9 +21,10 @@ class _BottomMenuNavigationWidgetState
       type: BottomNavigationBarType.fixed,
       currentIndex: _selectedIndex,
       onTap: (int index) {
+        // context.bloc<WalletPageCubit>().test();
+        context.bloc<MenuNavigationCubit>().navigateTo(index);
         setState(() {
           _selectedIndex = index;
-          _navigateToMenu(index);
         });
       },
       selectedFontSize: 14,
@@ -69,10 +51,5 @@ class _BottomMenuNavigationWidgetState
         ),
       ],
     );
-  }
-
-  void _navigateToMenu(int index) {
-    var menuItem = menuMap[index];
-    widget._chosenMenuCb.call(menuItem!);
   }
 }

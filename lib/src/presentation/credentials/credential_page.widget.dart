@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../../domain/entities/credential_data.dart';
-import '../../../domain/use_cases/holder_get_issued_credentials.usecase.dart';
+import '../../domain/entities/credential_data.dart';
+import '../../domain/use_cases/holder_get_issued_credentials.usecase.dart';
 import 'accept_credential_offer_form/accept_credential_offer_form.widget.dart';
 
 class CredentialPageWidget extends StatefulWidget {

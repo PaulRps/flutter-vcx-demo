@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../../domain/entities/connection_data.dart';
-import '../../../domain/use_cases/retrieve_aries_connection_data.usecase.dart';
+import '../../domain/entities/connection_data.dart';
+import '../../domain/use_cases/retrieve_aries_connection_data.usecase.dart';
 import 'connection_invitation_screen/connection_invitation_screen.widget.dart';
 import 'create_aries_connection_form/create_aries_connection_form.widget.dart';
 

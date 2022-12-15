@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_vcx_demo/src/data/dtos/aries_request_proof_attribute.dto.dart';
-import 'package:flutter_vcx_demo/src/presentation/menu_navigation/proof_page/create_proof_request_screen/proof_attribute_form_field.widget.dart';
+import 'package:flutter_vcx_demo/src/presentation/proofs/create_proof_request_screen/proof_attribute_form_field.widget.dart';
 
-import '../../../../data/dtos/aries_send_proof_response.dto.dart';
-import '../../../../domain/entities/connection_data.dart';
-import '../../../../domain/use_cases/retrieve_aries_connection_data.usecase.dart';
-import '../../../../domain/use_cases/verifier_send_proof_request.usecase.dart';
+import '../../../data/dtos/aries_send_proof_response.dto.dart';
+import '../../../domain/entities/connection_data.dart';
+import '../../../domain/use_cases/retrieve_aries_connection_data.usecase.dart';
+import '../../../domain/use_cases/verifier_send_proof_request.usecase.dart';
 
 class CreateProofRequestScreenWidget extends StatefulWidget {
   CreateProofRequestScreenWidget(

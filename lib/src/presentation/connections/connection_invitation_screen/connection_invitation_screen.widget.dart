@@ -5,7 +5,8 @@ import 'package:flutter_vcx_demo/src/domain/entities/connection_invitation_data.
 import 'package:flutter_vcx_demo/src/domain/use_cases/inviter_create_connection_invitation.usecase.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
-import '../../../../domain/use_cases/inviter_check_connection_invitation_accepted.usecase.dart';
+import '../../../domain/use_cases/inviter_check_connection_invitation_accepted.usecase.dart';
+
 
 class ConnectionInvitationScreenWidget extends StatefulWidget {
   late final InviterCreateConnectionInvitationUseCase _connectionInvitation;

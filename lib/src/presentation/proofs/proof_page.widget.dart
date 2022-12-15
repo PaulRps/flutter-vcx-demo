@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_vcx_demo/src/presentation/menu_navigation/proof_page/proof_request_form/proof_request_form.widget.dart';
+import 'package:flutter_vcx_demo/src/presentation/proofs/proof_request_form/proof_request_form.widget.dart';
 
 import 'create_proof_request_screen/create_proof_request_screen.widget.dart';
 
