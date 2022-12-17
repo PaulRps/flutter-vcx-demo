@@ -29,7 +29,7 @@ class WalletPageCubit extends Cubit<WalletPageState> {
     try {
       return _retrieveWalletDataUseCase.retrieveWalletData().then((value) {
         emit(RetrieveWalletDataState(
-            walletName: value.name, walletKey: value.key));
+            walletName: value.name, walletKey: value.key).copyWith());
         return value;
       }).catchError((error) {
         emit(WalletErrorState(errorMessage: error.toString()));

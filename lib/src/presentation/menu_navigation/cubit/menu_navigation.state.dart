@@ -1,72 +1,37 @@
-enum _MenuItem { wallet, connection, credential, proof }
+import 'package:freezed_annotation/freezed_annotation.dart';
+
+part 'menu_navigation.state.freezed.dart';
+
+enum MenuItem { wallet, connection, credential, proof }
 
 abstract class MenuNavigationState {
-  final _MenuItem menuItem;
+  final MenuItem menuItem;
 
   MenuNavigationState(this.menuItem);
-
 }
 
-class WalletMenuState extends MenuNavigationState {
-  WalletMenuState() : super(_MenuItem.wallet);
-
-  @override
-  bool operator ==(Object o) {
-    if (identical(this, o)) return true;
-
-    return o is WalletMenuState && o.menuItem == menuItem;
-  }
-
-  @override
-  int get hashCode {
-    return menuItem.hashCode;
-  }
+@freezed
+class WalletMenuState extends MenuNavigationState with _$WalletMenuState {
+  factory WalletMenuState({@Default(MenuItem.wallet) MenuItem menuItem}) =
+      _WalletMenuState;
 }
 
-class ConnectionMenuState extends MenuNavigationState {
-  ConnectionMenuState() : super(_MenuItem.connection);
-
-  @override
-  bool operator ==(Object o) {
-    if (identical(this, o)) return true;
-
-    return o is ConnectionMenuState && o.menuItem == menuItem;
-  }
-
-  @override
-  int get hashCode {
-    return menuItem.hashCode;
-  }
+@freezed
+class ConnectionMenuState extends MenuNavigationState
+    with _$ConnectionMenuState {
+  factory ConnectionMenuState(
+      {@Default(MenuItem.connection) MenuItem menuItem}) = _ConnectionMenuState;
 }
 
-class CredentialMenuState extends MenuNavigationState {
-  CredentialMenuState() : super(_MenuItem.credential);
+@freezed
+class CredentialMenuState extends MenuNavigationState with _$CredentialMenuState {
 
-  @override
-  bool operator ==(Object o) {
-    if (identical(this, o)) return true;
-
-    return o is CredentialMenuState && o.menuItem == menuItem;
-  }
-
-  @override
-  int get hashCode {
-    return menuItem.hashCode;
-  }
+  factory CredentialMenuState(
+      {@Default(MenuItem.credential) MenuItem menuItem}) = _CredentialMenuState;
 }
 
-class ProofMenuState extends MenuNavigationState {
-  ProofMenuState() : super(_MenuItem.proof);
-
-  @override
-  bool operator ==(Object o) {
-    if (identical(this, o)) return true;
-
-    return o is ProofMenuState && o.menuItem == menuItem;
-  }
-
-  @override
-  int get hashCode {
-    return menuItem.hashCode;
-  }
+@freezed
+class ProofMenuState extends MenuNavigationState with _$ProofMenuState {
+  factory ProofMenuState(
+      {@Default(MenuItem.proof) MenuItem menuItem}) = _ProofMenuState;
 }
