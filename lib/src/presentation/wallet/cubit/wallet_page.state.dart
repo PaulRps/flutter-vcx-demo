@@ -2,78 +2,46 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'wallet_page.state.freezed.dart';
 
-abstract class WalletPageState {
-  abstract final String? walletKey;
-
-  abstract final String? walletName;
-
-  abstract final bool isWalletOpened;
-}
-
 @freezed
-class WalletInitialState extends WalletPageState with _$WalletInitialState {
-  factory WalletInitialState(
-      {String? walletKey,
-      String? walletName,
-      @Default(false) bool isWalletOpened}) = _WalletInitialState;
-}
+abstract class WalletPageState with _$WalletPageState {
+  const factory WalletPageState.initial(
+      {@Default("") String walletKey,
+      @Default("") String walletName,
+      @Default(false) bool isWalletOpened}) = WalletInitial;
 
-@freezed
-class RetrieveWalletDataState extends WalletPageState
-    with _$RetrieveWalletDataState {
-  factory RetrieveWalletDataState(
-      {required String? walletKey,
-      required String? walletName,
-      @Default(false) bool isWalletOpened}) = _RetrieveWalletDataState;
-}
+  const factory WalletPageState.error(
+      {@Default("") String walletKey,
+      @Default("") String walletName,
+      @Default(false) bool isWalletOpened,
+      required String errorMessage}) = WalletError;
 
-@freezed
-class WalletErrorState extends WalletPageState with _$WalletErrorState {
-  factory WalletErrorState(
-      {String? walletKey,
-      String? walletName,
-      required String? errorMessage,
-      @Default(false) bool isWalletOpened}) = _WalletErrorState;
-}
+  const factory WalletPageState.retrievedWalletData(
+      {required String walletKey,
+      required String walletName,
+      @Default(false) bool isWalletOpened}) = RetrievedWalletData;
 
-@freezed
-class WalletAlreadyOpenedState extends WalletPageState
-    with _$WalletAlreadyOpenedState {
-  factory WalletAlreadyOpenedState(
-      {String? walletKey,
-      String? walletName,
-      @Default(true) bool isWalletOpened}) = _WalletAlreadyOpenedState;
-}
+  const factory WalletPageState.walletAlreadyOpened(
+      {required String walletKey,
+      required String walletName,
+      @Default(true) bool isWalletOpened}) = WalletAlreadyOpened;
 
-@freezed
-class WalletAreNotOpenedState extends WalletPageState
-    with _$WalletAreNotOpenedState {
-  factory WalletAreNotOpenedState(
-      {String? walletKey,
-      String? walletName,
-      @Default(false) bool isWalletOpened}) = _WalletAreNotOpenedState;
-}
+  const factory WalletPageState.walletAreNotOpened(
+      {@Default("") String walletKey,
+      @Default("") String walletName,
+      @Default(false) bool isWalletOpened}) = WalletAreNotOpened;
 
-@freezed
-class WalletOpenedState extends WalletPageState with _$WalletOpenedState {
-  factory WalletOpenedState(
-      {String? walletKey,
-      String? walletName,
-      @Default(true) bool isWalletOpened}) = _WalletOpenedState;
-}
+  const factory WalletPageState.walletOpened(
+      {@Default("") String walletKey,
+      @Default("") String walletName,
+      @Default(true) bool isWalletOpened}) = WalletOpened;
 
-@freezed
-class WalletClosedState extends WalletPageState with _$WalletClosedState {
-  factory WalletClosedState(
-      {String? walletKey,
-      String? walletName,
-      @Default(false) bool isWalletOpened}) = _WalletClosedState;
-}
+  const factory WalletPageState.walletClosed(
+      {@Default("") String walletKey,
+      @Default("") String walletName,
+      @Default(false) bool isWalletOpened}) = WalletClosed;
 
-@freezed
-class WalletDeletedState extends WalletPageState with _$WalletDeletedState {
-  factory WalletDeletedState(
-      {String? walletKey,
-      String? walletName,
-      @Default(false) bool isWalletOpened}) = _WalletDeletedState;
+  const factory WalletPageState.walletDeleted(
+      {@Default("") String walletKey,
+      @Default("") String walletName,
+      @Default(false) bool isWalletOpened}) = WalletDeleted;
 }

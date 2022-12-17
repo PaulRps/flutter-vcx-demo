@@ -15,27 +15,77 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-mixin _$WalletMenuState {
+mixin _$MenuNavigationState {
   MenuItem get menuItem => throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(MenuItem menuItem) wallet,
+    required TResult Function(MenuItem menuItem) connection,
+    required TResult Function(MenuItem menuItem) credential,
+    required TResult Function(MenuItem menuItem) proof,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(MenuItem menuItem)? wallet,
+    TResult? Function(MenuItem menuItem)? connection,
+    TResult? Function(MenuItem menuItem)? credential,
+    TResult? Function(MenuItem menuItem)? proof,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(MenuItem menuItem)? wallet,
+    TResult Function(MenuItem menuItem)? connection,
+    TResult Function(MenuItem menuItem)? credential,
+    TResult Function(MenuItem menuItem)? proof,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(WalletMenu value) wallet,
+    required TResult Function(ConnectionMenu value) connection,
+    required TResult Function(CredentialMenu value) credential,
+    required TResult Function(ProofMenu value) proof,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(WalletMenu value)? wallet,
+    TResult? Function(ConnectionMenu value)? connection,
+    TResult? Function(CredentialMenu value)? credential,
+    TResult? Function(ProofMenu value)? proof,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(WalletMenu value)? wallet,
+    TResult Function(ConnectionMenu value)? connection,
+    TResult Function(CredentialMenu value)? credential,
+    TResult Function(ProofMenu value)? proof,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $WalletMenuStateCopyWith<WalletMenuState> get copyWith =>
+  $MenuNavigationStateCopyWith<MenuNavigationState> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $WalletMenuStateCopyWith<$Res> {
-  factory $WalletMenuStateCopyWith(
-          WalletMenuState value, $Res Function(WalletMenuState) then) =
-      _$WalletMenuStateCopyWithImpl<$Res, WalletMenuState>;
+abstract class $MenuNavigationStateCopyWith<$Res> {
+  factory $MenuNavigationStateCopyWith(
+          MenuNavigationState value, $Res Function(MenuNavigationState) then) =
+      _$MenuNavigationStateCopyWithImpl<$Res, MenuNavigationState>;
   @useResult
   $Res call({MenuItem menuItem});
 }
 
 /// @nodoc
-class _$WalletMenuStateCopyWithImpl<$Res, $Val extends WalletMenuState>
-    implements $WalletMenuStateCopyWith<$Res> {
-  _$WalletMenuStateCopyWithImpl(this._value, this._then);
+class _$MenuNavigationStateCopyWithImpl<$Res, $Val extends MenuNavigationState>
+    implements $MenuNavigationStateCopyWith<$Res> {
+  _$MenuNavigationStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -57,22 +107,22 @@ class _$WalletMenuStateCopyWithImpl<$Res, $Val extends WalletMenuState>
 }
 
 /// @nodoc
-abstract class _$$_WalletMenuStateCopyWith<$Res>
-    implements $WalletMenuStateCopyWith<$Res> {
-  factory _$$_WalletMenuStateCopyWith(
-          _$_WalletMenuState value, $Res Function(_$_WalletMenuState) then) =
-      __$$_WalletMenuStateCopyWithImpl<$Res>;
+abstract class _$$WalletMenuCopyWith<$Res>
+    implements $MenuNavigationStateCopyWith<$Res> {
+  factory _$$WalletMenuCopyWith(
+          _$WalletMenu value, $Res Function(_$WalletMenu) then) =
+      __$$WalletMenuCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({MenuItem menuItem});
 }
 
 /// @nodoc
-class __$$_WalletMenuStateCopyWithImpl<$Res>
-    extends _$WalletMenuStateCopyWithImpl<$Res, _$_WalletMenuState>
-    implements _$$_WalletMenuStateCopyWith<$Res> {
-  __$$_WalletMenuStateCopyWithImpl(
-      _$_WalletMenuState _value, $Res Function(_$_WalletMenuState) _then)
+class __$$WalletMenuCopyWithImpl<$Res>
+    extends _$MenuNavigationStateCopyWithImpl<$Res, _$WalletMenu>
+    implements _$$WalletMenuCopyWith<$Res> {
+  __$$WalletMenuCopyWithImpl(
+      _$WalletMenu _value, $Res Function(_$WalletMenu) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -80,7 +130,7 @@ class __$$_WalletMenuStateCopyWithImpl<$Res>
   $Res call({
     Object? menuItem = null,
   }) {
-    return _then(_$_WalletMenuState(
+    return _then(_$WalletMenu(
       menuItem: null == menuItem
           ? _value.menuItem
           : menuItem // ignore: cast_nullable_to_non_nullable
@@ -91,8 +141,8 @@ class __$$_WalletMenuStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_WalletMenuState implements _WalletMenuState {
-  _$_WalletMenuState({this.menuItem = MenuItem.wallet});
+class _$WalletMenu implements WalletMenu {
+  const _$WalletMenu({this.menuItem = MenuItem.wallet});
 
   @override
   @JsonKey()
@@ -100,14 +150,14 @@ class _$_WalletMenuState implements _WalletMenuState {
 
   @override
   String toString() {
-    return 'WalletMenuState(menuItem: $menuItem)';
+    return 'MenuNavigationState.wallet(menuItem: $menuItem)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_WalletMenuState &&
+            other is _$WalletMenu &&
             (identical(other.menuItem, menuItem) ||
                 other.menuItem == menuItem));
   }
@@ -118,80 +168,112 @@ class _$_WalletMenuState implements _WalletMenuState {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_WalletMenuStateCopyWith<_$_WalletMenuState> get copyWith =>
-      __$$_WalletMenuStateCopyWithImpl<_$_WalletMenuState>(this, _$identity);
+  _$$WalletMenuCopyWith<_$WalletMenu> get copyWith =>
+      __$$WalletMenuCopyWithImpl<_$WalletMenu>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(MenuItem menuItem) wallet,
+    required TResult Function(MenuItem menuItem) connection,
+    required TResult Function(MenuItem menuItem) credential,
+    required TResult Function(MenuItem menuItem) proof,
+  }) {
+    return wallet(menuItem);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(MenuItem menuItem)? wallet,
+    TResult? Function(MenuItem menuItem)? connection,
+    TResult? Function(MenuItem menuItem)? credential,
+    TResult? Function(MenuItem menuItem)? proof,
+  }) {
+    return wallet?.call(menuItem);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(MenuItem menuItem)? wallet,
+    TResult Function(MenuItem menuItem)? connection,
+    TResult Function(MenuItem menuItem)? credential,
+    TResult Function(MenuItem menuItem)? proof,
+    required TResult orElse(),
+  }) {
+    if (wallet != null) {
+      return wallet(menuItem);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(WalletMenu value) wallet,
+    required TResult Function(ConnectionMenu value) connection,
+    required TResult Function(CredentialMenu value) credential,
+    required TResult Function(ProofMenu value) proof,
+  }) {
+    return wallet(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(WalletMenu value)? wallet,
+    TResult? Function(ConnectionMenu value)? connection,
+    TResult? Function(CredentialMenu value)? credential,
+    TResult? Function(ProofMenu value)? proof,
+  }) {
+    return wallet?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(WalletMenu value)? wallet,
+    TResult Function(ConnectionMenu value)? connection,
+    TResult Function(CredentialMenu value)? credential,
+    TResult Function(ProofMenu value)? proof,
+    required TResult orElse(),
+  }) {
+    if (wallet != null) {
+      return wallet(this);
+    }
+    return orElse();
+  }
 }
 
-abstract class _WalletMenuState implements WalletMenuState {
-  factory _WalletMenuState({final MenuItem menuItem}) = _$_WalletMenuState;
+abstract class WalletMenu implements MenuNavigationState {
+  const factory WalletMenu({final MenuItem menuItem}) = _$WalletMenu;
 
   @override
   MenuItem get menuItem;
   @override
   @JsonKey(ignore: true)
-  _$$_WalletMenuStateCopyWith<_$_WalletMenuState> get copyWith =>
+  _$$WalletMenuCopyWith<_$WalletMenu> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-mixin _$ConnectionMenuState {
-  MenuItem get menuItem => throw _privateConstructorUsedError;
-
-  @JsonKey(ignore: true)
-  $ConnectionMenuStateCopyWith<ConnectionMenuState> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $ConnectionMenuStateCopyWith<$Res> {
-  factory $ConnectionMenuStateCopyWith(
-          ConnectionMenuState value, $Res Function(ConnectionMenuState) then) =
-      _$ConnectionMenuStateCopyWithImpl<$Res, ConnectionMenuState>;
-  @useResult
-  $Res call({MenuItem menuItem});
-}
-
-/// @nodoc
-class _$ConnectionMenuStateCopyWithImpl<$Res, $Val extends ConnectionMenuState>
-    implements $ConnectionMenuStateCopyWith<$Res> {
-  _$ConnectionMenuStateCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? menuItem = null,
-  }) {
-    return _then(_value.copyWith(
-      menuItem: null == menuItem
-          ? _value.menuItem
-          : menuItem // ignore: cast_nullable_to_non_nullable
-              as MenuItem,
-    ) as $Val);
-  }
-}
-
-/// @nodoc
-abstract class _$$_ConnectionMenuStateCopyWith<$Res>
-    implements $ConnectionMenuStateCopyWith<$Res> {
-  factory _$$_ConnectionMenuStateCopyWith(_$_ConnectionMenuState value,
-          $Res Function(_$_ConnectionMenuState) then) =
-      __$$_ConnectionMenuStateCopyWithImpl<$Res>;
+abstract class _$$ConnectionMenuCopyWith<$Res>
+    implements $MenuNavigationStateCopyWith<$Res> {
+  factory _$$ConnectionMenuCopyWith(
+          _$ConnectionMenu value, $Res Function(_$ConnectionMenu) then) =
+      __$$ConnectionMenuCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({MenuItem menuItem});
 }
 
 /// @nodoc
-class __$$_ConnectionMenuStateCopyWithImpl<$Res>
-    extends _$ConnectionMenuStateCopyWithImpl<$Res, _$_ConnectionMenuState>
-    implements _$$_ConnectionMenuStateCopyWith<$Res> {
-  __$$_ConnectionMenuStateCopyWithImpl(_$_ConnectionMenuState _value,
-      $Res Function(_$_ConnectionMenuState) _then)
+class __$$ConnectionMenuCopyWithImpl<$Res>
+    extends _$MenuNavigationStateCopyWithImpl<$Res, _$ConnectionMenu>
+    implements _$$ConnectionMenuCopyWith<$Res> {
+  __$$ConnectionMenuCopyWithImpl(
+      _$ConnectionMenu _value, $Res Function(_$ConnectionMenu) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -199,7 +281,7 @@ class __$$_ConnectionMenuStateCopyWithImpl<$Res>
   $Res call({
     Object? menuItem = null,
   }) {
-    return _then(_$_ConnectionMenuState(
+    return _then(_$ConnectionMenu(
       menuItem: null == menuItem
           ? _value.menuItem
           : menuItem // ignore: cast_nullable_to_non_nullable
@@ -210,8 +292,8 @@ class __$$_ConnectionMenuStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_ConnectionMenuState implements _ConnectionMenuState {
-  _$_ConnectionMenuState({this.menuItem = MenuItem.connection});
+class _$ConnectionMenu implements ConnectionMenu {
+  const _$ConnectionMenu({this.menuItem = MenuItem.connection});
 
   @override
   @JsonKey()
@@ -219,14 +301,14 @@ class _$_ConnectionMenuState implements _ConnectionMenuState {
 
   @override
   String toString() {
-    return 'ConnectionMenuState(menuItem: $menuItem)';
+    return 'MenuNavigationState.connection(menuItem: $menuItem)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ConnectionMenuState &&
+            other is _$ConnectionMenu &&
             (identical(other.menuItem, menuItem) ||
                 other.menuItem == menuItem));
   }
@@ -237,82 +319,112 @@ class _$_ConnectionMenuState implements _ConnectionMenuState {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ConnectionMenuStateCopyWith<_$_ConnectionMenuState> get copyWith =>
-      __$$_ConnectionMenuStateCopyWithImpl<_$_ConnectionMenuState>(
-          this, _$identity);
+  _$$ConnectionMenuCopyWith<_$ConnectionMenu> get copyWith =>
+      __$$ConnectionMenuCopyWithImpl<_$ConnectionMenu>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(MenuItem menuItem) wallet,
+    required TResult Function(MenuItem menuItem) connection,
+    required TResult Function(MenuItem menuItem) credential,
+    required TResult Function(MenuItem menuItem) proof,
+  }) {
+    return connection(menuItem);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(MenuItem menuItem)? wallet,
+    TResult? Function(MenuItem menuItem)? connection,
+    TResult? Function(MenuItem menuItem)? credential,
+    TResult? Function(MenuItem menuItem)? proof,
+  }) {
+    return connection?.call(menuItem);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(MenuItem menuItem)? wallet,
+    TResult Function(MenuItem menuItem)? connection,
+    TResult Function(MenuItem menuItem)? credential,
+    TResult Function(MenuItem menuItem)? proof,
+    required TResult orElse(),
+  }) {
+    if (connection != null) {
+      return connection(menuItem);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(WalletMenu value) wallet,
+    required TResult Function(ConnectionMenu value) connection,
+    required TResult Function(CredentialMenu value) credential,
+    required TResult Function(ProofMenu value) proof,
+  }) {
+    return connection(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(WalletMenu value)? wallet,
+    TResult? Function(ConnectionMenu value)? connection,
+    TResult? Function(CredentialMenu value)? credential,
+    TResult? Function(ProofMenu value)? proof,
+  }) {
+    return connection?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(WalletMenu value)? wallet,
+    TResult Function(ConnectionMenu value)? connection,
+    TResult Function(CredentialMenu value)? credential,
+    TResult Function(ProofMenu value)? proof,
+    required TResult orElse(),
+  }) {
+    if (connection != null) {
+      return connection(this);
+    }
+    return orElse();
+  }
 }
 
-abstract class _ConnectionMenuState implements ConnectionMenuState {
-  factory _ConnectionMenuState({final MenuItem menuItem}) =
-      _$_ConnectionMenuState;
+abstract class ConnectionMenu implements MenuNavigationState {
+  const factory ConnectionMenu({final MenuItem menuItem}) = _$ConnectionMenu;
 
   @override
   MenuItem get menuItem;
   @override
   @JsonKey(ignore: true)
-  _$$_ConnectionMenuStateCopyWith<_$_ConnectionMenuState> get copyWith =>
+  _$$ConnectionMenuCopyWith<_$ConnectionMenu> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-mixin _$CredentialMenuState {
-  MenuItem get menuItem => throw _privateConstructorUsedError;
-
-  @JsonKey(ignore: true)
-  $CredentialMenuStateCopyWith<CredentialMenuState> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $CredentialMenuStateCopyWith<$Res> {
-  factory $CredentialMenuStateCopyWith(
-          CredentialMenuState value, $Res Function(CredentialMenuState) then) =
-      _$CredentialMenuStateCopyWithImpl<$Res, CredentialMenuState>;
-  @useResult
-  $Res call({MenuItem menuItem});
-}
-
-/// @nodoc
-class _$CredentialMenuStateCopyWithImpl<$Res, $Val extends CredentialMenuState>
-    implements $CredentialMenuStateCopyWith<$Res> {
-  _$CredentialMenuStateCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? menuItem = null,
-  }) {
-    return _then(_value.copyWith(
-      menuItem: null == menuItem
-          ? _value.menuItem
-          : menuItem // ignore: cast_nullable_to_non_nullable
-              as MenuItem,
-    ) as $Val);
-  }
-}
-
-/// @nodoc
-abstract class _$$_CredentialMenuStateCopyWith<$Res>
-    implements $CredentialMenuStateCopyWith<$Res> {
-  factory _$$_CredentialMenuStateCopyWith(_$_CredentialMenuState value,
-          $Res Function(_$_CredentialMenuState) then) =
-      __$$_CredentialMenuStateCopyWithImpl<$Res>;
+abstract class _$$CredentialMenuCopyWith<$Res>
+    implements $MenuNavigationStateCopyWith<$Res> {
+  factory _$$CredentialMenuCopyWith(
+          _$CredentialMenu value, $Res Function(_$CredentialMenu) then) =
+      __$$CredentialMenuCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({MenuItem menuItem});
 }
 
 /// @nodoc
-class __$$_CredentialMenuStateCopyWithImpl<$Res>
-    extends _$CredentialMenuStateCopyWithImpl<$Res, _$_CredentialMenuState>
-    implements _$$_CredentialMenuStateCopyWith<$Res> {
-  __$$_CredentialMenuStateCopyWithImpl(_$_CredentialMenuState _value,
-      $Res Function(_$_CredentialMenuState) _then)
+class __$$CredentialMenuCopyWithImpl<$Res>
+    extends _$MenuNavigationStateCopyWithImpl<$Res, _$CredentialMenu>
+    implements _$$CredentialMenuCopyWith<$Res> {
+  __$$CredentialMenuCopyWithImpl(
+      _$CredentialMenu _value, $Res Function(_$CredentialMenu) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -320,7 +432,7 @@ class __$$_CredentialMenuStateCopyWithImpl<$Res>
   $Res call({
     Object? menuItem = null,
   }) {
-    return _then(_$_CredentialMenuState(
+    return _then(_$CredentialMenu(
       menuItem: null == menuItem
           ? _value.menuItem
           : menuItem // ignore: cast_nullable_to_non_nullable
@@ -331,8 +443,8 @@ class __$$_CredentialMenuStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_CredentialMenuState implements _CredentialMenuState {
-  _$_CredentialMenuState({this.menuItem = MenuItem.credential});
+class _$CredentialMenu implements CredentialMenu {
+  const _$CredentialMenu({this.menuItem = MenuItem.credential});
 
   @override
   @JsonKey()
@@ -340,14 +452,14 @@ class _$_CredentialMenuState implements _CredentialMenuState {
 
   @override
   String toString() {
-    return 'CredentialMenuState(menuItem: $menuItem)';
+    return 'MenuNavigationState.credential(menuItem: $menuItem)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_CredentialMenuState &&
+            other is _$CredentialMenu &&
             (identical(other.menuItem, menuItem) ||
                 other.menuItem == menuItem));
   }
@@ -358,82 +470,112 @@ class _$_CredentialMenuState implements _CredentialMenuState {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_CredentialMenuStateCopyWith<_$_CredentialMenuState> get copyWith =>
-      __$$_CredentialMenuStateCopyWithImpl<_$_CredentialMenuState>(
-          this, _$identity);
+  _$$CredentialMenuCopyWith<_$CredentialMenu> get copyWith =>
+      __$$CredentialMenuCopyWithImpl<_$CredentialMenu>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(MenuItem menuItem) wallet,
+    required TResult Function(MenuItem menuItem) connection,
+    required TResult Function(MenuItem menuItem) credential,
+    required TResult Function(MenuItem menuItem) proof,
+  }) {
+    return credential(menuItem);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(MenuItem menuItem)? wallet,
+    TResult? Function(MenuItem menuItem)? connection,
+    TResult? Function(MenuItem menuItem)? credential,
+    TResult? Function(MenuItem menuItem)? proof,
+  }) {
+    return credential?.call(menuItem);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(MenuItem menuItem)? wallet,
+    TResult Function(MenuItem menuItem)? connection,
+    TResult Function(MenuItem menuItem)? credential,
+    TResult Function(MenuItem menuItem)? proof,
+    required TResult orElse(),
+  }) {
+    if (credential != null) {
+      return credential(menuItem);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(WalletMenu value) wallet,
+    required TResult Function(ConnectionMenu value) connection,
+    required TResult Function(CredentialMenu value) credential,
+    required TResult Function(ProofMenu value) proof,
+  }) {
+    return credential(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(WalletMenu value)? wallet,
+    TResult? Function(ConnectionMenu value)? connection,
+    TResult? Function(CredentialMenu value)? credential,
+    TResult? Function(ProofMenu value)? proof,
+  }) {
+    return credential?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(WalletMenu value)? wallet,
+    TResult Function(ConnectionMenu value)? connection,
+    TResult Function(CredentialMenu value)? credential,
+    TResult Function(ProofMenu value)? proof,
+    required TResult orElse(),
+  }) {
+    if (credential != null) {
+      return credential(this);
+    }
+    return orElse();
+  }
 }
 
-abstract class _CredentialMenuState implements CredentialMenuState {
-  factory _CredentialMenuState({final MenuItem menuItem}) =
-      _$_CredentialMenuState;
+abstract class CredentialMenu implements MenuNavigationState {
+  const factory CredentialMenu({final MenuItem menuItem}) = _$CredentialMenu;
 
   @override
   MenuItem get menuItem;
   @override
   @JsonKey(ignore: true)
-  _$$_CredentialMenuStateCopyWith<_$_CredentialMenuState> get copyWith =>
+  _$$CredentialMenuCopyWith<_$CredentialMenu> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-mixin _$ProofMenuState {
-  MenuItem get menuItem => throw _privateConstructorUsedError;
-
-  @JsonKey(ignore: true)
-  $ProofMenuStateCopyWith<ProofMenuState> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $ProofMenuStateCopyWith<$Res> {
-  factory $ProofMenuStateCopyWith(
-          ProofMenuState value, $Res Function(ProofMenuState) then) =
-      _$ProofMenuStateCopyWithImpl<$Res, ProofMenuState>;
-  @useResult
-  $Res call({MenuItem menuItem});
-}
-
-/// @nodoc
-class _$ProofMenuStateCopyWithImpl<$Res, $Val extends ProofMenuState>
-    implements $ProofMenuStateCopyWith<$Res> {
-  _$ProofMenuStateCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? menuItem = null,
-  }) {
-    return _then(_value.copyWith(
-      menuItem: null == menuItem
-          ? _value.menuItem
-          : menuItem // ignore: cast_nullable_to_non_nullable
-              as MenuItem,
-    ) as $Val);
-  }
-}
-
-/// @nodoc
-abstract class _$$_ProofMenuStateCopyWith<$Res>
-    implements $ProofMenuStateCopyWith<$Res> {
-  factory _$$_ProofMenuStateCopyWith(
-          _$_ProofMenuState value, $Res Function(_$_ProofMenuState) then) =
-      __$$_ProofMenuStateCopyWithImpl<$Res>;
+abstract class _$$ProofMenuCopyWith<$Res>
+    implements $MenuNavigationStateCopyWith<$Res> {
+  factory _$$ProofMenuCopyWith(
+          _$ProofMenu value, $Res Function(_$ProofMenu) then) =
+      __$$ProofMenuCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({MenuItem menuItem});
 }
 
 /// @nodoc
-class __$$_ProofMenuStateCopyWithImpl<$Res>
-    extends _$ProofMenuStateCopyWithImpl<$Res, _$_ProofMenuState>
-    implements _$$_ProofMenuStateCopyWith<$Res> {
-  __$$_ProofMenuStateCopyWithImpl(
-      _$_ProofMenuState _value, $Res Function(_$_ProofMenuState) _then)
+class __$$ProofMenuCopyWithImpl<$Res>
+    extends _$MenuNavigationStateCopyWithImpl<$Res, _$ProofMenu>
+    implements _$$ProofMenuCopyWith<$Res> {
+  __$$ProofMenuCopyWithImpl(
+      _$ProofMenu _value, $Res Function(_$ProofMenu) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -441,7 +583,7 @@ class __$$_ProofMenuStateCopyWithImpl<$Res>
   $Res call({
     Object? menuItem = null,
   }) {
-    return _then(_$_ProofMenuState(
+    return _then(_$ProofMenu(
       menuItem: null == menuItem
           ? _value.menuItem
           : menuItem // ignore: cast_nullable_to_non_nullable
@@ -452,8 +594,8 @@ class __$$_ProofMenuStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_ProofMenuState implements _ProofMenuState {
-  _$_ProofMenuState({this.menuItem = MenuItem.proof});
+class _$ProofMenu implements ProofMenu {
+  const _$ProofMenu({this.menuItem = MenuItem.proof});
 
   @override
   @JsonKey()
@@ -461,14 +603,14 @@ class _$_ProofMenuState implements _ProofMenuState {
 
   @override
   String toString() {
-    return 'ProofMenuState(menuItem: $menuItem)';
+    return 'MenuNavigationState.proof(menuItem: $menuItem)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ProofMenuState &&
+            other is _$ProofMenu &&
             (identical(other.menuItem, menuItem) ||
                 other.menuItem == menuItem));
   }
@@ -479,17 +621,91 @@ class _$_ProofMenuState implements _ProofMenuState {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ProofMenuStateCopyWith<_$_ProofMenuState> get copyWith =>
-      __$$_ProofMenuStateCopyWithImpl<_$_ProofMenuState>(this, _$identity);
+  _$$ProofMenuCopyWith<_$ProofMenu> get copyWith =>
+      __$$ProofMenuCopyWithImpl<_$ProofMenu>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(MenuItem menuItem) wallet,
+    required TResult Function(MenuItem menuItem) connection,
+    required TResult Function(MenuItem menuItem) credential,
+    required TResult Function(MenuItem menuItem) proof,
+  }) {
+    return proof(menuItem);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(MenuItem menuItem)? wallet,
+    TResult? Function(MenuItem menuItem)? connection,
+    TResult? Function(MenuItem menuItem)? credential,
+    TResult? Function(MenuItem menuItem)? proof,
+  }) {
+    return proof?.call(menuItem);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(MenuItem menuItem)? wallet,
+    TResult Function(MenuItem menuItem)? connection,
+    TResult Function(MenuItem menuItem)? credential,
+    TResult Function(MenuItem menuItem)? proof,
+    required TResult orElse(),
+  }) {
+    if (proof != null) {
+      return proof(menuItem);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(WalletMenu value) wallet,
+    required TResult Function(ConnectionMenu value) connection,
+    required TResult Function(CredentialMenu value) credential,
+    required TResult Function(ProofMenu value) proof,
+  }) {
+    return proof(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(WalletMenu value)? wallet,
+    TResult? Function(ConnectionMenu value)? connection,
+    TResult? Function(CredentialMenu value)? credential,
+    TResult? Function(ProofMenu value)? proof,
+  }) {
+    return proof?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(WalletMenu value)? wallet,
+    TResult Function(ConnectionMenu value)? connection,
+    TResult Function(CredentialMenu value)? credential,
+    TResult Function(ProofMenu value)? proof,
+    required TResult orElse(),
+  }) {
+    if (proof != null) {
+      return proof(this);
+    }
+    return orElse();
+  }
 }
 
-abstract class _ProofMenuState implements ProofMenuState {
-  factory _ProofMenuState({final MenuItem menuItem}) = _$_ProofMenuState;
+abstract class ProofMenu implements MenuNavigationState {
+  const factory ProofMenu({final MenuItem menuItem}) = _$ProofMenu;
 
   @override
   MenuItem get menuItem;
   @override
   @JsonKey(ignore: true)
-  _$$_ProofMenuStateCopyWith<_$_ProofMenuState> get copyWith =>
+  _$$ProofMenuCopyWith<_$ProofMenu> get copyWith =>
       throw _privateConstructorUsedError;
 }

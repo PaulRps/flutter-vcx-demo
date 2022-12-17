@@ -17,7 +17,7 @@ class WalletPageCubit extends Cubit<WalletPageState> {
             retrieveWalletDataUseCase ?? RetrieveAriesWalletDataUseCase(),
         _shutdownOrResetAriesSdkUseCase =
             shutdownOrResetAriesSdkUseCase ?? ShutdownOrResetAriesSdkUseCase(),
-        super(WalletInitialState());
+        super(const WalletPageState.initial());
 
   late final StartAriesSdkAndSaveWalletDataUseCase _startAriesSdkUseCase;
 
@@ -28,15 +28,15 @@ class WalletPageCubit extends Cubit<WalletPageState> {
   Future<WalletData> retrieveWalletData() {
     try {
       return _retrieveWalletDataUseCase.retrieveWalletData().then((value) {
-        emit(RetrieveWalletDataState(
-            walletName: value.name, walletKey: value.key).copyWith());
+        emit(WalletPageState.retrievedWalletData(
+            walletName: value.name, walletKey: value.key));
         return value;
       }).catchError((error) {
-        emit(WalletErrorState(errorMessage: error.toString()));
+        emit(WalletPageState.error(errorMessage: error.toString()));
         return WalletData(name: "", key: "");
       });
     } catch (e) {
-      emit(WalletErrorState(errorMessage: e.toString()));
+      emit(WalletPageState.error(errorMessage: e.toString()));
       return Future.value(WalletData(name: "", key: ""));
     }
   }
@@ -45,20 +45,20 @@ class WalletPageCubit extends Cubit<WalletPageState> {
     String walletName = name.isNotEmpty ? name : "flutter_vcx_demo_wallet";
     try {
       if (state.isWalletOpened) {
-        emit(WalletAlreadyOpenedState(
+        emit(WalletPageState.walletAlreadyOpened(
             walletName: state.walletName, walletKey: state.walletKey));
       } else {
         _startAriesSdkUseCase
             .startSdkAndSaveWalletData(WalletData(name: walletName, key: key))
-            .then((value) =>
-                emit(WalletOpenedState(walletName: walletName, walletKey: key)))
-            .catchError((error) => emit(WalletErrorState(
+            .then((value) => emit(WalletPageState.walletOpened(
+                walletName: walletName, walletKey: key)))
+            .catchError((error) => emit(WalletPageState.error(
                 walletName: walletName,
                 walletKey: key,
                 errorMessage: error.toString())));
       }
     } catch (e) {
-      emit(WalletErrorState(
+      emit(WalletPageState.error(
           walletName: walletName, walletKey: key, errorMessage: e.toString()));
     }
   }
@@ -68,18 +68,18 @@ class WalletPageCubit extends Cubit<WalletPageState> {
       if (state.isWalletOpened) {
         _shutdownOrResetAriesSdkUseCase
             .shutdownSdk()
-            .then((value) => emit(WalletClosedState(
+            .then((value) => emit(WalletPageState.walletClosed(
                 walletName: state.walletName, walletKey: state.walletKey)))
-            .catchError((error) => emit(WalletErrorState(
+            .catchError((error) => emit(WalletPageState.error(
                 walletName: state.walletName,
                 walletKey: state.walletKey,
                 errorMessage: error.toString())));
       } else {
-        emit(WalletAreNotOpenedState(
+        emit(WalletPageState.walletAreNotOpened(
             walletName: state.walletName, walletKey: state.walletKey));
       }
     } catch (e) {
-      emit(WalletErrorState(
+      emit(WalletPageState.error(
           walletName: state.walletName,
           walletKey: state.walletKey,
           errorMessage: e.toString()));
@@ -91,18 +91,18 @@ class WalletPageCubit extends Cubit<WalletPageState> {
       if (state.isWalletOpened) {
         _shutdownOrResetAriesSdkUseCase
             .resetSdk()
-            .then((value) => emit(WalletDeletedState(
+            .then((value) => emit(WalletPageState.walletDeleted(
                 walletName: state.walletName, walletKey: state.walletKey)))
-            .catchError((error) => emit(WalletErrorState(
+            .catchError((error) => emit(WalletPageState.error(
                 walletName: state.walletName,
                 walletKey: state.walletKey,
                 errorMessage: error.toString())));
       } else {
-        emit(WalletAreNotOpenedState(
+        emit(WalletPageState.walletAreNotOpened(
             walletName: state.walletName, walletKey: state.walletKey));
       }
     } catch (e) {
-      emit(WalletErrorState(
+      emit(WalletPageState.error(
           walletName: state.walletName,
           walletKey: state.walletKey,
           errorMessage: e.toString()));

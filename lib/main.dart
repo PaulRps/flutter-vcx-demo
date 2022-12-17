@@ -56,15 +56,12 @@ class _MyHomePageState extends State<MyHomePage> {
         body: SingleChildScrollView(
           child: BlocBuilder<MenuNavigationCubit, MenuNavigationState>(
               builder: (context, state) {
-            if (state is ConnectionMenuState) {
-              return ConnectionPageWidget();
-            } else if (state is CredentialMenuState) {
-              return CredentialPageWidget();
-            } else if (state is ProofMenuState) {
-              return const ProofPageWidget();
-            }
-
-            return const WalletPageWidget();
+               return state.when(
+                    wallet: (_) => const WalletPageWidget(),
+                    connection: (_) => ConnectionPageWidget(),
+                    credential: (_) => CredentialPageWidget(),
+                    proof: (_) => const ProofPageWidget()
+                );
           }),
         ),
         bottomNavigationBar: const BottomMenuNavigationWidget(),

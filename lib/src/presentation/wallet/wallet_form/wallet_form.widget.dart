@@ -31,8 +31,7 @@ class _WalletFormWidgetState extends State<WalletFormWidget> {
     return Form(
         autovalidateMode: AutovalidateMode.onUserInteraction,
         child: BlocConsumer<WalletPageCubit, WalletPageState>(
-            builder: (ctx, state) =>
-                Wrap(
+            builder: (ctx, state) => Wrap(
                   crossAxisAlignment: WrapCrossAlignment.center,
                   children: [
                     Row(
@@ -42,27 +41,27 @@ class _WalletFormWidgetState extends State<WalletFormWidget> {
                       children: [
                         Expanded(
                             child: TextFormField(
-                              decoration: const InputDecoration(
-                                  labelText: 'Wallet name'),
-                              maxLength: 25,
-                              controller: widget._walletNameController,
-                              keyboardType: TextInputType.text,
-                            )),
+                          decoration:
+                              const InputDecoration(labelText: 'Wallet name'),
+                          maxLength: 25,
+                          controller: widget._walletNameController,
+                          keyboardType: TextInputType.text,
+                        )),
                         Container(width: 20.0),
                         Expanded(
                             child: TextFormField(
-                              decoration: const InputDecoration(
-                                  labelText: 'Wallet key'),
-                              keyboardType: TextInputType.number,
-                              maxLength: 8,
-                              controller: widget._walletKeyController,
-                              validator: (value) {
-                                if (value == null || value.isEmpty) {
-                                  return 'Please enter wallet key';
-                                }
-                                return null;
-                              },
-                            ))
+                          decoration:
+                              const InputDecoration(labelText: 'Wallet key'),
+                          keyboardType: TextInputType.number,
+                          maxLength: 8,
+                          controller: widget._walletKeyController,
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Please enter wallet key';
+                            }
+                            return null;
+                          },
+                        ))
                       ],
                     ),
                     Row(
@@ -98,31 +97,26 @@ class _WalletFormWidgetState extends State<WalletFormWidget> {
             listener: (ctx, state) => _stateHandler(ctx, state)));
   }
 
-  void _stateHandler(ctx, state) {
-    if (state is WalletErrorState) {
-      ScaffoldMessenger.of(ctx).showSnackBar(
-        SnackBar(content: Text('${state.errorMessage}')),
-      );
-    } else if (state is WalletAlreadyOpenedState) {
-      ScaffoldMessenger.of(ctx).showSnackBar(
-        const SnackBar(content: Text('Wallet has already been opened')),
-      );
-    } else if (state is WalletAreNotOpenedState) {
-      ScaffoldMessenger.of(ctx).showSnackBar(
-        const SnackBar(content: Text('Wallet has not opened yet')),
-      );
-    } else if (state is WalletOpenedState) {
-      ScaffoldMessenger.of(ctx).showSnackBar(
-        const SnackBar(content: Text('Wallet has opened successfully')),
-      );
-    } else if (state is WalletClosedState) {
-      ScaffoldMessenger.of(ctx).showSnackBar(
-        const SnackBar(content: Text('Wallet has closed successfully')),
-      );
-    } else if (state is WalletDeletedState) {
-      ScaffoldMessenger.of(ctx).showSnackBar(
-        const SnackBar(content: Text('Wallet has deleted successfully')),
-      );
-    }
+  void _stateHandler(ctx, WalletPageState state) {
+    state.whenOrNull(
+        error: (k, n, i, msg) => ScaffoldMessenger.of(ctx).showSnackBar(
+              SnackBar(content: Text(msg)),
+            ),
+        walletAlreadyOpened: (k, n, i) =>
+            ScaffoldMessenger.of(ctx).showSnackBar(
+              const SnackBar(content: Text('Wallet has already been opened')),
+            ),
+        walletAreNotOpened: (k, n, i) => ScaffoldMessenger.of(ctx).showSnackBar(
+              const SnackBar(content: Text('Wallet has not opened yet')),
+            ),
+        walletOpened: (k, n, i) => ScaffoldMessenger.of(ctx).showSnackBar(
+              const SnackBar(content: Text('Wallet has opened successfully')),
+            ),
+        walletClosed: (k, n, i) => ScaffoldMessenger.of(ctx).showSnackBar(
+              const SnackBar(content: Text('Wallet has closed successfully')),
+            ),
+        walletDeleted: (k, n, i) => ScaffoldMessenger.of(ctx).showSnackBar(
+              const SnackBar(content: Text('Wallet has deleted successfully')),
+            ));
   }
 }

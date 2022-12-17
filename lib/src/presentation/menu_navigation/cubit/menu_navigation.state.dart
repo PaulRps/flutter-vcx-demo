@@ -4,34 +4,17 @@ part 'menu_navigation.state.freezed.dart';
 
 enum MenuItem { wallet, connection, credential, proof }
 
-abstract class MenuNavigationState {
-  final MenuItem menuItem;
-
-  MenuNavigationState(this.menuItem);
-}
-
 @freezed
-class WalletMenuState extends MenuNavigationState with _$WalletMenuState {
-  factory WalletMenuState({@Default(MenuItem.wallet) MenuItem menuItem}) =
-      _WalletMenuState;
-}
+abstract class MenuNavigationState with _$MenuNavigationState {
+  const factory MenuNavigationState.wallet(
+      {@Default(MenuItem.wallet) MenuItem menuItem}) = WalletMenu;
 
-@freezed
-class ConnectionMenuState extends MenuNavigationState
-    with _$ConnectionMenuState {
-  factory ConnectionMenuState(
-      {@Default(MenuItem.connection) MenuItem menuItem}) = _ConnectionMenuState;
-}
+  const factory MenuNavigationState.connection(
+      {@Default(MenuItem.connection) MenuItem menuItem}) = ConnectionMenu;
 
-@freezed
-class CredentialMenuState extends MenuNavigationState with _$CredentialMenuState {
+  const factory MenuNavigationState.credential(
+      {@Default(MenuItem.credential) MenuItem menuItem}) = CredentialMenu;
 
-  factory CredentialMenuState(
-      {@Default(MenuItem.credential) MenuItem menuItem}) = _CredentialMenuState;
-}
-
-@freezed
-class ProofMenuState extends MenuNavigationState with _$ProofMenuState {
-  factory ProofMenuState(
-      {@Default(MenuItem.proof) MenuItem menuItem}) = _ProofMenuState;
+  const factory MenuNavigationState.proof(
+      {@Default(MenuItem.proof) MenuItem menuItem}) = ProofMenu;
 }
