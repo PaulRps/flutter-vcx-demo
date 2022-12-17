@@ -1,6 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_vcx_demo/src/domain/entities/wallet_data.dart';
-import 'package:flutter_vcx_demo/src/presentation/wallet/cubit/wallet_page.state.dart';
+import 'package:flutter_vcx_demo/src/presentation/wallet/bloc/wallet_page.state.dart';
 
 import '../../../domain/use_cases/retrieve_aries_wallet_data.usecase.dart';
 import '../../../domain/use_cases/shutdown_or_reset_aries_sdk.usercase.dart';

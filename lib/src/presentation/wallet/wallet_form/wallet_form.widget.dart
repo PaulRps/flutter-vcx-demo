@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_vcx_demo/src/commons/extensions/build_context.extension.dart';
-import 'package:flutter_vcx_demo/src/presentation/wallet/cubit/wallet_page.state.dart';
 
-import '../cubit/wallet_page.cubit.dart';
+import '../bloc/wallet_page.cubit.dart';
+import '../bloc/wallet_page.state.dart';
 
 class WalletFormWidget extends StatefulWidget {
   WalletFormWidget({Key? key}) : super(key: key);
@@ -55,12 +55,9 @@ class _WalletFormWidgetState extends State<WalletFormWidget> {
                           keyboardType: TextInputType.number,
                           maxLength: 8,
                           controller: widget._walletKeyController,
-                          validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return 'Please enter wallet key';
-                            }
-                            return null;
-                          },
+                          validator: (value) => value == null || value.isEmpty
+                              ? 'Please enter wallet key'
+                              : null,
                         ))
                       ],
                     ),
@@ -75,21 +72,21 @@ class _WalletFormWidgetState extends State<WalletFormWidget> {
                                       key: widget
                                           ._walletKeyController.value.text);
                                 },
-                                child: const Text('Open Wallet'))),
+                                child: const Text('Open'))),
                         Container(width: 10.0),
                         Expanded(
                             child: ElevatedButton(
                                 onPressed: () {
                                   ctx.bloc<WalletPageCubit>().closeWallet();
                                 },
-                                child: const Text('Close Wallet'))),
+                                child: const Text('Close'))),
                         Container(width: 10.0),
                         Expanded(
                             child: ElevatedButton(
                                 onPressed: () {
                                   ctx.bloc<WalletPageCubit>().deleteWallet();
                                 },
-                                child: const Text('Delete Wallet'))),
+                                child: const Text('Delete'))),
                       ],
                     )
                   ],

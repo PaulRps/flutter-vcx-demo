@@ -1,16 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_vcx_demo/src/domain/use_cases/holder_accept_credential_offer.usecase.dart';
+import 'package:flutter_vcx_demo/src/commons/extensions/build_context.extension.dart';
+
+import '../bloc/credential_page.cubit.dart';
 
 class AcceptCredentialOfferFormWidget extends StatefulWidget {
-  late final HolderAcceptCredentialOfferUseCase _acceptCredentialOfferUseCase;
-
-  AcceptCredentialOfferFormWidget(
-      {Key? key,
-      acceptCredentialOfferUseCase,
-      getIssuedAriesCredentialsUseCase})
-      : _acceptCredentialOfferUseCase = acceptCredentialOfferUseCase ??
-            HolderAcceptCredentialOfferUseCase(),
-        super(key: key);
+  const AcceptCredentialOfferFormWidget({Key? key}) : super(key: key);
 
   @override
   State<StatefulWidget> createState() => _AcceptCredentialOfferFormWidget();
@@ -27,26 +21,12 @@ class _AcceptCredentialOfferFormWidget
           Expanded(
             child: ElevatedButton(
                 onPressed: () {
-                  _acceptOffer(context);
+                  context.bloc<CredentialPageCubit>().acceptCredentialOffer();
                 },
                 child: const Text('Accept Credential Offer')),
           )
         ]),
       ],
     ));
-  }
-
-  void _acceptOffer(BuildContext context) {
-    widget._acceptCredentialOfferUseCase.acceptOffer().then((value) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-            content: Text(
-                'Finished accept aries credential offer (success=${value.name.isNotEmpty})')),
-      );
-    }).catchError((error) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('$error')),
-      );
-    });
   }
 }

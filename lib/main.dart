@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_vcx_demo/src/presentation/connections/connection_page.widget.dart';
+import 'package:flutter_vcx_demo/src/presentation/credentials/bloc/credential_page.cubit.dart';
 import 'package:flutter_vcx_demo/src/presentation/credentials/credential_page.widget.dart';
+import 'package:flutter_vcx_demo/src/presentation/menu_navigation/bloc/menu_navigation.cubit.dart';
+import 'package:flutter_vcx_demo/src/presentation/menu_navigation/bloc/menu_navigation.state.dart';
 import 'package:flutter_vcx_demo/src/presentation/menu_navigation/bottom_menu_navigation.widget.dart';
-import 'package:flutter_vcx_demo/src/presentation/menu_navigation/cubit/menu_navigation.cubit.dart';
-import 'package:flutter_vcx_demo/src/presentation/menu_navigation/cubit/menu_navigation.state.dart';
 import 'package:flutter_vcx_demo/src/presentation/proofs/proof_page.widget.dart';
+import 'package:flutter_vcx_demo/src/presentation/wallet/bloc/wallet_page.cubit.dart';
 import 'package:flutter_vcx_demo/src/presentation/wallet/wallet_page.widget.dart';
 
 void main() {
@@ -56,12 +58,15 @@ class _MyHomePageState extends State<MyHomePage> {
         body: SingleChildScrollView(
           child: BlocBuilder<MenuNavigationCubit, MenuNavigationState>(
               builder: (context, state) {
-               return state.when(
-                    wallet: (_) => const WalletPageWidget(),
-                    connection: (_) => ConnectionPageWidget(),
-                    credential: (_) => CredentialPageWidget(),
-                    proof: (_) => const ProofPageWidget()
-                );
+            return state.when(
+                wallet: (_) => BlocProvider<WalletPageCubit>(
+                    create: (ctx) => WalletPageCubit(),
+                    child: const WalletPageWidget()),
+                connection: (_) => ConnectionPageWidget(),
+                credential: (_) => BlocProvider<CredentialPageCubit>(
+                    create: (ctx) => CredentialPageCubit(),
+                    child: const CredentialPageWidget()),
+                proof: (_) => const ProofPageWidget());
           }),
         ),
         bottomNavigationBar: const BottomMenuNavigationWidget(),

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_vcx_demo/src/commons/extensions/build_context.extension.dart';
 
-import 'cubit/menu_navigation.cubit.dart';
+import 'bloc/menu_navigation.cubit.dart';
+
 
 class BottomMenuNavigationWidget extends StatefulWidget {
   const BottomMenuNavigationWidget({Key? key}) : super(key: key);

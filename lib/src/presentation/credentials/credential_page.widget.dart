@@ -1,31 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_vcx_demo/src/commons/extensions/build_context.extension.dart';
 
-import '../../domain/entities/credential_data.dart';
-import '../../domain/use_cases/holder_get_issued_credentials.usecase.dart';
 import 'accept_credential_offer_form/accept_credential_offer_form.widget.dart';
+import 'bloc/credential_page.cubit.dart';
+import 'bloc/credential_page.state.dart';
 
 class CredentialPageWidget extends StatefulWidget {
-  CredentialPageWidget({Key? key, getIssuedAriesCredentialsUseCase})
-      : _getIssuedAriesCredentialsUseCase = getIssuedAriesCredentialsUseCase ??
-            HolderGetIssuedCredentialsUseCase(),
-        super(key: key);
-
-  late final HolderGetIssuedCredentialsUseCase
-      _getIssuedAriesCredentialsUseCase;
+  const CredentialPageWidget({Key? key}) : super(key: key);
 
   @override
   State<CredentialPageWidget> createState() => _CredentialPageWidgetState();
 }
 
 class _CredentialPageWidgetState extends State<CredentialPageWidget> {
-  final List<Widget> _credentials = [];
+  List<Widget> _credentials = [];
 
   @override
   void initState() {
+    context.bloc<CredentialPageCubit>().getIssuedCredentials();
     super.initState();
-    widget._getIssuedAriesCredentialsUseCase
-        .getCredentialsFromStorage()
-        .then((credentials) => _addCredentialsChipWidget(credentials));
   }
 
   @override
@@ -34,12 +28,12 @@ class _CredentialPageWidgetState extends State<CredentialPageWidget> {
       margin: const EdgeInsets.all(10.0),
       child: Column(
         children: [
-          Padding(
-            padding: const EdgeInsets.only(top: 30.0, bottom: 30.0),
+          const Padding(
+            padding: EdgeInsets.only(top: 30.0, bottom: 30.0),
             child: ExpansionTile(
               initiallyExpanded: true,
-              trailing: const SizedBox.shrink(),
-              title: const Text("Holder"),
+              trailing: SizedBox.shrink(),
+              title: Text("Holder"),
               children: [AcceptCredentialOfferFormWidget()],
             ),
           ),
@@ -50,10 +44,32 @@ class _CredentialPageWidgetState extends State<CredentialPageWidget> {
               trailing: const SizedBox.shrink(),
               title: const Text("My Credentials"),
               children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: _credentials,
-                )
+                BlocConsumer<CredentialPageCubit, CredentialPageState>(
+                    builder: (ctx, state) {
+                  _credentials = state.maybeWhen(
+                      getIssuedCredentials: (credentials) =>
+                          _buildCredentialsChipWidget(credentials),
+                      offerAccepted: (credName) =>
+                          [_buildOneCredential(credName)],
+                      orElse: () => []);
+
+                  return Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: _credentials,
+                  );
+                }, listener: (ctx, state) {
+                  state.whenOrNull(
+                      error: (msg) =>
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(content: Text('Credential error: $msg')),
+                          ),
+                      offerAccepted: (name) =>
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                                content: Text(
+                                    'Accepted aries credential offer (success=${name.isNotEmpty})')),
+                          ));
+                }),
               ],
             ),
           )
@@ -62,24 +78,18 @@ class _CredentialPageWidgetState extends State<CredentialPageWidget> {
     );
   }
 
-  void _addCredentialsChipWidget(List<CredentialData> data) {
-    if (data.isNotEmpty) {
-      setState(() {
-        for (var cred in data) {
-          _addOneCredential(cred);
-        }
-      });
-    }
+  List<Widget> _buildCredentialsChipWidget(List<String> data) {
+    return data.map((e) => _buildOneCredential(e)).toList();
   }
 
-  void _addOneCredential(CredentialData cred) {
-    _credentials.add(Expanded(
+  Widget _buildOneCredential(String cred) {
+    return Expanded(
         flex: 0,
         child: Chip(
             backgroundColor: Colors.green,
             label: Text(
-              cred.name,
+              cred,
               textAlign: TextAlign.start,
-            ))));
+            )));
   }
 }
