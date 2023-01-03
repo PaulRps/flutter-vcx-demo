@@ -1,15 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_vcx_demo/src/domain/use_cases/invitee_accept_connection_invitation.usecase.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_vcx_demo/src/commons/extensions/build_context.extension.dart';
+import 'package:flutter_vcx_demo/src/presentation/connections/bloc/connection_page.cubit.dart';
+import 'package:flutter_vcx_demo/src/presentation/connections/bloc/connection_page.state.dart';
 
 class CreateAriesConnectionFormWidget extends StatefulWidget {
-  CreateAriesConnectionFormWidget({Key? key, createAriesConnectionUsecse})
-      : _createAriesConnectionUseCase = createAriesConnectionUsecse ??
-            InviteeAcceptConnectionInvitationUseCase(),
-        super(key: key);
-
-  late final InviteeAcceptConnectionInvitationUseCase
-      _createAriesConnectionUseCase;
+  const CreateAriesConnectionFormWidget({Key? key}) : super(key: key);
 
   @override
   State<StatefulWidget> createState() => _CreateAriesConnectionFormWidget();
@@ -46,16 +43,25 @@ class _CreateAriesConnectionFormWidget
             )
           ],
         ),
-        Row(
-          children: [
-            Expanded(
-                child: ElevatedButton(
-                    onPressed: () {
-                      _createConnection(context);
-                    },
-                    child: const Text('Connect'))),
-          ],
-        ),
+        BlocListener<ConnectionPageCubit, ConnectionPageState>(
+            listener: (ctx, state) {
+              state.whenOrNull(
+                  acceptedConnectionInvitation: (name) =>
+                      _connectionUrlController.text = "");
+            },
+            child: Row(
+              children: [
+                Expanded(
+                    child: ElevatedButton(
+                        onPressed: () {
+                          context
+                              .bloc<ConnectionPageCubit>()
+                              .inviteeAcceptConnectionInvitation(
+                                  connectionUrl: _connectionUrlController.text);
+                        },
+                        child: const Text('Connect'))),
+              ],
+            ))
       ],
     ));
   }
@@ -66,24 +72,21 @@ class _CreateAriesConnectionFormWidget
   }
 
   void _createConnection(BuildContext context) {
-    widget._createAriesConnectionUseCase
-        .createConnection(connectionUrl: _connectionUrlController.text)
-        .then((connectionData) {
-      var success = connectionData.pairwiseDid != null &&
-          connectionData.pairwiseDid?.isNotEmpty == true;
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-            content: Text('Created Aries connection (success=$success)'),
-            duration: const Duration(seconds: 10)),
-      );
-      if (success) {
-        _connectionUrlController.text = "";
-      }
-    }).catchError((error) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-            content: Text('$error'), duration: const Duration(seconds: 10)),
-      );
-    });
+    context.bloc<ConnectionPageCubit>().inviteeAcceptConnectionInvitation(
+        connectionUrl: _connectionUrlController.text);
+    // widget._createAriesConnectionUseCase
+    //     .createConnection(connectionUrl: _connectionUrlController.text)
+    //     .then((connectionData) {
+    //   var success = connectionData.pairwiseDid != null &&
+    //       connectionData.pairwiseDid?.isNotEmpty == true;
+    //   ScaffoldMessenger.of(context).showSnackBar(
+    //     SnackBar(
+    //         content: Text('Created Aries connection (success=$success)'),
+    //         duration: const Duration(seconds: 10)),
+    //   );
+    //   if (success) {
+    //     _connectionUrlController.text = "";
+    //   }
+    // });
   }
 }

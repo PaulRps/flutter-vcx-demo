@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_vcx_demo/src/presentation/connections/bloc/connection_page.cubit.dart';
 import 'package:flutter_vcx_demo/src/presentation/connections/connection_page.widget.dart';
 import 'package:flutter_vcx_demo/src/presentation/credentials/bloc/credential_page.cubit.dart';
 import 'package:flutter_vcx_demo/src/presentation/credentials/credential_page.widget.dart';
@@ -59,11 +60,13 @@ class _MyHomePageState extends State<MyHomePage> {
           child: BlocBuilder<MenuNavigationCubit, MenuNavigationState>(
               builder: (context, state) {
             return state.when(
-                wallet: (_) => BlocProvider<WalletPageCubit>(
+                wallet: (_) => BlocProvider(
                     create: (ctx) => WalletPageCubit(),
                     child: const WalletPageWidget()),
-                connection: (_) => ConnectionPageWidget(),
-                credential: (_) => BlocProvider<CredentialPageCubit>(
+                connection: (_) => BlocProvider(
+                    create: (ctx) => ConnectionPageCubit(),
+                    child: const ConnectionPageWidget()),
+                credential: (_) => BlocProvider(
                     create: (ctx) => CredentialPageCubit(),
                     child: const CredentialPageWidget()),
                 proof: (_) => const ProofPageWidget());

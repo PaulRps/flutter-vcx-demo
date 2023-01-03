@@ -1,17 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_vcx_demo/src/commons/extensions/build_context.extension.dart';
+import 'package:flutter_vcx_demo/src/presentation/connections/bloc/connection_page.cubit.dart';
+import 'package:flutter_vcx_demo/src/presentation/connections/bloc/connection_page.state.dart';
 
-import '../../domain/entities/connection_data.dart';
-import '../../domain/use_cases/retrieve_aries_connection_data.usecase.dart';
 import 'connection_invitation_screen/connection_invitation_screen.widget.dart';
 import 'create_aries_connection_form/create_aries_connection_form.widget.dart';
 
 class ConnectionPageWidget extends StatefulWidget {
-  ConnectionPageWidget({Key? key, connectionDataUseCase})
-      : _connectionDataUseCase =
-            connectionDataUseCase ?? RetrieveAriesConnectionDataUseCase(),
-        super(key: key);
-
-  late final RetrieveAriesConnectionDataUseCase _connectionDataUseCase;
+  const ConnectionPageWidget({Key? key}) : super(key: key);
 
   @override
   State<ConnectionPageWidget> createState() => _ConnectionPageWidgetState();
@@ -22,10 +19,8 @@ class _ConnectionPageWidgetState extends State<ConnectionPageWidget> {
 
   @override
   void initState() {
+    context.bloc<ConnectionPageCubit>().getConnectionsData();
     super.initState();
-    widget._connectionDataUseCase
-        .getConnectionsData()
-        .then((value) => _addConnnectionChipWidget(value));
   }
 
   @override
@@ -34,12 +29,12 @@ class _ConnectionPageWidgetState extends State<ConnectionPageWidget> {
       margin: const EdgeInsets.all(10.0),
       child: Column(
         children: [
-          Padding(
-              padding: const EdgeInsets.only(top: 30.0, bottom: 30.0),
+          const Padding(
+              padding: EdgeInsets.only(top: 30.0, bottom: 30.0),
               child: ExpansionTile(
                 initiallyExpanded: true,
-                trailing: const SizedBox.shrink(),
-                title: const Text("Invitee"),
+                trailing: SizedBox.shrink(),
+                title: Text("Invitee"),
                 children: [CreateAriesConnectionFormWidget()],
               )),
           Padding(
@@ -54,11 +49,7 @@ class _ConnectionPageWidgetState extends State<ConnectionPageWidget> {
                       Expanded(
                         child: ElevatedButton(
                             onPressed: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) =>
-                                          ConnectionInvitationScreenWidget()));
+                              _goToInviteScreen(context);
                             },
                             child: const Text('Create Invitation')),
                       )
@@ -73,10 +64,44 @@ class _ConnectionPageWidgetState extends State<ConnectionPageWidget> {
                 trailing: const SizedBox.shrink(),
                 title: const Text("My Connections"),
                 children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: _connections,
-                  )
+                  BlocConsumer<ConnectionPageCubit, ConnectionPageState>(
+                      builder: (ctx, state) {
+                    _connections.addAll(state.maybeWhen(
+                        acceptedConnectionInvitation: (name) =>
+                            [_buildOneConnectionChip(name)],
+                        inviterCreatedConnection: (name, handle) =>
+                            [_buildOneConnectionChip(name)],
+                        getConnectionsData: (connections) =>
+                            _buildConnectionsChipWidget(connections),
+                        orElse: () => []));
+
+                    return Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: _connections,
+                    );
+                  }, listener: (ctx, state) {
+                    state.whenOrNull(
+                        error: (msg) =>
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                  content: Text('Connection Error: $msg'),
+                                  duration: const Duration(seconds: 10)),
+                            ),
+                        acceptedConnectionInvitation: (name) =>
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                  content: Text(
+                                      'Created Aries connection (success=${name.isNotEmpty})'),
+                                  duration: const Duration(seconds: 10)),
+                            ),
+                        inviterCreatedConnection: (name, handle) =>
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                  content: Text(
+                                      'Created Aries connection (success=${name.isNotEmpty})'),
+                                  duration: const Duration(seconds: 10)),
+                            ));
+                  })
                 ],
               ))
         ],
@@ -84,23 +109,28 @@ class _ConnectionPageWidgetState extends State<ConnectionPageWidget> {
     );
   }
 
-  void _addConnnectionChipWidget(List<ConnectionData> data) {
-    if (data.isNotEmpty) {
-      setState(() {
-        for (var e in data) {
-          if (e.connectionName != null &&
-              e.connectionName?.isNotEmpty == true) {
-            _connections.add(Expanded(
-                flex: 0,
-                child: Chip(
-                    backgroundColor: Colors.green,
-                    label: Text(
-                      e.connectionName!,
-                      textAlign: TextAlign.start,
-                    ))));
-          }
-        }
-      });
-    }
+  void _goToInviteScreen(BuildContext context) {
+    var bloc = context.bloc<ConnectionPageCubit>();
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (_) => BlocProvider(
+                create: (_) => bloc,
+                child: const ConnectionInvitationScreenWidget())));
+  }
+
+  List<Widget> _buildConnectionsChipWidget(List<String> data) {
+    return data.map((e) => _buildOneConnectionChip(e)).toList();
+  }
+
+  Widget _buildOneConnectionChip(String name) {
+    return Expanded(
+        flex: 0,
+        child: Chip(
+            backgroundColor: Colors.green,
+            label: Text(
+              name,
+              textAlign: TextAlign.start,
+            )));
   }
 }

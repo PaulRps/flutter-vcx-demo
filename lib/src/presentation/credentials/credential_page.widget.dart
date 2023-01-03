@@ -46,12 +46,12 @@ class _CredentialPageWidgetState extends State<CredentialPageWidget> {
               children: [
                 BlocConsumer<CredentialPageCubit, CredentialPageState>(
                     builder: (ctx, state) {
-                  _credentials = state.maybeWhen(
+                  _credentials.addAll(state.maybeWhen(
                       getIssuedCredentials: (credentials) =>
                           _buildCredentialsChipWidget(credentials),
                       offerAccepted: (credName) =>
                           [_buildOneCredential(credName)],
-                      orElse: () => []);
+                      orElse: () => []));
 
                   return Row(
                     mainAxisAlignment: MainAxisAlignment.start,

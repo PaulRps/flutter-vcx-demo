@@ -1,25 +1,14 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_vcx_demo/src/domain/entities/connection_invitation_data.dart';
-import 'package:flutter_vcx_demo/src/domain/use_cases/inviter_create_connection_invitation.usecase.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_vcx_demo/src/commons/extensions/build_context.extension.dart';
+import 'package:flutter_vcx_demo/src/presentation/connections/bloc/connection_page.cubit.dart';
+import 'package:flutter_vcx_demo/src/presentation/connections/bloc/connection_page.state.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
-import '../../../domain/use_cases/inviter_check_connection_invitation_accepted.usecase.dart';
-
-
 class ConnectionInvitationScreenWidget extends StatefulWidget {
-  late final InviterCreateConnectionInvitationUseCase _connectionInvitation;
-  late final InviterCheckConnectionInvitationAcceptedUseCase
-      _checkConnectionInvitationAccepted;
-
-  ConnectionInvitationScreenWidget(
-      {Key? key, createInvitationUsedase, inviteAcceptedUsecase})
-      : _connectionInvitation = createInvitationUsedase ??
-            InviterCreateConnectionInvitationUseCase(),
-        _checkConnectionInvitationAccepted = inviteAcceptedUsecase ??
-            InviterCheckConnectionInvitationAcceptedUseCase(),
-        super(key: key);
+  const ConnectionInvitationScreenWidget({Key? key}) : super(key: key);
 
   @override
   State createState() => _CreateConnectionInvitation();
@@ -27,67 +16,60 @@ class ConnectionInvitationScreenWidget extends StatefulWidget {
 
 class _CreateConnectionInvitation
     extends State<ConnectionInvitationScreenWidget> {
-  ConnectionInvitationData? _invitationData;
   ScaffoldFeatureController<SnackBar, SnackBarClosedReason>?
       _waitInviteSnackBar;
   Timer? _checkInviteTimer;
 
   @override
+  void initState() {
+    context.bloc<ConnectionPageCubit>().inviterCreateConnectionInvitation();
+    super.initState();
+  }
+
+  @override
   void dispose() {
-    super.dispose();
     _waitInviteSnackBar?.close();
     _checkInviteTimer?.cancel();
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    return WillPopScope(
-        onWillPop: () {
-          return Future.value(widget._checkConnectionInvitationAccepted
-              .isInvitationAccepted(
-                  connectionHandle: _invitationData!.connectionHandle,
-                  isToDeleteHandle: true)
-              .then((value) => true));
-        },
-        child: Scaffold(
-          appBar: AppBar(
-            title: const Text('Connection Invitation'),
-          ),
-          body: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              FutureBuilder(
-                  builder: (ctx, snapshot) {
-                    Widget wdget = const CircularProgressIndicator();
-                    if (snapshot.hasError) {
-                      wdget = Text(
-                        'error ${snapshot.error} occurred on creating connection invitation',
-                        style: const TextStyle(fontSize: 18),
-                      );
-                    } else if (snapshot.hasData) {
-                      wdget = QrImage(
-                        data: (snapshot.data as ConnectionInvitationData)
-                            .inviteUrl,
-                        version: QrVersions.auto,
-                        size: 300.0,
-                      );
-                    }
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Connection Invitation'),
+      ),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          BlocConsumer<ConnectionPageCubit, ConnectionPageState>(
+              builder: (ctx, state) {
+            Widget wdget = state.maybeWhen(
+                inviterCreatedConnectionInvitation:
+                    (String url, String handle) {
+                  return QrImage(
+                    data: url,
+                    version: QrVersions.auto,
+                    size: 300.0,
+                  );
+                },
+                orElse: () => const CircularProgressIndicator());
 
-                    return Center(child: wdget);
-                  },
-                  future:
-                      widget._connectionInvitation.createInvite().then((value) {
-                    _startCheckInvitationAccepted(value);
-                    return value;
-                  }))
-            ],
-          ),
-        ));
+            return Center(child: wdget);
+          }, listener: (ctx, state) {
+            state.whenOrNull(
+                inviterCreatedConnectionInvitation:
+                    (String url, String handle) =>
+                        _startCheckInvitationAccepted(handle),
+                inviterCreatedConnection: (name, handle) => _finish(handle));
+          })
+        ],
+      ),
+    );
   }
 
-  void _startCheckInvitationAccepted(ConnectionInvitationData data) {
-    _invitationData = data;
-    if (_invitationData!.connectionHandle.isNotEmpty) {
+  void _startCheckInvitationAccepted(String connectionHandle) {
+    if (connectionHandle.isNotEmpty) {
       _waitInviteSnackBar = ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
             duration: const Duration(hours: 1),
@@ -100,23 +82,18 @@ class _CreateConnectionInvitation
       );
 
       _checkInviteTimer = Timer.periodic(const Duration(seconds: 15), (timer) {
-        widget._checkConnectionInvitationAccepted
-            .isInvitationAccepted(
-                connectionHandle: _invitationData!.connectionHandle,
-                isToDeleteHandle: false)
-            .then((connectionData) {
-          var wasAccepted = connectionData.pairwiseDid?.isNotEmpty == true;
-
-          if (wasAccepted) {
-            _waitInviteSnackBar?.close();
-            ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(content: Text('Connection Created')),
-            );
-            timer.cancel();
-            Navigator.pop(context);
-          }
-        });
+        context
+            .bloc<ConnectionPageCubit>()
+            .inviterCheckInvitationAccepted(connectionHandle: connectionHandle);
       });
     }
+  }
+
+  void _finish(String connectionHandle) {
+    _waitInviteSnackBar?.close();
+    _checkInviteTimer?.cancel();
+    context.bloc<ConnectionPageCubit>().inviterCheckInvitationAccepted(
+        connectionHandle: connectionHandle, isToDeleteHandle: true);
+    Navigator.pop(context);
   }
 }

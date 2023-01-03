@@ -4,16 +4,16 @@ part 'credential_page.state.freezed.dart';
 
 @freezed
 abstract class CredentialPageState with _$CredentialPageState {
-  const factory CredentialPageState.initial() = _CredentialInitial;
+  const factory CredentialPageState.initial() = CredentialInitial;
 
   const factory CredentialPageState.error({required String message}) =
-      _CredentialError;
+      CredentialError;
 
   const factory CredentialPageState.getIssuedCredentials(
-      {required List<String> credentialNames}) = _CredentialGetIssued;
+      {required List<String> credentialNames}) = CredentialGetIssued;
 
   const factory CredentialPageState.offerAccepted(
-      {required String credentialName}) = _CredentialOfferAccepted;
+      {required String credentialName}) = CredentialOfferAccepted;
 
 
 }

@@ -17,6 +17,13 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
 version: 1.0.0+1
 
+scripts:
+  gen:
+    (description): generate all auto generated files (*.g)
+    (execution): once
+    (scripts):
+      - flutter pub run build_runner build --delete-conflicting-outputs
+
 environment:
   sdk: ">=2.16.2 <3.0.0"
 
