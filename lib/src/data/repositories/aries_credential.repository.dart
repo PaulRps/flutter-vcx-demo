@@ -3,6 +3,7 @@ import 'package:flutter_vcx_demo/src/data/datasources/credential_data_storage.da
 import 'package:flutter_vcx_demo/src/data/dtos/aries_credential.dto.dart';
 import 'package:flutter_vcx_demo/src/data/dtos/aries_get_credentials_response.dto.dart';
 import 'package:flutter_vcx_demo/src/domain/entities/credential_data.dart';
+import 'package:injectable/injectable.dart';
 
 import '../dtos/aries_accept_credential_offer_response.dto.dart';
 import '../dtos/flutter_request_aries_credential_channel.dto.dart';
@@ -20,16 +21,13 @@ abstract class IAriesCredentialRepository {
   Future<bool> deleteCredentialsData();
 }
 
+@LazySingleton(as: IAriesCredentialRepository)
 class AriesCredentialRepository implements IAriesCredentialRepository {
   late final IAriesCredentialDatasource _ariesCredentialDatasource;
   late final ICredentialDataDatasource _credentialDataDatasource;
 
   AriesCredentialRepository(
-      {ariesCredentialDatasource, credentialDataDatasource})
-      : _ariesCredentialDatasource =
-            ariesCredentialDatasource ?? AriesCredentialDatasource(),
-        _credentialDataDatasource =
-            credentialDataDatasource ?? CredentialDataDatasource();
+      this._ariesCredentialDatasource, this._credentialDataDatasource);
 
   @override
   Future<AriesAcceptCredentialOfferResponseDto> acceptCredentialOffer(

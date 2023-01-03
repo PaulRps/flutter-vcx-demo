@@ -1,4 +1,5 @@
 import 'package:flutter_vcx_demo/src/data/datasources/aries_sdk.datasource.dart';
+import 'package:injectable/injectable.dart';
 
 import '../dtos/flutter_request_aries_sdk_channel.dto.dart';
 
@@ -8,11 +9,11 @@ abstract class IAriesSdkRepository {
   Future<bool> shutdownSdk(FlutterRequestAriesSdkChannelDto dto);
 }
 
+@LazySingleton(as: IAriesSdkRepository)
 class AriesSdkRepository implements IAriesSdkRepository {
   late final IAriesSdkDatasource _ariesDatasource;
 
-  AriesSdkRepository({ariesDatasource, ariesGenesisDatasource})
-      : _ariesDatasource = ariesDatasource ?? AriesSdkDatasource();
+  AriesSdkRepository(this._ariesDatasource);
 
   @override
   Future<bool> startSdk(FlutterRequestAriesSdkChannelDto dto) {

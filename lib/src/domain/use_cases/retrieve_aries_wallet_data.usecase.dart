@@ -1,16 +1,13 @@
 import 'package:flutter_vcx_demo/src/data/repositories/wallet_data.repository.dart';
+import 'package:injectable/injectable.dart';
 
-import '../../data/datasources/wallet_data_storage.datasource.dart';
-import '../../data/services/wallet_data_encrypted_local_storage.dart';
 import '../entities/wallet_data.dart';
 
+@Injectable()
 class RetrieveAriesWalletDataUseCase {
   late final IWalletDataRepository _walletDataRepository;
 
-  RetrieveAriesWalletDataUseCase({walletDataRepository})
-      : _walletDataRepository = walletDataRepository ??
-            WalletDataRepository(
-                WalletDataStorageDatasource(WalletDataEncryptedLocaStorage()));
+  RetrieveAriesWalletDataUseCase(this._walletDataRepository);
 
   Future<WalletData> retrieveWalletData() {
     return _walletDataRepository.get();

@@ -1,13 +1,13 @@
+import 'package:flutter_vcx_demo/src/data/repositories/aries_connection.repository.dart';
 import 'package:flutter_vcx_demo/src/domain/entities/connection_data.dart';
+import 'package:injectable/injectable.dart';
 
-import '../../data/repositories/aries_connection.repository.dart';
-
+@Injectable()
 class InviterCheckConnectionInvitationAcceptedUseCase {
   late final IAriesConnectionRepository _ariesConnectionRepository;
 
-  InviterCheckConnectionInvitationAcceptedUseCase({ariesConnectionRepository})
-      : _ariesConnectionRepository =
-            ariesConnectionRepository ?? AriesConnectionRepository();
+  InviterCheckConnectionInvitationAcceptedUseCase(
+      this._ariesConnectionRepository);
 
   Future<ConnectionData> isInvitationAccepted(
       {connectionHandle, isToDeleteHandle}) {

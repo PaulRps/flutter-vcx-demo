@@ -1,25 +1,25 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:injectable/injectable.dart';
 
 import '../../../domain/use_cases/holder_accept_credential_offer.usecase.dart';
 import '../../../domain/use_cases/holder_get_issued_credentials.usecase.dart';
 import 'credential_page.state.dart';
 
+@Injectable()
 class CredentialPageCubit extends Cubit<CredentialPageState> {
-  CredentialPageCubit(
-      {acceptCredentialOfferUseCase, getIssuedAriesCredentialsUseCase})
-      : _getIssuedAriesCredentialsUseCase = getIssuedAriesCredentialsUseCase ??
-      HolderGetIssuedCredentialsUseCase(),
-        _acceptCredentialOfferUseCase = acceptCredentialOfferUseCase ??
-            HolderAcceptCredentialOfferUseCase(),
-        super(const CredentialPageState.initial());
+  CredentialPageCubit(this._getIssuedAriesCredentialsUseCase,
+      this._acceptCredentialOfferUseCase)
+      : super(const CredentialPageState.initial());
 
   late final HolderGetIssuedCredentialsUseCase
-  _getIssuedAriesCredentialsUseCase;
+      _getIssuedAriesCredentialsUseCase;
   late final HolderAcceptCredentialOfferUseCase _acceptCredentialOfferUseCase;
 
   void getIssuedCredentials() {
     try {
-      _getIssuedAriesCredentialsUseCase.getCredentialsFromStorage().then((value) {
+      _getIssuedAriesCredentialsUseCase
+          .getCredentialsFromStorage()
+          .then((value) {
         emit(CredentialPageState.getIssuedCredentials(
             credentialNames: value.map((e) => e.name).toList()));
       }).catchError((error) {

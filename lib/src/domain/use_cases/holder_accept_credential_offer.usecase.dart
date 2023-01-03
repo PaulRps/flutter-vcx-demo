@@ -2,17 +2,15 @@ import 'package:flutter_vcx_demo/src/data/dtos/flutter_request_aries_credential_
 import 'package:flutter_vcx_demo/src/data/repositories/aries_connection.repository.dart';
 import 'package:flutter_vcx_demo/src/data/repositories/aries_credential.repository.dart';
 import 'package:flutter_vcx_demo/src/domain/entities/credential_data.dart';
+import 'package:injectable/injectable.dart';
 
+@Injectable()
 class HolderAcceptCredentialOfferUseCase {
-  late final AriesCredentialRepository _ariesCredentialRepository;
-  late final AriesConnectionRepository _ariesConnectionRepository;
+  late final IAriesCredentialRepository _ariesCredentialRepository;
+  late final IAriesConnectionRepository _ariesConnectionRepository;
 
   HolderAcceptCredentialOfferUseCase(
-      {ariesCredentialRepository, ariesConnectionRepository})
-      : _ariesCredentialRepository =
-            ariesCredentialRepository ?? AriesCredentialRepository(),
-        _ariesConnectionRepository =
-            ariesConnectionRepository ?? AriesConnectionRepository();
+      this._ariesCredentialRepository, this._ariesConnectionRepository);
 
   Future<CredentialData> acceptOffer() {
     return _ariesConnectionRepository.getConnectionsData().then((connections) {

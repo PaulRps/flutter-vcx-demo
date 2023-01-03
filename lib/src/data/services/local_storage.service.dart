@@ -8,13 +8,16 @@ abstract class ILocalStorage<T> {
   Future<T?> get();
 
   Future<bool> delete();
+}
 
+abstract class IStorageParser<T> {
   String toJsonString(T data);
 
   T toData(String data);
 }
 
-abstract class EncryptedLocalStorage<T> implements ILocalStorage<T> {
+abstract class EncryptedLocalStorage<T>
+    implements ILocalStorage<T>, IStorageParser<T> {
   final EncryptedSharedPreferences _encryptedSharedPreferences =
       EncryptedSharedPreferences();
 
@@ -25,10 +28,8 @@ abstract class EncryptedLocalStorage<T> implements ILocalStorage<T> {
 
   @override
   Future<T?> get() {
-    return _encryptedSharedPreferences
-        .getString(dataRef)
-        .then((value) {
-     return value.isEmpty ? null : toData(value);
+    return _encryptedSharedPreferences.getString(dataRef).then((value) {
+      return value.isEmpty ? null : toData(value);
     });
   }
 

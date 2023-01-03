@@ -1,23 +1,17 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_vcx_demo/src/domain/entities/wallet_data.dart';
 import 'package:flutter_vcx_demo/src/presentation/wallet/bloc/wallet_page.state.dart';
+import 'package:injectable/injectable.dart';
 
 import '../../../domain/use_cases/retrieve_aries_wallet_data.usecase.dart';
 import '../../../domain/use_cases/shutdown_or_reset_aries_sdk.usercase.dart';
 import '../../../domain/use_cases/start_aries_sdk_and_save_wallet_data.usecase.dart';
 
+@Injectable()
 class WalletPageCubit extends Cubit<WalletPageState> {
-  WalletPageCubit(
-      {startAriesSdkUseCase,
-      retrieveWalletDataUseCase,
-      shutdownOrResetAriesSdkUseCase})
-      : _startAriesSdkUseCase =
-            startAriesSdkUseCase ?? StartAriesSdkAndSaveWalletDataUseCase(),
-        _retrieveWalletDataUseCase =
-            retrieveWalletDataUseCase ?? RetrieveAriesWalletDataUseCase(),
-        _shutdownOrResetAriesSdkUseCase =
-            shutdownOrResetAriesSdkUseCase ?? ShutdownOrResetAriesSdkUseCase(),
-        super(const WalletPageState.initial());
+  WalletPageCubit(this._startAriesSdkUseCase, this._retrieveWalletDataUseCase,
+      this._shutdownOrResetAriesSdkUseCase)
+      : super(const WalletPageState.initial());
 
   late final StartAriesSdkAndSaveWalletDataUseCase _startAriesSdkUseCase;
 

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_vcx_demo/injection.dart';
 import 'package:flutter_vcx_demo/src/data/dtos/aries_request_proof_attribute.dto.dart';
 import 'package:flutter_vcx_demo/src/presentation/proofs/create_proof_request_screen/proof_attribute_form_field.widget.dart';
 
@@ -10,10 +11,8 @@ import '../../../domain/use_cases/verifier_send_proof_request.usecase.dart';
 class CreateProofRequestScreenWidget extends StatefulWidget {
   CreateProofRequestScreenWidget(
       {Key? key, sendProofRequest, connectionDataUsecase})
-      : _sendProofRequest =
-            sendProofRequest ?? VerifierSendProofRequestUseCase(),
-        _connectionDataUsecase =
-            connectionDataUsecase ?? RetrieveAriesConnectionDataUseCase(),
+      : _sendProofRequest = locator<VerifierSendProofRequestUseCase>(),
+        _connectionDataUsecase = locator<RetrieveAriesConnectionDataUseCase>(),
         super(key: key);
 
   late final VerifierSendProofRequestUseCase _sendProofRequest;

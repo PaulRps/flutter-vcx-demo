@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_vcx_demo/injection.dart';
 import 'package:flutter_vcx_demo/src/domain/use_cases/prover_present_proof_request.usecase.dart';
 import 'package:flutter_vcx_demo/src/domain/use_cases/prover_reject_proof_request.usecase.dart';
 
@@ -6,9 +7,8 @@ class ProofRequestFormWidget extends StatefulWidget {
   ProofRequestFormWidget(
       {Key? key, presentProofRequestUsecase, rejectProofRequestUsecase})
       : _presentProofRequestUsecase =
-            presentProofRequestUsecase ?? ProverPresentProofRequestUseCase(),
-        _rejectProofRequestUsecase =
-            rejectProofRequestUsecase ?? ProverRejectProofRequestUseCase(),
+            locator<ProverPresentProofRequestUseCase>(),
+        _rejectProofRequestUsecase = locator<ProverRejectProofRequestUseCase>(),
         super(key: key);
 
   late final ProverPresentProofRequestUseCase _presentProofRequestUsecase;

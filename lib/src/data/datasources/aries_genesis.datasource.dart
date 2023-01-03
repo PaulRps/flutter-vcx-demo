@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter_vcx_demo/src/data/services/aries_genesis.service.dart';
+import 'package:injectable/injectable.dart';
 import 'package:path_provider/path_provider.dart';
 
 abstract class IAriesGenesisDatasource {
@@ -9,11 +10,11 @@ abstract class IAriesGenesisDatasource {
   Future<bool> deleteGenesisFile();
 }
 
+@LazySingleton(as: IAriesGenesisDatasource)
 class AriesGenesisDatasource implements IAriesGenesisDatasource {
   late final IAriesGenesisService _genesisService;
 
-  AriesGenesisDatasource({genesisService})
-      : _genesisService = genesisService ?? AriesGenesisService();
+  AriesGenesisDatasource(this._genesisService);
 
   @override
   Future<String> getGenesisFilePath() {

@@ -1,8 +1,14 @@
 import 'dart:convert';
 
+import 'package:injectable/injectable.dart';
+
 import '../dtos/wallet_data.dto.dart';
 import 'local_storage.service.dart';
 
+const String walletDataStorage = "walletDataStorage";
+
+@Named(walletDataStorage)
+@LazySingleton(as: EncryptedLocalStorage)
 class WalletDataEncryptedLocaStorage extends EncryptedLocalStorage<WalletDataDto> {
 
   @override

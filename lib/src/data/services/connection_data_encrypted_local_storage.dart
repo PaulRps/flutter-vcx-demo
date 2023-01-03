@@ -2,7 +2,12 @@ import 'dart:convert';
 
 import 'package:flutter_vcx_demo/src/data/dtos/connection_data.dto.dart';
 import 'package:flutter_vcx_demo/src/data/services/local_storage.service.dart';
+import 'package:injectable/injectable.dart';
 
+const String connectionDataStorage = "connectionDataStorage";
+
+@Named(connectionDataStorage)
+@LazySingleton(as: EncryptedLocalStorage)
 class ConnectionDataEncryptedLocalStorage
     extends EncryptedLocalStorage<List<ConnectionDataDto>> {
   @override

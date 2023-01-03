@@ -11,7 +11,10 @@ import 'package:flutter_vcx_demo/src/presentation/proofs/proof_page.widget.dart'
 import 'package:flutter_vcx_demo/src/presentation/wallet/bloc/wallet_page.cubit.dart';
 import 'package:flutter_vcx_demo/src/presentation/wallet/wallet_page.widget.dart';
 
-void main() {
+import 'injection.dart';
+
+Future<void> main() async {
+  configureInjection();
   runApp(const MyApp());
 }
 
@@ -61,13 +64,13 @@ class _MyHomePageState extends State<MyHomePage> {
               builder: (context, state) {
             return state.when(
                 wallet: (_) => BlocProvider(
-                    create: (ctx) => WalletPageCubit(),
+                    create: (ctx) => locator<WalletPageCubit>(),
                     child: const WalletPageWidget()),
                 connection: (_) => BlocProvider(
-                    create: (ctx) => ConnectionPageCubit(),
+                    create: (ctx) => locator<ConnectionPageCubit>(),
                     child: const ConnectionPageWidget()),
                 credential: (_) => BlocProvider(
-                    create: (ctx) => CredentialPageCubit(),
+                    create: (ctx) => locator<CredentialPageCubit>(),
                     child: const CredentialPageWidget()),
                 proof: (_) => const ProofPageWidget());
           }),

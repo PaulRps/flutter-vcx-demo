@@ -2,6 +2,7 @@ import 'package:flutter_vcx_demo/src/data/datasources/aries_proof.datasource.dar
 import 'package:flutter_vcx_demo/src/data/dtos/aries_send_proof_response.dto.dart';
 import 'package:flutter_vcx_demo/src/data/dtos/flutter_request_aries_proof_channel.dto.dart';
 import 'package:flutter_vcx_demo/src/data/dtos/native_to_flutter_response.dto.dart';
+import 'package:injectable/injectable.dart';
 
 abstract class IAriesProofRepository {
   Future<NativeToFlutterResponseDto> presentProof(
@@ -14,11 +15,11 @@ abstract class IAriesProofRepository {
       FlutterRequestAriesProofChannelDto dto);
 }
 
+@LazySingleton(as: IAriesProofRepository)
 class AriesProofRepository implements IAriesProofRepository {
   late final IAriesProofDatasource _ariesProofDatasource;
 
-  AriesProofRepository({ariesProofDatasource})
-      : _ariesProofDatasource = ariesProofDatasource ?? AriesProofDatasource();
+  AriesProofRepository(this._ariesProofDatasource);
 
   @override
   Future<NativeToFlutterResponseDto> presentProof(

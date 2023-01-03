@@ -1,5 +1,8 @@
 import 'package:flutter_vcx_demo/src/data/dtos/aries_credential.dto.dart';
 import 'package:flutter_vcx_demo/src/data/services/credential_data_encrypted_local_storage.dart';
+import 'package:injectable/injectable.dart';
+
+import '../services/local_storage.service.dart';
 
 abstract class ICredentialDataDatasource {
   Future<void> save(List<AriesCredentialDto> data);
@@ -9,11 +12,11 @@ abstract class ICredentialDataDatasource {
   Future<bool> delete();
 }
 
+@LazySingleton(as: ICredentialDataDatasource)
 class CredentialDataDatasource implements ICredentialDataDatasource {
-  late final CredentialDataEncryptedLocalStorage _localStorage;
+  late final EncryptedLocalStorage<List<AriesCredentialDto>> _localStorage;
 
-  CredentialDataDatasource({localStorage})
-      : _localStorage = localStorage ?? CredentialDataEncryptedLocalStorage();
+  CredentialDataDatasource(@Named(credentialDataStorage) this._localStorage);
 
   @override
   Future<bool> delete() {

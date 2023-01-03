@@ -1,5 +1,8 @@
 import 'package:flutter_vcx_demo/src/data/dtos/wallet_data.dto.dart';
 import 'package:flutter_vcx_demo/src/data/services/local_storage.service.dart';
+import 'package:injectable/injectable.dart';
+
+import '../services/wallet_data_encrypted_local_storage.dart';
 
 abstract class IWalletDataStorageDatasource {
   Future<void> save(WalletDataDto data);
@@ -9,10 +12,12 @@ abstract class IWalletDataStorageDatasource {
   Future<bool> delete();
 }
 
+@LazySingleton(as: IWalletDataStorageDatasource)
 class WalletDataStorageDatasource implements IWalletDataStorageDatasource {
-  late final ILocalStorage<WalletDataDto> _localWalletDataStorage;
+  late final EncryptedLocalStorage<WalletDataDto> _localWalletDataStorage;
 
-  WalletDataStorageDatasource(this._localWalletDataStorage);
+  WalletDataStorageDatasource(
+      @Named(walletDataStorage) this._localWalletDataStorage);
 
   @override
   Future<void> save(WalletDataDto data) {

@@ -1,5 +1,6 @@
 import 'package:flutter_vcx_demo/src/data/services/connection_data_encrypted_local_storage.dart';
 import 'package:flutter_vcx_demo/src/data/services/local_storage.service.dart';
+import 'package:injectable/injectable.dart';
 
 import '../dtos/connection_data.dto.dart';
 
@@ -11,12 +12,13 @@ abstract class IConnectionDataStorageDatasource {
   Future<bool> delete();
 }
 
+@LazySingleton(as: IConnectionDataStorageDatasource)
 class ConnectionDataStorageDatasource
     implements IConnectionDataStorageDatasource {
-  final ILocalStorage<List<ConnectionDataDto>> _localStorage;
+  final EncryptedLocalStorage<List<ConnectionDataDto>> _localStorage;
 
-  ConnectionDataStorageDatasource({localStorage})
-      : _localStorage = localStorage ?? ConnectionDataEncryptedLocalStorage();
+  ConnectionDataStorageDatasource(
+      @Named(connectionDataStorage) this._localStorage);
 
   @override
   Future<bool> delete() {

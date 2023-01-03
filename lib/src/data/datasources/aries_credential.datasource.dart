@@ -1,9 +1,9 @@
 import 'package:flutter_vcx_demo/src/data/dtos/aries_accept_credential_offer_response.dto.dart';
 import 'package:flutter_vcx_demo/src/data/dtos/aries_get_credentials_response.dto.dart';
+import 'package:flutter_vcx_demo/src/data/dtos/flutter_request_aries_credential_channel.dto.dart';
 import 'package:flutter_vcx_demo/src/data/dtos/native_to_flutter_response.dto.dart';
 import 'package:flutter_vcx_demo/src/data/services/aries_credential.service.dart';
-
-import '../dtos/flutter_request_aries_credential_channel.dto.dart';
+import 'package:injectable/injectable.dart';
 
 abstract class IAriesCredentialDatasource {
   Future<NativeToFlutterResponseDto> acceptCredentialOffer(
@@ -12,12 +12,11 @@ abstract class IAriesCredentialDatasource {
   Future<NativeToFlutterResponseDto> getCredentials();
 }
 
+@LazySingleton(as: IAriesCredentialDatasource)
 class AriesCredentialDatasource implements IAriesCredentialDatasource {
-  late final AriesCredentialService _ariesCredentialService;
+  late final IAriesCredentialService _ariesCredentialService;
 
-  AriesCredentialDatasource({ariesCredentialService})
-      : _ariesCredentialService =
-            ariesCredentialService ?? AriesCredentialService();
+  AriesCredentialDatasource(this._ariesCredentialService);
 
   @override
   Future<NativeToFlutterResponseDto> acceptCredentialOffer(

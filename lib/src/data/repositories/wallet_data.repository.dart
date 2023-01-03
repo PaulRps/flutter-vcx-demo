@@ -1,6 +1,7 @@
 import 'package:flutter_vcx_demo/src/data/datasources/wallet_data_storage.datasource.dart';
 import 'package:flutter_vcx_demo/src/data/dtos/wallet_data.dto.dart';
 import 'package:flutter_vcx_demo/src/domain/entities/wallet_data.dart';
+import 'package:injectable/injectable.dart';
 
 abstract class IWalletDataRepository {
   Future<void> save(WalletData data);
@@ -10,6 +11,7 @@ abstract class IWalletDataRepository {
   Future<bool> delete();
 }
 
+@LazySingleton(as: IWalletDataRepository)
 class WalletDataRepository implements IWalletDataRepository {
   late final IWalletDataStorageDatasource _walletDataStorageDatasource;
 

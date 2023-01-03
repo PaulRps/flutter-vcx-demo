@@ -1,16 +1,16 @@
 import 'dart:convert';
 
 import 'package:flutter_vcx_demo/src/domain/entities/connection_invitation_data.dart';
+import 'package:injectable/injectable.dart';
 
 import '../../data/dtos/aries_connection_invitation_response.dto.dart';
 import '../../data/repositories/aries_connection.repository.dart';
 
+@Injectable()
 class InviterCreateConnectionInvitationUseCase {
   late final IAriesConnectionRepository _ariesConnectionRepository;
 
-  InviterCreateConnectionInvitationUseCase({ariesConnectionRepository})
-      : _ariesConnectionRepository =
-            ariesConnectionRepository ?? AriesConnectionRepository();
+  InviterCreateConnectionInvitationUseCase(this._ariesConnectionRepository);
 
   Future<ConnectionInvitationData> createInvite() {
     return _ariesConnectionRepository

@@ -1,4 +1,5 @@
 import 'package:flutter_vcx_demo/src/data/datasources/aries_genesis.datasource.dart';
+import 'package:injectable/injectable.dart';
 
 abstract class IAriesGenesisRepository {
   Future<String> getGenesisFilePath();
@@ -6,12 +7,11 @@ abstract class IAriesGenesisRepository {
   Future<bool> deleteGenesisFile();
 }
 
+@LazySingleton(as: IAriesGenesisRepository)
 class AriesGenesisRepository implements IAriesGenesisRepository {
   late final IAriesGenesisDatasource _ariesGenesisDatasource;
 
-  AriesGenesisRepository({ariesGenesisDatasource})
-      : _ariesGenesisDatasource =
-            ariesGenesisDatasource ?? AriesGenesisDatasource();
+  AriesGenesisRepository(this._ariesGenesisDatasource);
 
   @override
   Future<bool> deleteGenesisFile() {

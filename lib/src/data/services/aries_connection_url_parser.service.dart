@@ -1,9 +1,11 @@
 import 'package:flutter_vcx_demo/src/data/dtos/aries_connection_invitation.dto.dart';
+import 'package:injectable/injectable.dart';
 
 abstract class IAriesConnectionUrlParserService {
   AriesConnectionInvitationDto? parse(String connectionUrl);
 }
 
+@LazySingleton(as: IAriesConnectionUrlParserService)
 class AriesConnectionParserService implements IAriesConnectionUrlParserService {
   @override
   AriesConnectionInvitationDto? parse(String connectionUrl) {

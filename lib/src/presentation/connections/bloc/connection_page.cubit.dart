@@ -1,26 +1,20 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_vcx_demo/src/presentation/connections/bloc/connection_page.state.dart';
+import 'package:injectable/injectable.dart';
 
 import '../../../domain/use_cases/invitee_accept_connection_invitation.usecase.dart';
 import '../../../domain/use_cases/inviter_check_connection_invitation_accepted.usecase.dart';
 import '../../../domain/use_cases/inviter_create_connection_invitation.usecase.dart';
 import '../../../domain/use_cases/retrieve_aries_connection_data.usecase.dart';
 
+@Injectable()
 class ConnectionPageCubit extends Cubit<ConnectionPageState> {
   ConnectionPageCubit(
-      {connectionDataUseCase,
-      createAriesConnectionUseCase,
-      createInvitationUseCase,
-      inviteAcceptedUseCase})
-      : _connectionDataUseCase =
-            connectionDataUseCase ?? RetrieveAriesConnectionDataUseCase(),
-        _createAriesConnectionUseCase = createAriesConnectionUseCase ??
-            InviteeAcceptConnectionInvitationUseCase(),
-        _connectionInvitation = createInvitationUseCase ??
-            InviterCreateConnectionInvitationUseCase(),
-        _checkConnectionInvitationAccepted = inviteAcceptedUseCase ??
-            InviterCheckConnectionInvitationAcceptedUseCase(),
-        super(const ConnectionPageState.initial());
+      this._connectionDataUseCase,
+      this._createAriesConnectionUseCase,
+      this._connectionInvitation,
+      this._checkConnectionInvitationAccepted)
+      : super(const ConnectionPageState.initial());
 
   late final RetrieveAriesConnectionDataUseCase _connectionDataUseCase;
   late final InviteeAcceptConnectionInvitationUseCase

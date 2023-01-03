@@ -4,6 +4,7 @@ import 'package:flutter_vcx_demo/src/data/datasources/aries_connection.datasourc
 import 'package:flutter_vcx_demo/src/data/datasources/connection_data_storage.datasource.dart';
 import 'package:flutter_vcx_demo/src/data/dtos/aries_connection_invitation_response.dto.dart';
 import 'package:flutter_vcx_demo/src/domain/entities/connection_data.dart';
+import 'package:injectable/injectable.dart';
 
 import '../dtos/aries_create_connection_response.dto.dart';
 import '../dtos/connection_data.dto.dart';
@@ -24,16 +25,13 @@ abstract class IAriesConnectionRepository {
   Future<bool> deleteConnectionData();
 }
 
+@LazySingleton(as: IAriesConnectionRepository)
 class AriesConnectionRepository implements IAriesConnectionRepository {
   late final IAriesConnectionDatasource _ariesConnectionDatasource;
   late final IConnectionDataStorageDatasource _connectionDataStorageDatasource;
 
   AriesConnectionRepository(
-      {ariesConnectionDatasource, connectionDataStorageDatasource})
-      : _ariesConnectionDatasource =
-            ariesConnectionDatasource ?? AriesConnectionDatasource(),
-        _connectionDataStorageDatasource = connectionDataStorageDatasource ??
-            ConnectionDataStorageDatasource();
+      this._ariesConnectionDatasource, this._connectionDataStorageDatasource);
 
   @override
   Future<ConnectionData> createConnection(

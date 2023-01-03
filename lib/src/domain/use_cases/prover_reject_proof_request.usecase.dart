@@ -1,17 +1,16 @@
+import 'package:injectable/injectable.dart';
+
 import '../../data/dtos/flutter_request_aries_proof_channel.dto.dart';
 import '../../data/repositories/aries_connection.repository.dart';
 import '../../data/repositories/aries_proof.repository.dart';
 
+@Injectable()
 class ProverRejectProofRequestUseCase {
-  late final AriesProofRepository _ariesProofRepository;
-  late final AriesConnectionRepository _ariesConnectionRepository;
+  late final IAriesProofRepository _ariesProofRepository;
+  late final IAriesConnectionRepository _ariesConnectionRepository;
 
   ProverRejectProofRequestUseCase(
-      {ariesProofRepository, ariesConnectionRepository})
-      : _ariesProofRepository =
-            ariesConnectionRepository ?? AriesProofRepository(),
-        _ariesConnectionRepository =
-            ariesConnectionRepository ?? AriesConnectionRepository();
+      this._ariesProofRepository, this._ariesConnectionRepository);
 
   Future<bool> reject() {
     return _ariesConnectionRepository.getConnectionsData().then((connections) {
