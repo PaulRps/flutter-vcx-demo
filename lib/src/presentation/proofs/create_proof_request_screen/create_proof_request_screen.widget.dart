@@ -1,22 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_vcx_demo/injection.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_vcx_demo/src/commons/extensions/build_context.extension.dart';
 import 'package:flutter_vcx_demo/src/data/dtos/aries_request_proof_attribute.dto.dart';
+import 'package:flutter_vcx_demo/src/presentation/proofs/bloc/proof_page.cubit.dart';
+import 'package:flutter_vcx_demo/src/presentation/proofs/bloc/proof_page.state.dart';
 import 'package:flutter_vcx_demo/src/presentation/proofs/create_proof_request_screen/proof_attribute_form_field.widget.dart';
 
 import '../../../data/dtos/aries_send_proof_response.dto.dart';
 import '../../../domain/entities/connection_data.dart';
-import '../../../domain/use_cases/retrieve_aries_connection_data.usecase.dart';
-import '../../../domain/use_cases/verifier_send_proof_request.usecase.dart';
 
 class CreateProofRequestScreenWidget extends StatefulWidget {
-  CreateProofRequestScreenWidget(
-      {Key? key, sendProofRequest, connectionDataUsecase})
-      : _sendProofRequest = locator<VerifierSendProofRequestUseCase>(),
-        _connectionDataUsecase = locator<RetrieveAriesConnectionDataUseCase>(),
-        super(key: key);
-
-  late final VerifierSendProofRequestUseCase _sendProofRequest;
-  late final RetrieveAriesConnectionDataUseCase _connectionDataUsecase;
+  const CreateProofRequestScreenWidget({Key? key}) : super(key: key);
 
   @override
   State<StatefulWidget> createState() => _CreateProofRequestScreen();
@@ -24,44 +18,14 @@ class CreateProofRequestScreenWidget extends StatefulWidget {
 
 class _CreateProofRequestScreen extends State<CreateProofRequestScreenWidget> {
   final List<ConnectionData> _connections = [];
-  final List<DropdownMenuItem<String?>> _connectionsMenuItem = [
-    const DropdownMenuItem<String?>(
-      value: null,
-      child: Text("Select a connection"),
-    )
-  ];
   String? _currentConnection;
   final List<ProofAttributeFormFieldWidget> _attributeFormFields = [];
   ScaffoldFeatureController<SnackBar, SnackBarClosedReason>? _waitProof;
 
   @override
   void initState() {
+    context.bloc<ProofPageCubit>().getConnectionsData();
     super.initState();
-    widget._connectionDataUsecase.getConnectionsData().then((connections) {
-      List<ConnectionData> conns = [];
-      List<DropdownMenuItem<String?>> connsMenu = [];
-      for (var e in connections) {
-        if (e.pairwiseDid != null && e.pairwiseDid?.isNotEmpty == true) {
-          conns.add(e);
-          connsMenu.add(DropdownMenuItem<String?>(
-            value: e.connectionName?.isEmpty == true &&
-                    e.pairwiseDid?.isNotEmpty == true
-                ? "invitee"
-                : e.connectionName!,
-            child: Text(e.connectionName?.isEmpty == true
-                ? "Invitee"
-                : e.connectionName!),
-          ));
-        }
-      }
-
-      if (conns.isNotEmpty) {
-        setState(() {
-          _connections.addAll(conns);
-          _connectionsMenuItem.addAll(connsMenu);
-        });
-      }
-    });
   }
 
   @override
@@ -85,15 +49,13 @@ class _CreateProofRequestScreen extends State<CreateProofRequestScreenWidget> {
             const Text("Connection"),
             Container(height: 30.0),
             Row(children: [
-              Expanded(
-                  child: DropdownButtonFormField<String?>(
-                      value: _currentConnection,
-                      onChanged: (String? newValue) {
-                        setState(() {
-                          _currentConnection = newValue;
-                        });
-                      },
-                      items: _connectionsMenuItem))
+              BlocBuilder<ProofPageCubit, ProofPageState>(
+                  builder: (ctx, state) {
+                return state.maybeMap(
+                    getConnectionsData: (st) =>
+                        _buildConnectionsDropDown(st.connections),
+                    orElse: () => _buildDefaultConnectionsDropdown());
+              })
             ]),
             Container(height: 30.0),
             const Text("Attributes"),
@@ -135,6 +97,64 @@ class _CreateProofRequestScreen extends State<CreateProofRequestScreenWidget> {
     );
   }
 
+  Widget _buildConnectionsDropDown(List<ConnectionData> connections) {
+    List<DropdownMenuItem<String?>> connsMenu = [
+      const DropdownMenuItem<String?>(
+        value: null,
+        child: Text("Select a connection"),
+      )
+    ];
+
+    for (var e in connections) {
+      if (e.pairwiseDid != null && e.pairwiseDid?.isNotEmpty == true) {
+        // conns.add(e);
+        connsMenu.add(DropdownMenuItem<String?>(
+          value: e.connectionName?.isEmpty == true &&
+                  e.pairwiseDid?.isNotEmpty == true
+              ? "invitee"
+              : e.connectionName!,
+          child: Text(e.connectionName?.isEmpty == true
+              ? "Invitee"
+              : e.connectionName!),
+        ));
+      }
+    }
+
+    // if (conns.isNotEmpty) {
+    //   setState(() {
+    //     _connections.addAll(conns);
+    //     _connectionsMenuItem.addAll(connsMenu);
+    //   });
+    // }
+
+    return Expanded(
+        child: DropdownButtonFormField<String?>(
+            value: _currentConnection,
+            onChanged: (String? newValue) {
+              setState(() {
+                _currentConnection = newValue;
+              });
+            },
+            items: connsMenu));
+  }
+
+  Widget _buildDefaultConnectionsDropdown() {
+    return Expanded(
+        child: DropdownButtonFormField<String?>(
+            value: _currentConnection,
+            onChanged: (String? newValue) {
+              setState(() {
+                _currentConnection = newValue;
+              });
+            },
+            items: const [
+          DropdownMenuItem<String?>(
+            value: null,
+            child: Text("Select a connection"),
+          )
+        ]));
+  }
+
   Future<void> _sendRequest(BuildContext context) async {
     if (!_isProofDataOk()) {
       return Future.value();
@@ -145,25 +165,9 @@ class _CreateProofRequestScreen extends State<CreateProofRequestScreenWidget> {
 
     _startProgressIndicator();
 
-    widget._sendProofRequest
-        .sendRequest(
-            sourceId: "flutter_vcx_demo",
-            pairwiseDid: connectionData.pairwiseDid,
-            requestedAttributes: requestedAttributes)
-        .then((value) {
-      _stopProgressIndicator();
-      _showProofDataDialog(context, value);
-    }).catchError((error, stack) {
-      _stopProgressIndicator();
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('$error')),
-      );
-      FlutterError.reportError(FlutterErrorDetails(
-          exception: error,
-          library: 'Flutter Vcx Demo',
-          context: ErrorSummary('while running async send proof request'),
-          stack: stack));
-    });
+    context.bloc<ProofPageCubit>().sendProofRequest(
+        pairwiseDid: connectionData.pairwiseDid ?? "",
+        requestedAttributes: requestedAttributes);
   }
 
   bool _isProofDataOk() {

@@ -23,9 +23,9 @@ class AriesSdkAdapter: SdkPort, CheckVcxResult {
         logger.info(message: "setting aries sdk log level to \(logLevel?.rawValue)")
 
 //        VcxLogger.setDefault("info"/*logLevel?.rawValue.lowercased()*/)
-        VcxLogger.setLogger { context, level, target, message, modulePath, file, line in
-            self.logger.info(message: "\(context) - \(level) - \(target) - \(modulePath) - \(file) - \(line) - \(message)")
-        }
+//         VcxLogger.setLogger { context, level, target, message, modulePath, file, line in
+//             self.logger.info(message: "\(context) - \(level) - \(target) - \(modulePath) - \(file) - \(line) - \(message)")
+//         }
     }
 
     func shutdown(isToDeleteWallet: Bool?) -> Bool {

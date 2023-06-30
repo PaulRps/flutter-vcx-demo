@@ -11,7 +11,7 @@ class ProverPresentProofRequestUseCase {
   ProverPresentProofRequestUseCase(
       this._ariesProofRepository, this._ariesConnectionRepository);
 
-  Future presentProof() {
+  Future<bool> presentProof() {
     return _ariesConnectionRepository.getConnectionsData().then((connections) {
       var connection =
           connections.firstWhere((e) => e.connectionName?.isNotEmpty == true);

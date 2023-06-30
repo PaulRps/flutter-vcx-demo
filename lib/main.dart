@@ -7,6 +7,7 @@ import 'package:flutter_vcx_demo/src/presentation/credentials/credential_page.wi
 import 'package:flutter_vcx_demo/src/presentation/menu_navigation/bloc/menu_navigation.cubit.dart';
 import 'package:flutter_vcx_demo/src/presentation/menu_navigation/bloc/menu_navigation.state.dart';
 import 'package:flutter_vcx_demo/src/presentation/menu_navigation/bottom_menu_navigation.widget.dart';
+import 'package:flutter_vcx_demo/src/presentation/proofs/bloc/proof_page.cubit.dart';
 import 'package:flutter_vcx_demo/src/presentation/proofs/proof_page.widget.dart';
 import 'package:flutter_vcx_demo/src/presentation/wallet/bloc/wallet_page.cubit.dart';
 import 'package:flutter_vcx_demo/src/presentation/wallet/wallet_page.widget.dart';
@@ -72,7 +73,9 @@ class _MyHomePageState extends State<MyHomePage> {
                 credential: (_) => BlocProvider(
                     create: (ctx) => locator<CredentialPageCubit>(),
                     child: const CredentialPageWidget()),
-                proof: (_) => const ProofPageWidget());
+                proof: (_) => BlocProvider(
+                    create: (ctx) => locator<ProofPageCubit>(),
+                    child: const ProofPageWidget()));
           }),
         ),
         bottomNavigationBar: const BottomMenuNavigationWidget(),

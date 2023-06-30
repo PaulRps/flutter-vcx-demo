@@ -1,18 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_vcx_demo/injection.dart';
-import 'package:flutter_vcx_demo/src/domain/use_cases/prover_present_proof_request.usecase.dart';
-import 'package:flutter_vcx_demo/src/domain/use_cases/prover_reject_proof_request.usecase.dart';
+import 'package:flutter_vcx_demo/src/commons/extensions/build_context.extension.dart';
+import 'package:flutter_vcx_demo/src/presentation/proofs/bloc/proof_page.cubit.dart';
 
 class ProofRequestFormWidget extends StatefulWidget {
-  ProofRequestFormWidget(
-      {Key? key, presentProofRequestUsecase, rejectProofRequestUsecase})
-      : _presentProofRequestUsecase =
-            locator<ProverPresentProofRequestUseCase>(),
-        _rejectProofRequestUsecase = locator<ProverRejectProofRequestUseCase>(),
-        super(key: key);
-
-  late final ProverPresentProofRequestUseCase _presentProofRequestUsecase;
-  late final ProverRejectProofRequestUseCase _rejectProofRequestUsecase;
+  const ProofRequestFormWidget({Key? key}) : super(key: key);
 
   @override
   State<StatefulWidget> createState() => _PresentProofRequestFormWidget();
@@ -28,7 +19,7 @@ class _PresentProofRequestFormWidget extends State<ProofRequestFormWidget> {
           Expanded(
             child: ElevatedButton(
                 onPressed: () {
-                  _presentProof(context);
+                  context.bloc<ProofPageCubit>().presentProof();
                 },
                 child: const Text('Present Proof')),
           ),
@@ -36,36 +27,12 @@ class _PresentProofRequestFormWidget extends State<ProofRequestFormWidget> {
           Expanded(
             child: ElevatedButton(
                 onPressed: () {
-                  _rejectProof(context);
+                  context.bloc<ProofPageCubit>().rejectProof();
                 },
                 child: const Text('Reject Proof')),
           )
         ])
       ],
     ));
-  }
-
-  void _presentProof(BuildContext context) {
-    widget._presentProofRequestUsecase.presentProof().then((value) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Finished present proof (success=$value)')),
-      );
-    }).catchError((error) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('$error')),
-      );
-    });
-  }
-
-  void _rejectProof(BuildContext context) {
-    widget._rejectProofRequestUsecase.reject().then((value) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Finished reject proof (success=$value)')),
-      );
-    }).catchError((error) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('$error')),
-      );
-    });
   }
 }
