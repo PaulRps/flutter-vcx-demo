@@ -25,6 +25,13 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.3.1"
+  aries_api:
+    dependency: "direct main"
+    description:
+      path: "packages/aries_api"
+      relative: true
+    source: path
+    version: "1.0.0"
   asn1lib:
     dependency: transitive
     description:
@@ -149,10 +156,10 @@ packages:
     dependency: transitive
     description:
       name: code_builder
-      sha256: "02ce3596b459c666530f045ad6f96209474e8fee6e4855940a3cee65fb872ec5"
+      sha256: "4ad01d6e56db961d29661561effde45e519939fdaeb46c351275b182eac70189"
       url: "https://pub.dev"
     source: hosted
-    version: "4.3.0"
+    version: "4.5.0"
   collection:
     dependency: transitive
     description:
@@ -685,6 +692,22 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.99"
+  smartstruct:
+    dependency: "direct main"
+    description:
+      name: smartstruct
+      sha256: ba2ef22ecb2eaafd57fb8b33b0e8fd4ddb9ee6e48eef34b7ac03be7cdead0279
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.4.0"
+  smartstruct_generator:
+    dependency: "direct dev"
+    description:
+      name: smartstruct_generator
+      sha256: "17563a552bf6d0e456aa4b60276987d240a900a27aed4fce5ccc0ca702f79c7c"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.4.0"
   source_gen:
     dependency: transitive
     description:
@@ -822,5 +845,5 @@ packages:
     source: hosted
     version: "3.1.1"
 sdks:
-  dart: ">=2.18.0 <3.0.0"
+  dart: ">=2.19.3 <3.0.0"
   flutter: ">=3.0.0"

@@ -1,18 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_vcx_demo/src/presentation/connections/bloc/connection_page.cubit.dart';
-import 'package:flutter_vcx_demo/src/presentation/connections/connection_page.widget.dart';
-import 'package:flutter_vcx_demo/src/presentation/credentials/bloc/credential_page.cubit.dart';
-import 'package:flutter_vcx_demo/src/presentation/credentials/credential_page.widget.dart';
-import 'package:flutter_vcx_demo/src/presentation/menu_navigation/bloc/menu_navigation.cubit.dart';
-import 'package:flutter_vcx_demo/src/presentation/menu_navigation/bloc/menu_navigation.state.dart';
-import 'package:flutter_vcx_demo/src/presentation/menu_navigation/bottom_menu_navigation.widget.dart';
-import 'package:flutter_vcx_demo/src/presentation/proofs/bloc/proof_page.cubit.dart';
-import 'package:flutter_vcx_demo/src/presentation/proofs/proof_page.widget.dart';
-import 'package:flutter_vcx_demo/src/presentation/wallet/bloc/wallet_page.cubit.dart';
-import 'package:flutter_vcx_demo/src/presentation/wallet/wallet_page.widget.dart';
+import 'package:flutter_vcx_demo/src/menu/ui/widgets/bottom_menu_navigation.widget.dart';
 
 import 'injection.dart';
+import 'src/connections/connections.dart';
+import 'src/credentials/credentials.dart';
+import 'src/menu/menu.dart';
+import 'src/proofs/proofs.dart';
+import 'src/wallet/wallet.dart';
 
 Future<void> main() async {
   configureInjection();
@@ -66,16 +61,16 @@ class _MyHomePageState extends State<MyHomePage> {
             return state.when(
                 wallet: (_) => BlocProvider(
                     create: (ctx) => locator<WalletPageCubit>(),
-                    child: const WalletPageWidget()),
+                    child: const WalletPage()),
                 connection: (_) => BlocProvider(
                     create: (ctx) => locator<ConnectionPageCubit>(),
-                    child: const ConnectionPageWidget()),
+                    child: const ConnectionPage()),
                 credential: (_) => BlocProvider(
                     create: (ctx) => locator<CredentialPageCubit>(),
-                    child: const CredentialPageWidget()),
+                    child: const CredentialPage()),
                 proof: (_) => BlocProvider(
                     create: (ctx) => locator<ProofPageCubit>(),
-                    child: const ProofPageWidget()));
+                    child: const ProofPage()));
           }),
         ),
         bottomNavigationBar: const BottomMenuNavigationWidget(),

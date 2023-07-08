@@ -1,0 +1,26 @@
+name: aries_api
+description: A starting point for Dart libraries or applications.
+version: 1.0.0
+# repository: https://github.com/my_org/my_repo
+
+scripts:
+  gen:
+    (description): generate all auto generated files (*.g)
+    (execution): once
+    (scripts):
+      - flutter pub run build_runner build --delete-conflicting-outputs
+
+environment:
+  sdk: '>=2.19.3 <3.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  json_serializable: ^6.3.1
+  json_annotation: ^4.6.0
+  build_runner: ^2.2.0
+
+dev_dependencies:
+  lints: ^2.0.0
+  test: ^1.21.0
+
